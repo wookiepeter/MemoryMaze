@@ -1,0 +1,8 @@
+
+Dies ist eine tolle neue Funktion die sieben Zwerge erscheinen lässt.
+
+void killSnowWhite()
+{
+	snowWhite.Delete();
+	dwarfs.cryLoud();
+}
