@@ -112,6 +112,7 @@ namespace GameProject2D
         }
         static void Update_view()
         {
+
           
         }
     }
