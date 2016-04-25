@@ -11,6 +11,7 @@ namespace GameProject2D
 {
     public class Player
     {
+
         RectangleShape sprite;
         Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
         Vector2f movement { get; set; }

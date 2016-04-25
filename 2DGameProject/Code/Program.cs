@@ -110,5 +110,9 @@ namespace GameProject2D
             view.Center = new Vector2(win.Size.X / 2F, win.Size.Y / 2F);
             view.Size = new Vector2(win.Size.X, win.Size.Y);
         }
+        static void Update_view()
+        {
+          
+        }
     }
 }
