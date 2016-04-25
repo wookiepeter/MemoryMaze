@@ -28,5 +28,10 @@ namespace GameProject2D
         public void DrawGUI(GUI gui, float deltaTime)
         {
         }
+
+        public Player getPlayer()
+        {
+            return player;
+        }
     }
 }
