@@ -11,11 +11,12 @@ namespace GameProject2D
 {
     public class Player
     {
+
         RectangleShape sprite;
         Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
         Vector2f movement { get; set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
-
+        static float x=0, y=0;
 
         public Player(Vector2f position)
         {
@@ -27,20 +28,27 @@ namespace GameProject2D
             
             this.size = new Vector2f(100F, 100F);
         }
-
+        
         public void update(float deltaTime)
         {
             float speed = deltaTime;
             
             Vector2f inputMovement = new Vector2f(0F, 0F);
 
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? speed : 0F;
+            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? +speed  : 0F;
             inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
+
+            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? +y : 0F;
+               inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -y : 0F;
+
+            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -x : 0F;
+            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? +x : 0F;
 
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -speed : 0F;
             inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? speed : 0F;
 
-            if(inputMovement.Y != 0F || inputMovement.X != 0F)
+
+            if (inputMovement.Y != 0F || inputMovement.X != 0F)
             {
                 movement += inputMovement * speed / (float)Math.Sqrt(inputMovement.X * inputMovement.X + inputMovement.Y * inputMovement.Y);
             }
