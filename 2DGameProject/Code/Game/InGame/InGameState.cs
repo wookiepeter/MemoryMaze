@@ -22,6 +22,7 @@ namespace GameProject2D
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
+            view.Center = player.
             player.draw(win, view);
         }
 
