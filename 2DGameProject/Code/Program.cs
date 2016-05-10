@@ -2,6 +2,7 @@
 using SFML.Window;
 using System;
 
+
 namespace GameProject2D
 {
     class Program
@@ -12,6 +13,7 @@ namespace GameProject2D
 
         static GameState currentGameState = GameState.MainMenu;
         static GameState prevGameState = GameState.MainMenu;
+
         static IGameState state;
 
         static RenderWindow win;
@@ -26,7 +28,7 @@ namespace GameProject2D
             view = new View();
             ResetView();
             gui = new GUI(win, view);
-            
+
             // prevent window resizing
             win.Resized += (sender, e) => { (sender as Window).Size = windowSize; };
 
@@ -46,6 +48,7 @@ namespace GameProject2D
 
             while (running && win.IsOpen())
             {
+
                 KeyboardInputManager.Update();
 
                 // update GameTime
@@ -74,6 +77,7 @@ namespace GameProject2D
 
                 // check for window-events. e.g. window closed        
                 win.DispatchEvents();
+                Update_view();
             }
         }
 
@@ -109,6 +113,14 @@ namespace GameProject2D
         {
             view.Center = new Vector2(win.Size.X / 2F, win.Size.Y / 2F);
             view.Size = new Vector2(win.Size.X, win.Size.Y);
+        }
+        static InGameState Pv = new InGameState();
+
+        static void Update_view()
+        {
+
+            
+
         }
     }
 }
