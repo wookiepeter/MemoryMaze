@@ -18,7 +18,7 @@ namespace GameProject2D
         static IGameState state;
 
         static RenderWindow win;
-        static readonly Vector2 windowSize = new Vector2(800, 600);
+        static readonly Vector2 windowSize = new Vector2(1280, 720);
         static View view;
         static GUI gui;
 
@@ -45,7 +45,7 @@ namespace GameProject2D
             GameTime.Start();
 
             // debug Text
-            Text debugText = new Text("debug Text", new Font("Fonts/calibri.ttf"));
+            Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));
 
             while (running && win.IsOpen())
             {

@@ -16,13 +16,13 @@ namespace GameProject2D
 
         public Game()
         {
-            player = new Player(new Vector2f(0, 0));
-            map = new Map(10, 10);
+            map = new Map(20, 20);
+            player = new Player(new Vector2i(0, 0), map);
         }
 
         public void Update(float deltaTime)
         {
-            player.update(deltaTime);
+            player.update(deltaTime, map);
         }
 
         public void draw(RenderWindow win, View view)

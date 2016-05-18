@@ -11,62 +11,78 @@ namespace GameProject2D
 {
     public class Player
     {
-
         RectangleShape sprite;
-        Vector2f position { get { return sprite.Position; } set { sprite.Position = value; } }
-        Vector2f movement { get; set; }
+        Vector2i mapPosition;
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
-        static float x=0, y=0;
-
-        public Player(Vector2f position)
+        
+        public Player(Vector2i position, Map map)
         {
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.FillColor = Color.Black;
+            this.sprite.FillColor = Color.Cyan;
 
-            this.position = position;
-            this.movement = new Vector2f(0F, 0F);
-            
-            this.size = new Vector2f(100F, 100F);
+            this.mapPosition = position;
+            updateSpritePosition(map);
+            this.size = new Vector2f(map.getSizePerCell() * 0.8F, map.getSizePerCell() * 0.8F);
         }
         
-        public void update(float deltaTime)
+        public void update(float deltaTime, Map map)
         {
-            float speed = deltaTime;
-            
-            Vector2f inputMovement = new Vector2f(0F, 0F);
-
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? +speed  : 0F;
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -speed : 0F;
-
-            inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Down) ? +y : 0F;
-               inputMovement.Y += Keyboard.IsKeyPressed(Keyboard.Key.Up) ? -y : 0F;
-
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -x : 0F;
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? +x : 0F;
-
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Left) ? -speed : 0F;
-            inputMovement.X += Keyboard.IsKeyPressed(Keyboard.Key.Right) ? speed : 0F;
-
-
-            if (inputMovement.Y != 0F || inputMovement.X != 0F)
+            Vector2i move = getMove();
+            if (map.cellIsWalkable(mapPosition + move))
             {
-                movement += inputMovement * speed / (float)Math.Sqrt(inputMovement.X * inputMovement.X + inputMovement.Y * inputMovement.Y);
-            }
-
-            movement *= (1F - deltaTime * 4F);    // friction
-
-            position += movement;
-
-            if(position.X < 0)
-            {
-                position -= movement;
-                movement *= Vector2.Up;
+                mapPosition = mapPosition + move;
+                // Console.WriteLine("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y);
+                updateSpritePosition(map);
             }
         }
 
         public void draw(RenderWindow win, View view)
         {
+            view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             win.Draw(sprite);
+        }
+
+        Vector2i getMove()
+        {
+            Vector2i move = new Vector2i(0, 0);
+            if (KeyboardInputManager.Downward(Keyboard.Key.Up))
+            {
+                move.Y = -1;
+            }
+            else if (KeyboardInputManager.Downward(Keyboard.Key.Down))
+            {
+                move.Y = 1;
+            }
+            if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+            {
+                move.X = -1;
+            }
+            else if (KeyboardInputManager.Downward(Keyboard.Key.Right))
+            {
+                move.X = 1;
+            }
+            Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
+            return move;
+        }
+
+        Vector2i makeNextPos(Vector2i nextPos, Map map)
+        {
+            nextPos.X = (nextPos.X > map.mapSizeX) ? map.mapSizeX : nextPos.X;
+            nextPos.Y = (nextPos.Y > map.mapSizeY) ? map.mapSizeY : nextPos.Y;
+
+            nextPos.X = (nextPos.X < 0) ? 0 : nextPos.X;
+            nextPos.Y = (nextPos.Y < 0) ? 0 : nextPos.Y;
+            return nextPos;
+        }
+
+        void updateSpritePosition(Map map)
+        {
+            this.sprite.Position = new Vector2f(mapPosition.X * map.getSizePerCell() + map.getSizePerCell() * 0.1F, mapPosition.Y * map.getSizePerCell() + map.getSizePerCell() * 0.1F);
+        }
+
+        Vector2f getSpritePosition(Map map)
+        {
+            return new Vector2f(mapPosition.X * map.getSizePerCell() + map.getSizePerCell()*0.1F, mapPosition.Y * map.getSizePerCell() + map.getSizePerCell()*0.1F);
         }
     }
 }
