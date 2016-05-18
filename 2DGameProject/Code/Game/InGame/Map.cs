@@ -39,8 +39,7 @@ namespace GameProject2D
 
         public void draw(RenderWindow win, View view)
         {
-            Texture[,] colorMap = new Texture[mapSizeX, mapSizeY];
-            Sprite mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Ground)));
+            Sprite mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
             mapSprite.Scale = new Vector2f(sizePerCell/ mapSprite.Texture.Size.X, sizePerCell/mapSprite.Texture.Size.Y);
             for (int i = 0; i < mapSizeX; i++)
             {

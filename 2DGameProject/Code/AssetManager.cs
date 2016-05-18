@@ -18,7 +18,7 @@ public class AssetManager
     {
         textures.Add(TextureName.WhitePixel, new Texture("Assets/Textures/pixel.png"));
         textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/MainMenu_Background.jpg"));
-        textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
+        textures.Add(TextureName.Wall, new Texture("Assets/Textures/pattern.png"));
         textures.Add(TextureName.Ground, new Texture("Assets/Textures/placeholder/GroundTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
     }
