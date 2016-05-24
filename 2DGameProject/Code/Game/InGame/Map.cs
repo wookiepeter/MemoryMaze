@@ -21,7 +21,7 @@ namespace GameProject2D
         {
             //// get Size per cell from CellTexture
             //sizePerCell = (int)(AssetManager.GetTexture(AssetManager.TextureName.Wall).Size.X);
-            sizePerCell = 80;
+            sizePerCell = 25;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
             cellMap = randomCellMap(this.mapSizeX, this.mapSizeY);
@@ -57,6 +57,7 @@ namespace GameProject2D
                 {
                     mapSprite.Position = new Vector2(i * sizePerCell, j * sizePerCell);
                     mapSprite.Texture = cellMap[i, j].getTexture();
+                    mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     win.Draw(mapSprite);
                 }
             }
