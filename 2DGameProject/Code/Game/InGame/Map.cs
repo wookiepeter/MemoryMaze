@@ -15,13 +15,24 @@ namespace GameProject2D
         public int mapSizeY { get; private set; }
         public int sizePerCell { get; private set; }
         Cell[,] cellMap;
+        Sprite mapSprite;
 
         public Map(int mapSizeX, int mapSizeY)
         {
+            //// get Size per cell from CellTexture
+            //sizePerCell = (int)(AssetManager.GetTexture(AssetManager.TextureName.Wall).Size.X);
             sizePerCell = 64;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
             cellMap = randomCellMap(this.mapSizeX, this.mapSizeY);
+
+            // try to solve this with the Texture(Image, Intrect) constructor?!
+            Texture helpTex = new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall));
+            mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
+            mapSprite.TextureRect = new IntRect(0, 0, (int)sizePerCell, (int)sizePerCell);
+                // new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
+            //mapSprite.Texture = new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall));
+            mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
         }
 
         private Cell[,] randomCellMap(int sizeX, int sizeY)
@@ -39,8 +50,7 @@ namespace GameProject2D
 
         public void draw(RenderWindow win, View view)
         {
-            Sprite mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
-            mapSprite.Scale = new Vector2f(sizePerCell/ mapSprite.Texture.Size.X, sizePerCell/mapSprite.Texture.Size.Y);
+            // mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
             for (int i = 0; i < mapSizeX; i++)
             {
                 for (int j = 0; j < mapSizeY; j++)
