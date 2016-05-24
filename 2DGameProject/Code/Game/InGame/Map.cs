@@ -21,7 +21,7 @@ namespace GameProject2D
         {
             //// get Size per cell from CellTexture
             //sizePerCell = (int)(AssetManager.GetTexture(AssetManager.TextureName.Wall).Size.X);
-            sizePerCell = 64;
+            sizePerCell = 80;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
             cellMap = randomCellMap(this.mapSizeX, this.mapSizeY);

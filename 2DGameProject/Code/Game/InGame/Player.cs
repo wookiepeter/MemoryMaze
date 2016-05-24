@@ -53,7 +53,7 @@ namespace GameProject2D
             {
                 move.Y = 1;
             }
-            if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+            else  if (KeyboardInputManager.Downward(Keyboard.Key.Left))
             {
                 move.X = -1;
             }
