@@ -18,11 +18,11 @@ namespace GameProject2D
         public Player(Vector2i position, Map map)
         {
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.FillColor = Color.Cyan;
+            this.sprite.Size = new Vector2f(map.getSizePerCell() * 0.8F, map.getSizePerCell() * 0.8F);
+            this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
 
             this.mapPosition = position;
             updateSpritePosition(map);
-            this.size = new Vector2f(map.getSizePerCell() * 0.8F, map.getSizePerCell() * 0.8F);
         }
         
         public void update(float deltaTime, Map map)
@@ -53,7 +53,7 @@ namespace GameProject2D
             {
                 move.Y = 1;
             }
-            if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+            else  if (KeyboardInputManager.Downward(Keyboard.Key.Left))
             {
                 move.X = -1;
             }
@@ -61,7 +61,7 @@ namespace GameProject2D
             {
                 move.X = 1;
             }
-            Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
+            //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
             return move;
         }
 
