@@ -49,8 +49,8 @@ namespace MemoryMaze
             logger = Logger.Instance;
             logger.setLevel(2);
             // writeToFile should be optional
-
             logger.setWriteMode(true, true);
+            
             // debug Text
             Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));
 

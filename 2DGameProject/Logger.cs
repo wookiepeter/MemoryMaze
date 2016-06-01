@@ -80,14 +80,7 @@ namespace MemoryMaze
         // write function with enum instead of int #justforCord #easierReadible
         public void write(String msg, level newlvl)
         {
-            if (lvl >= level.Error && lvl <= level.Debug)
-            {
-                messageString = levelMessage[(int)lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
-                if (writeToConsole)
-                    Console.WriteLine(messageString);
-                if (writeToFile)
-                    file.WriteLine(messageString);
-            }
+            write(msg, (int)newlvl);
         }
     }
 }
