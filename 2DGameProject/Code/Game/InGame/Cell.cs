@@ -8,7 +8,7 @@ using SFML.Graphics;
 using SFML.Window;
 
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     // enum goes global
     enum cellContent
@@ -16,6 +16,7 @@ namespace GameProject2D
         Empty,
         Item,
         Wall,
+        Movable,
         Last
     };
 
@@ -40,10 +41,15 @@ namespace GameProject2D
 
         public Boolean isWalkable()
         {
-            if (content == cellContent.Wall)
+            if (content == cellContent.Wall || content == cellContent.Movable)
                 return false;
             else
                 return true;
+        }
+        
+        public Boolean isMovable()
+        {
+            return (content == cellContent.Movable);
         }
 
         public Color getColor()
@@ -65,6 +71,7 @@ namespace GameProject2D
                 case cellContent.Empty: return AssetManager.GetTexture(AssetManager.TextureName.Ground);
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
+                case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);
                 default: return AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
             }
         }

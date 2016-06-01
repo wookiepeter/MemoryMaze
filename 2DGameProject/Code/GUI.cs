@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     class GUI
     {

@@ -3,7 +3,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     class InGameState : IGameState
     {
@@ -22,7 +22,8 @@ namespace GameProject2D
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
-            game.draw(win, view);
+            game.draw(win, view);            
+
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

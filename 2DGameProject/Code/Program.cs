@@ -4,11 +4,12 @@ using SFML.Window;
 using System;
 
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     class Program
     {
         public static GameTime GameTime;
+        public static Logger logger;
 
         static bool running = true;
 
@@ -21,6 +22,8 @@ namespace GameProject2D
         static readonly Vector2 windowSize = new Vector2(1280, 720);
         static View view;
         static GUI gui;
+
+        
 
         static void Main(string[] args)
         {
@@ -43,19 +46,23 @@ namespace GameProject2D
             // initialize GameTime
             GameTime = new GameTime();
             GameTime.Start();
-
+            logger = Logger.Instance;
+            logger.setLevel(2);
+            // writeToFile should be optional
+            logger.setWriteMode(true, true);
+            
             // debug Text
             Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));
 
             while (running && win.IsOpen())
             {
-
                 KeyboardInputManager.Update();
 
                 // update GameTime
                 GameTime.Update();
                 float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds;
-
+                // logger needs Timespan for Timestamp!
+                logger.updateTime(GameTime.TotalTime);
                 currentGameState = state.Update(deltaTime);
 
                 if (currentGameState != prevGameState)
