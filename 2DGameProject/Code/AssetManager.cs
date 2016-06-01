@@ -22,6 +22,7 @@ public class AssetManager
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/pattern.png"));
         textures.Add(TextureName.Ground, new Texture("Assets/Textures/placeholder/GroundTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
+        textures.Add(TextureName.Movable, new Texture("Assets/Textures/placeholder/WallTile.png"));
     }
 
     public enum TextureName
@@ -31,6 +32,7 @@ public class AssetManager
         Player,
         Wall,
         Ground, 
-        Item
+        Item,
+        Movable
     }
 }

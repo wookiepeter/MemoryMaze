@@ -4,23 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     public class Logger
     {
         private static Logger instance;
-        private TimeSpan curGameTime;
-        private String messageString;
+        private static TimeSpan curGameTime;
+        private static String messageString;
 
-        private Boolean writeToFile;
-        private Boolean writeToConsole;
+        private static Boolean writeToFile;
+        private static Boolean writeToConsole;
 
-        System.IO.StreamWriter file;
+        static System.IO.StreamWriter file;
 
-        level lvl;
-        String[] levelMessage = { "ERROR ", "WARN  ", "INFO  ", "DEBUG " };
+        static level lvl;
+        static String[] levelMessage = { "ERROR ", "WARN  ", "INFO  ", "DEBUG " };
 
-        enum level
+        public enum level
         {
             Error,
             Warning,
@@ -71,6 +71,19 @@ namespace GameProject2D
             {
                 messageString = levelMessage[lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
                 if(writeToConsole)
+                    Console.WriteLine(messageString);
+                if (writeToFile)
+                    file.WriteLine(messageString);
+            }
+        }
+
+        // write function with enum instead of int #justforCord #easierReadible
+        public void write(String msg, level newlvl)
+        {
+            if (lvl >= level.Error && lvl <= level.Debug)
+            {
+                messageString = levelMessage[(int)lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
+                if (writeToConsole)
                     Console.WriteLine(messageString);
                 if (writeToFile)
                     file.WriteLine(messageString);

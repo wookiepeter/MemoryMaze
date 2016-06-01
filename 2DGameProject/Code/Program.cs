@@ -4,7 +4,7 @@ using SFML.Window;
 using System;
 
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     class Program
     {
@@ -60,7 +60,7 @@ namespace GameProject2D
 
                 // update GameTime
                 GameTime.Update();
-                float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds
+                float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds;
                 // logger needs Timespan for Timestamp!
                 logger.updateTime(GameTime.TotalTime);
                 currentGameState = state.Update(deltaTime);

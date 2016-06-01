@@ -1,6 +1,6 @@
 ﻿using SFML.Graphics;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     interface IGameState
     {

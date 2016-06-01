@@ -7,7 +7,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     public class Map
     {
@@ -21,15 +21,15 @@ namespace GameProject2D
         {
             //// get Size per cell from CellTexture
             //sizePerCell = (int)(AssetManager.GetTexture(AssetManager.TextureName.Wall).Size.X);
-            sizePerCell = 50;
+            sizePerCell = 100;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
             cellMap = randomCellMap(this.mapSizeX, this.mapSizeY);
 
             // Probably not possible to draw all Textures(with different image resolutions) in the same sprite
             // without using different sprites for different textures
-            mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Ground)));
-            mapSprite.TextureRect = new IntRect(0, 0, (int)sizePerCell, (int)sizePerCell);
+            mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
+            // mapSprite.TextureRect = new IntRect(0, 0, (int)sizePerCell, (int)sizePerCell);
         }
 
         private Cell[,] randomCellMap(int sizeX, int sizeY)
@@ -52,8 +52,8 @@ namespace GameProject2D
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    // mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Texture = cellMap[i, j].getTexture();
+                    mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(i * sizePerCell, j * sizePerCell);
                     win.Draw(mapSprite);
                 }

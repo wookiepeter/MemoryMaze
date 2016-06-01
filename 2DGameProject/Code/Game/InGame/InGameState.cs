@@ -3,7 +3,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     class InGameState : IGameState
     {

@@ -7,7 +7,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
-namespace GameProject2D
+namespace MemoryMaze
 {
     public class Player
     {
@@ -31,7 +31,7 @@ namespace GameProject2D
             if (map.cellIsWalkable(mapPosition + move))
             {
                 mapPosition = mapPosition + move;
-                // Console.WriteLine("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y);
+                Logger.Instance.write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 updateSpritePosition(map);
             }
         }
@@ -62,6 +62,7 @@ namespace GameProject2D
                 move.X = 1;
             }
             //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
+            Logger.Instance.write("moveX: " + move.X + "moveY" + move.Y, 2);
             return move;
         }
 
