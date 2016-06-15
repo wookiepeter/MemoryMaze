@@ -16,8 +16,8 @@ namespace MemoryMaze
 
         public Game()
         {
-            map = new Map(20, 20);
-            player = new Player(new Vector2i(0, 0), map);
+            map = new Map("Assets/MapFiles/ExampleMap.txt", 64);
+            player = new Player(new Vector2i(1, 1), map);
         }
 
         public void Update(float deltaTime)

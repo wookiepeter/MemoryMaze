@@ -77,7 +77,7 @@ namespace MemoryMaze
 
                 // some DebugText
                 debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
-                win.Draw(debugText);
+                gui.Draw(debugText);
 
                 // do the actual drawing
                 win.SetView(view);

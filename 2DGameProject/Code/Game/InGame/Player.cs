@@ -34,6 +34,12 @@ namespace MemoryMaze
                 Logger.Instance.write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 updateSpritePosition(map);
             }
+            else if(map.cellIsMovable(mapPosition + move) && map.moveIsPossible(mapPosition, move))
+            {
+                Logger.Instance.write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                map.moveBlock(mapPosition, move);
+                mapPosition = mapPosition + move;
+            }
         }
 
         public void draw(RenderWindow win, View view)
