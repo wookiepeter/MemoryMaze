@@ -15,7 +15,7 @@ namespace MemoryMaze
         /// Integerrepresentation of the Number of Lines(starting from line 3) and the Number of chars in 1 line(in that order);
         /// </summary>
         /// <param name="filename">Name of the txt file that contains the Map. Should be in Assets/MapFiles</param>
-        /// <returns></returns>
+        /// <returns>cellMap</returns>
         public Cell[,] createMap(String filename)
         {
             file = new System.IO.StreamReader(@filename);
@@ -52,6 +52,8 @@ namespace MemoryMaze
             return cellMap;
         }
 
+        // simply returns a collContent associated with the given char;
+        // default is Wall;
         private cellContent getCellContentFromChar(char c)
         {
             switch(c)

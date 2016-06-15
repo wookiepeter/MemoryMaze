@@ -34,6 +34,11 @@ namespace MemoryMaze
             // mapSprite.TextureRect = new IntRect(0, 0, (int)sizePerCell, (int)sizePerCell);
         }
 
+        /// <summary>
+        /// Constructs a Map from a given file.txt
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="_sizePerCell"></param>
         public Map(String filename, int _sizePerCell)
         {
             cellMap = mapFromText.createMap(filename);
@@ -46,6 +51,7 @@ namespace MemoryMaze
             mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
         }
 
+        // TRASH could be deleted now
         private Cell[,] randomCellMap(int sizeX, int sizeY)
         {
             
