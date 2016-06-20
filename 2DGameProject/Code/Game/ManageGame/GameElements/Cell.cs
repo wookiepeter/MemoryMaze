@@ -64,11 +64,11 @@ namespace MemoryMaze
             }
         }
 
-        public Texture GetTexture()
+        public Texture GetTexture(Vector2i position)
         {
             switch (this.content)
             {
-                case cellContent.Empty: return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                case cellContent.Empty: return Map.chooseGroundTexture(position);
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
                 case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);

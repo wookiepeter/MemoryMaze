@@ -14,7 +14,7 @@ namespace MemoryMaze
         public int mapSizeX { get; private set; }
         public int mapSizeY { get; private set; }
         public int sizePerCell { get; private set; }
-        Cell[,] cellMap;
+        static Cell[,] cellMap;
         Sprite mapSprite;
 
         MapFromTxt mapFromText = new MapFromTxt();
@@ -72,14 +72,125 @@ namespace MemoryMaze
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    mapSprite.Texture = cellMap[i, j].GetTexture();
+                    mapSprite.Texture = cellMap[j, i].GetTexture(new Vector2i(j, i));
                     mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
-                    mapSprite.Position = new Vector2(i * sizePerCell, j * sizePerCell);
+                    mapSprite.Position = new Vector2(j * sizePerCell, i * sizePerCell);
                     win.Draw(mapSprite);
                 }
             }
         }
-
+        
+        // Massive but simple(16 different values based on 4 different "booleans")
+        public static Texture chooseGroundTexture(Vector2i position)
+        {
+            if(cellMap[position.X-1, position.Y].IsWalkable())
+            {
+                if(cellMap[position.X, position.Y-1].IsWalkable())
+                {
+                    if(cellMap[position.X+1, position.Y].IsWalkable())
+                    {
+                        if(cellMap[position.X, position.Y+1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                    }
+                    else
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2lefttop);
+                        }
+                    }
+                }
+                else
+                {
+                    if (cellMap[position.X + 1, position.Y].IsWalkable())
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                    }
+                    else
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2leftbottom);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2lefttop);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (cellMap[position.X, position.Y - 1].IsWalkable())
+                {
+                    if (cellMap[position.X + 1, position.Y].IsWalkable())
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2topright);
+                        }
+                    }
+                    else
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2vertical);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1top);
+                        }
+                    }
+                }
+                else
+                {
+                    if (cellMap[position.X + 1, position.Y].IsWalkable())
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2bottomright);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1right);
+                        }
+                    }
+                    else
+                    {
+                        if (cellMap[position.X, position.Y + 1].IsWalkable())
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1bottom);
+                        }
+                        else
+                        {
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                        }
+                    }
+                }
+            }
+        }
+        
         public Boolean CellIsWalkable(Vector2i position)
         {
             if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
