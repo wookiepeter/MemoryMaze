@@ -22,7 +22,7 @@ public class AssetManager
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/pattern.png"));
-        textures.Add(TextureName.Ground, new Texture("Assets/Textures/set_01/floor/floor straight horizontal.png"));
+        textures.Add(TextureName.GroundEmpty, new Texture("Assets/Textures/set_01/floor/center two.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/end floor top.png"));
         textures.Add(TextureName.Ground1left, new Texture("Assets/Textures/set_01/floor/end floor right.png"));
         textures.Add(TextureName.Ground1right, new Texture("Assets/Textures/set_01/floor/end floor left.png"));
@@ -33,6 +33,11 @@ public class AssetManager
         textures.Add(TextureName.Ground2lefttop, new Texture("Assets/Textures/set_01/floor/corner floor left top.png"));
         textures.Add(TextureName.Ground2horizontal, new Texture("Assets/Textures/set_01/floor/floor straight horizontal.png"));
         textures.Add(TextureName.Ground2vertical, new Texture("Assets/Textures/set_01/floor/floor straight vertical.png"));
+        textures.Add(TextureName.Ground3left, new Texture("Assets/Textures/set_01/floor/intersection tlb.png"));
+        textures.Add(TextureName.Ground3top, new Texture("Assets/Textures/set_01/floor/intersection ltr.png"));
+        textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/intersection trb.png"));
+        textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/intersection lbr.png"));
+        textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/center two.png"));
 
     }
 
@@ -42,7 +47,7 @@ public class AssetManager
         MainMenuBackground,
         Player,
         Wall,
-        Ground,
+        GroundEmpty,
         Ground1left,
         Ground1right,
         Ground1top,
@@ -53,6 +58,11 @@ public class AssetManager
         Ground2bottomright,
         Ground2horizontal,
         Ground2vertical, 
+        Ground3left,
+        Ground3top,
+        Ground3right,
+        Ground3bottom,
+        Ground4,
         Item,
         Movable
     }

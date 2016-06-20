@@ -91,18 +91,18 @@ namespace MemoryMaze
                     {
                         if(cellMap[position.X, position.Y+1].IsWalkable())
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground4);
                         }
                         else
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3top);
                         }
                     }
                     else
                     {
                         if (cellMap[position.X, position.Y + 1].IsWalkable())
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3left);
                         }
                         else
                         {
@@ -116,11 +116,11 @@ namespace MemoryMaze
                     {
                         if (cellMap[position.X, position.Y + 1].IsWalkable())
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3bottom);
                         }
                         else
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2horizontal);
                         }
                     }
                     else
@@ -144,7 +144,7 @@ namespace MemoryMaze
                     {
                         if (cellMap[position.X, position.Y + 1].IsWalkable())
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3right);
                         }
                         else
                         {
@@ -184,7 +184,7 @@ namespace MemoryMaze
                         }
                         else
                         {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground);
+                            return AssetManager.GetTexture(AssetManager.TextureName.GroundEmpty);
                         }
                     }
                 }
