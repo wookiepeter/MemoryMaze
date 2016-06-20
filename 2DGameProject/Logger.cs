@@ -46,12 +46,12 @@ namespace MemoryMaze
             }
         }
 
-        public void updateTime(TimeSpan newTime)
+        public void UpdateTime(TimeSpan newTime)
         {
             curGameTime = newTime;
         }
 
-        public void setLevel(int newLevel)
+        public void SetLevel(int newLevel)
         {
             if(newLevel >= (int)level.Error && newLevel <= (int)level.Debug)
             {
@@ -59,13 +59,13 @@ namespace MemoryMaze
             }
         }
 
-        public void setWriteMode(Boolean _writeToConsole, Boolean _writeToFile)
+        public void SetWriteMode(Boolean _writeToConsole, Boolean _writeToFile)
         {
             writeToConsole = _writeToConsole;
             writeToFile = _writeToConsole;
         }
 
-        public void write(String msg, int lvl)
+        public void Write(String msg, int lvl)
         {
             if (lvl >= (int)level.Error && lvl <= (int)level.Debug)
             {
@@ -78,9 +78,9 @@ namespace MemoryMaze
         }
 
         // write function with enum instead of int #justforCord #easierReadible
-        public void write(String msg, level newlvl)
+        public void Write(String msg, level newlvl)
         {
-            write(msg, (int)newlvl);
+            Write(msg, (int)newlvl);
         }
     }
 }

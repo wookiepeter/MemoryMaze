@@ -47,9 +47,9 @@ namespace MemoryMaze
             GameTime = new GameTime();
             GameTime.Start();
             logger = Logger.Instance;
-            logger.setLevel(2);
+            logger.SetLevel(2);
             // writeToFile should be optional
-            logger.setWriteMode(true, true);
+            logger.SetWriteMode(true, true);
             
             // debug Text
             Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));
@@ -62,7 +62,7 @@ namespace MemoryMaze
                 GameTime.Update();
                 float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds;
                 // logger needs Timespan for Timestamp!
-                logger.updateTime(GameTime.TotalTime);
+                logger.UpdateTime(GameTime.TotalTime);
                 currentGameState = state.Update(deltaTime);
 
                 if (currentGameState != prevGameState)

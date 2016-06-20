@@ -26,7 +26,7 @@ namespace MemoryMaze
             sizePerCell = 64;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
-            cellMap = randomCellMap(this.mapSizeX, this.mapSizeY);
+            cellMap = RandomCellMap(this.mapSizeX, this.mapSizeY);
 
             // Probably not possible to draw all Textures(with different image resolutions) in the same sprite
             // without using different sprites for different textures
@@ -41,7 +41,7 @@ namespace MemoryMaze
         /// <param name="_sizePerCell"></param>
         public Map(String filename, int _sizePerCell)
         {
-            cellMap = mapFromText.createMap(filename);
+            cellMap = mapFromText.CreateMap(filename);
 
             sizePerCell = _sizePerCell;
 
@@ -52,7 +52,7 @@ namespace MemoryMaze
         }
 
         // TRASH could be deleted now
-        private Cell[,] randomCellMap(int sizeX, int sizeY)
+        private Cell[,] RandomCellMap(int sizeX, int sizeY)
         {
             
             Cell[,] newCellArray = new Cell[sizeX, sizeY];
@@ -66,13 +66,13 @@ namespace MemoryMaze
             return newCellArray;
         }
 
-        public void draw(RenderWindow win, View view)
+        public void Draw(RenderWindow win, View view)
         {
             for (int i = 0; i < mapSizeX; i++)
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    mapSprite.Texture = cellMap[i, j].getTexture();
+                    mapSprite.Texture = cellMap[i, j].GetTexture();
                     mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(i * sizePerCell, j * sizePerCell);
                     win.Draw(mapSprite);
@@ -80,32 +80,32 @@ namespace MemoryMaze
             }
         }
 
-        public Boolean cellIsWalkable(Vector2i position)
+        public Boolean CellIsWalkable(Vector2i position)
         {
             if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
             {
                 return false;
             }
-            return cellMap[position.X, position.Y].isWalkable();
+            return cellMap[position.X, position.Y].IsWalkable();
         }
 
-        public Boolean cellIsMovable(Vector2i position)
+        public Boolean CellIsMovable(Vector2i position)
         {
             if(position.X >= mapSizeX ||position.X < 0 ||position.Y >= mapSizeY || position.Y <0)
             {
                 return false;
             }
-            return cellMap[position.X, position.Y].isMovable();
+            return cellMap[position.X, position.Y].IsMovable();
         }
 
-        public Boolean moveIsPossible(Vector2i position, Vector2i move)
+        public Boolean MoveIsPossible(Vector2i position, Vector2i move)
         {
-            if (cellIsMovable(position + move) && cellIsWalkable(position + move + move))
+            if (CellIsMovable(position + move) && CellIsWalkable(position + move + move))
                 return true;
             return false;
         }
 
-        public void moveBlock(Vector2i position, Vector2i move)
+        public void MoveBlock(Vector2i position, Vector2i move)
         {
             Vector2i targetBlock = position + move + move;
             Vector2i moveBlock = position + move;
@@ -113,7 +113,7 @@ namespace MemoryMaze
             cellMap[moveBlock.X, moveBlock.Y] = new Cell(cellContent.Empty);
         }
 
-        public int getSizePerCell()
+        public int GetSizePerCell()
         {
             return sizePerCell;
         }

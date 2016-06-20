@@ -29,17 +29,17 @@ namespace MemoryMaze
             content = _content;
         }
 
-        public cellContent getContent()
+        public cellContent GetContent()
         {
             return content;
         }
 
-        public void setContent(cellContent _content)
+        public void SetContent(cellContent _content)
         {
             content = _content;
         }
 
-        public Boolean isWalkable()
+        public Boolean IsWalkable()
         {
             if (content == cellContent.Wall || content == cellContent.Movable)
                 return false;
@@ -47,12 +47,12 @@ namespace MemoryMaze
                 return true;
         }
         
-        public Boolean isMovable()
+        public Boolean IsMovable()
         {
             return (content == cellContent.Movable);
         }
 
-        public Color getColor()
+        public Color GetColor()
         {
             int contentIndex = (int) this.content;
             switch(contentIndex)
@@ -64,7 +64,7 @@ namespace MemoryMaze
             }
         }
 
-        public Texture getTexture()
+        public Texture GetTexture()
         {
             switch (this.content)
             {

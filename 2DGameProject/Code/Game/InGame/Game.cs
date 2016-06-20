@@ -22,13 +22,13 @@ namespace MemoryMaze
 
         public void Update(float deltaTime)
         {
-            player.update(deltaTime, map);
+            player.Update(deltaTime, map);
         }
 
         public void draw(RenderWindow win, View view)
         {
-            map.draw(win, view);
-            player.draw(win, view);
+            map.Draw(win, view);
+            player.Draw(win, view);
         }
     }
 }
