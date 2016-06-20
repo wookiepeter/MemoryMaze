@@ -16,7 +16,7 @@ namespace MemoryMaze
         /// </summary>
         /// <param name="filename">Name of the txt file that contains the Map. Should be in Assets/MapFiles</param>
         /// <returns>cellMap</returns>
-        public Cell[,] createMap(String filename)
+        public Cell[,] CreateMap(String filename)
         {
             file = new System.IO.StreamReader(@filename);
             String firstLine = file.ReadLine();
@@ -25,7 +25,6 @@ namespace MemoryMaze
             int numberOfChars = int.Parse(secondLine);
 
             Cell[,] cellMap = new Cell[numberOfChars, numberOfLines];
-            char[,] charMap = new char[numberOfChars, numberOfLines];
             char[] curLine;
             String lineBuffer;
 
@@ -33,18 +32,18 @@ namespace MemoryMaze
             {
                 if(file.EndOfStream)
                 {
-                    Logger.Instance.write("Wrong numberOfLines[" + numberOfLines + "] given in MapFile: " + filename, 0);
+                    Logger.Instance.Write("Wrong numberOfLines[" + numberOfLines + "] given in MapFile: " + filename, 0);
                 }
                 lineBuffer = file.ReadLine();
                 if (lineBuffer.Length < numberOfChars)
                 {
-                    Logger.Instance.write("Wrong numberOfChars per Line given in MapFile: " + filename, 1);
+                    Logger.Instance.Write("Wrong numberOfChars per Line given in MapFile: " + filename, 1);
                     lineBuffer += new String('w' , numberOfChars - lineBuffer.Length);
                 }
                 curLine = lineBuffer.ToCharArray();
                 for(int j = 0; j<numberOfChars; j++)
                 {
-                    cellMap[j, i] = new Cell(getCellContentFromChar(curLine[j]));
+                    cellMap[j, i] = new Cell(GetCellContentFromChar(curLine[j]));
                 }
             }
 
@@ -54,7 +53,7 @@ namespace MemoryMaze
 
         // simply returns a collContent associated with the given char;
         // default is Wall;
-        private cellContent getCellContentFromChar(char c)
+        private cellContent GetCellContentFromChar(char c)
         {
             switch(c)
             {

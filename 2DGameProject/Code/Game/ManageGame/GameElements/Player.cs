@@ -18,37 +18,37 @@ namespace MemoryMaze
         public Player(Vector2i position, Map map)
         {
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.Size = new Vector2f(map.getSizePerCell() * 0.8F, map.getSizePerCell() * 0.8F);
+            this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
 
             this.mapPosition = position;
-            updateSpritePosition(map);
+            UpdateSpritePosition(map);
         }
         
-        public void update(float deltaTime, Map map)
+        public void Update(float deltaTime, Map map)
         {
-            Vector2i move = getMove();
-            if (map.cellIsWalkable(mapPosition + move))
+            Vector2i move = GetMove();
+            if (map.CellIsWalkable(mapPosition + move))
             {
                 mapPosition = mapPosition + move;
-                Logger.Instance.write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                updateSpritePosition(map);
+                Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                UpdateSpritePosition(map);
             }
-            else if(map.cellIsMovable(mapPosition + move) && map.moveIsPossible(mapPosition, move))
+            else if(map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
             {
-                Logger.Instance.write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                map.moveBlock(mapPosition, move);
+                Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                map.MoveBlock(mapPosition, move);
                 mapPosition = mapPosition + move;
             }
         }
 
-        public void draw(RenderWindow win, View view)
+        public void Draw(RenderWindow win, View view)
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             win.Draw(sprite);
         }
 
-        Vector2i getMove()
+        Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
             if (KeyboardInputManager.Downward(Keyboard.Key.Up))
@@ -68,11 +68,11 @@ namespace MemoryMaze
                 move.X = 1;
             }
             //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
-            Logger.Instance.write("moveX: " + move.X + "moveY" + move.Y, 2);
+            Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, 2);
             return move;
         }
 
-        Vector2i makeNextPos(Vector2i nextPos, Map map)
+        Vector2i MakeNextPos(Vector2i nextPos, Map map)
         {
             nextPos.X = (nextPos.X > map.mapSizeX) ? map.mapSizeX : nextPos.X;
             nextPos.Y = (nextPos.Y > map.mapSizeY) ? map.mapSizeY : nextPos.Y;
@@ -82,14 +82,14 @@ namespace MemoryMaze
             return nextPos;
         }
 
-        void updateSpritePosition(Map map)
+        void UpdateSpritePosition(Map map)
         {
-            this.sprite.Position = new Vector2f(mapPosition.X * map.getSizePerCell() + map.getSizePerCell() * 0.1F, mapPosition.Y * map.getSizePerCell() + map.getSizePerCell() * 0.1F);
+            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
         }
 
-        Vector2f getSpritePosition(Map map)
+        Vector2f GetSpritePosition(Map map)
         {
-            return new Vector2f(mapPosition.X * map.getSizePerCell() + map.getSizePerCell()*0.1F, mapPosition.Y * map.getSizePerCell() + map.getSizePerCell()*0.1F);
+            return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
         }
     }
 }
