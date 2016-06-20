@@ -54,20 +54,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code\AnimatedSprite.cs" />
-    <Compile Include="Code\AssetManager.cs" />
-    <Compile Include="Code\Game\GameState.cs" />
-    <Compile Include="Code\Game\IGameState.cs" />
-    <Compile Include="Code\Game\InGame\Cell.cs" />
-    <Compile Include="Code\Game\InGame\Game.cs" />
-    <Compile Include="Code\Game\InGame\InGameState.cs" />
-    <Compile Include="Code\Game\InGame\Map.cs" />
-    <Compile Include="Code\Game\InGame\Player.cs" />
+    <Compile Include="Code\Graphik\AnimatedSprite.cs" />
+    <Compile Include="Code\Graphik\AssetManager.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Collision.cs" />
+    <Compile Include="Code\Game\ManageGame\GameState.cs" />
+    <Compile Include="Code\Game\ManageGame\IGameState.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Cell.cs" />
+    <Compile Include="Code\Game\ManageGame\Game.cs" />
+    <Compile Include="Code\Game\ManageGame\InGameState.cs" />
+    <Compile Include="Code\Game\ManageGame\Level.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Map.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
-    <Compile Include="Code\GUI.cs" />
+    <Compile Include="Code\GUI\GUI.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
     <Compile Include="Code\Utility\Helper.cs" />
-    <Compile Include="Code\KeyboardInputManager.cs" />
+    <Compile Include="Code\Graphik\KeyboardInputManager.cs" />
     <Compile Include="Code\Program.cs" />
     <Compile Include="Code\Utility\MapFromTxt.cs" />
     <Compile Include="Code\Utility\Rand.cs" />
@@ -129,7 +132,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Code\Game\InGame\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
