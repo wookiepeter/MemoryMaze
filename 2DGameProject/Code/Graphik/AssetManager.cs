@@ -21,7 +21,7 @@ public class AssetManager
         textures.Add(TextureName.Player, new Texture("Assets/Textures/playerface.png"));
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
-        textures.Add(TextureName.Movable, new Texture("Assets/Textures/pattern.png"));
+        textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
         textures.Add(TextureName.GroundEmpty, new Texture("Assets/Textures/set_01/floor/center two.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/end floor top.png"));
         textures.Add(TextureName.Ground1left, new Texture("Assets/Textures/set_01/floor/end floor right.png"));
@@ -43,25 +43,32 @@ public class AssetManager
 
     public enum TextureName
     {
+        /*
+            The positions for textures(based on the position of the first groundtexture) can be computed using a bitword(results in a normal integer^^)
+            One Bit equals the one direct neighbor.
+            The order is left | top | right | bottom !
+
+            YOLO :)
+        */
         WhitePixel,
         MainMenuBackground,
         Player,
         Wall,
         GroundEmpty,
-        Ground1left,
-        Ground1right,
-        Ground1top,
         Ground1bottom,
-        Ground2leftbottom,
-        Ground2lefttop,
-        Ground2topright,
+        Ground1right,
         Ground2bottomright,
+        Ground1top,
+        Ground2vertical,
+        Ground2topright,
+        Ground3right,
+        Ground1left,
+        Ground2leftbottom,
         Ground2horizontal,
-        Ground2vertical, 
+        Ground3bottom,
+        Ground2lefttop,
         Ground3left,
         Ground3top,
-        Ground3right,
-        Ground3bottom,
         Ground4,
         Item,
         Movable

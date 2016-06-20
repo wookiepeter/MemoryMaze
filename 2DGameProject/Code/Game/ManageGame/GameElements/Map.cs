@@ -72,12 +72,35 @@ namespace MemoryMaze
             {
                 for (int j = 0; j < mapSizeY; j++)
                 {
-                    mapSprite.Texture = cellMap[j, i].GetTexture(new Vector2i(j, i));
+                    mapSprite.Texture = cellMap[j, i].GetTexture(getGroundTextureIndex(new Vector2i(j, i)));
                     mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(j * sizePerCell, i * sizePerCell);
                     win.Draw(mapSprite);
                 }
             }
+        }
+
+        // Used to simplify the choice of Texture significantly...
+        /// <summary>
+        /// This function computes a value between 0 and 15 based on the 4 direct neighbors of the given Cell
+        /// look at Assetmanager -> textures
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        /// <returns>index of the correct Groundtexture(starting at the first groundtexture)</returns>
+        public int getGroundTextureIndex(Vector2i position)
+        {
+            int result = 0;
+            if (CellIsWalkable(new Vector2i(position.X-1, position.Y)))
+                result += 8;
+            if (CellIsWalkable(new Vector2i(position.X, position.Y-1)))
+                result += 4;
+            if (CellIsWalkable(new Vector2i(position.X + 1, position.Y)))
+                result += 2;
+            if (CellIsWalkable(new Vector2i(position.X, position.Y+1)))
+                result += 1;
+        
+            return result;
         }
         
         // Massive but simple(16 different values based on 4 different "booleans")

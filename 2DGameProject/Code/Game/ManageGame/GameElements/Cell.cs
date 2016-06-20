@@ -64,16 +64,21 @@ namespace MemoryMaze
             }
         }
 
-        public Texture GetTexture(Vector2i position)
+        public Texture GetTexture(int groundIndex)
         {
             switch (this.content)
             {
-                case cellContent.Empty: return Map.chooseGroundTexture(position);
+                case cellContent.Empty: return getGroundTextureFromIndex(groundIndex);
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
                 case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);
                 default: return AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
             }
+        }
+
+        private Texture getGroundTextureFromIndex(int groundIndex)
+        {
+            return AssetManager.GetTexture(AssetManager.TextureName.GroundEmpty + groundIndex);
         }
     }
 }
