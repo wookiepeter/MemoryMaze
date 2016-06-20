@@ -38,6 +38,7 @@ public class AssetManager
         textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/intersection trb.png"));
         textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/intersection lbr.png"));
         textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/center two.png"));
+        //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
 
     }
 
@@ -71,6 +72,7 @@ public class AssetManager
         Ground3top,
         Ground4,
         Item,
-        Movable
+        Movable,
+        Enemy
     }
 }
