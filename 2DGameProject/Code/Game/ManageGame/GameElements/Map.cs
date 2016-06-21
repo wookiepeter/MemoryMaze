@@ -72,6 +72,12 @@ namespace MemoryMaze
             }
             return newCellArray;
         }
+
+        public int Update(float deltaTime)
+        {
+
+            return 0;
+        }
         
         public void Draw(RenderWindow win, View view)
         {
@@ -114,117 +120,6 @@ namespace MemoryMaze
             return result;
         }
         
-        // Massive but simple(16 different values based on 4 different "booleans")
-        public static Texture chooseGroundTexture(Vector2i position)
-        {
-            if(cellMap[position.X-1, position.Y].IsWalkable())
-            {
-                if(cellMap[position.X, position.Y-1].IsWalkable())
-                {
-                    if(cellMap[position.X+1, position.Y].IsWalkable())
-                    {
-                        if(cellMap[position.X, position.Y+1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground4);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3top);
-                        }
-                    }
-                    else
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3left);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2lefttop);
-                        }
-                    }
-                }
-                else
-                {
-                    if (cellMap[position.X + 1, position.Y].IsWalkable())
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3bottom);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2horizontal);
-                        }
-                    }
-                    else
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2leftbottom);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2lefttop);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (cellMap[position.X, position.Y - 1].IsWalkable())
-                {
-                    if (cellMap[position.X + 1, position.Y].IsWalkable())
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground3right);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2topright);
-                        }
-                    }
-                    else
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2vertical);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1top);
-                        }
-                    }
-                }
-                else
-                {
-                    if (cellMap[position.X + 1, position.Y].IsWalkable())
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground2bottomright);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1right);
-                        }
-                    }
-                    else
-                    {
-                        if (cellMap[position.X, position.Y + 1].IsWalkable())
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.Ground1bottom);
-                        }
-                        else
-                        {
-                            return AssetManager.GetTexture(AssetManager.TextureName.GroundEmpty);
-                        }
-                    }
-                }
-            }
-        }
-        
         public Boolean CellIsWalkable(Vector2i position)
         {
             if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
@@ -241,6 +136,15 @@ namespace MemoryMaze
                 return false;
             }
             return cellMap[position.X, position.Y].IsMovable();
+        }
+
+        public Boolean CellIsGoal(Vector2i position)
+        {
+            if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
+            {
+                return false;
+            }
+            return cellMap[position.X, position.Y].IsGoal();
         }
 
         public Boolean MoveIsPossible(Vector2i position, Vector2i move)

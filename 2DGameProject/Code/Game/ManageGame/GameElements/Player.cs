@@ -12,7 +12,7 @@ namespace MemoryMaze
     public class Player
     {
         RectangleShape sprite;
-        Vector2i mapPosition;
+        public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         
         public Player(Vector2i position, Map map)

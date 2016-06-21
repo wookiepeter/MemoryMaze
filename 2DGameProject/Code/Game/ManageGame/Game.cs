@@ -13,21 +13,42 @@ namespace MemoryMaze
     {
         //simply contains and manage all levels of the game
         Level level;
-        
+        List<Level> levelList = new List<Level>();
+        int curIndex = 0;
+
+        int levelStatus;
+
+        GameState nextGameState;
 
         public Game()
         {
-            level = new Level();
+            levelList.Add(new Level("Assets/MapFiles/ExampleMap.txt", 64, new Vector2i(1, 1)));
+            levelList.Add(new Level("Assets/MapFiles/ExampleMap.txt", 64, new Vector2i(4, 3)));
+            level = levelList[curIndex];
+            nextGameState = GameState.InGame;
         }
 
-        public void Update(float deltaTime)
+        public GameState Update(float deltaTime)
         {
-            level.update(deltaTime);
+            levelStatus = level.update(deltaTime);
+
+            if (levelStatus == 1)
+            {
+                curIndex++;
+                if (curIndex >= levelList.Count)
+                {
+                    nextGameState = GameState.MainMenu;
+                }
+                else
+                {
+                    level = levelList[curIndex];
+                }
+            }
+            return nextGameState;
         }
 
         public void draw(RenderWindow win, View view)
         {
-            
             level.draw(win, view);
         }
     }

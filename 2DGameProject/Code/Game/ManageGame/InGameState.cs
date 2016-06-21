@@ -9,6 +9,8 @@ namespace MemoryMaze
     {
         Game game;
 
+        GameState nextGameState;
+
         public InGameState()
         {
             game = new Game();
@@ -16,8 +18,8 @@ namespace MemoryMaze
        
         public GameState Update(float deltaTime)
         {
-            game.Update(deltaTime);
-            return GameState.InGame;
+            nextGameState = game.Update(deltaTime);
+            return nextGameState;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
