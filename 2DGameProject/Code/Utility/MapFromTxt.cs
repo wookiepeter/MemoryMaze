@@ -47,7 +47,6 @@ namespace MemoryMaze
                 }
             }
 
-            
             return cellMap;
         }
 

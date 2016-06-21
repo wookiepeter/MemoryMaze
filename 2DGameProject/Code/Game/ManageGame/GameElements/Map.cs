@@ -7,6 +7,7 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
+
 namespace MemoryMaze
 {
     public class Map
@@ -15,7 +16,7 @@ namespace MemoryMaze
         public int mapSizeY { get; private set; }
         public int sizePerCell { get; private set; }
         static Cell[,] cellMap;
-        Sprite mapSprite;
+        RectangleShape mapSprite;
 
         MapFromTxt mapFromText = new MapFromTxt();
 
@@ -30,7 +31,9 @@ namespace MemoryMaze
 
             // Probably not possible to draw all Textures(with different image resolutions) in the same sprite
             // without using different sprites for different textures
-            mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
+            //mapSprite = new RectangleShape();
+            //mapSprite.Size = new Vector2f(sizePerCell, sizePerCell);
+            //mapSprite.Texture = new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall));
             // mapSprite.TextureRect = new IntRect(0, 0, (int)sizePerCell, (int)sizePerCell);
         }
 
@@ -46,9 +49,13 @@ namespace MemoryMaze
             sizePerCell = _sizePerCell;
 
             mapSizeX = cellMap.GetLength(0);
+            Logger.Instance.Write("mapSizeX: " + mapSizeX, 2);
             mapSizeY = cellMap.GetLength(1);
+            Logger.Instance.Write("mapSizeY: " + mapSizeY, 2);
 
-            mapSprite = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall)));
+            mapSprite = new RectangleShape();
+            mapSprite.Size = new Vector2f(sizePerCell, sizePerCell);
+            mapSprite.Texture = new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall));
         }
 
         // TRASH could be deleted now
@@ -65,19 +72,23 @@ namespace MemoryMaze
             }
             return newCellArray;
         }
-
+        
         public void Draw(RenderWindow win, View view)
         {
-            for (int i = 0; i < mapSizeX; i++)
+            System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+            stopWatch.Start();    
+            for (int i = 0; i < mapSizeY; i++)
             {
-                for (int j = 0; j < mapSizeY; j++)
+                for (int j = 0; j < mapSizeX; j++)
                 {
                     mapSprite.Texture = cellMap[j, i].GetTexture(getGroundTextureIndex(new Vector2i(j, i)));
-                    mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
+                    //mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(j * sizePerCell, i * sizePerCell);
                     win.Draw(mapSprite);
                 }
             }
+            stopWatch.Stop();
+            Logger.Instance.Write("time needed to draw whole map: " + stopWatch.Elapsed.TotalMilliseconds + " ms", Logger.level.Info);
         }
 
         // Used to simplify the choice of Texture significantly...
