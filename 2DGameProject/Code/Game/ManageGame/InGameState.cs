@@ -30,7 +30,7 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-
+            game.DrawGUI(gui, deltaTime);
         }
     }
 }
