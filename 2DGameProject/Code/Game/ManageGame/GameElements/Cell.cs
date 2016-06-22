@@ -17,6 +17,7 @@ namespace MemoryMaze
         Item,
         Wall,
         Movable,
+        Goal,
         Last
     };
 
@@ -52,6 +53,11 @@ namespace MemoryMaze
             return (content == cellContent.Movable);
         }
 
+        public Boolean IsGoal()
+        {
+            return (content == cellContent.Goal);
+        }
+
         public Color GetColor()
         {
             int contentIndex = (int) this.content;
@@ -72,6 +78,7 @@ namespace MemoryMaze
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
                 case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);
+                case cellContent.Goal: return AssetManager.GetTexture(AssetManager.TextureName.Goal);
                 default: return AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
             }
         }

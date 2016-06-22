@@ -7,7 +7,7 @@ namespace MemoryMaze
     class GUI
     {
         RenderWindow win;
-        View view { get { return win.GetView(); } }
+        public View view { get { return win.GetView(); } }
         
         public GUI(RenderWindow win, View view)
         {

@@ -12,7 +12,7 @@ namespace MemoryMaze
     public class Player
     {
         RectangleShape sprite;
-        Vector2i mapPosition;
+        public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         
         public Player(Vector2i position, Map map)
@@ -68,7 +68,7 @@ namespace MemoryMaze
                 move.X = 1;
             }
             //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
-            Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, 2);
+            Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
             return move;
         }
 

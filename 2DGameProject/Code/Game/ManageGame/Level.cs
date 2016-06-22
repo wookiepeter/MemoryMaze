@@ -14,16 +14,22 @@ namespace MemoryMaze
         Player player;
         Enemy enemy;
         Map map;
-        public Level()
+
+        int mapStatus = 0;
+
+        public Level(String mapfile, int sizePerCell, Vector2i position)
         {
-            map = new Map("Assets/MapFiles/ExampleMap.txt", 64);
-            player = new Player(new Vector2i(1, 1), map);
+            map = new Map(mapfile, sizePerCell);
+            player = new Player(position, map);
             enemy = new Enemy(new Vector2i(2, 5), map, Enemy.EnemyKind.ANTIVIRUS);
         }
-        public void update(float deltaTime)
+        public int update(float deltaTime)
         {
+            map.Update(deltaTime);
             player.Update(deltaTime, map);
-            
+            if (map.CellIsGoal(player.mapPosition))
+                mapStatus = 1;
+            return mapStatus;
         }
         public void draw(RenderWindow win, View view)
         {

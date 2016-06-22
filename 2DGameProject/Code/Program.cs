@@ -71,7 +71,7 @@ namespace MemoryMaze
                 }
 
                 // gather drawStuff from State
-                win.Clear(new Color(100, 149, 237));    //cornflowerblue ftw!!! 1337
+                win.Clear(new Color(0, 0, 0));    //cornflowerblue ftw!!! 1337
                 state.Draw(win, view, deltaTime);
                 state.DrawGUI(gui, deltaTime);
 
