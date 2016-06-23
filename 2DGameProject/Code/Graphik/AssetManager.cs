@@ -22,7 +22,7 @@ public class AssetManager
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
-        textures.Add(TextureName.GroundEmpty, new Texture("Assets/Textures/set_01/floor/center two.png"));
+        textures.Add(TextureName.GroundEmpty, new Texture("Assets/Textures/set_01/floor/lonely floor.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/end floor top.png"));
         textures.Add(TextureName.Ground1left, new Texture("Assets/Textures/set_01/floor/end floor right.png"));
         textures.Add(TextureName.Ground1right, new Texture("Assets/Textures/set_01/floor/end floor left.png"));
