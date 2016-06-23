@@ -15,7 +15,7 @@ namespace MemoryMaze
         public int mapSizeX { get; private set; }
         public int mapSizeY { get; private set; }
         public int sizePerCell { get; private set; }
-        static Cell[,] cellMap;
+        Cell[,] cellMap;
         RectangleShape mapSprite;
 
         MapFromTxt mapFromText = new MapFromTxt();
