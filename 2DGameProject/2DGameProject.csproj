@@ -54,10 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots\BlueBot.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots\GreenBot.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots\RedBot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Enemy.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\GhostPlayer.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\Bots.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bots.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Collision.cs" />
     <Compile Include="Code\Game\ManageGame\GameState.cs" />
     <Compile Include="Code\Game\ManageGame\IGameState.cs" />

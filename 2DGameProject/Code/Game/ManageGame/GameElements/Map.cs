@@ -49,9 +49,9 @@ namespace MemoryMaze
             sizePerCell = _sizePerCell;
 
             mapSizeX = cellMap.GetLength(0);
-            Logger.Instance.Write("mapSizeX: " + mapSizeX, 2);
+            //Logger.Instance.Write("mapSizeX: " + mapSizeX, 2);
             mapSizeY = cellMap.GetLength(1);
-            Logger.Instance.Write("mapSizeY: " + mapSizeY, 2);
+            //Logger.Instance.Write("mapSizeY: " + mapSizeY, 2);
 
             mapSprite = new RectangleShape();
             mapSprite.Size = new Vector2f(sizePerCell, sizePerCell);

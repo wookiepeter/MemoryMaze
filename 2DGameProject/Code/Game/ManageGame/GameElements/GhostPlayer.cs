@@ -7,76 +7,46 @@ using SFML;
 using SFML.Graphics;
 using SFML.Window;
 
+
 namespace MemoryMaze
 {
-    public class Player
+    public class GhostPlayer
     {
-        bool ghostaktiv;
-        bool iserstellt;
-        GhostPlayer ghostPlayer;
+
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
-        
-        public Player(Vector2i position, Map map)
+        public GhostPlayer(Vector2i position, Map map)
         {
-            ghostaktiv = false;
-            iserstellt = false;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
-
+       
             this.mapPosition = position;
             UpdateSpritePosition(map);
         }
-        
         public void Update(float deltaTime, Map map)
         {
-            
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.LControl))
+            Vector2i move = GetMove();
+            if (map.CellIsWalkable(mapPosition + move))
             {
-                ghostaktiv = true;
-                if(iserstellt)
-                    ghostPlayer.Update(deltaTime, map);
+                mapPosition = mapPosition + move;
+                //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                UpdateSpritePosition(map);
             }
-            else {
-                Console.WriteLine("BIN HIER DRIN");
-                Vector2i move = GetMove();
-                if (map.CellIsWalkable(mapPosition + move))
-                {
-                    mapPosition = mapPosition + move;
-                    //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                    UpdateSpritePosition(map);
-                }
-                else if(map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
-                {
-                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                    map.MoveBlock(mapPosition, move);
-                    mapPosition = mapPosition + move;
-                }
-            }
-            if (ghostaktiv && (!iserstellt))
+            else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
             {
-                ghostPlayer = new GhostPlayer(mapPosition, map);
-                iserstellt = true;
+                //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                map.MoveBlock(mapPosition, move);
+                mapPosition = mapPosition + move;
             }
-            if (KeyboardInputManager.Upward(Keyboard.Key.LControl))
-            {
-                ghostaktiv = false;
-                iserstellt = false;
-            }
-
         }
- 
 
         public void Draw(RenderWindow win, View view)
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             win.Draw(sprite);
-            if (ghostaktiv)
-                ghostPlayer.Draw(win, view);
         }
-
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
@@ -88,7 +58,7 @@ namespace MemoryMaze
             {
                 move.Y = 1;
             }
-            else  if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.Left))
             {
                 move.X = -1;
             }
@@ -97,10 +67,9 @@ namespace MemoryMaze
                 move.X = 1;
             }
             //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
-            //Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
+            Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
             return move;
         }
-
         Vector2i MakeNextPos(Vector2i nextPos, Map map)
         {
             nextPos.X = (nextPos.X > map.mapSizeX) ? map.mapSizeX : nextPos.X;
@@ -118,7 +87,7 @@ namespace MemoryMaze
 
         Vector2f GetSpritePosition(Map map)
         {
-            return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
+            return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
         }
     }
 }
