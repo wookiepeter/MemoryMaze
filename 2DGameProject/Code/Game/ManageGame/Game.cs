@@ -25,7 +25,7 @@ namespace MemoryMaze
         public Game()
         {
             levelList.Add(new Level("Assets/MapFiles/ExampleMap.txt", 64, new Vector2i(1, 1)));
-            levelList.Add(new Level("Assets/MapFiles/ExampleMap.txt", 64, new Vector2i(4, 3)));
+            levelList.Add(new Level("Assets/MapFiles/ExampleMap.txt", 32, new Vector2i(4, 3)));
             level = levelList[curIndex];
             nextGameState = GameState.InGame;
 
@@ -46,6 +46,8 @@ namespace MemoryMaze
                 }
                 else
                 {
+                    Logger.Instance.Write("THIS SHOULD HAPPEN ONCE", 2);
+                    level = null;
                     level = levelList[curIndex];
                 }
             }

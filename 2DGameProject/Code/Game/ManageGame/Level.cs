@@ -10,7 +10,7 @@ namespace MemoryMaze
 {
     class Level
     {
-        //Contains and manages the acutal Levels
+        //Contains and manages the actual Levels
         Player player;
         Enemy enemy;
         Map map;
@@ -23,6 +23,7 @@ namespace MemoryMaze
             player = new Player(position, map);
             enemy = new Enemy(new Vector2i(2, 5), map, Enemy.EnemyKind.ANTIVIRUS);
         }
+
         public int update(float deltaTime)
         {
             map.Update(deltaTime);
