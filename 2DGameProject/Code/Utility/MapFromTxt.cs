@@ -9,6 +9,7 @@ namespace MemoryMaze
     class MapFromTxt
     {
         System.IO.StreamReader file;
+        Boolean goalWasSet;
 
         /// <summary>
         /// Does create a Map from a txt file. First line and Second Line should contain
@@ -23,6 +24,8 @@ namespace MemoryMaze
             String secondLine = file.ReadLine();
             int numberOfLines = int.Parse(firstLine);
             int numberOfChars = int.Parse(secondLine);
+
+            goalWasSet = false;
 
             Cell[,] cellMap = new Cell[numberOfChars, numberOfLines];
             char[] curLine;
@@ -59,7 +62,7 @@ namespace MemoryMaze
                 case 'm': return cellContent.Movable;
                 case 'e': return cellContent.Empty;
                 case 'i': return cellContent.Item;
-                case 'g': return cellContent.Goal;
+                case 'g': if (!goalWasSet) { goalWasSet = true; return cellContent.Goal; } else return cellContent.Empty;
                 default: return cellContent.Wall;
             }
         }

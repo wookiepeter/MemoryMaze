@@ -20,7 +20,7 @@ namespace MemoryMaze
         {
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
-            this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
+            this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.PlayerGhost);
        
             this.mapPosition = position;
             UpdateSpritePosition(map);

@@ -39,7 +39,7 @@ public class AssetManager
         textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/intersection lbr.png"));
         textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/center two.png"));
         textures.Add(TextureName.Goal, new Texture("Assets/Textures/pattern.png"));
-        //textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
+        textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
     }
 
