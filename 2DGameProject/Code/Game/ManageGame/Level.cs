@@ -12,7 +12,6 @@ namespace MemoryMaze
     {
         //Contains and manages the actual Levels
         Player player;
-        Enemy enemy;
         Map map;
 
         int mapStatus = 0;
@@ -21,7 +20,6 @@ namespace MemoryMaze
         {
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
-            enemy = new Enemy(new Vector2i(2, 5), map, Enemy.EnemyKind.ANTIVIRUS);
         }
 
         public int update(float deltaTime)
@@ -36,7 +34,6 @@ namespace MemoryMaze
         {
             map.Draw(win, view);
             player.Draw(win, view);
-            enemy.draw(win, view);
         }
     }
 }

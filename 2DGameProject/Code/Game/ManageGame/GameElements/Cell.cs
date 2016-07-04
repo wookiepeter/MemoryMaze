@@ -78,14 +78,19 @@ namespace MemoryMaze
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
                 case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);
-                case cellContent.Goal: return AssetManager.GetTexture(AssetManager.TextureName.Goal);
+                case cellContent.Goal: return getGoalTextureFromIndex(groundIndex);
                 default: return AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
             }
         }
 
         private Texture getGroundTextureFromIndex(int groundIndex)
         {
-            return AssetManager.GetTexture(AssetManager.TextureName.GroundEmpty + groundIndex);
+            return AssetManager.GetTexture(AssetManager.TextureName.GroundLonely + groundIndex);
+        }
+
+        private Texture getGoalTextureFromIndex(int groundIndex)
+        {
+            return AssetManager.GetTexture(AssetManager.TextureName.GoalLonely + groundIndex);
         }
     }
 }

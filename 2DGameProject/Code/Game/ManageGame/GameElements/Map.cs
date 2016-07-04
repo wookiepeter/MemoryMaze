@@ -87,7 +87,7 @@ namespace MemoryMaze
             {
                 for (int j = 0; j < mapSizeX; j++)
                 {
-                    mapSprite.Texture = cellMap[j, i].GetTexture(getGroundTextureIndex(new Vector2i(j, i)));
+                    mapSprite.Texture = cellMap[j, i].GetTexture(getTextureIndexFromNeighbours(new Vector2i(j, i)));
                     //mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(j * sizePerCell, i * sizePerCell);
                     win.Draw(mapSprite);
@@ -105,7 +105,7 @@ namespace MemoryMaze
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <returns>index of the correct Groundtexture(starting at the first groundtexture)</returns>
-        public int getGroundTextureIndex(Vector2i position)
+        public int getTextureIndexFromNeighbours(Vector2i position)
         {
             int result = 0;
             if (CellIsWalkable(new Vector2i(position.X-1, position.Y)))
