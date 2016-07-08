@@ -65,11 +65,11 @@ namespace MemoryMaze
             writeToFile = _writeToConsole;
         }
 
-        public void Write(String msg, int lvl)
+        public void Write(String msg, int _lvl)
         {
-            if (lvl >= (int)level.Error && lvl <= (int)level.Debug)
+            if (_lvl >= (int)level.Error && _lvl <= (int)lvl)
             {
-                messageString = levelMessage[lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
+                messageString = levelMessage[_lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
                 if(writeToConsole)
                     Console.WriteLine(messageString);
                 if (writeToFile)

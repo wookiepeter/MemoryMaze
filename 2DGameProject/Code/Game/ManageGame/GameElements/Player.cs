@@ -17,7 +17,8 @@ namespace MemoryMaze
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
-        
+
+        // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
             ghostaktiv = false;
@@ -28,6 +29,22 @@ namespace MemoryMaze
 
             this.mapPosition = position;
             UpdateSpritePosition(map);
+        }
+
+        // Constructor for the Copy function
+        Player(Vector2i position, RectangleShape _sprite)
+        {
+            ghostaktiv = false;
+            iserstellt = false;
+
+            sprite = _sprite;
+
+            mapPosition = position;
+        }
+
+        public Player Copy()
+        {
+            return new Player(mapPosition, sprite);
         }
         
         public void Update(float deltaTime, Map map)
@@ -40,7 +57,6 @@ namespace MemoryMaze
                     ghostPlayer.Update(deltaTime, map);
             }
             else {
-                Console.WriteLine("BIN HIER DRIN");
                 Vector2i move = GetMove();
                 if (map.CellIsWalkable(mapPosition + move))
                 {
@@ -96,7 +112,6 @@ namespace MemoryMaze
             {
                 move.X = 1;
             }
-            //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
             //Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
             return move;
         }

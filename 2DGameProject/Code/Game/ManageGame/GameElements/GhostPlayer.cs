@@ -66,7 +66,6 @@ namespace MemoryMaze
             {
                 move.X = 1;
             }
-            //Console.WriteLine("moveX: " + move.X + "moveY" + move.Y);
             Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
             return move;
         }

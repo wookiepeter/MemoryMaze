@@ -42,6 +42,7 @@ namespace MemoryMaze
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="_sizePerCell"></param>
+        // all variables initialized here need to be initialized in the copyconstructor too
         public Map(String filename, int _sizePerCell)
         {
             cellMap = mapFromText.CreateMap(filename);
@@ -58,6 +59,29 @@ namespace MemoryMaze
             mapSprite.Texture = new Texture(AssetManager.GetTexture(AssetManager.TextureName.Wall));
         }
 
+        // Constructor for the Copy function
+        Map(int _sizePerCell, Cell[,] _cellMap, int _mapSizeX, int _mapSizeY, RectangleShape _mapSprite)
+        {
+            
+            sizePerCell = _sizePerCell;
+            cellMap = new Cell[_mapSizeX, _mapSizeY];
+            for(int i = 0; i<_mapSizeY; i++)
+            {
+                for (int j = 0; j<_mapSizeX; j++)
+                {
+                    cellMap[j, i] = new Cell(_cellMap[j, i].GetContent());
+                }
+            }
+            mapSizeX = _mapSizeX;
+            mapSizeY = _mapSizeY;
+            mapSprite = _mapSprite;
+        }
+
+        public Map Copy()
+        {
+            return new Map(sizePerCell, cellMap, mapSizeX, mapSizeY, mapSprite);
+        }
+
         // TRASH could be deleted now
         private Cell[,] RandomCellMap(int sizeX, int sizeY)
         {
@@ -68,6 +92,7 @@ namespace MemoryMaze
                 for (int j = 0; j < sizeY; j++)
                 {
                     newCellArray[i, j] = new Cell((cellContent)Rand.IntValue(0, (int)cellContent.Last));
+
                 }
             }
             return newCellArray;

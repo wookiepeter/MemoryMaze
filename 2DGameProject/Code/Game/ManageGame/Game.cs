@@ -27,7 +27,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/map01.txt", 64, new Vector2i(2, 8)));
             levelList.Add(new Level("Assets/MapFiles/map02.txt", 64, new Vector2i(2, 5)));
             levelList.Add(new Level("Assets/MapFiles/map03.txt", 64, new Vector2i(2, 3)));
-            level = levelList[curIndex];
+            level = levelList[curIndex].Copy();
             nextGameState = GameState.InGame;
 
             levelNumber.CharacterSize = 20;
@@ -48,10 +48,15 @@ namespace MemoryMaze
                 else
                 {
                     Logger.Instance.Write("THIS SHOULD HAPPEN ONCE", 2);
-                    level = null;
-                    level = levelList[curIndex];
+                    level = levelList[curIndex].Copy();
                 }
             }
+
+            if(levelStatus == 2)
+            {
+                level = levelList[curIndex].Copy();
+            }
+
             return nextGameState;
         }
 

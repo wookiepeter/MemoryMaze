@@ -38,6 +38,7 @@ public class AssetManager
         textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/intersection trb.png"));
         textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/intersection lbr.png"));
         textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/center two.png"));
+        textures.Add(TextureName.GoalLonely, new Texture("Assets/Textures/set_01/goal/lonely goal.png"));
         textures.Add(TextureName.Goal1bottom, new Texture("Assets/Textures/set_01/goal/goal b.png"));
         textures.Add(TextureName.Goal1left, new Texture("Assets/Textures/set_01/goal/goal l.png"));
         textures.Add(TextureName.Goal1right, new Texture("Assets/Textures/set_01/goal/goal r.png"));

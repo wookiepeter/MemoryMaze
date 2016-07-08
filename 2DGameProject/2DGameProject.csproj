@@ -80,7 +80,7 @@
     <Compile Include="Code\Utility\MapFromTxt.cs" />
     <Compile Include="Code\Utility\Rand.cs" />
     <Compile Include="Code\Utility\Vector2.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Code\Utility\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
