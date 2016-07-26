@@ -119,7 +119,7 @@ namespace MemoryMaze
                 }
             }
             stopWatch.Stop();
-            Logger.Instance.Write("time needed to draw whole map: " + stopWatch.Elapsed.TotalMilliseconds + " ms", Logger.level.Info);
+            Logger.Instance.Write("time needed to draw whole map: " + stopWatch.Elapsed.TotalMilliseconds + " ms", Logger.level.Debug);
         }
 
         // Used to simplify the choice of Texture significantly...

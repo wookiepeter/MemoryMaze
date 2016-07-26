@@ -9,10 +9,11 @@ using SFML.Graphics;
 
 namespace MemoryMaze
 {
-    abstract class Bots
+    public abstract class Bot
     {
-        public Bots() { }
-        public abstract void Update();
+        public int  counter;
+        public Bot() { }
+        public abstract void Update(float deltaTime, Map map);
         public abstract void HandleEvents();
         public abstract void Render(RenderWindow win);
         public bool isAlive { get; set; }

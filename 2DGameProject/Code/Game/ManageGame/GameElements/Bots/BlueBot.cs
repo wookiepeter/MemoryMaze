@@ -8,7 +8,7 @@ using SFML.Graphics;
 
 namespace MemoryMaze
 {
-    class BlueBot : Bots
+    class BlueBot : Bot
     {
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
@@ -16,17 +16,35 @@ namespace MemoryMaze
         public BlueBot(Vector2i position, Map map)
         {
             //ToDO Texturen/Spritre festlegen
-            /*
+            this.counter = 10;
+            this.isAlive = true;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BlueBot);
             this.mapPosition = position;
             UpdateSpritePosition(map);
-            */
+            
 
         }
-        public override void Update()
+        public override void Update(float deltaTime, Map map)
         {
+            Vector2i move = GetMove();
+            if (map.CellIsWalkable(mapPosition + move))
+            {
+                if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
+                    counter--;
+                mapPosition = mapPosition + move;
+                //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                UpdateSpritePosition(map);
+            }
+            else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
+            {
+                //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                map.MoveBlock(mapPosition, move);
+                mapPosition = mapPosition + move;
+            }
+            if (counter == 0)
+                isAlive = false;
         }
         public override void HandleEvents()
         {

@@ -13,16 +13,22 @@ namespace MemoryMaze
     {
         bool ghostaktiv;
         bool iserstellt;
+
         GhostPlayer ghostPlayer;
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+        public List<Bot> botList;
+        List<Bot> deadmotherfuckerbots;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
+            deadmotherfuckerbots = new List<Bot>();
+            botList = new List<Bot>();
             ghostaktiv = false;
             iserstellt = false;
+ 
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
@@ -34,11 +40,12 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite)
         {
+            deadmotherfuckerbots = new List<Bot>();
+            botList = new List<Bot>();
             ghostaktiv = false;
             iserstellt = false;
 
             sprite = _sprite;
-
             mapPosition = position;
         }
 
@@ -49,13 +56,26 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
-            
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.LControl))
+            foreach(Bot it in botList)
+            {
+                Logger.Instance.Write(it.ToString(), Logger.level.Info);
+                it.Update(deltaTime, map);
+                if (!it.isAlive)
+                {
+                    deadmotherfuckerbots.Add(it);
+                }
+            }
+            botList.RemoveAll(deadmotherfuckerbots.Contains);
+            deadmotherfuckerbots = new List<Bot>();
+
+            if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
             {
                 ghostaktiv = true;
-                if(iserstellt)
-                    ghostPlayer.Update(deltaTime, map);
+               
             }
+            if (iserstellt)
+                ghostPlayer.Update(deltaTime, map, botList);
+
             else {
                 Vector2i move = GetMove();
                 if (map.CellIsWalkable(mapPosition + move))
@@ -76,7 +96,7 @@ namespace MemoryMaze
                 ghostPlayer = new GhostPlayer(mapPosition, map);
                 iserstellt = true;
             }
-            if (KeyboardInputManager.Upward(Keyboard.Key.LControl))
+            if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
             {
                 ghostaktiv = false;
                 iserstellt = false;
@@ -91,6 +111,11 @@ namespace MemoryMaze
             win.Draw(sprite);
             if (ghostaktiv)
                 ghostPlayer.Draw(win, view);
+
+            foreach (Bot it in botList)
+            {
+                it.Render(win);
+            }
         }
 
         Vector2i GetMove()
