@@ -25,7 +25,6 @@ namespace MemoryMaze
             this.mapPosition = position;
             UpdateSpritePosition(map);
             
-
         }
         public override void Update(float deltaTime, Map map)
         {
@@ -47,15 +46,23 @@ namespace MemoryMaze
             if (counter == 0)
                 isAlive = false;
         }
+
+        public override void DrawGUI(GUI gui, float deltaTime)
+        {
+
+        }
+
         public override void HandleEvents()
         {
 
         }
+
         public override void Render(RenderWindow window)
         {
           
                  window.Draw(sprite);
         }
+
         Vector2i GetMove()
         {
 

@@ -58,18 +58,6 @@ namespace MemoryMaze
             return (content == cellContent.Goal);
         }
 
-        public Color GetColor()
-        {
-            int contentIndex = (int) this.content;
-            switch(contentIndex)
-            {
-                case 0: return Color.Red;
-                case 1: return Color.Green;
-                case 2: return Color.Black;
-                default: return Color.White;
-            }
-        }
-
         public Texture GetTexture(int groundIndex)
         {
             switch (this.content)

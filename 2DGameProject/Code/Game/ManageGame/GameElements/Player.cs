@@ -120,7 +120,10 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-
+            foreach(Bot bot in botList)
+            {
+                bot.DrawGUI(gui, deltaTime);
+            }
         }
 
         Vector2i GetMove()

@@ -46,14 +46,22 @@ namespace MemoryMaze
             if (counter == 0)
                 isAlive = false;
         }
+
+        public override void DrawGUI(GUI gui, float deltaTime)
+        {
+
+        }
+
         public override void HandleEvents()
         {
 
         }
+
         public override void Render(RenderWindow window)
         {
             window.Draw(sprite);
         }
+
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
