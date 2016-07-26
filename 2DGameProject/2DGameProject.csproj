@@ -59,6 +59,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\RedBot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Enemy.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\GhostPlayer.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bots.cs" />
@@ -102,6 +103,12 @@
     <Content Include="Assets\MapFiles\map03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Textures\BlueBot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\GreenBot.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Textures\pattern.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -112,6 +119,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\playerfaceGhost.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\RedBot.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\set_01\floor\center two.png">
