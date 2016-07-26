@@ -13,8 +13,10 @@ namespace MemoryMaze
     {
        
         RectangleShape sprite;
+        RectangleShape guiSprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+
         public RedBot(Vector2i position, Map map)
         {
             //ToDO Texturen/Spritre festlegen
@@ -24,10 +26,15 @@ namespace MemoryMaze
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.RedBot);
+            this.guiSprite = new RectangleShape(new Vector2f(2F, 2F));
+            this.guiSprite.Size = new Vector2f(100, 100);
+            this.guiSprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.RedBot);
+            this.guiSprite.Position = new Vector2f(25, 25);
             this.mapPosition = position;
             UpdateSpritePosition(map);
-            
+                
         }
+
         public override void Update(float deltaTime, Map map, int controllid)
         {
             Vector2i move = GetMove();
@@ -55,7 +62,7 @@ namespace MemoryMaze
 
         public override void DrawGUI(GUI gui, float deltaTime)
         {
-
+            gui.Draw(guiSprite);
         }
 
         public override void HandleEvents()

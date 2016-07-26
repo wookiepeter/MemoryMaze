@@ -22,8 +22,21 @@ namespace MemoryMaze
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+
         public List<Bot> botList;
+        private List<Bot> dummyList;
         List<Bot> deadmotherfuckerbots;
+
+        // GUI Stuff
+        Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
+        Sprite redBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedBot)));
+        Sprite blueBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueBot)));
+        Sprite greenBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenBot)));
+        Font calibri = new Font("Assets/Fonts/calibri.ttf");
+        Text ghostCounter;
+        Text redCounter;
+        Text blueCounter;
+        Text greenCounter;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
@@ -31,19 +44,22 @@ namespace MemoryMaze
             id = 0;
             controllid = 0;
             deadmotherfuckerbots = new List<Bot>();
+            botList = new List<Bot>();
 
             redbot = false;
             bluebot = false;
             greenbot = false;
             ghostaktiv = false;
             iserstellt = false;
- 
+
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
 
             this.mapPosition = position;
             UpdateSpritePosition(map);
+
+            InitializeGUI();
         }
 
         // Constructor for the Copy function
@@ -51,7 +67,6 @@ namespace MemoryMaze
         {
             deadmotherfuckerbots = new List<Bot>();
             botList = new List<Bot>();
-
 
             redbot = false;
             bluebot = false;
@@ -61,6 +76,30 @@ namespace MemoryMaze
 
             sprite = _sprite;
             mapPosition = position;
+
+            InitializeGUI();
+        }
+
+        void InitializeGUI()
+        {
+            playerStatus.Position = new Vector2f(25, 25);
+            playerStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            redBotStatus.Position = new Vector2f(125, 25);
+            redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            blueBotStatus.Position = new Vector2f(225, 25);
+            blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            greenBotStatus.Position = new Vector2f(325, 25);
+            greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+
+            ghostCounter = new Text("0", calibri, 20);
+            redCounter = new Text("0", calibri, 20);
+            blueCounter = new Text("0", calibri, 20);
+            greenCounter = new Text("0", calibri, 20);
+
+            ghostCounter.Position = new Vector2f(playerStatus.Position.X, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height*playerStatus.Scale.Y);
+            redCounter.Position = new Vector2f(redBotStatus.Position.X, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height*redBotStatus.Scale.Y);
+            blueCounter.Position = new Vector2f(blueBotStatus.Position.X, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height*blueBotStatus.Scale.Y);
+            greenCounter.Position = new Vector2f(greenBotStatus.Position.X, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height*greenBotStatus.Scale.Y);
         }
 
         public Player Copy()
@@ -79,16 +118,13 @@ namespace MemoryMaze
                         deadmotherfuckerbots.Add(it); //´zerstoere Player
                         if (it.id == controllid)
                             controllid = 0;
-
                     }
                     Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
-                
             }
         
             botList.RemoveAll(deadmotherfuckerbots.Contains);
             deadmotherfuckerbots = new List<Bot>();
             
-
             if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
             {
                 ghostaktiv = true;
@@ -114,7 +150,6 @@ namespace MemoryMaze
                         mapPosition = mapPosition + move;
                     }
                 }
-               
             }
             if (ghostaktiv && (!iserstellt))
             {
@@ -128,7 +163,6 @@ namespace MemoryMaze
             }
             if(!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot){
                 controllid = 1;
-                Logger.Instance.Write("asdasdsadsadsadsafgdfgdfggggggggggggggggggggggggggggggggggggggggggggggggggggg: " + controllid, Logger.level.Info);
             }
             else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && bluebot){
                 controllid = 2;
@@ -140,13 +174,9 @@ namespace MemoryMaze
               
                 if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num0))))
                     controllid = 0;
-
             }
-            Logger.Instance.Write("ENDE!: " + controllid, Logger.level.Info);
-
         }
  
-
         public void Draw(RenderWindow win, View view)
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
@@ -163,10 +193,49 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-            foreach(Bot bot in botList)
+            Color low = new Color(255, 255, 255, 127);
+            Color high = new Color(255, 255, 255, 255);
+
+            playerStatus.Color = low;
+            redBotStatus.Color = low;
+            blueBotStatus.Color = low;
+            greenBotStatus.Color = low;
+
+            // highlighting active player
+            switch(controllid)
             {
-                bot.DrawGUI(gui, deltaTime);
+                case 0:
+                    playerStatus.Color = high; break;
+                case 1:
+                    redBotStatus.Color = high; break;
+                case 2:
+                    blueBotStatus.Color = high; break;
+                case 3:
+                    greenBotStatus.Color = high; break;
+                default: break;
             }
+
+            // updating Text
+            if (ghostaktiv) ghostCounter.DisplayedString = "" + ghostPlayer.counter;
+            else ghostCounter.DisplayedString = "" + 0;
+            if (redbot) redCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
+            else redCounter.DisplayedString = "" + 0;
+            if (bluebot) blueCounter.DisplayedString = "" + botList.Find(b => b.id == 2).counter;
+            else blueCounter.DisplayedString = "" + 0;
+            if (greenbot) greenCounter.DisplayedString = "" + botList.Find(b => b.id == 3).counter;
+            else greenCounter.DisplayedString = "" + 0;
+
+            // printing current steps;
+            gui.Draw(ghostCounter);
+            gui.Draw(redCounter);
+            gui.Draw(blueCounter);
+            gui.Draw(greenCounter);
+
+            gui.Draw(playerStatus);
+            gui.Draw(redBotStatus);
+            gui.Draw(blueBotStatus);
+            gui.Draw(greenBotStatus);
+
         }
 
         Vector2i GetMove()
@@ -188,7 +257,6 @@ namespace MemoryMaze
             {
                 move.X = 1;
             }
-            //Logger.Instance.Write("moveX: " + move.X + "moveY" + move.Y, Logger.level.Info);
             return move;
         }
 
@@ -211,20 +279,19 @@ namespace MemoryMaze
         {
             return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
         }
+
         public void Check(Bot bot)
         {
             if(bot.id == 1)
             {
                 if (bot.isAlive)
                     redbot = true;
-                else
-                    
+                else                    
                     redbot = false;
-
             }
             else if(bot.id == 2)
             {
-                if ( bot.isAlive)
+                if (bot.isAlive)
                     bluebot = true;
                 else
                     bluebot = false;
@@ -232,14 +299,11 @@ namespace MemoryMaze
 
             else if(bot.id == 3)
             {
-                if ( bot.isAlive)
+                if (bot.isAlive)
                     greenbot = true;
                 else
                     greenbot = false;
             }
-      
-        
         }
-
     }
 }

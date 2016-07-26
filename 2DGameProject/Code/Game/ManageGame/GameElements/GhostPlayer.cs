@@ -18,7 +18,7 @@ namespace MemoryMaze
         BlueBot blueBot;
         GreenBot greenBot;
         bool iserstellt;
-        int counter;
+        public int counter { get; private set; }
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public GhostPlayer(Vector2i position, Map map)
