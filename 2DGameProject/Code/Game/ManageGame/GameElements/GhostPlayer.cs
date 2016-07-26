@@ -43,25 +43,20 @@ namespace MemoryMaze
                 //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 UpdateSpritePosition(map);
             }
-            else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
-            {
-                //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                map.MoveBlock(mapPosition, move);
-                mapPosition = mapPosition + move;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt)) //ToDo Bedingungen zum erstelelen
+
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen 
             {
                 redBot = new RedBot(mapPosition, map);
                 botsList.Add(redBot);
                 counter = 0;
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt)) //ToDo Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen
             {
                 blueBot = new BlueBot(mapPosition, map);
                 botsList.Add(blueBot);
                 counter = 0;
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt)) //ToDo Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen
             {
                 greenBot = new GreenBot(mapPosition, map);
                 botsList.Add(greenBot);

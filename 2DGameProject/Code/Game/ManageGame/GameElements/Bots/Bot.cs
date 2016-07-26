@@ -12,8 +12,9 @@ namespace MemoryMaze
     public abstract class Bot
     {
         public int  counter;
+        public int id { get; set; }
         public Bot() { }
-        public abstract void Update(float deltaTime, Map map);
+        public abstract void Update(float deltaTime, Map map, int controllid);
         public abstract void HandleEvents();
         public abstract void Render(RenderWindow win);
         public void DrawGUI(GUI gui, float deltaTime)
