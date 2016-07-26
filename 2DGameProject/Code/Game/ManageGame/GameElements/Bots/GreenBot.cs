@@ -17,6 +17,7 @@ namespace MemoryMaze
         public GreenBot(Vector2i position, Map map)
         {
             //ToDO Texturen/Spritre festlegen
+            id = 3;
             this.counter = 10;
             this.isAlive = true;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
@@ -27,25 +28,28 @@ namespace MemoryMaze
           
 
         }
-        public override void Update(float deltaTime, Map map)
+        public override void Update(float deltaTime, Map map, int controllid)
         {
             Vector2i move = GetMove();
-            if (map.CellIsWalkable(mapPosition + move))
+            if (controllid == id)
             {
-                if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
-                    counter--;
-                mapPosition = mapPosition + move;
-                //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                UpdateSpritePosition(map);
+                if (map.CellIsWalkable(mapPosition + move))
+                {
+                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
+                        counter--;
+                    mapPosition = mapPosition + move;
+                    //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                    UpdateSpritePosition(map);
+                }
+                else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
+                {
+                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                    map.MoveBlock(mapPosition, move);
+                    mapPosition = mapPosition + move;
+                }
+                if (counter == 0)
+                    isAlive = false;
             }
-            else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
-            {
-                //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                map.MoveBlock(mapPosition, move);
-                mapPosition = mapPosition + move;
-            }
-            if (counter == 0)
-                isAlive = false;
         }
 
         public override void DrawGUI(GUI gui, float deltaTime)

@@ -13,7 +13,11 @@ namespace MemoryMaze
     {
         bool ghostaktiv;
         bool iserstellt;
-
+        int controllid;
+        int id;
+        bool redbot;
+        bool bluebot;
+        bool greenbot;
         GhostPlayer ghostPlayer;
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
@@ -24,8 +28,13 @@ namespace MemoryMaze
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
+            id = 0;
+            controllid = 0;
             deadmotherfuckerbots = new List<Bot>();
-            botList = new List<Bot>();
+
+            redbot = false;
+            bluebot = false;
+            greenbot = false;
             ghostaktiv = false;
             iserstellt = false;
  
@@ -42,6 +51,11 @@ namespace MemoryMaze
         {
             deadmotherfuckerbots = new List<Bot>();
             botList = new List<Bot>();
+
+
+            redbot = false;
+            bluebot = false;
+            greenbot = false;
             ghostaktiv = false;
             iserstellt = false;
 
@@ -58,15 +72,22 @@ namespace MemoryMaze
         {
             foreach(Bot it in botList)
             {
-                Logger.Instance.Write(it.ToString(), Logger.level.Info);
-                it.Update(deltaTime, map);
-                if (!it.isAlive)
-                {
-                    deadmotherfuckerbots.Add(it);
-                }
+                Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
+                it.Update(deltaTime, map, controllid);
+                    if (!it.isAlive)
+                    {
+                        deadmotherfuckerbots.Add(it); //´zerstoere Player
+                        if (it.id == controllid)
+                            controllid = 0;
+
+                    }
+                    Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
+                
             }
+        
             botList.RemoveAll(deadmotherfuckerbots.Contains);
             deadmotherfuckerbots = new List<Bot>();
+            
 
             if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
             {
@@ -77,19 +98,23 @@ namespace MemoryMaze
                 ghostPlayer.Update(deltaTime, map, botList);
 
             else {
-                Vector2i move = GetMove();
-                if (map.CellIsWalkable(mapPosition + move))
+                if(id == controllid)
                 {
-                    mapPosition = mapPosition + move;
-                    //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                    UpdateSpritePosition(map);
+                    Vector2i move = GetMove();
+                    if (map.CellIsWalkable(mapPosition + move))
+                    {
+                        mapPosition = mapPosition + move;
+                        //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                        UpdateSpritePosition(map);
+                    }
+                    else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
+                    {
+                        //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                        map.MoveBlock(mapPosition, move);
+                        mapPosition = mapPosition + move;
+                    }
                 }
-                else if(map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
-                {
-                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                    map.MoveBlock(mapPosition, move);
-                    mapPosition = mapPosition + move;
-                }
+               
             }
             if (ghostaktiv && (!iserstellt))
             {
@@ -101,6 +126,23 @@ namespace MemoryMaze
                 ghostaktiv = false;
                 iserstellt = false;
             }
+            if(!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot){
+                controllid = 1;
+                Logger.Instance.Write("asdasdsadsadsadsafgdfgdfggggggggggggggggggggggggggggggggggggggggggggggggggggg: " + controllid, Logger.level.Info);
+            }
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && bluebot){
+                controllid = 2;
+            }
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && greenbot){
+                controllid = 3;
+            }
+            else { 
+              
+                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num0))))
+                    controllid = 0;
+
+            }
+            Logger.Instance.Write("ENDE!: " + controllid, Logger.level.Info);
 
         }
  
@@ -114,7 +156,8 @@ namespace MemoryMaze
 
             foreach (Bot it in botList)
             {
-                it.Render(win);
+                if(it != null)
+                    it.Render(win);
             }
         }
 
@@ -168,5 +211,35 @@ namespace MemoryMaze
         {
             return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
         }
+        public void Check(Bot bot)
+        {
+            if(bot.id == 1)
+            {
+                if (bot.isAlive)
+                    redbot = true;
+                else
+                    
+                    redbot = false;
+
+            }
+            else if(bot.id == 2)
+            {
+                if ( bot.isAlive)
+                    bluebot = true;
+                else
+                    bluebot = false;
+            }
+
+            else if(bot.id == 3)
+            {
+                if ( bot.isAlive)
+                    greenbot = true;
+                else
+                    greenbot = false;
+            }
+      
+        
+        }
+
     }
 }
