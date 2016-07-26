@@ -118,6 +118,11 @@ namespace MemoryMaze
             }
         }
 
+        public void DrawGUI(GUI gui, float deltaTime)
+        {
+
+        }
+
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);

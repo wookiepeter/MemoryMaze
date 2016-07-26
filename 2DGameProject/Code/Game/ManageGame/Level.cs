@@ -54,7 +54,8 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-
+            map.DrawGUI(gui, deltaTime);
+            player.DrawGUI(gui, deltaTime);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace MemoryMaze
 {
-    class GUI
+    public class GUI
     {
         RenderWindow win;
         public View view { get { return win.GetView(); } }

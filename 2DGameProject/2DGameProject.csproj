@@ -62,7 +62,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bots.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Collision.cs" />
     <Compile Include="Code\Game\ManageGame\GameState.cs" />
     <Compile Include="Code\Game\ManageGame\IGameState.cs" />

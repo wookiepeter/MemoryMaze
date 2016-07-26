@@ -16,6 +16,10 @@ namespace MemoryMaze
         public abstract void Update(float deltaTime, Map map);
         public abstract void HandleEvents();
         public abstract void Render(RenderWindow win);
+        public void DrawGUI(GUI gui, float deltaTime)
+        {
+            
+        }
         public bool isAlive { get; set; }
 
         protected Sprite sprite;

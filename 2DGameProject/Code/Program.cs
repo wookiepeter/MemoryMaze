@@ -23,8 +23,6 @@ namespace MemoryMaze
         static View view;
         static GUI gui;
 
-        
-
         static void Main(string[] args)
         {
             // initialize window and view

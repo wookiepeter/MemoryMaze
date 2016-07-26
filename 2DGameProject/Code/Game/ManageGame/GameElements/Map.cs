@@ -122,6 +122,11 @@ namespace MemoryMaze
             Logger.Instance.Write("time needed to draw whole map: " + stopWatch.Elapsed.TotalMilliseconds + " ms", Logger.level.Debug);
         }
 
+        public void DrawGUI(GUI gui, float deltaTime)
+        {
+
+        }
+
         // Used to simplify the choice of Texture significantly...
         /// <summary>
         /// This function computes a value between 0 and 15 based on the 4 direct neighbors of the given Cell
