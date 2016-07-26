@@ -70,6 +70,7 @@ namespace MemoryMaze
             levelNumber.DisplayedString = "Level " + curIndex + " of " + (levelList.Count-1);
             levelNumber.Position = new Vector2f(gui.view.Size.X-100, gui.view.Size.Y-50);
             gui.Draw(levelNumber);
+            level.DrawGUI(gui, deltaTime);
         }
     }
 }

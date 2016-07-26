@@ -51,5 +51,10 @@ namespace MemoryMaze
             map.Draw(win, view);
             player.Draw(win, view);
         }
+
+        public void DrawGUI(GUI gui, float deltaTime)
+        {
+
+        }
     }
 }
