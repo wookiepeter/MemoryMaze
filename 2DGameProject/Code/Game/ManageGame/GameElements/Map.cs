@@ -184,6 +184,13 @@ namespace MemoryMaze
             return false;
         }
 
+        public Boolean StrongMoveIsPossible(Vector2i position, Vector2i move)
+        {
+            if (CellIsMovable(position + move) && CellIsMovable(position + move * 2) && CellIsWalkable(position + move * 3))
+                return true;
+            return false;
+        }
+
         public void MoveBlock(Vector2i position, Vector2i move)
         {
             Vector2i targetBlock = position + move + move;
