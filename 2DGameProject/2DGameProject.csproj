@@ -226,6 +226,8 @@
     <Content Include="Assets\Textures\Walltile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\ToDo Liste\Chris.txt" />
+    <Content Include="Assets\ToDo Liste\MatthisToDo.txt" />
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -263,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Code\Game\InGame\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
