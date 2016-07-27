@@ -48,12 +48,20 @@ namespace MemoryMaze
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
-                else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
+                else if (map.MoveIsPossible(mapPosition, move))
                 {
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                     map.MoveBlock(mapPosition, move);
                     mapPosition = mapPosition + move;
                 }
+                else if (map.StrongMoveIsPossible(mapPosition, move))
+                {
+                    map.MoveBlock(mapPosition + move, move);    // moves first Block
+                    map.MoveBlock(mapPosition, move);           // moves second Block
+                    mapPosition = mapPosition + move;
+
+                }
+
             }
             
             if (counter == 0)
