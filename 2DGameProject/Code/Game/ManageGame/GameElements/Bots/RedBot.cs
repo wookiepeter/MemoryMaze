@@ -40,7 +40,7 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if(controllid == id)
             {
-                //Schaut nach ob man gehen kann
+                //Schaut nach ob man gehen kann (Kein Hinderniss)
                 if (map.CellIsWalkable(mapPosition + move))
                 {
                     if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
@@ -49,21 +49,22 @@ namespace MemoryMaze
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
-
+                //Bewegt 1 Block weiter!
                 else if (map.MoveIsPossible(mapPosition, move))
                 {
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                     map.MoveBlock(mapPosition, move);
                     mapPosition = mapPosition + move;
-                }
+                    counter--;
+                }   
+                //Bewegt 2 M aufeinmal
                 else if (map.StrongMoveIsPossible(mapPosition, move))
                 {
                     map.MoveBlock(mapPosition + move, move);    // moves first Block
                     map.MoveBlock(mapPosition, move);           // moves second Block
                     mapPosition = mapPosition + move;
-
+                    counter--;
                 }
-
             }
             
             if (counter == 0)
@@ -129,8 +130,6 @@ namespace MemoryMaze
         {
             return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
         }
-
-        
     }
 }
 

@@ -121,7 +121,7 @@ namespace MemoryMaze
             else {
                 if(id == controllid)
                 {
-                    
+                    //ToDo: Matthis - Move nicht erlauben wenn dahinter ein Bot/player ist!  xMb -->   =  error!
                     Vector2i move = GetMove();
                     if (map.CellIsWalkable(mapPosition + move))
                     {

@@ -23,7 +23,7 @@ namespace MemoryMaze
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public GhostPlayer(Vector2i position, Map map)
         {
-            counter = 10;
+            counter = 10;//ANzahl der Schritte
             iserstellt = false;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
