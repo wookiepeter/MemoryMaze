@@ -25,7 +25,7 @@ namespace MemoryMaze
 
         public List<Bot> botList;
         private List<Bot> dummyList;
-        List<Bot> deadmotherfuckerbots;
+        List<Bot> deleteList;
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
@@ -43,7 +43,7 @@ namespace MemoryMaze
         {
             id = 0;
             controllid = 0;
-            deadmotherfuckerbots = new List<Bot>();
+            deleteList = new List<Bot>();
             botList = new List<Bot>();
 
             redbot = false;
@@ -65,7 +65,7 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite)
         {
-            deadmotherfuckerbots = new List<Bot>();
+            deleteList = new List<Bot>();
             botList = new List<Bot>();
 
             redbot = false;
@@ -109,23 +109,24 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
+            
             foreach(Bot it in botList)
             {
-                Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
+                //Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
                 it.Update(deltaTime, map, controllid);
                     if (!it.isAlive)
                     {
-                        deadmotherfuckerbots.Add(it); //´zerstoere Player
+                        deleteList.Add(it); //´zerstoere Player
                         if (it.id == controllid)
                             controllid = 0;
                     }
                     Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
             }
         
-            botList.RemoveAll(deadmotherfuckerbots.Contains);
-            deadmotherfuckerbots = new List<Bot>();
+            botList.RemoveAll(deleteList.Contains);
+            deleteList = new List<Bot>();
             
-            if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
+            if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) //ToDo: Bedingungen um GhostPlayer zu aktivieren
             {
                 ghostaktiv = true;
                
@@ -136,6 +137,7 @@ namespace MemoryMaze
             else {
                 if(id == controllid)
                 {
+                    
                     Vector2i move = GetMove();
                     if (map.CellIsWalkable(mapPosition + move))
                     {
@@ -151,30 +153,20 @@ namespace MemoryMaze
                     }
                 }
             }
+            //Create GhostPlayer
             if (ghostaktiv && (!iserstellt))
             {
                 ghostPlayer = new GhostPlayer(mapPosition, map);
                 iserstellt = true;
             }
+            //Destroy GhostPlayer
             if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
             {
                 ghostaktiv = false;
                 iserstellt = false;
             }
-            if(!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot){
-                controllid = 1;
-            }
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && bluebot){
-                controllid = 2;
-            }
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && greenbot){
-                controllid = 3;
-            }
-            else { 
-              
-                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num0))))
-                    controllid = 0;
-            }
+            SwitchTarget();
+          
         }
  
         public void Draw(RenderWindow win, View view)
@@ -188,6 +180,27 @@ namespace MemoryMaze
             {
                 if(it != null)
                     it.Render(win);
+            }
+        }
+         public void SwitchTarget()
+        {
+            if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot)
+            {
+                controllid = 1;
+            }
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && bluebot)
+            {
+                controllid = 2;
+            }
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && greenbot)
+            {
+                controllid = 3;
+            }
+            else
+            {
+
+                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num0))))
+                    controllid = 0;
             }
         }
 
