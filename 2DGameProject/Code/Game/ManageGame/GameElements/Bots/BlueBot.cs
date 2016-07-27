@@ -33,7 +33,7 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if (controllid == id)
             {
-                if (map.CellIsWalkable(mapPosition + move))
+                if (map.CellIsWalkable(mapPosition + move) || map.CellIsMovable(mapPosition + move))
                 {
                     if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
                         counter--;
