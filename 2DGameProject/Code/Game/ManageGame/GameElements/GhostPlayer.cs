@@ -32,7 +32,7 @@ namespace MemoryMaze
             this.mapPosition = position;
             UpdateSpritePosition(map);
         }
-        public void Update(float deltaTime, Map map, List<Bot> botsList)
+        public void Update(float deltaTime, Map map, List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
             Vector2i move = GetMove();
             if (map.CellIsWalkable(mapPosition + move))
@@ -44,19 +44,19 @@ namespace MemoryMaze
                 UpdateSpritePosition(map);
             }
 
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen 
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!b_redbot)) //ToDo: Bedingungen zum erstelelen 
             {
                 redBot = new RedBot(mapPosition, map);
                 botsList.Add(redBot);
                 counter = 0;
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!b_bluebot)) //ToDo: Bedingungen zum erstelelen
             {
                 blueBot = new BlueBot(mapPosition, map);
                 botsList.Add(blueBot);
                 counter = 0;
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!b_greenbot)) //ToDo: Bedingungen zum erstelelen
             {
                 greenBot = new GreenBot(mapPosition, map);
                 botsList.Add(greenBot);

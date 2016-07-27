@@ -40,6 +40,7 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if(controllid == id)
             {
+                //Schaut nach ob man gehen kann
                 if (map.CellIsWalkable(mapPosition + move))
                 {
                     if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
@@ -48,6 +49,7 @@ namespace MemoryMaze
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
+                //Schaut ob was bewegt werden kann
                 else if (map.CellIsMovable(mapPosition + move) && map.MoveIsPossible(mapPosition, move))
                 {
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
@@ -77,7 +79,7 @@ namespace MemoryMaze
         }
 
         Vector2i GetMove()
-        {
+        { //Gewünschter Move zurück
 
             Vector2i move = new Vector2i(0, 0);
             if (KeyboardInputManager.Downward(Keyboard.Key.Up))

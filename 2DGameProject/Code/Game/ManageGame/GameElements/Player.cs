@@ -109,30 +109,15 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
-            
-            foreach(Bot it in botList)
-            {
-                //Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
-                it.Update(deltaTime, map, controllid);
-                    if (!it.isAlive)
-                    {
-                        deleteList.Add(it); //´zerstoere Player
-                        if (it.id == controllid)
-                            controllid = 0;
-                    }
-                    Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
-            }
-        
-            botList.RemoveAll(deleteList.Contains);
-            deleteList = new List<Bot>();
-            
+            UpdateBots(deltaTime, map);
+           
             if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) //ToDo: Bedingungen um GhostPlayer zu aktivieren
             {
                 ghostaktiv = true;
                
             }
             if (iserstellt)
-                ghostPlayer.Update(deltaTime, map, botList);
+                ghostPlayer.Update(deltaTime, map, botList, redbot, bluebot, greenbot);
 
             else {
                 if(id == controllid)
@@ -165,8 +150,8 @@ namespace MemoryMaze
                 ghostaktiv = false;
                 iserstellt = false;
             }
+            //Target controll manager
             SwitchTarget();
-          
         }
  
         public void Draw(RenderWindow win, View view)
@@ -182,7 +167,9 @@ namespace MemoryMaze
                     it.Render(win);
             }
         }
-         public void SwitchTarget()
+
+
+        public void SwitchTarget()
         {
             if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot)
             {
@@ -291,6 +278,24 @@ namespace MemoryMaze
         Vector2f GetSpritePosition(Map map)
         {
             return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
+        }
+
+        private void UpdateBots(float deltaTime, Map map)
+        {
+            foreach (Bot it in botList)
+            {
+                //Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
+                it.Update(deltaTime, map, controllid);
+                if (!it.isAlive)
+                {
+                    deleteList.Add(it); //´zerstoere Player
+                    if (it.id == controllid)
+                        controllid = 0;
+                }
+                Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
+            }
+            botList.RemoveAll(deleteList.Contains);
+            deleteList = new List<Bot>();
         }
 
         public void Check(Bot bot)
