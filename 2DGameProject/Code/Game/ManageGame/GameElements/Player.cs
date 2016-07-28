@@ -24,7 +24,6 @@ namespace MemoryMaze
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
         public List<Bot> botList;
-        private List<Bot> dummyList;
         List<Bot> deleteList;
 
         // GUI Stuff
@@ -122,7 +121,7 @@ namespace MemoryMaze
             else {
                 if(id == controllid)
                 {
-                    
+
                     Vector2i move = GetMove();
                     if (map.CellIsWalkable(mapPosition + move))
                     {
@@ -139,7 +138,7 @@ namespace MemoryMaze
                 }
             }
             //Create GhostPlayer
-            if (ghostaktiv && (!iserstellt))
+            if (ghostaktiv && (!iserstellt) && controllid == 0)
             {
                 ghostPlayer = new GhostPlayer(mapPosition, map);
                 iserstellt = true;
@@ -147,6 +146,7 @@ namespace MemoryMaze
             //Destroy GhostPlayer
             if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
             {
+                ghostPlayer = null;
                 ghostaktiv = false;
                 iserstellt = false;
             }
@@ -158,7 +158,7 @@ namespace MemoryMaze
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             win.Draw(sprite);
-            if (ghostaktiv)
+            if (iserstellt)
                 ghostPlayer.Draw(win, view);
 
             foreach (Bot it in botList)
@@ -169,7 +169,7 @@ namespace MemoryMaze
         }
 
 
-        public void SwitchTarget()
+        private void SwitchTarget()
         {
             if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot)
             {
@@ -186,7 +186,7 @@ namespace MemoryMaze
             else
             {
 
-                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num0))))
+                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Space))))
                     controllid = 0;
             }
         }
@@ -216,7 +216,7 @@ namespace MemoryMaze
             }
 
             // updating Text
-            if (ghostaktiv) ghostCounter.DisplayedString = "" + ghostPlayer.counter;
+            if (iserstellt) ghostCounter.DisplayedString = "" + ghostPlayer.counter;
             else ghostCounter.DisplayedString = "" + 0;
             if (redbot) redCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
             else redCounter.DisplayedString = "" + 0;
@@ -298,7 +298,7 @@ namespace MemoryMaze
             deleteList = new List<Bot>();
         }
 
-        public void Check(Bot bot)
+        private void Check(Bot bot)
         {
             if(bot.id == 1)
             {

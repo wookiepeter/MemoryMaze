@@ -23,7 +23,7 @@ namespace MemoryMaze
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public GhostPlayer(Vector2i position, Map map)
         {
-            counter = 10;
+            counter = 10;//ANzahl der Schritte
             iserstellt = false;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
@@ -43,26 +43,9 @@ namespace MemoryMaze
                 //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 UpdateSpritePosition(map);
             }
-
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!b_redbot)) //ToDo: Bedingungen zum erstelelen 
-            {
-                redBot = new RedBot(mapPosition, map);
-                botsList.Add(redBot);
-                counter = 0;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!b_bluebot)) //ToDo: Bedingungen zum erstelelen
-            {
-                blueBot = new BlueBot(mapPosition, map);
-                botsList.Add(blueBot);
-                counter = 0;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!b_greenbot)) //ToDo: Bedingungen zum erstelelen
-            {
-                greenBot = new GreenBot(mapPosition, map);
-                botsList.Add(greenBot);
-                counter = 0;
-            }
-
+            CreateBot(map, botsList, b_redbot, b_bluebot, b_greenbot);
+      
+          
         }
     
         public void Draw(RenderWindow win, View view)
@@ -73,6 +56,52 @@ namespace MemoryMaze
             else
             {
                 redBot.Render(win);
+            }
+        }
+       void  CreateBot(Map map, List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
+        {
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!b_redbot)) //ToDo: Bedingungen zum erstelelen 
+            {
+                redBot = new RedBot(mapPosition, map);
+                botsList.Add(redBot);
+                counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (b_redbot))
+            {
+                botsList.Remove(botsList.Find(b => b.id == 1));
+
+                redBot = new RedBot(mapPosition, map);
+                botsList.Add(redBot);
+                counter = 0;
+            }
+
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!b_bluebot)) //ToDo: Bedingungen zum erstelelen
+            {
+                blueBot = new BlueBot(mapPosition, map);
+                botsList.Add(blueBot);
+                counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (b_bluebot))
+            {
+                botsList.Remove(botsList.Find(b => b.id == 2));
+
+                blueBot = new BlueBot(mapPosition, map);
+                botsList.Add(blueBot);
+                counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!b_greenbot)) //ToDo: Bedingungen zum erstelelen
+            {
+                greenBot = new GreenBot(mapPosition, map);
+                botsList.Add(greenBot);
+                counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (b_greenbot))
+            {
+                botsList.Remove(botsList.Find(b => b.id == 3));
+
+                greenBot = new GreenBot(mapPosition, map);
+                botsList.Add(greenBot);
+                counter = 0;
             }
         }
         Vector2i GetMove()

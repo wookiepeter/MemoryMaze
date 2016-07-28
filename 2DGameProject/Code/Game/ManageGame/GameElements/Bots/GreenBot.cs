@@ -46,6 +46,7 @@ namespace MemoryMaze
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                     map.MoveBlock(mapPosition, move);
                     mapPosition = mapPosition + move;
+                    counter--;
                 }
                 if (counter == 0)
                     isAlive = false;

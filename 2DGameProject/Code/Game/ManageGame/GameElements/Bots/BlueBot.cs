@@ -33,7 +33,7 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if (controllid == id)
             {
-                if (map.CellIsWalkable(mapPosition + move))
+                if (map.CellIsWalkable(mapPosition + move) || map.CellIsMovable(mapPosition + move))
                 {
                     if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
                         counter--;
@@ -41,12 +41,14 @@ namespace MemoryMaze
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
-                else if (map.MoveIsPossible(mapPosition, move))
-                {
-                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                    map.MoveBlock(mapPosition, move);
-                    mapPosition = mapPosition + move;
-                }
+               //Kann nicht Blöcke verschieben! (BADSMILIE)
+               //else if (map.MoveIsPossible(mapPosition, move))
+               //{
+               //    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+               //    map.MoveBlock(mapPosition, move);
+               //    mapPosition = mapPosition + move;
+               //    
+               //}
                 if (counter == 0)
                     isAlive = false;
             }
