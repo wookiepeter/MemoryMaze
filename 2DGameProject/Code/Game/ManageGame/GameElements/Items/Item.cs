@@ -11,7 +11,7 @@ namespace MemoryMaze
 {
     public abstract class Item
     {
-        Vector2i position;
+        public Vector2i position;
         Sprite sprite;
         public Boolean deleted;
 
@@ -19,6 +19,7 @@ namespace MemoryMaze
         public Item(Vector2i _position) { }
         public Item(Item _item) { }
 
+        abstract public Item Copy();
         abstract public void Update(Map map, float deltaTime);
         abstract public void Draw(RenderWindow win, View view);
     }

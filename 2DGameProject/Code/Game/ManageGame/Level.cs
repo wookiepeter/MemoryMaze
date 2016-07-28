@@ -47,7 +47,7 @@ namespace MemoryMaze
             map.Update(deltaTime);
             player.Update(deltaTime, map);
             // TODO: check if the order is correct
-            itemList.Update(map, deltaTime);
+            itemList.Update(map, player, deltaTime);
             if (map.CellIsGoal(player.mapPosition))
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))

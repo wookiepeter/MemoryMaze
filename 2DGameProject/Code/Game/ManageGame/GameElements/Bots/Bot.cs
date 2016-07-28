@@ -13,6 +13,7 @@ namespace MemoryMaze
     {
         public int  counter;
         public int id { get; set; }
+        public Vector2i mapPosition;
         public Bot() { }
         public abstract void Update(float deltaTime, Map map, int controllid);
         public abstract void HandleEvents();

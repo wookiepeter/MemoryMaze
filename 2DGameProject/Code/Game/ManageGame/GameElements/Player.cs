@@ -26,6 +26,8 @@ namespace MemoryMaze
         public List<Bot> botList;
         List<Bot> deleteList;
 
+        int keyCounter = 0;
+
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
         Sprite redBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedBot)));
@@ -322,6 +324,22 @@ namespace MemoryMaze
                 else
                     greenbot = false;
             }
+        }
+
+        public void collectItem(Item item)
+        {
+            if (item is Key)
+                keyCounter++;
+        }
+
+        // TODO: find a better name for this method
+        public List<Vector2i> getListOfBotPositions()
+        {
+            List<Vector2i> result = new List<Vector2i>();
+            result.Add(mapPosition);
+            foreach (Bot bot in botList)
+                result.Add(bot.mapPosition);
+            return result;
         }
     }
 }

@@ -11,12 +11,12 @@ namespace MemoryMaze
 {
     public class Key : Item
     {
-        Vector2i position;
         Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));   
 
         // This doesn't check if the item is valid
         public Key(Vector2i _position, Map map)
         {
+            Logger.Instance.Write(_position.ToString(), 0);
             position = _position;
             deleted = false;
             sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell*0.25f, position.Y * map.sizePerCell + map.sizePerCell*0.25f);
@@ -27,6 +27,13 @@ namespace MemoryMaze
         public Key(Key _key)
         {
             position = _key.position;
+            sprite.Position = _key.sprite.Position;
+            sprite.Scale = _key.sprite.Scale;
+        }
+
+        override public Item Copy()
+        {
+            return new Key(this);
         }
 
         override public void Update(Map map, float deltaTime)

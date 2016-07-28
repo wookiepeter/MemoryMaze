@@ -14,7 +14,7 @@ namespace MemoryMaze
        
         RectangleShape sprite;
         RectangleShape guiSprite;
-        public Vector2i mapPosition { get; private set; }
+        new public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
         public RedBot(Vector2i position, Map map)
