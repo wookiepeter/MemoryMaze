@@ -18,7 +18,7 @@ namespace MemoryMaze
         Cell[,] cellMap;
         RectangleShape mapSprite;
 
-        List<Key> keyList;
+        ItemList itemList;
         MapFromTxt mapFromText = new MapFromTxt();
 
         
@@ -30,7 +30,6 @@ namespace MemoryMaze
             sizePerCell = 64;
             this.mapSizeX = mapSizeX;
             this.mapSizeY = mapSizeY;
-            cellMap = RandomCellMap(this.mapSizeX, this.mapSizeY);
 
             // Probably not possible to draw all Textures(with different image resolutions) in the same sprite
             // without using different sprites for different textures
@@ -198,21 +197,16 @@ namespace MemoryMaze
             cellMap[moveBlock.X, moveBlock.Y] = new Cell(cellContent.Empty);
         }
 
-        public List<Vector2i> RemoveAndReturnKeys()
+        public void RemoveAllItems()
         {
-            List<Vector2i> _keyList = new List<Vector2i>();
             for(int j = 0; j < mapSizeY; j++)
             {
                 for(int i = 0; i < mapSizeX; i++)
                 {
-                    if(cellMap[i, j].GetContent()==cellContent.Item)
-                    {
+                    if (cellMap[i, j].IsItem())
                         cellMap[i, j] = new Cell(cellContent.Empty);
-                        _keyList.Add(new Vector2i(i, j));
-                    }
                 }
             }
-            return _keyList;
         }
 
         public int GetSizePerCell()
@@ -225,6 +219,13 @@ namespace MemoryMaze
             if(position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
                 return false;
             return true;
+        }
+
+        public cellContent getContentOfCell(Vector2i position)
+        {
+            if (!isInMap(position))
+                throw new Exception("Invalid position is not on Map -> has no Cellcontent");
+            return cellMap[position.X, position.Y].GetContent();
         }
     }
 }

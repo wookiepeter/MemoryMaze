@@ -9,28 +9,18 @@ using SFML.Audio;
 
 namespace MemoryMaze
 {
-    public class Key
+    public class Key : Item
     {
         Vector2i position;
-        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));
-        Boolean exists = false;
-        Boolean taken = false;
+        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));   
 
+        // This doesn't check if the item is valid
         public Key(Vector2i _position, Map map)
         {
-            if (!map.isInMap(position))
-            {
-                throw new Exception("Item Position not on map");
-            }
-            else
-            {
-                if (!map.CellIsWalkable(position))
-                    Logger.Instance.Write("Item is not on a walkable cell", 1);
-                position = _position;
-                sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell*0.2f, position.Y * map.sizePerCell + map.sizePerCell*0.2f);
-                sprite.Scale = new Vector2f((float)sprite.TextureRect.Height / ((float)map.sizePerCell * 0.6f), (float)sprite.TextureRect.Height / ((float)map.sizePerCell * 0.6f));
-            }
-
+            position = _position;
+            deleted = false;
+            sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell*0.25f, position.Y * map.sizePerCell + map.sizePerCell*0.25f);
+            sprite.Scale = new Vector2f((float)map.sizePerCell*0.5f/(float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
         }
 
         // CopyConstructor
@@ -39,16 +29,16 @@ namespace MemoryMaze
             position = _key.position;
         }
 
-        void Update(Map map, float deltaTime)
+        override public void Update(Map map, float deltaTime)
         {
             if (!map.CellIsWalkable(position))
-                exists = false;
+                deleted = true;
         }
 
-        void Draw(RenderWindow win, View view)
+        override public void Draw(RenderWindow win, View view)
         {
             win.Draw(sprite);
-        } 
+        }
 
     }
 }

@@ -11,7 +11,7 @@ using SFML.Window;
 namespace MemoryMaze
 {
     // enum goes global
-    enum cellContent
+    public enum cellContent
     {
         Empty,
         Item,
@@ -56,6 +56,11 @@ namespace MemoryMaze
         public Boolean IsGoal()
         {
             return (content == cellContent.Goal);
+        }
+
+        public Boolean IsItem()
+        {
+            return (content == cellContent.Item);
         }
 
         public Texture GetTexture(int groundIndex)

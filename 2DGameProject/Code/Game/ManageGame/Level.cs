@@ -13,7 +13,7 @@ namespace MemoryMaze
         //Contains and manages the actual Levels
         Player player;
         Map map;
-        List<Key> keylist;
+        ItemList itemList;
 
         int mapStatus = 0;
 
@@ -22,19 +22,25 @@ namespace MemoryMaze
         {
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
-            keylist = map
+            itemList = new ItemList(map);
+            // deletes all items from map AFTER they have been saved in the itemList
+            // to simplify the placing of items without cluttering the map with extra blocks
+            map.RemoveAllItems();
+
+            
         }
 
         // Constructor for the Copy function
-        public Level(Map _map, Player _player)
+        public Level(Map _map, Player _player, ItemList _itemList)
         {
             map = _map;
             player = _player;
+            itemList = _itemList;
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy());
+            return new Level(map.Copy(), player.Copy(), itemList.Copy());
         }
 
         public int update(float deltaTime)
@@ -48,10 +54,12 @@ namespace MemoryMaze
                 mapStatus = 2;
             return mapStatus;
         }
+
         public void draw(RenderWindow win, View view)
         {
             map.Draw(win, view);
             player.Draw(win, view);
+            itemList.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
