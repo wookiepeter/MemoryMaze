@@ -18,7 +18,10 @@ namespace MemoryMaze
         Cell[,] cellMap;
         RectangleShape mapSprite;
 
+        List<Key> keyList;
         MapFromTxt mapFromText = new MapFromTxt();
+
+        
 
         public Map(int mapSizeX, int mapSizeY)
         {
@@ -152,28 +155,22 @@ namespace MemoryMaze
         
         public Boolean CellIsWalkable(Vector2i position)
         {
-            if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
-            {
+            if (!isInMap(position))
                 return false;
-            }
             return cellMap[position.X, position.Y].IsWalkable();
         }
 
         public Boolean CellIsMovable(Vector2i position)
         {
-            if(position.X >= mapSizeX ||position.X < 0 ||position.Y >= mapSizeY || position.Y <0)
-            {
+            if(!isInMap(position))
                 return false;
-            }
             return cellMap[position.X, position.Y].IsMovable();
         }
 
         public Boolean CellIsGoal(Vector2i position)
         {
-            if (position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
-            {
+            if (!isInMap(position))
                 return false;
-            }
             return cellMap[position.X, position.Y].IsGoal();
         }
 
@@ -191,6 +188,8 @@ namespace MemoryMaze
             return false;
         }
 
+        // TODO: rework this function so the position is the position of the block
+        // redo all its usages afterwards!!!
         public void MoveBlock(Vector2i position, Vector2i move)
         {
             Vector2i targetBlock = position + move + move;
@@ -199,9 +198,33 @@ namespace MemoryMaze
             cellMap[moveBlock.X, moveBlock.Y] = new Cell(cellContent.Empty);
         }
 
+        public List<Vector2i> RemoveAndReturnKeys()
+        {
+            List<Vector2i> _keyList = new List<Vector2i>();
+            for(int j = 0; j < mapSizeY; j++)
+            {
+                for(int i = 0; i < mapSizeX; i++)
+                {
+                    if(cellMap[i, j].GetContent()==cellContent.Item)
+                    {
+                        cellMap[i, j] = new Cell(cellContent.Empty);
+                        _keyList.Add(new Vector2i(i, j));
+                    }
+                }
+            }
+            return _keyList;
+        }
+
         public int GetSizePerCell()
         {
             return sizePerCell;
+        }
+
+        public Boolean isInMap(Vector2i position)
+        {
+            if(position.X >= mapSizeX || position.X < 0 || position.Y >= mapSizeY || position.Y < 0)
+                return false;
+            return true;
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\RedBot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Enemy.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\GhostPlayer.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Items\Key.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />

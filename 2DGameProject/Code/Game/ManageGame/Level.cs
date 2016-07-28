@@ -13,6 +13,7 @@ namespace MemoryMaze
         //Contains and manages the actual Levels
         Player player;
         Map map;
+        List<Key> keylist;
 
         int mapStatus = 0;
 
@@ -21,6 +22,7 @@ namespace MemoryMaze
         {
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
+            keylist = map
         }
 
         // Constructor for the Copy function
