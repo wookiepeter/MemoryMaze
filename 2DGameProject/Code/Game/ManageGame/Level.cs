@@ -26,8 +26,6 @@ namespace MemoryMaze
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
             map.RemoveAllItems();
-
-            
         }
 
         // Constructor for the Copy function
@@ -48,6 +46,8 @@ namespace MemoryMaze
             mapStatus = 0;
             map.Update(deltaTime);
             player.Update(deltaTime, map);
+            // TODO: check if the order is correct
+            itemList.Update(map, deltaTime);
             if (map.CellIsGoal(player.mapPosition))
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
