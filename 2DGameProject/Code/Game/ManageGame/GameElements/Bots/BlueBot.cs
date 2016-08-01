@@ -12,7 +12,6 @@ namespace MemoryMaze
     {
      
         RectangleShape sprite;
-        new public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public BlueBot(Vector2i position, Map map)
         {

@@ -44,16 +44,19 @@ namespace MemoryMaze
             foreach(Item item in itemList)
             {
                 item.Update(map, deltaTime);
+                int i = 0;
                 foreach (Vector2i vec in botPosList)
                 {
                     if (!item.deleted)
                     {
+                        Logger.Instance.Write("bot: " + i + " x: " + item.position.X + " - " + vec.X + " y: " + item.position.Y + " - " + vec.Y, 0);
                         if (item.position.X == vec.X && item.position.Y == vec.Y)
                         {
                             item.deleted = true;
                             player.collectItem(item);
                         }
-                    }      
+                    }
+                    i++;      
                 }
             }
             itemList.RemoveAll(a => a.deleted == true);
