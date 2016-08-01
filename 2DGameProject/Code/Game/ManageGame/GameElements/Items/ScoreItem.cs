@@ -22,6 +22,7 @@ namespace MemoryMaze
             sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell * 0.25f, position.Y * map.sizePerCell + map.sizePerCell * 0.25f);
             sprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
         }
+
         public ScoreItem(ScoreItem _ScoreItem)
         {
             position = _ScoreItem.position;
