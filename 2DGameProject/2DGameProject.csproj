@@ -67,6 +67,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Items\RedItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\ScoreItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
+    <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bot.cs" />
