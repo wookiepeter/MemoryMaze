@@ -27,6 +27,9 @@ namespace MemoryMaze
         List<Bot> deleteList;
 
         int keyCounter = 0;
+        int redItemCounter = 0;
+        int blueItemCounter = 0;
+        int greenItemCounter = 0;
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
@@ -34,10 +37,16 @@ namespace MemoryMaze
         Sprite blueBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueBot)));
         Sprite greenBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenBot)));
         Font calibri = new Font("Assets/Fonts/calibri.ttf");
-        Text ghostCounter;
-        Text redCounter;
-        Text blueCounter;
-        Text greenCounter;
+        Text guiGhostCounter;
+        Text guiRedCounter;
+        Text guiBlueCounter;
+        Text guiGreenCounter;
+
+        Text guiPlayerItemCounter;
+        Text guiRedItemCounter;
+        Text guiBlueItemCounter;
+        Text guiGreenItemCounter;
+
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
@@ -92,15 +101,27 @@ namespace MemoryMaze
             greenBotStatus.Position = new Vector2f(325, 25);
             greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
 
-            ghostCounter = new Text("0", calibri, 20);
-            redCounter = new Text("0", calibri, 20);
-            blueCounter = new Text("0", calibri, 20);
-            greenCounter = new Text("0", calibri, 20);
+            // initialize text for stepcounter
+            guiGhostCounter = new Text("0", calibri, 20);
+            guiRedCounter = new Text("0", calibri, 20);
+            guiBlueCounter = new Text("0", calibri, 20);
+            guiGreenCounter = new Text("0", calibri, 20);
+            // initialize text for itemcounter
+            guiPlayerItemCounter = new Text("" + keyCounter, calibri, 20);
+            guiRedItemCounter = new Text("" + redItemCounter , calibri, 20);
+            guiBlueItemCounter = new Text("" +blueItemCounter, calibri, 20);
+            guiGreenItemCounter = new Text("" + greenItemCounter, calibri, 20);
 
-            ghostCounter.Position = new Vector2f(playerStatus.Position.X, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height*playerStatus.Scale.Y);
-            redCounter.Position = new Vector2f(redBotStatus.Position.X, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height*redBotStatus.Scale.Y);
-            blueCounter.Position = new Vector2f(blueBotStatus.Position.X, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height*blueBotStatus.Scale.Y);
-            greenCounter.Position = new Vector2f(greenBotStatus.Position.X, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height*greenBotStatus.Scale.Y);
+            guiGhostCounter.Position = new Vector2f(playerStatus.Position.X, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height*playerStatus.Scale.Y);
+            guiRedCounter.Position = new Vector2f(redBotStatus.Position.X, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height*redBotStatus.Scale.Y);
+            guiBlueCounter.Position = new Vector2f(blueBotStatus.Position.X, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height*blueBotStatus.Scale.Y);
+            guiGreenCounter.Position = new Vector2f(greenBotStatus.Position.X, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height*greenBotStatus.Scale.Y);
+
+            guiPlayerItemCounter.Position = new Vector2f(playerStatus.Position.X + (float)playerStatus.TextureRect.Width* playerStatus.Scale.X * 0.85f, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height * playerStatus.Scale.Y);
+            guiRedItemCounter.Position = new Vector2f(redBotStatus.Position.X + (float)redBotStatus.TextureRect.Width * redBotStatus.Scale.X * 0.85f, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height * playerStatus.Scale.Y);
+            guiBlueItemCounter.Position = new Vector2f(blueBotStatus.Position.X + (float)blueBotStatus.TextureRect.Width * blueBotStatus.Scale.X * 0.85f, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height * playerStatus.Scale.Y);
+            guiGreenItemCounter.Position = new Vector2f(greenBotStatus.Position.X + (float)greenBotStatus.TextureRect.Width * greenBotStatus.Scale.X * 0.85f, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height * playerStatus.Scale.Y);
+
         }
 
         public Player Copy()
@@ -217,27 +238,53 @@ namespace MemoryMaze
                 default: break;
             }
 
-            // updating Text
-            if (iserstellt) ghostCounter.DisplayedString = "" + ghostPlayer.counter;
-            else ghostCounter.DisplayedString = "" + 0;
-            if (redbot) redCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
-            else redCounter.DisplayedString = "" + 0;
-            if (bluebot) blueCounter.DisplayedString = "" + botList.Find(b => b.id == 2).counter;
-            else blueCounter.DisplayedString = "" + 0;
-            if (greenbot) greenCounter.DisplayedString = "" + botList.Find(b => b.id == 3).counter;
-            else greenCounter.DisplayedString = "" + 0;
+            updateTexts();
 
             // printing current steps;
-            gui.Draw(ghostCounter);
-            gui.Draw(redCounter);
-            gui.Draw(blueCounter);
-            gui.Draw(greenCounter);
+            gui.Draw(guiGhostCounter);
+            gui.Draw(guiRedCounter);
+            gui.Draw(guiBlueCounter);
+            gui.Draw(guiGreenCounter);
+            // printing current ItemCounter
+            gui.Draw(guiPlayerItemCounter);
+            gui.Draw(guiRedItemCounter);
+            gui.Draw(guiBlueItemCounter);
+            gui.Draw(guiGreenItemCounter);
 
             gui.Draw(playerStatus);
             gui.Draw(redBotStatus);
             gui.Draw(blueBotStatus);
             gui.Draw(greenBotStatus);
 
+        }
+
+        private void updateTexts()
+        {
+            // updating Text
+            if (iserstellt)
+                guiGhostCounter.DisplayedString = "" + ghostPlayer.counter;
+            else
+                guiGhostCounter.DisplayedString = "" + 0;
+
+            if (redbot)
+                guiRedCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
+            else
+                guiRedCounter.DisplayedString = "" + 0;
+
+            if (bluebot)
+                guiBlueCounter.DisplayedString = "" + botList.Find(b => b.id == 2).counter;
+            else
+                guiBlueCounter.DisplayedString = "" + 0;
+
+            if (greenbot)
+                guiGreenCounter.DisplayedString = "" + botList.Find(b => b.id == 3).counter;
+            else
+                guiGreenCounter.DisplayedString = "" + 0;
+
+            guiPlayerItemCounter.DisplayedString = "" + keyCounter;
+            guiRedItemCounter.DisplayedString = "" + redItemCounter;
+            guiBlueItemCounter.DisplayedString = "" + blueItemCounter;
+            guiGreenItemCounter.DisplayedString = "" + greenItemCounter;
         }
 
         Vector2i GetMove()
@@ -330,6 +377,12 @@ namespace MemoryMaze
         {
             if (item is Key)
                 keyCounter++;
+            if (item is RedItem)
+                redItemCounter++;
+            if (item is BlueItem)
+                blueItemCounter++;
+            if (item is GreenItem)
+                greenItemCounter++;
         }
 
         // TODO: find a better name for this method

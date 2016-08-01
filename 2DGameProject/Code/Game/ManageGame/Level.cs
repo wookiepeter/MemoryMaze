@@ -22,7 +22,6 @@ namespace MemoryMaze
         {
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
-            Console.WriteLine("Bis hier alles fi");
             itemList = new ItemList(map);
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks

@@ -49,7 +49,6 @@ namespace MemoryMaze
                 {
                     if (!item.deleted)
                     {
-                        Logger.Instance.Write("bot: " + i + " x: " + item.position.X + " - " + vec.X + " y: " + item.position.Y + " - " + vec.Y, 0);
                         if (item.position.X == vec.X && item.position.Y == vec.Y)
                         {
                             item.deleted = true;
