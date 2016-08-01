@@ -65,6 +65,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Items\ItemList.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\Key.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\RedItem.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Items\ScoreItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
@@ -137,6 +138,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\RedItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\ScoreItem.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\set_01\floor\center two.png">

@@ -15,6 +15,10 @@ namespace MemoryMaze
     {
         Empty,
         Item,
+        RedItem,
+        GreenItem,
+        BlueItem,
+        ScoreItem,
         Wall,
         Movable,
         Goal,
@@ -60,8 +64,10 @@ namespace MemoryMaze
 
         public Boolean IsItem()
         {
-            return (content == cellContent.Item);
+            return (content == cellContent.Item || content == cellContent.RedItem || content == cellContent.BlueItem || (content == cellContent.GreenItem) || (content == cellContent.ScoreItem));
+
         }
+
 
         public Texture GetTexture(int groundIndex)
         {

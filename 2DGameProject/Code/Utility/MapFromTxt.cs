@@ -62,6 +62,10 @@ namespace MemoryMaze
                 case 'm': return cellContent.Movable;
                 case 'e': return cellContent.Empty;
                 case 'i': return cellContent.Item;
+                case 'R': return cellContent.RedItem;
+                case 'B': return cellContent.BlueItem;
+                case 'G': return cellContent.GreenItem;
+                case 'S': return cellContent.ScoreItem;
                 case 'g': if (!goalWasSet) { goalWasSet = true; return cellContent.Goal; } else return cellContent.Empty;
                 default: return cellContent.Wall;
             }
