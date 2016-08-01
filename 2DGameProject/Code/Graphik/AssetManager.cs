@@ -58,6 +58,9 @@ public class AssetManager
         textures.Add(TextureName.RedBot, new Texture("Assets/Textures/RedBot.png"));
         textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/GreenBot.png"));
         textures.Add(TextureName.BlueBot, new Texture("Assets/Textures/BlueBot.png"));
+        textures.Add(TextureName.RedItem, new Texture("Assets/Textures/RedItem.png"));
+        textures.Add(TextureName.BlueItem, new Texture("Assets/Textures/BlueItem.png"));
+        textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
     }
 
@@ -112,7 +115,11 @@ public class AssetManager
         PlayerGhost,
         RedBot,
         GreenBot,
-        BlueBot
+        BlueBot,
+        RedItem,
+        BlueItem,
+        GreenItem
 
     }
 }
+

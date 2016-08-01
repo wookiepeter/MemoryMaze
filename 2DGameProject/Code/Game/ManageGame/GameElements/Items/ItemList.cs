@@ -80,7 +80,7 @@ namespace MemoryMaze
                     Vector2i curPos = new Vector2i(i, j);
                     switch(map.getContentOfCell(curPos))
                     {
-                        case cellContent.Item: result.Add(new Key(curPos, map));
+                        case cellContent.Item: result.Add(new RedItem(curPos, map));
                             break;
                         default: break;
                     }           

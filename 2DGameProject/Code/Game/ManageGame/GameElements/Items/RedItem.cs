@@ -9,29 +9,27 @@ using SFML.Audio;
 
 namespace MemoryMaze
 {
-    class GreenItem : Item
+    class RedItem : Item
     {
-        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.GreenItem));
+        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.RedItem));
 
-        public GreenItem() { }
-        public GreenItem(Vector2i _position, Map map)
-        {
+        public RedItem() { }
+        public RedItem(Vector2i _position, Map map) {
             //Logger.Instance.Write(_position.ToString(), 0);
             position = _position;
             deleted = false;
             sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell * 0.25f, position.Y * map.sizePerCell + map.sizePerCell * 0.25f);
             sprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
         }
-        public GreenItem(GreenItem _greenItem)
-        {
-            position = _greenItem.position;
-            sprite.Position = _greenItem.sprite.Position;
-            sprite.Scale = _greenItem.sprite.Scale;
+        public RedItem(RedItem _redItem) {
+            position = _redItem.position;
+            sprite.Position = _redItem.sprite.Position;
+            sprite.Scale = _redItem.sprite.Scale;
         }
 
         override public Item Copy()
         {
-            return new GreenItem(this);
+            return new RedItem(this);
         }
         override public void Update(Map map, float deltaTime)
         {
