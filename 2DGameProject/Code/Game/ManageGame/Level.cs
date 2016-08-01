@@ -16,6 +16,9 @@ namespace MemoryMaze
         ItemList itemList;
 
         int mapStatus = 0;
+        int playerScore = 0;
+
+        Text guiScore = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position)
@@ -29,21 +32,23 @@ namespace MemoryMaze
         }
 
         // Constructor for the Copy function
-        public Level(Map _map, Player _player, ItemList _itemList)
+        public Level(Map _map, Player _player, ItemList _itemList, int _playerScore)
         {
             map = _map;
             player = _player;
             itemList = _itemList;
+            this.setScoreCounter(_playerScore);
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy());
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), playerScore);
         }
 
         public int update(float deltaTime)
         {
             mapStatus = 0;
+            playerScore = player.scoreCounter;
             map.Update(deltaTime);
             player.Update(deltaTime, map);
             // TODO: check if the order is correct
@@ -66,6 +71,26 @@ namespace MemoryMaze
         {
             map.DrawGUI(gui, deltaTime);
             player.DrawGUI(gui, deltaTime);
+
+            updateGuiText(gui);
+            gui.Draw(guiScore);
+        }
+
+        private void updateGuiText(GUI gui)
+        {
+            guiScore.Position = new Vector2f(gui.view.Size.X-50, 25);
+            guiScore.DisplayedString = "" + playerScore;
+        }
+
+        public void setScoreCounter(int score)
+        {
+            playerScore = score;
+            player.scoreCounter = score;
+        }
+
+        public int getScoreCounter()
+        {
+            return playerScore;
         }
     }
 }

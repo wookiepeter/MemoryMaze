@@ -17,7 +17,7 @@ namespace MemoryMaze
         int curIndex = 0;
 
         int levelStatus;
-
+        public int scoreItemCounter;
         GameState nextGameState;
 
         Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
@@ -40,6 +40,7 @@ namespace MemoryMaze
 
             if (levelStatus == 1)
             {
+                int curScore = level.getScoreCounter();
                 curIndex++;
                 if (curIndex >= levelList.Count)
                 {
@@ -47,6 +48,7 @@ namespace MemoryMaze
                 }
                 else
                 {
+                    levelList[curIndex].setScoreCounter(curScore);
                     Logger.Instance.Write("THIS SHOULD HAPPEN ONCE", 2);
                     level = levelList[curIndex].Copy();
                 }

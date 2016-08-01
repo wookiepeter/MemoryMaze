@@ -26,6 +26,7 @@ namespace MemoryMaze
         public List<Bot> botList;
         List<Bot> deleteList;
 
+        public int scoreCounter = 0;
         int keyCounter = 0;
         int redItemCounter = 0;
         int blueItemCounter = 0;
@@ -383,6 +384,9 @@ namespace MemoryMaze
                 blueItemCounter++;
             if (item is GreenItem)
                 greenItemCounter++;
+            if (item is ScoreItem)
+                scoreCounter++;
+                 
         }
 
         // TODO: find a better name for this method
