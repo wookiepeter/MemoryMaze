@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _MemoryMaze.Code.Game.ManageGame.GameElements
+namespace MemoryMaze
 {
-    class ObjectHandler
+    class GreenItem : Item
     {
+
+
     }
 }

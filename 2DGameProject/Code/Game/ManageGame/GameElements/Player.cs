@@ -15,9 +15,9 @@ namespace MemoryMaze
         bool iserstellt;
         int controllid;
         int id;
-        bool redbot;
-        bool bluebot;
-        bool greenbot;
+        public bool redbot;
+        public bool bluebot;
+        public bool greenbot;
         GhostPlayer ghostPlayer;
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
@@ -118,7 +118,7 @@ namespace MemoryMaze
                
             }
             if (iserstellt)
-                ghostPlayer.Update(deltaTime, map, botList, redbot, bluebot, greenbot);
+                ghostPlayer.Update(deltaTime, map, this);
 
             else {
                 if(id == controllid)

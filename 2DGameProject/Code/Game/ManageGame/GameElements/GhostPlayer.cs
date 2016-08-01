@@ -32,7 +32,7 @@ namespace MemoryMaze
             this.mapPosition = position;
             UpdateSpritePosition(map);
         }
-        public void Update(float deltaTime, Map map, List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
+        public void Update(float deltaTime, Map map, Player player)//List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
             Vector2i move = GetMove();
             if (map.CellIsWalkable(mapPosition + move))
@@ -43,9 +43,7 @@ namespace MemoryMaze
                 //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 UpdateSpritePosition(map);
             }
-            CreateBot(map, botsList, b_redbot, b_bluebot, b_greenbot);
-      
-          
+            CreateBot(map, player.botList, player.redbot, player.bluebot, player.greenbot);
         }
     
         public void Draw(RenderWindow win, View view)
