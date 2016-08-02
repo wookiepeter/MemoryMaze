@@ -63,6 +63,7 @@ public class AssetManager
         textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
         textures.Add(TextureName.ScoreItem, new Texture("Assets/Textures/ScoreItem.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
+        textures.Add(TextureName.Overlay, new Texture("Assets/Textures/lightMask.png"));
     }
 
     public enum TextureName
@@ -120,8 +121,8 @@ public class AssetManager
         RedItem,
         BlueItem,
         GreenItem,
-        ScoreItem
-
+        ScoreItem,
+        Overlay
     }
 }
 

@@ -183,7 +183,7 @@ namespace MemoryMaze
             SwitchTarget();
         }
  
-        public void Draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
             view.Center = Vector2.lerp(view.Center, currentFocus, 0.01F);
             win.Draw(sprite);

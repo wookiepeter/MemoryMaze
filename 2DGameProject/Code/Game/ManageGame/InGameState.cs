@@ -11,6 +11,18 @@ namespace MemoryMaze
 
         GameState nextGameState;
 
+        // Render/Drawstuff
+        bool isInitialized = false;
+        RenderTexture multTexture;
+        RenderTexture backgroundMult;
+
+        Sprite overlay;
+
+        RenderStates multState;
+        RenderStates add;
+
+        View _view;
+
         public InGameState()
         {
             game = new Game();
@@ -24,8 +36,53 @@ namespace MemoryMaze
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
-            game.draw(win, view);            
+            if(!isInitialized)
+            {
+                InitializeRenderShit(win);
+                isInitialized = true;
+            }
 
+
+
+            //  backgroundMult.Display();
+            if(_view == null)
+            {
+                _view = new View(win.GetView());
+                backgroundMult.SetView(_view);
+            }
+            
+            // Draws the Game.Draw on to backgroundMult
+            game.Draw(backgroundMult, view);
+
+            // "buffers" backgroundMult
+            backgroundMult.Display();
+            
+            // Draws background in win
+            win.Draw(new Sprite(backgroundMult.Texture));
+
+            // processes lightMask
+            multTexture.Clear();
+            multTexture.Draw(overlay, add);
+            multTexture.Display();
+
+            // resets view of window
+            win.SetView(_view);
+            // multiplies lightMask with the Texture already in the window (because multstate)
+            win.Draw(new Sprite(multTexture.Texture), multState);
+        }
+
+        private void InitializeRenderShit(RenderWindow win)
+        {
+            multTexture = new RenderTexture(win.Size.X, win.Size.Y);
+            backgroundMult = new RenderTexture(win.Size.X, win.Size.Y);
+
+            overlay = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Overlay));
+            overlay.Scale = new Vector2f(2, 2);
+            overlay.Position = new Vector2f((float)win.Size.X/2f - (float)overlay.TextureRect.Width, 
+                (float)win.Size.Y/2f - (float)overlay.TextureRect.Height);
+
+            multState = new RenderStates(BlendMode.Multiply);
+            add = new RenderStates(BlendMode.Add);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

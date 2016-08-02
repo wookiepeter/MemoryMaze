@@ -42,7 +42,7 @@ namespace MemoryMaze
                 deleted = true;
         }
 
-        override public void Draw(RenderWindow win, View view)
+        override public void Draw(RenderTexture win, View view)
         {
             win.Draw(sprite);
         }

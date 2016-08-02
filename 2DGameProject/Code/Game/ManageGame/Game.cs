@@ -62,9 +62,9 @@ namespace MemoryMaze
             return nextGameState;
         }
 
-        public void draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
-            level.draw(win, view);
+            level.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

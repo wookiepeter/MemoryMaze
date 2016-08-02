@@ -47,7 +47,7 @@ namespace MemoryMaze
             CreateBot(map, player.botList, player.redbot, player.bluebot, player.greenbot);
         }
     
-        public void Draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             if(!iserstellt)

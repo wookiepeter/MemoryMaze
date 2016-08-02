@@ -17,7 +17,7 @@ namespace MemoryMaze
         public Bot() { }
         public abstract void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList);
         public abstract void HandleEvents();
-        public abstract void Render(RenderWindow win);
+        public abstract void Render(RenderTexture win);
         virtual public void DrawGUI(GUI gui, float deltaTime)
         {
             

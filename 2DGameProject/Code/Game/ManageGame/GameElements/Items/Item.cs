@@ -21,6 +21,6 @@ namespace MemoryMaze
 
         abstract public Item Copy();
         abstract public void Update(Map map, float deltaTime);
-        abstract public void Draw(RenderWindow win, View view);
+        abstract public void Draw(RenderTexture win, View view);
     }
 }

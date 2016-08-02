@@ -79,7 +79,7 @@ namespace MemoryMaze
 
         }
 
-        public override void Render(RenderWindow window)
+        public override void Render(RenderTexture window)
         {
           
                  window.Draw(sprite);

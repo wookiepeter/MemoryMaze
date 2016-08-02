@@ -62,7 +62,7 @@ namespace MemoryMaze
             return mapStatus;
         }
 
-        public void draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
             map.Draw(win, view);
             player.Draw(win, view);

@@ -106,7 +106,7 @@ namespace MemoryMaze
             return 0;
         }
         
-        public void Draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
             System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();    

@@ -61,7 +61,7 @@ namespace MemoryMaze
             itemList.RemoveAll(a => a.deleted == true);
         }
 
-        public void Draw(RenderWindow win, View view)
+        public void Draw(RenderTexture win, View view)
         {
             foreach(Item item in itemList)
             {
