@@ -17,32 +17,35 @@ namespace MemoryMaze
 
         int mapStatus = 0;
         int playerScore = 0;
+        public int keysToUnlock { get; private set; }
 
         Text guiScore = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
 
         // all variables initialized here need to be initialized in the copyconstructor too
-        public Level(String mapfile, int sizePerCell, Vector2i position)
+        public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
         {
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
             itemList = new ItemList(map);
+            keysToUnlock = _keysToUnlock;
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
             map.RemoveAllItems();
         }
 
         // Constructor for the Copy function
-        public Level(Map _map, Player _player, ItemList _itemList, int _playerScore)
+        public Level(Map _map, Player _player, ItemList _itemList, int _playerScore, int _keysToUnlock)
         {
             map = _map;
             player = _player;
             itemList = _itemList;
+            keysToUnlock = _keysToUnlock;
             this.setScoreCounter(_playerScore);
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy(), playerScore);
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), playerScore, keysToUnlock);
         }
 
         public int update(float deltaTime)
@@ -53,7 +56,7 @@ namespace MemoryMaze
             player.Update(deltaTime, map);
             // TODO: check if the order is correct
             itemList.Update(map, player, deltaTime);
-            if (map.CellIsGoal(player.mapPosition))
+            if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
                 mapStatus = 2;

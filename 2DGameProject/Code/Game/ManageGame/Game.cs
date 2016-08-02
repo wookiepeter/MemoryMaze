@@ -24,9 +24,9 @@ namespace MemoryMaze
 
         public Game()
         {
-            levelList.Add(new Level("Assets/MapFiles/map01.txt", 64, new Vector2i(2, 8)));
-            levelList.Add(new Level("Assets/MapFiles/map02.txt", 64, new Vector2i(2, 5)));
-            levelList.Add(new Level("Assets/MapFiles/map03.txt", 64, new Vector2i(2, 3)));
+            levelList.Add(new Level("Assets/MapFiles/map01.txt", 64, new Vector2i(2, 8), 1));
+            levelList.Add(new Level("Assets/MapFiles/map02.txt", 64, new Vector2i(2, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/map03.txt", 64, new Vector2i(2, 3), 0));
             level = levelList[curIndex].Copy();
             nextGameState = GameState.InGame;
 

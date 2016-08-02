@@ -27,7 +27,7 @@ namespace MemoryMaze
         List<Bot> deleteList;
 
         public int scoreCounter = 0;
-        int keyCounter = 0;
+        public int keyCounter { get; private set; } = 0;
         int redItemCounter = 0;
         int blueItemCounter = 0;
         int greenItemCounter = 0;
