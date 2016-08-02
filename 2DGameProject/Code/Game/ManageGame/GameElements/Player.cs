@@ -29,9 +29,9 @@ namespace MemoryMaze
 
         public int scoreCounter = 0;
         public int keyCounter { get; private set; } = 0;
-        int redItemCounter = 0;
-        int blueItemCounter = 0;
-        int greenItemCounter = 0;
+        public int redItemCounter = 0;
+        public int blueItemCounter = 0;
+        public int greenItemCounter = 0;
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
@@ -135,7 +135,7 @@ namespace MemoryMaze
         {
             UpdateBots(deltaTime, map, getListOfBotPositions());
            
-            if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) //ToDo: Bedingungen um GhostPlayer zu aktivieren
+            if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) 
             {
                 ghostaktiv = true;
                
@@ -273,7 +273,11 @@ namespace MemoryMaze
                 guiGhostCounter.DisplayedString = "" + 0;
 
             if (redbot)
+            {
                 guiRedCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
+            }
+
+
             else
                 guiRedCounter.DisplayedString = "" + 0;
 
