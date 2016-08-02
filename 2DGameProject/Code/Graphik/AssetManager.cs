@@ -63,6 +63,10 @@ public class AssetManager
         textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
         textures.Add(TextureName.ScoreItem, new Texture("Assets/Textures/ScoreItem.png"));
         textures.Add(TextureName.TrapTile, new Texture("Assets/Textures/Traptile.png"));
+
+        textures.Add(TextureName.DasC, new Texture("Assets/Textures/DasC.png"));
+        textures.Add(TextureName.DasF, new Texture("Assets/Textures/DasF.png"));
+        textures.Add(TextureName.DasM, new Texture("Assets/Textures/DasM.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
     }
 
@@ -122,7 +126,10 @@ public class AssetManager
         BlueItem,
         GreenItem,
         ScoreItem,
-        TrapTile
+        TrapTile,
+        DasC,
+        DasM,
+        DasF
 
     }
 }

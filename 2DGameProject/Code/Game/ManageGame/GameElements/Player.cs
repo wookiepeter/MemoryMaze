@@ -404,7 +404,7 @@ namespace MemoryMaze
             if (item is GreenItem)
                 greenItemCounter++;
             if (item is ScoreItem)
-                scoreCounter++;
+                scoreCounter= scoreCounter +10;
                  
         }
 
