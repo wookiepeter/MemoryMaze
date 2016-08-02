@@ -12,8 +12,7 @@ namespace MemoryMaze
     class RedBot : Bot
     {
        
-        RectangleShape sprite;
-        RectangleShape guiSprite;
+        RectangleShape guiSprite; // WTF: what does this ???
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
         public RedBot(Vector2i position, Map map)
@@ -34,7 +33,7 @@ namespace MemoryMaze
                 
         }
 
-        public override void Update(float deltaTime, Map map, int controllid)
+        public override void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList)
         {
             Vector2i move = GetMove();
             if(controllid == id)
@@ -42,14 +41,14 @@ namespace MemoryMaze
                 //Schaut nach ob man gehen kann (Kein Hinderniss)
                 if (map.CellIsWalkable(mapPosition + move))
                 {
-                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
+                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
                         counter--;
                     mapPosition = mapPosition + move;
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
                 //Bewegt 1 Block weiter!
-                else if (map.MoveIsPossible(mapPosition, move))
+                else if (map.MoveIsPossible(mapPosition, move, botPosList))
                 {
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                     map.MoveBlock(mapPosition, move);
@@ -57,7 +56,7 @@ namespace MemoryMaze
                     counter--;
                 }   
                 //Bewegt 2 M aufeinmal
-                else if (map.StrongMoveIsPossible(mapPosition, move))
+                else if (map.StrongMoveIsPossible(mapPosition, move, botPosList))
                 {
                     map.MoveBlock(mapPosition + move, move);    // moves first Block
                     map.MoveBlock(mapPosition, move);           // moves second Block

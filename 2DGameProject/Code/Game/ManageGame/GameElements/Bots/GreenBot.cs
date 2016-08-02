@@ -11,7 +11,6 @@ namespace MemoryMaze
 {
     class GreenBot : Bot
     {
-        RectangleShape sprite;
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public GreenBot(Vector2i position, Map map)
         {
@@ -27,20 +26,20 @@ namespace MemoryMaze
           
 
         }
-        public override void Update(float deltaTime, Map map, int controllid)
+        public override void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList)
         {
             Vector2i move = GetMove();
             if (controllid == id)
             {
                 if (map.CellIsWalkable(mapPosition + move))
                 {
-                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
+                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
                         counter--;
                     mapPosition = mapPosition + move;
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
-                else if (map.MoveIsPossible(mapPosition, move))
+                else if (map.MoveIsPossible(mapPosition, move, botPosList))
                 {
                     //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                     map.MoveBlock(mapPosition, move);

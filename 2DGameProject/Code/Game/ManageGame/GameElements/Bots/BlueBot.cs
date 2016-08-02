@@ -11,11 +11,9 @@ namespace MemoryMaze
     class BlueBot : Bot
     {
      
-        RectangleShape sprite;
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
         public BlueBot(Vector2i position, Map map)
         {
-            //ToDO Texturen/Spritre festlegen
             id = 2;
             this.counter = 10;
             this.isAlive = true;
@@ -27,14 +25,14 @@ namespace MemoryMaze
             
 
         }
-        public override void Update(float deltaTime, Map map, int controllid)
+        public override void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList)
         {
             Vector2i move = GetMove();
             if (controllid == id)
             {
                 if (map.CellIsWalkable(mapPosition + move) || map.CellIsMovable(mapPosition + move))
                 {
-                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten
+                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
                         counter--;
                     mapPosition = mapPosition + move;
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);

@@ -13,7 +13,7 @@ namespace MemoryMaze
     public class GhostPlayer
     {
         
-        RectangleShape sprite;
+        public RectangleShape sprite { get; private set; }
         RedBot redBot;
         BlueBot blueBot;
         GreenBot greenBot;
@@ -21,6 +21,7 @@ namespace MemoryMaze
         public int counter { get; private set; }
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+
         public GhostPlayer(Vector2i position, Map map)
         {
             counter = 10;//ANzahl der Schritte

@@ -27,7 +27,7 @@ namespace MemoryMaze
         public static bool CheckColission(T obj1, U obj2)
         {
             Vector2f pos1 = obj1.getPosition();
-            Vector2u size1 = 2 * obj1.getSize() / 3; //Todo Fix Size
+            Vector2u size1 = 2 * obj1.getSize() / 3; 
             Vector2f pos2 = obj2.getPosition();
             Vector2u size2 = 2 * obj2.getSize() / 3;
 

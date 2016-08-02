@@ -15,7 +15,7 @@ namespace MemoryMaze
         public int id { get; set; }
         public Vector2i mapPosition { get; set; }
         public Bot() { }
-        public abstract void Update(float deltaTime, Map map, int controllid);
+        public abstract void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList);
         public abstract void HandleEvents();
         public abstract void Render(RenderWindow win);
         virtual public void DrawGUI(GUI gui, float deltaTime)
@@ -24,7 +24,7 @@ namespace MemoryMaze
         }
         public bool isAlive { get; set; }
 
-        protected Sprite sprite;
+        public RectangleShape sprite { get; protected set; }
         protected Texture texture;
     }
 }

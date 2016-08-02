@@ -54,7 +54,6 @@ namespace MemoryMaze
             playerScore = player.scoreCounter;
             map.Update(deltaTime);
             player.Update(deltaTime, map);
-            // TODO: check if the order is correct
             itemList.Update(map, player, deltaTime);
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;

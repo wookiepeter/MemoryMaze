@@ -22,6 +22,7 @@ namespace MemoryMaze
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
         Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+        Vector2f currentFocus;
 
         public List<Bot> botList;
         List<Bot> deleteList;
@@ -132,7 +133,7 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
-            UpdateBots(deltaTime, map);
+            UpdateBots(deltaTime, map, getListOfBotPositions());
            
             if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) //ToDo: Bedingungen um GhostPlayer zu aktivieren
             {
@@ -140,10 +141,13 @@ namespace MemoryMaze
                
             }
             if (iserstellt)
+            {
                 ghostPlayer.Update(deltaTime, map, this);
-
-            else {
-                if(id == controllid)
+                currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.Size.X / 2f, ghostPlayer.sprite.Size.Y / 2f);
+            }
+            else
+            {
+                if (id == controllid)
                 {
 
                     Vector2i move = GetMove();
@@ -153,12 +157,13 @@ namespace MemoryMaze
                         //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                         UpdateSpritePosition(map);
                     }
-                    else if (map.MoveIsPossible(mapPosition, move))
+                    else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
                     {
                         //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                         map.MoveBlock(mapPosition, move);
                         mapPosition = mapPosition + move;
                     }
+                    currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
                 }
             }
             //Create GhostPlayer
@@ -180,7 +185,7 @@ namespace MemoryMaze
  
         public void Draw(RenderWindow win, View view)
         {
-            view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
+            view.Center = Vector2.lerp(view.Center, currentFocus, 0.01F);
             win.Draw(sprite);
             if (iserstellt)
                 ghostPlayer.Draw(win, view);
@@ -330,17 +335,21 @@ namespace MemoryMaze
             return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell()*0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell()*0.1F);
         }
 
-        private void UpdateBots(float deltaTime, Map map)
+        private void UpdateBots(float deltaTime, Map map, List<Vector2i> botPosList)
         {
             foreach (Bot it in botList)
             {
-                //Logger.Instance.Write("conntrollid: " + controllid, Logger.level.Info);
-                it.Update(deltaTime, map, controllid);
+                it.Update(deltaTime, map, controllid, botPosList);
                 if (!it.isAlive)
                 {
                     deleteList.Add(it); //´zerstoere Player
                     if (it.id == controllid)
                         controllid = 0;
+                }
+                else
+                {
+                    if (controllid == it.id)
+                        currentFocus = it.sprite.Position + new Vector2f(it.sprite.Size.X/2f, it.sprite.Size.Y/2f);
                 }
                 Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
             }
@@ -389,7 +398,6 @@ namespace MemoryMaze
                  
         }
 
-        // TODO: find a better name for this method
         public List<Vector2i> getListOfBotPositions()
         {
             List<Vector2i> result = new List<Vector2i>();

@@ -173,16 +173,18 @@ namespace MemoryMaze
             return cellMap[position.X, position.Y].IsGoal();
         }
 
-        public Boolean MoveIsPossible(Vector2i position, Vector2i move)
+        public Boolean MoveIsPossible(Vector2i position, Vector2i move, List<Vector2i> posList)
         {
-            if (CellIsMovable(position + move) && CellIsWalkable(position + move + move))
+            if (CellIsMovable(position + move) && CellIsWalkable(position + move + move) && !Vec2iListContainsVector(posList, position+move+move))
+            {
                 return true;
+            }
             return false;
         }
 
-        public Boolean StrongMoveIsPossible(Vector2i position, Vector2i move)
+        public Boolean StrongMoveIsPossible(Vector2i position, Vector2i move, List<Vector2i> posList)
         {
-            if (CellIsMovable(position + move) && CellIsMovable(position + move * 2) && CellIsWalkable(position + move * 3))
+            if (CellIsMovable(position + move) && CellIsMovable(position + move * 2) && CellIsWalkable(position + move * 3) && !Vec2iListContainsVector(posList, position + move * 3))
                 return true;
             return false;
         }
@@ -226,6 +228,23 @@ namespace MemoryMaze
             if (!isInMap(position))
                 throw new Exception("Invalid position is not on Map -> has no Cellcontent");
             return cellMap[position.X, position.Y].GetContent();
+        }
+
+        public Boolean Vector2iAreEqual(Vector2i vec1, Vector2i vec2)
+        {
+            if (vec1.X == vec2.X && vec1.Y == vec2.Y)
+                return true;
+            return false;
+        }
+
+        private Boolean Vec2iListContainsVector(List<Vector2i> list, Vector2i vec)
+        {
+            foreach(Vector2i v in list)
+            {
+                if (Vector2iAreEqual(v, vec))
+                    return true;
+            }
+            return false;
         }
     }
 }
