@@ -6,32 +6,32 @@ using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.Window;
 using SFML.Audio;
-
+/*
+    Aufgabe der Klasse: Die Falle soll den Spieler, RedBot, BlueBot "ausschalten". nur der Grüne Bot kann über die Fallen laufen und sie entschaerfen!
+    !!!!Wichtig! Die Falle wird "nicht" geloescht nur nicht mehr gezeichnet!!!!
+*/
 namespace MemoryMaze
 {
     class AntivirTrap
     {
         Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.TrapTile));
-
-
         public Vector2i position;
-        public Boolean deleted;
-
+        public Boolean isAlive;                                 //Ist meine Falle scharf?
 
 
         public AntivirTrap() { }
         public AntivirTrap(Vector2i _position, Map map)
         {
-            Console.WriteLine("SpritePosition: " +sprite.Position.ToString());
-            Logger.Instance.Write("Position: "+position.ToString(), 0);
+            isAlive = true;
             position = _position;
             sprite.Position = new Vector2f(position.X * map.sizePerCell, position.Y * map.sizePerCell );
             sprite.Scale = new Vector2f((float)map.sizePerCell  / (float)sprite.Texture.Size.X, (float)map.sizePerCell  / (float)sprite.Texture.Size.Y);
 
 
         }
-        public AntivirTrap(AntivirTrap trap)
+        public AntivirTrap(AntivirTrap trap)                    //CopyKonstruktor
         {
+            isAlive = true;
             position = trap.position;
             sprite.Position = trap.sprite.Position;
 
@@ -42,14 +42,13 @@ namespace MemoryMaze
         }
         public void Update(Map map, float deltaTime)
         {
-            //if (!map.CellIsWalkable(position))
-            //    deleted = true;
+
         }
 
         public void Draw(RenderWindow win, View view)
         {
-
-            win.Draw(sprite);
+            if(isAlive)                                 //Nur zeichnen wenn sie aktiv ist
+                win.Draw(sprite);
         }
     }
 }

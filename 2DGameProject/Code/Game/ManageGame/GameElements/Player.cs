@@ -13,7 +13,7 @@ namespace MemoryMaze
     {
         bool ghostaktiv;
         bool iserstellt;
-        int controllid;
+        public int controllid {get; private set; }
         int id;
         public bool redbot;
         public bool bluebot;

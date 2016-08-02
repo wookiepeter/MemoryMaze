@@ -66,7 +66,6 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Items\Key.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\RedItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\ScoreItem.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Trap\AntivirTrap.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Trap\TrapHandler.cs" />
     <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />

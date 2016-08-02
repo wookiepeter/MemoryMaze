@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using SFML.Graphics;
 using SFML.Window;
-
+/*
+    Verwaltet die Falle
+*/
 namespace MemoryMaze
 {
     class TrapHandler
     {
-        List<AntivirTrap> antiviTrapList;
-
-
+        List<AntivirTrap> antiviTrapList;                                                   //Liste mit allen Fallen auf der Map
         public TrapHandler(Map map) {
 
             antiviTrapList = new List<AntivirTrap>();
-            foreach (AntivirTrap trap in GetTrapsFromMap(map))
+            foreach (AntivirTrap trap in GetTrapsFromMap(map))                              //GetTrapsFromMap result List
             {
-                antiviTrapList.Add(trap.Copy());
+                antiviTrapList.Add(trap.Copy());                                            //Fügt jede Falle von der Map in die Liste
             }
         }
 
@@ -40,24 +40,40 @@ namespace MemoryMaze
         { 
  
             //antiviTrapList.Update();
-            List<Vector2i> botPosList = player.getListOfBotPositions();
-            List<Item> removeList = new List<Item>();
+            List<Vector2i> botPosList = player.getListOfBotPositions();                              //Liste mit "allen" Positionen von Bot und Player
+            //List<Item> removeList = new List<Item>();                                              //-> zu faul lösche nichts ^.^
             foreach (AntivirTrap trap in antiviTrapList)
-            {
+            {                                                                                        //Alle aktuellen Fallen
                 trap.Update(map, deltaTime);
-                foreach (Vector2i vec in botPosList)
+                foreach (Vector2i vec in botPosList)                                                 //Alle Spieler(bots)
                 {
-                    if (!trap.deleted)
+                    if (trap.isAlive)                                                                //Lebt die Falle?
                     {
-                        if (trap.position.X == vec.X && trap.position.Y == vec.Y)
+                        if (trap.position.X == vec.X && trap.position.Y == vec.Y)                    //Befindet sich ein Spieler(bot) auf der Falle?
                         {
-                            player.isAlive = false;
-                            
+                            if (player.controllid == 1)                                              //Ist es der RedBot?
+                            {
+                                player.botList.Find(b => b.id == 1).isAlive = false;                 //Loesche ihn!
+                            }
+                            else if (player.controllid == 2)                                         //Ist es der BlueBot?
+                            {
+                                player.botList.Find(b => b.id == 2).isAlive = false;                 //Loesche ihn!
+                            }
+                            else if (player.controllid == 0)                                         //Ist es der Player?
+                            {
+                                player.isAlive = false;                                              //Loesche ihn!
+
+                            }
+                        }
+                        if (trap.position.X == vec.X && trap.position.Y == vec.Y && player.greenbot && player.controllid == 3)
+                        {//Ist es der GrüneBot???
+                            trap.isAlive = false;                                                    //Falle deaktiviert! ^.^
                         }
                     }
+                        
                 }
             }
-            antiviTrapList.RemoveAll(a => a.deleted == true);
+           // antiviTrapList.RemoveAll(a => a.deleted == true);
 
         }
         public void Draw(RenderWindow win, View view)
@@ -66,7 +82,7 @@ namespace MemoryMaze
                 trap.Draw(win, view);
         }
 
-        private List<AntivirTrap> GetTrapsFromMap(Map map)
+        private List<AntivirTrap> GetTrapsFromMap(Map map)                                  //Geht die Map durch und fügt bei jeder Collision die Falle in die Liste
         {
             List<AntivirTrap> result = new List<AntivirTrap>();
             for (int j = 0; j < map.mapSizeY; j++)
@@ -80,7 +96,7 @@ namespace MemoryMaze
                     }
                 }
             }
-            return result;
+            return result;                                                                   //Gibt fertige Liste zurück!
         }
 
     }
