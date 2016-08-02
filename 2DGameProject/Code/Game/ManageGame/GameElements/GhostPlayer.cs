@@ -44,7 +44,7 @@ namespace MemoryMaze
                 //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 UpdateSpritePosition(map);
             }
-            CreateBot(map, player.botList, player.redbot, player.bluebot, player.greenbot);
+            CreateBot(map, player); //player.botList, player.redbot, player.bluebot, player.greenbot);
         }
     
         public void Draw(RenderTexture win, View view)
@@ -57,50 +57,81 @@ namespace MemoryMaze
                 redBot.Render(win);
             }
         }
-       void  CreateBot(Map map, List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
+
+       void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!b_redbot)) //ToDo: Bedingungen zum erstelelen 
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!player.redbot)) //ToDo: Bedingungen zum erstelelen 
             {
-                redBot = new RedBot(mapPosition, map);
-                botsList.Add(redBot);
-                counter = 0;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (b_redbot))
-            {
-                botsList.Remove(botsList.Find(b => b.id == 1));
+                if (player.redItemCounter > 0)
+                {
+                    redBot = new RedBot(mapPosition, map);
+                    player.botList.Add(redBot);
+                    counter = 0;
+                    player.redItemCounter--;
+                    if (player.redItemCounter < 0)
+                        player.redItemCounter = 0;
+                }
 
-                redBot = new RedBot(mapPosition, map);
-                botsList.Add(redBot);
-                counter = 0;
+
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (player.redbot))
+            {
+
+                if (player.redItemCounter > 0)
+                {
+                    player.botList.Remove(player.botList.Find(b => b.id == 1));
+                    redBot = new RedBot(mapPosition, map);
+                    player.botList.Add(redBot);
+                    counter = 0;
+                    player.redItemCounter--;
+                    if (player.redItemCounter < 0)
+                        player.redItemCounter = 0;
+                }
+
             }
 
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!b_bluebot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!player.bluebot)) //ToDo: Bedingungen zum erstelelen
             {
-                blueBot = new BlueBot(mapPosition, map);
-                botsList.Add(blueBot);
-                counter = 0;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (b_bluebot))
-            {
-                botsList.Remove(botsList.Find(b => b.id == 2));
+                if(player.blueItemCounter > 0)
+                {
+                    blueBot = new BlueBot(mapPosition, map);
+                    player.botList.Add(blueBot);
+                    counter = 0;
+                }
 
-                blueBot = new BlueBot(mapPosition, map);
-                botsList.Add(blueBot);
-                counter = 0;
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!b_greenbot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (player.bluebot))
             {
-                greenBot = new GreenBot(mapPosition, map);
-                botsList.Add(greenBot);
-                counter = 0;
-            }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (b_greenbot))
-            {
-                botsList.Remove(botsList.Find(b => b.id == 3));
+                if (player.blueItemCounter > 0)
+                {
+                    player.botList.Remove(player.botList.Find(b => b.id == 2));
 
-                greenBot = new GreenBot(mapPosition, map);
-                botsList.Add(greenBot);
-                counter = 0;
+                    blueBot = new BlueBot(mapPosition, map);
+                    player.botList.Add(blueBot);
+                    counter = 0;
+                }
+
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!player.greenbot)) //ToDo: Bedingungen zum erstelelen
+            {
+                if(player.greenItemCounter > 0)
+                {
+                    greenBot = new GreenBot(mapPosition, map);
+                    player.botList.Add(greenBot);
+                    counter = 0;
+                }
+
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (player.greenbot))
+            {
+                if(player.greenItemCounter > 0)
+                {
+                    player.botList.Remove(player.botList.Find(b => b.id == 3));
+                    greenBot = new GreenBot(mapPosition, map);
+                    player.botList.Add(greenBot);
+                    counter = 0;
+                }
+
             }
         }
         Vector2i GetMove()

@@ -21,6 +21,7 @@ namespace MemoryMaze
         ScoreItem,
         Wall,
         Movable,
+        TrapTile,
         Goal,
         Last
     };
@@ -66,6 +67,10 @@ namespace MemoryMaze
         {
             return (content == cellContent.Item || content == cellContent.RedItem || content == cellContent.BlueItem || (content == cellContent.GreenItem) || (content == cellContent.ScoreItem));
 
+        }
+        public Boolean IsTrap()
+        {
+            return (content == cellContent.TrapTile);
         }
 
 

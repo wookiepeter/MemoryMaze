@@ -44,7 +44,6 @@ namespace MemoryMaze
             foreach(Item item in itemList)
             {
                 item.Update(map, deltaTime);
-                int i = 0;
                 foreach (Vector2i vec in botPosList)
                 {
                     if (!item.deleted)
@@ -54,8 +53,7 @@ namespace MemoryMaze
                             item.deleted = true;
                             player.collectItem(item);
                         }
-                    }
-                    i++;      
+                    } 
                 }
             }
             itemList.RemoveAll(a => a.deleted == true);

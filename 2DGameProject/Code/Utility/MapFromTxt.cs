@@ -66,6 +66,7 @@ namespace MemoryMaze
                 case 'B': return cellContent.BlueItem;
                 case 'G': return cellContent.GreenItem;
                 case 'S': return cellContent.ScoreItem;
+                case 't': return cellContent.TrapTile;
                 case 'g': if (!goalWasSet) { goalWasSet = true; return cellContent.Goal; } else return cellContent.Empty;
                 default: return cellContent.Wall;
             }

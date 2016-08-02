@@ -13,11 +13,12 @@ namespace MemoryMaze
     {
         bool ghostaktiv;
         bool iserstellt;
-        int controllid;
+        public int controllid {get; private set; }
         int id;
         public bool redbot;
         public bool bluebot;
         public bool greenbot;
+        public bool isAlive;
         GhostPlayer ghostPlayer;
         RectangleShape sprite;
         public Vector2i mapPosition { get; private set; }
@@ -29,9 +30,9 @@ namespace MemoryMaze
 
         public int scoreCounter = 0;
         public int keyCounter { get; private set; } = 0;
-        int redItemCounter = 0;
-        int blueItemCounter = 0;
-        int greenItemCounter = 0;
+        public int redItemCounter = 0;
+        public int blueItemCounter = 0;
+        public int greenItemCounter = 0;
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
@@ -54,6 +55,7 @@ namespace MemoryMaze
         public Player(Vector2i position, Map map)
         {
             id = 0;
+            isAlive = true;
             controllid = 0;
             deleteList = new List<Bot>();
             botList = new List<Bot>();
@@ -79,7 +81,7 @@ namespace MemoryMaze
         {
             deleteList = new List<Bot>();
             botList = new List<Bot>();
-
+            isAlive = true;
             redbot = false;
             bluebot = false;
             greenbot = false;
@@ -133,60 +135,64 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
-            UpdateBots(deltaTime, map, getListOfBotPositions());
-           
-            if (KeyboardInputManager.Downward(Keyboard.Key.LControl)) //ToDo: Bedingungen um GhostPlayer zu aktivieren
+            if (isAlive == true)
             {
-                ghostaktiv = true;
-               
-            }
-            if (iserstellt)
-            {
-                ghostPlayer.Update(deltaTime, map, this);
-                currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.Size.X / 2f, ghostPlayer.sprite.Size.Y / 2f);
-            }
-            else
-            {
-                if (id == controllid)
-                {
+                UpdateBots(deltaTime, map, getListOfBotPositions());
 
-                    Vector2i move = GetMove();
-                    if (map.CellIsWalkable(mapPosition + move))
-                    {
-                        mapPosition = mapPosition + move;
-                        //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                        UpdateSpritePosition(map);
-                    }
-                    else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
-                    {
-                        //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                        map.MoveBlock(mapPosition, move);
-                        mapPosition = mapPosition + move;
-                    }
-                    currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
+                if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
+                {
+                    ghostaktiv = true;
+
                 }
+                if (iserstellt)
+                {
+                    ghostPlayer.Update(deltaTime, map, this);
+                    currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.Size.X / 2f, ghostPlayer.sprite.Size.Y / 2f);
+                }
+                else
+                {
+                    if (id == controllid)
+                    {
+
+                        Vector2i move = GetMove();
+                        if (map.CellIsWalkable(mapPosition + move))
+                        {
+                            mapPosition = mapPosition + move;
+                            //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                            UpdateSpritePosition(map);
+                        }
+                        else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
+                        {
+                            //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                            map.MoveBlock(mapPosition, move);
+                            mapPosition = mapPosition + move;
+                        }
+                        currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
+                    }
+                }
+                //Create GhostPlayer
+                if (ghostaktiv && (!iserstellt) && controllid == 0)
+                {
+                    ghostPlayer = new GhostPlayer(mapPosition, map);
+                    iserstellt = true;
+                }
+                //Destroy GhostPlayer
+                if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
+                {
+                    ghostPlayer = null;
+                    ghostaktiv = false;
+                    iserstellt = false;
+                }
+                //Target controll manager
+                SwitchTarget();
             }
-            //Create GhostPlayer
-            if (ghostaktiv && (!iserstellt) && controllid == 0)
-            {
-                ghostPlayer = new GhostPlayer(mapPosition, map);
-                iserstellt = true;
-            }
-            //Destroy GhostPlayer
-            if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
-            {
-                ghostPlayer = null;
-                ghostaktiv = false;
-                iserstellt = false;
-            }
-            //Target controll manager
-            SwitchTarget();
         }
  
         public void Draw(RenderTexture win, View view)
         {
             view.Center = Vector2.lerp(view.Center, currentFocus, 0.01F);
-            win.Draw(sprite);
+            if(isAlive)
+                win.Draw(sprite);
             if (iserstellt)
                 ghostPlayer.Draw(win, view);
 
@@ -273,7 +279,11 @@ namespace MemoryMaze
                 guiGhostCounter.DisplayedString = "" + 0;
 
             if (redbot)
+            {
                 guiRedCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
+            }
+
+
             else
                 guiRedCounter.DisplayedString = "" + 0;
 
@@ -394,7 +404,7 @@ namespace MemoryMaze
             if (item is GreenItem)
                 greenItemCounter++;
             if (item is ScoreItem)
-                scoreCounter++;
+                scoreCounter= scoreCounter +10;
                  
         }
 
