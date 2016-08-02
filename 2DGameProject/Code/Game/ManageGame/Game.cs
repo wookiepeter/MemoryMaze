@@ -64,7 +64,7 @@ namespace MemoryMaze
 
         public void draw(RenderWindow win, View view)
         {
-            level.draw(win, view);
+            level.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

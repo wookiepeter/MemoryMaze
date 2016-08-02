@@ -210,6 +210,17 @@ namespace MemoryMaze
                 }
             }
         }
+        public void RemoveAllTraps()
+        {
+            for (int j = 0; j < mapSizeY; j++)
+            {
+                for (int i = 0; i < mapSizeX; i++)
+                {
+                    if (cellMap[i, j].IsTrap())
+                        cellMap[i, j] = new Cell(cellContent.Empty);
+                }
+            }
+        }
 
         public int GetSizePerCell()
         {

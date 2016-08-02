@@ -67,6 +67,8 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Items\RedItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Items\ScoreItem.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\ObjectHandler.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Trap\AntivirTrap.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Trap\TrapHandler.cs" />
     <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
@@ -241,6 +243,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\set_01\movable.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Traptile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Walltile.png">

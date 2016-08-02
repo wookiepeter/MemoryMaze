@@ -14,6 +14,7 @@ namespace MemoryMaze
         Player player;
         Map map;
         ItemList itemList;
+        TrapHandler trapHandler;
 
         int mapStatus = 0;
         int playerScore = 0;
@@ -27,25 +28,28 @@ namespace MemoryMaze
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
             itemList = new ItemList(map);
+            trapHandler = new TrapHandler(map);
             keysToUnlock = _keysToUnlock;
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
             map.RemoveAllItems();
+            map.RemoveAllTraps();
         }
 
         // Constructor for the Copy function
-        public Level(Map _map, Player _player, ItemList _itemList, int _playerScore, int _keysToUnlock)
+        public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, int _playerScore, int _keysToUnlock)
         {
             map = _map;
             player = _player;
             itemList = _itemList;
+            trapHandler = _trapHandler;
             keysToUnlock = _keysToUnlock;
             this.setScoreCounter(_playerScore);
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy(), playerScore, keysToUnlock);
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), playerScore, keysToUnlock);
         }
 
         public int update(float deltaTime)
@@ -55,6 +59,7 @@ namespace MemoryMaze
             map.Update(deltaTime);
             player.Update(deltaTime, map);
             itemList.Update(map, player, deltaTime);
+            trapHandler.Update(map, player, deltaTime);
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
@@ -62,11 +67,12 @@ namespace MemoryMaze
             return mapStatus;
         }
 
-        public void draw(RenderWindow win, View view)
+        public void Draw(RenderWindow win, View view)
         {
             map.Draw(win, view);
             player.Draw(win, view);
             itemList.Draw(win, view);
+            trapHandler.Draw(win, view);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
