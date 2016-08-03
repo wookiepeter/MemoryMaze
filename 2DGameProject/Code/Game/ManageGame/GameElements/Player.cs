@@ -67,7 +67,7 @@ namespace MemoryMaze
             iserstellt = false;
 
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
+            this.sprite.Size = new Vector2f(map.GetSizePerCell(), map.GetSizePerCell());
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
 
             this.mapPosition = position;
@@ -97,13 +97,13 @@ namespace MemoryMaze
         void InitializeGUI()
         {
             playerStatus.Position = new Vector2f(25, 25);
-            playerStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            //playerStatus.Scale = new Vector2f(1, 1);
             redBotStatus.Position = new Vector2f(125, 25);
-            redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            //redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
             blueBotStatus.Position = new Vector2f(225, 25);
-            blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            //blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
             greenBotStatus.Position = new Vector2f(325, 25);
-            greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            //greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
 
             // initialize text for stepcounter
             guiGhostCounter = new Text("0", calibri, 20);
@@ -337,7 +337,7 @@ namespace MemoryMaze
 
         void UpdateSpritePosition(Map map)
         {
-            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
+            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell(), mapPosition.Y * map.GetSizePerCell());
         }
 
         Vector2f GetSpritePosition(Map map)

@@ -80,7 +80,7 @@ namespace MemoryMaze
             long tItems = watch.ElapsedTicks- tPlayer - tMap;
             trapHandler.Draw(win, view);
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
-            Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
+            //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
