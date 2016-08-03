@@ -14,7 +14,7 @@ namespace MemoryMaze
     {
         Font font;
         Stopwatch stopwatch;
-        Text gamename, exit, start, credits, steuerung, mainmenu;
+        Text gamename, exit, start, credits, steuerung, mainmenu, tutorial;
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
@@ -40,10 +40,11 @@ namespace MemoryMaze
  
             list.Add(new IntRect(100, 280, 420, 100));  //MainMenu      0
             list.Add(new IntRect(250, 370, 220, 60));   //Start         1
-            list.Add(new IntRect(250, 420, 220, 60));   //Steuerung     2
-            list.Add(new IntRect(250, 470, 220, 60));   //credit        3
-            list.Add(new IntRect(250, 520, 220, 60));   //End           4
-            list.Add(new IntRect(100, 100, 60, 60));    //johfeld       5
+            list.Add(new IntRect(250, 420, 220, 60));   //Tutorial      2
+            list.Add(new IntRect(250, 470, 220, 60));   //Steuerung     3
+            list.Add(new IntRect(250, 520, 220, 60));   //credit        4
+            list.Add(new IntRect(250, 570, 220, 60));   //End           5
+            list.Add(new IntRect(100, 100, 60, 60));    //johfeld       6
             
             
             //Witze hahahahhahaha witzig faggot....stfu das ist witzig..ne ist es nicht...ohh mr. Ernst! :/
@@ -70,24 +71,28 @@ namespace MemoryMaze
 
 
             credits = new Text("Credits", font);
-            credits.Position = new Vector2f(250, 450);
+            credits.Position = new Vector2f(250, 500);
             credits.CharacterSize = 40;
+
+            tutorial = new Text("Tutorial starten", font);
+            tutorial.Position = new Vector2f(250, 400);
+            tutorial.CharacterSize = 40;
 
             start = new Text("Spiel starten", font);
             start.Position = new Vector2f(250, 350);
             start.CharacterSize = 40;
 
             exit = new Text("Spiel beenden", font);
-            exit.Position = new Vector2f(250, 500);
+            exit.Position = new Vector2f(250, 550);
             exit.CharacterSize = 40;
 
             steuerung = new Text("Steuerung", font);
-            steuerung.Position = new Vector2f(250, 400);
+            steuerung.Position = new Vector2f(250, 450);
             steuerung.CharacterSize = 40;
 
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
-            Text[] array = { mainmenu, start, steuerung, credits, exit, gamename };
+            Text[] array = { mainmenu, start,tutorial,  steuerung, credits, exit, gamename };
             textlist = array.ToList();
 
         }
@@ -103,7 +108,7 @@ namespace MemoryMaze
 
             int index = -1;
 
-            for (int e = 0; e < 6; e++)
+            for (int e = 0; e < 7; e++)
             {
                 if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
                 {
@@ -113,7 +118,7 @@ namespace MemoryMaze
             }
             if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
             {
-                Console.WriteLine(index);
+                Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
                 switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                 {                                                               //bearbeitet das aktuelle TextFeld
                     //start
@@ -121,11 +126,12 @@ namespace MemoryMaze
                         break;
                     case 1: return GameState.InGame;
                     //end
-                    case 2: return GameState.Steuerung;
+                    case 2: return GameState.Intro;
                     //credits
-                    case 3: return GameState.Credits;
-                    case 4: return GameState.None;
-                    case 5: funactivJoh = true; stopwatch.Restart();
+                    case 3: return GameState.Steuerung;
+                    case 4: return GameState.Credits;
+                    case 5: return GameState.None;
+                    case 6: funactivJoh = true; stopwatch.Restart();
                         break;
                         //    case 5: break;
                         //    case 6: break;

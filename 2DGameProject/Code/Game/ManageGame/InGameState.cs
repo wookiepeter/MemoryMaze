@@ -23,9 +23,9 @@ namespace MemoryMaze
 
         View _view;
 
-        public InGameState()
+        public InGameState(int id)
         {
-            game = new Game();
+            game = new Game(id);
         }
        
         public GameState Update(RenderWindow win, float deltaTime)

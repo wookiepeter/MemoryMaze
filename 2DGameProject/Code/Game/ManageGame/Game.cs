@@ -22,16 +22,32 @@ namespace MemoryMaze
 
         Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
 
-        public Game()
+        public Game(int id)
+        {
+            Console.WriteLine("Sind in der GameFunktion mit der: " +id);
+            if(id == 0)
+                Tutorial();
+
+            if (id == 1)
+                MainCampaign();
+
+
+            level = levelList[curIndex].Copy();
+
+            levelNumber.CharacterSize = 20;
+            levelNumber.Color = Color.Red;
+        }
+        void Tutorial()
+        {
+            levelList.Add(new Level("Assets/MapFiles/map00.txt", 64, new Vector2i(2, 8), 1));
+            nextGameState = GameState.Intro;
+        }
+        void MainCampaign()
         {
             levelList.Add(new Level("Assets/MapFiles/map01.txt", 64, new Vector2i(2, 8), 1));
             levelList.Add(new Level("Assets/MapFiles/map02.txt", 64, new Vector2i(2, 5), 1));
             levelList.Add(new Level("Assets/MapFiles/map03.txt", 64, new Vector2i(2, 3), 0));
-            level = levelList[curIndex].Copy();
             nextGameState = GameState.InGame;
-
-            levelNumber.CharacterSize = 20;
-            levelNumber.Color = Color.Red;
         }
 
         public GameState Update(float deltaTime)
