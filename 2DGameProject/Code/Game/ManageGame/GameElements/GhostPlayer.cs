@@ -60,7 +60,7 @@ namespace MemoryMaze
 
        void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (!player.redbot)) //ToDo: Bedingungen zum erstelelen 
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!player.redbot)) //ToDo: Bedingungen zum erstelelen 
             {
                 if (player.redItemCounter > 0)
                 {
@@ -68,13 +68,11 @@ namespace MemoryMaze
                     player.botList.Add(redBot);
                     counter = 0;
                     player.redItemCounter--;
-                    if (player.redItemCounter < 0)
-                        player.redItemCounter = 0;
                 }
 
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num1) && (!iserstellt) && (player.redbot))
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (player.redbot))
             {
 
                 if (player.redItemCounter > 0)
@@ -84,23 +82,22 @@ namespace MemoryMaze
                     player.botList.Add(redBot);
                     counter = 0;
                     player.redItemCounter--;
-                    if (player.redItemCounter < 0)
-                        player.redItemCounter = 0;
                 }
 
             }
 
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!player.bluebot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!player.bluebot)) //ToDo: Bedingungen zum erstelelen
             {
                 if(player.blueItemCounter > 0)
                 {
                     blueBot = new BlueBot(mapPosition, map);
                     player.botList.Add(blueBot);
                     counter = 0;
+                    player.blueItemCounter--;
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (player.bluebot))
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (player.bluebot))
             {
                 if (player.blueItemCounter > 0)
                 {
@@ -109,20 +106,22 @@ namespace MemoryMaze
                     blueBot = new BlueBot(mapPosition, map);
                     player.botList.Add(blueBot);
                     counter = 0;
+                    player.blueItemCounter--;
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!player.greenbot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (!player.greenbot)) //ToDo: Bedingungen zum erstelelen
             {
                 if(player.greenItemCounter > 0)
                 {
                     greenBot = new GreenBot(mapPosition, map);
                     player.botList.Add(greenBot);
                     counter = 0;
+                    player.greenItemCounter--;
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (player.greenbot))
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (player.greenbot))
             {
                 if(player.greenItemCounter > 0)
                 {
@@ -130,6 +129,7 @@ namespace MemoryMaze
                     greenBot = new GreenBot(mapPosition, map);
                     player.botList.Add(greenBot);
                     counter = 0;
+                    player.greenItemCounter--;
                 }
 
             }
