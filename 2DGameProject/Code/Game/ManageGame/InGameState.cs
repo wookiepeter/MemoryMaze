@@ -31,6 +31,11 @@ namespace MemoryMaze
         public GameState Update(RenderWindow win, float deltaTime)
         {
             nextGameState = game.Update(deltaTime);
+
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                return GameState.MainMenu;
+            }
             return nextGameState;
         }
 

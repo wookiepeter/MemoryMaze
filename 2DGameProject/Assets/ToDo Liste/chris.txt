@@ -1,5 +1,6 @@
 ﻿/* ToDo: Liste für Chris 
 
 - Chillen
+- Bot wieder löschen und die BewegungsPunkte zu dem Score rechnen
 
 */
