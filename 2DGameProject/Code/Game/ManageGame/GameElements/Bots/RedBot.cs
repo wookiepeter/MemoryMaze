@@ -81,8 +81,8 @@ namespace MemoryMaze
 
         public override void Render(RenderTexture window)
         {
-          
-                 window.Draw(sprite);
+            sprite.FillColor =  new Color(255, 255, 255, (byte)(127.0 + ((128.0 / 10.0) * (Double)counter)));
+            window.Draw(sprite);
         }
 
         Vector2i GetMove()
