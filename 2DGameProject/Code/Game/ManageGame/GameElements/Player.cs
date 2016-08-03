@@ -139,7 +139,7 @@ namespace MemoryMaze
             {
                 UpdateBots(deltaTime, map, getListOfBotPositions());
 
-                if (KeyboardInputManager.Downward(Keyboard.Key.LControl))
+                if (KeyboardInputManager.Downward(Keyboard.Key.Space))
                 {
                     ghostaktiv = true;
 
@@ -177,7 +177,7 @@ namespace MemoryMaze
                     iserstellt = true;
                 }
                 //Destroy GhostPlayer
-                if (KeyboardInputManager.Upward(Keyboard.Key.LControl) || iserstellt && ghostPlayer.GetCount() == 0)
+                if (KeyboardInputManager.Upward(Keyboard.Key.Space) || iserstellt && ghostPlayer.GetCount() == 0)
                 {
                     ghostPlayer = null;
                     ghostaktiv = false;
@@ -190,7 +190,7 @@ namespace MemoryMaze
  
         public void Draw(RenderTexture win, View view)
         {
-            view.Center = Vector2.lerp(view.Center, currentFocus, 0.01F);
+            view.Center = Vector2.lerp(view.Center, currentFocus, 0.025F);
             if(isAlive)
                 win.Draw(sprite);
             if (iserstellt)
@@ -206,22 +206,22 @@ namespace MemoryMaze
 
         private void SwitchTarget()
         {
-            if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1)) && redbot)
+            if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && redbot)
             {
                 controllid = 1;
             }
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && bluebot)
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && bluebot)
             {
                 controllid = 2;
             }
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && greenbot)
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num4)) && greenbot)
             {
                 controllid = 3;
             }
             else
             {
 
-                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.LControl)) && (KeyboardInputManager.Downward(Keyboard.Key.Space))))
+                if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1))))
                     controllid = 0;
             }
         }

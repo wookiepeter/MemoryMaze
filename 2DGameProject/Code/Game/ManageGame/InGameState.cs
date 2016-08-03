@@ -77,9 +77,9 @@ namespace MemoryMaze
             backgroundMult = new RenderTexture(win.Size.X, win.Size.Y);
 
             overlay = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Overlay));
-            overlay.Scale = new Vector2f(2, 2);
-            overlay.Position = new Vector2f((float)win.Size.X/2f - (float)overlay.TextureRect.Width, 
-                (float)win.Size.Y/2f - (float)overlay.TextureRect.Height);
+            overlay.Scale = new Vector2f(1, 1);
+            overlay.Position = new Vector2f((float)win.Size.X/2f - (float)overlay.TextureRect.Width/2f, 
+                (float)win.Size.Y/2f - (float)overlay.TextureRect.Height/2f);
 
             multState = new RenderStates(BlendMode.Multiply);
             add = new RenderStates(BlendMode.Add);

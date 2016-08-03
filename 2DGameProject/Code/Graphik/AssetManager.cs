@@ -68,7 +68,7 @@ public class AssetManager
         textures.Add(TextureName.DasF, new Texture("Assets/Textures/DasF.png"));
         textures.Add(TextureName.DasM, new Texture("Assets/Textures/DasM.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
-        textures.Add(TextureName.Overlay, new Texture("Assets/Textures/lightMask.png"));
+        textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
     }
 
     public enum TextureName
