@@ -69,6 +69,7 @@ public class AssetManager
         textures.Add(TextureName.DasM, new Texture("Assets/Textures/DasM.png"));
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
+        textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
     }
 
     public enum TextureName
@@ -131,6 +132,7 @@ public class AssetManager
 		Overlay,
 		DasC,
 		DasM,
-		DasF    }
+        BackGroundSteuerung,
+        DasF    }
 }
 

@@ -27,6 +27,7 @@ namespace MemoryMaze
         }
         public void Initialize()
         {
+            // ToDo: evtl BackGround usw bearbeiten
             //ibackground = new Image("pictures/grasstitlescreen.png");
             //tbackground = new Texture(ibackground);
             //sbackground = new Sprite(tbackground);
@@ -39,7 +40,6 @@ namespace MemoryMaze
             //gamename.Color = new Color(255, 255, 255, 64);
             namel = new List<Text>();
 
-            Console.WriteLine("Bin hier drin");
             fontforall = new Font("Assets/Fonts/calibri.ttf");
             Programmierer = new Text("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall);
             Programmierer.Position = new Vector2f(450, 500);

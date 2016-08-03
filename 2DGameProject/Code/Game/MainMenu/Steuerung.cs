@@ -10,13 +10,15 @@ namespace MemoryMaze
 {
     class Steuerung : IGameState
     {
+        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BackGroundSteuerung));
         Font font;
         Text text;
         public Steuerung()
         {
             font = new Font("Assets/Fonts/calibri.ttf");
-            text = new Text("Hier kommen eine schoene Erklärung von unserem Grafiker Frieder \n\n\n @Frieder, sieh es als Todo Liste hier ^.^", font);
-            text.Position = new Vector2f(200, 200);
+            text = new Text("Hier kommen eine schoene Erklärung von unserem Grafiker Frieder \n @Frieder, sieh es als Todo Liste hier ^.^", font);
+            text.Position = new Vector2f(600, 70);
+            text.Scale = new Vector2f(0.5f, 0.5f);
 
         }
         public GameState Update(RenderWindow win, float deltaTime)
@@ -29,6 +31,7 @@ namespace MemoryMaze
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
+            win.Draw(sprite);
             win.Draw(text);
         }
 
