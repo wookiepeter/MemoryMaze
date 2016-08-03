@@ -1,7 +1,10 @@
 ﻿ /* Diese Liste ist für dich Matthis damit du nie Ruhen wirst und immer weiter an diesem Projekt arbeiten kannst!
 
 				   
-ToDo: Matthis - Move nicht erlauben wenn dahinter ein Bot/player ist!  xMb -->   =  error!
+ToDo: Benny 3 Euro geben!
+- Levers(buttons)
+- BackGround Schwarz machen tiles
+- Map verbessern (Zeichnen)
 
 
 

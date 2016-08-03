@@ -13,5 +13,7 @@ namespace MemoryMaze
         MainMenu,
         InGame,
         Reset,
+        Steuerung,
+        Credits,
     }
 }
