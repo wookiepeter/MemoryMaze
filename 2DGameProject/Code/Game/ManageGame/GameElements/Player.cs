@@ -190,7 +190,7 @@ namespace MemoryMaze
  
         public void Draw(RenderTexture win, View view)
         {
-            view.Center = Vector2.lerp(view.Center, currentFocus, 0.01F);
+            view.Center = Vector2.lerp(view.Center, currentFocus, 0.025F);
             if(isAlive)
                 win.Draw(sprite);
             if (iserstellt)
