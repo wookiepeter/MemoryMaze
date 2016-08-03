@@ -21,8 +21,6 @@ namespace MemoryMaze
         ItemList itemList;
         MapFromTxt mapFromText = new MapFromTxt();
 
-        
-
         public Map(int mapSizeX, int mapSizeY)
         {
             //// get Size per cell from CellTexture
