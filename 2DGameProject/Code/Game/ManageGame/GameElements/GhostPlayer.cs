@@ -66,6 +66,7 @@ namespace MemoryMaze
                 {
                     redBot = new RedBot(mapPosition, map);
                     player.botList.Add(redBot);
+                    player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
                 }
@@ -80,6 +81,7 @@ namespace MemoryMaze
                     player.botList.Remove(player.botList.Find(b => b.id == 1));
                     redBot = new RedBot(mapPosition, map);
                     player.botList.Add(redBot);
+                    player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
                 }
@@ -92,6 +94,7 @@ namespace MemoryMaze
                 {
                     blueBot = new BlueBot(mapPosition, map);
                     player.botList.Add(blueBot);
+                    player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
                 }
@@ -105,6 +108,7 @@ namespace MemoryMaze
 
                     blueBot = new BlueBot(mapPosition, map);
                     player.botList.Add(blueBot);
+                    player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
                 }
@@ -116,6 +120,7 @@ namespace MemoryMaze
                 {
                     greenBot = new GreenBot(mapPosition, map);
                     player.botList.Add(greenBot);
+                    player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
                 }
@@ -128,6 +133,7 @@ namespace MemoryMaze
                     player.botList.Remove(player.botList.Find(b => b.id == 3));
                     greenBot = new GreenBot(mapPosition, map);
                     player.botList.Add(greenBot);
+                    player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
                 }
