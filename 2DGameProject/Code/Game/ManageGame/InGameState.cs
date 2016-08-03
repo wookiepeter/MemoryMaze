@@ -28,7 +28,7 @@ namespace MemoryMaze
             game = new Game();
         }
        
-        public GameState Update(float deltaTime)
+        public GameState Update(RenderWindow win, float deltaTime)
         {
             nextGameState = game.Update(deltaTime);
             return nextGameState;

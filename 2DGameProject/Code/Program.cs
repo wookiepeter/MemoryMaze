@@ -61,7 +61,7 @@ namespace MemoryMaze
                 float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds;
                 // logger needs Timespan for Timestamp!
                 logger.UpdateTime(GameTime.TotalTime);
-                currentGameState = state.Update(deltaTime);
+                currentGameState = state.Update(win, deltaTime);
 
                 if (currentGameState != prevGameState)
                 {
@@ -101,6 +101,12 @@ namespace MemoryMaze
 
                 case GameState.InGame:
                     state = new InGameState();
+                    break;
+                case GameState.Steuerung:
+                    state = new Steuerung();
+                    break;
+                case GameState.Credits:
+                    state = new Credits();
                     break;
 
                 case GameState.Reset:

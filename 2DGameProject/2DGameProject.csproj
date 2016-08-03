@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Game\MainMenu\Credits.cs" />
+    <Compile Include="Code\Game\MainMenu\Steuerung.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\BlueBot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\GreenBot.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\RedBot.cs" />
@@ -94,7 +96,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Assets\Fonts\BillionStars_PersonalUse.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\Fonts\calibri.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Fonts\Thunder Strike.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -266,6 +274,7 @@
     </Content>
     <Content Include="Assets\ToDo Liste\Chris.txt" />
     <Content Include="Assets\ToDo Liste\MatthisToDo.txt" />
+    <Content Include="Assets\ToDo Liste\FriederToDo.txt" />
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
