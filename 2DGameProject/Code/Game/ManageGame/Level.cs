@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using SFML.Graphics;
 using SFML.Window;
+using SFML.Audio;
 
 namespace MemoryMaze
 {
@@ -68,10 +70,17 @@ namespace MemoryMaze
         }
 
         public void Draw(RenderTexture win, View view)        {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             map.Draw(win, view);
+            long tMap = watch.ElapsedTicks;
             player.Draw(win, view);
+            long tPlayer = watch.ElapsedTicks - tMap;
             itemList.Draw(win, view);
+            long tItems = watch.ElapsedTicks- tPlayer - tMap;
             trapHandler.Draw(win, view);
+            long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
+            Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
