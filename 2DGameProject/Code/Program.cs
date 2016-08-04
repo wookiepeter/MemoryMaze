@@ -100,7 +100,10 @@ namespace MemoryMaze
                     break;
 
                 case GameState.InGame:
-                    state = new InGameState();
+                    state = new InGameState(1);
+                    break;
+                case GameState.Intro:
+                    state = new InGameState(0);
                     break;
                 case GameState.Steuerung:
                     state = new Steuerung();
@@ -126,7 +129,7 @@ namespace MemoryMaze
             view.Center = new Vector2(win.Size.X / 2F, win.Size.Y / 2F);
             view.Size = new Vector2(win.Size.X, win.Size.Y);
         }
-        static InGameState Pv = new InGameState();
+        //static InGameState Pv = new InGameState(0);
 
         static void Update_view()
         {
