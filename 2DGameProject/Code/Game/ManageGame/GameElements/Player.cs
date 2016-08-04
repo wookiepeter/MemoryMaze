@@ -11,28 +11,24 @@ namespace MemoryMaze
 {
     public class Player
     {
-        bool ghostaktiv;
-        bool iserstellt;
-        public int controllid {get;  set; }
+
+        public bool redbot, bluebot, greenbot, isAlive;                         //Existiert ein Bot?
+        public int scoreCounter = 0;                                            //Punkte des Spielers
+        public List<Bot> botList;                                               //aktuelle BotListe
+        public int redItemCounter, blueItemCounter, greenItemCounter = 0;       //
+        public int keyCounter { get; private set; } = 0;                        //
+        public Vector2i mapPosition { get; private set; }                       //
+        public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
+
         int id;
-        public bool redbot;
-        public bool bluebot;
-        public bool greenbot;
-        public bool isAlive;
+        bool ghostaktiv, iserstellt;                                            //Ghostaktiv (momentan existiert ein Ghost) |  iserstellt(Ghost wurde erstellt)
         GhostPlayer ghostPlayer;
         RectangleShape sprite;
-        public Vector2i mapPosition { get; private set; }
-        Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+        List<Bot> deleteList;
         Vector2f currentFocus;
 
-        public List<Bot> botList;
-        List<Bot> deleteList;
+        Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
 
-        public int scoreCounter = 0;
-        public int keyCounter { get; private set; } = 0;
-        public int redItemCounter = 0;
-        public int blueItemCounter = 0;
-        public int greenItemCounter = 0;
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
@@ -40,15 +36,9 @@ namespace MemoryMaze
         Sprite blueBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueBot)));
         Sprite greenBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenBot)));
         Font calibri = new Font("Assets/Fonts/calibri.ttf");
-        Text guiGhostCounter;
-        Text guiRedCounter;
-        Text guiBlueCounter;
-        Text guiGreenCounter;
+        Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
+        Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
 
-        Text guiPlayerItemCounter;
-        Text guiRedItemCounter;
-        Text guiBlueItemCounter;
-        Text guiGreenItemCounter;
 
 
         // all variables initialized here need to be initialized in the copyconstructor too
@@ -79,6 +69,8 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite)
         {
+            id = 0;
+            controllid = 0;
             deleteList = new List<Bot>();
             botList = new List<Bot>();
             isAlive = true;
@@ -140,10 +132,8 @@ namespace MemoryMaze
                 UpdateBots(deltaTime, map, getListOfBotPositions());
 
                 if (KeyboardInputManager.Downward(Keyboard.Key.Space))
-                {
                     ghostaktiv = true;
 
-                }
                 if (iserstellt)
                 {
                     ghostPlayer.Update(deltaTime, map, this);
@@ -153,17 +143,14 @@ namespace MemoryMaze
                 {
                     if (id == controllid)
                     {
-
                         Vector2i move = GetMove();
                         if (map.CellIsWalkable(mapPosition + move))
                         {
                             mapPosition = mapPosition + move;
-                            //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                             UpdateSpritePosition(map);
                         }
                         else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
                         {
-                            //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
                             map.MoveBlock(mapPosition, move);
                             mapPosition = mapPosition + move;
                         }
@@ -203,24 +190,19 @@ namespace MemoryMaze
             }
         }
 
-
         private void SwitchTarget()
         {
             if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && redbot)
-            {
                 controllid = 1;
-            }
+
             else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && bluebot)
-            {
                 controllid = 2;
-            }
+
             else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num4)) && greenbot)
-            {
                 controllid = 3;
-            }
+
             else
             {
-
                 if ((!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num1))))
                     controllid = 0;
             }
@@ -279,9 +261,8 @@ namespace MemoryMaze
                 guiGhostCounter.DisplayedString = "" + 0;
 
             if (redbot)
-            {
                 guiRedCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
-            }
+
 
 
             else
@@ -289,11 +270,13 @@ namespace MemoryMaze
 
             if (bluebot)
                 guiBlueCounter.DisplayedString = "" + botList.Find(b => b.id == 2).counter;
+
             else
                 guiBlueCounter.DisplayedString = "" + 0;
 
             if (greenbot)
                 guiGreenCounter.DisplayedString = "" + botList.Find(b => b.id == 3).counter;
+
             else
                 guiGreenCounter.DisplayedString = "" + 0;
 
@@ -307,21 +290,17 @@ namespace MemoryMaze
         {
             Vector2i move = new Vector2i(0, 0);
             if (KeyboardInputManager.Downward(Keyboard.Key.Up))
-            {
                 move.Y = -1;
-            }
+
             else if (KeyboardInputManager.Downward(Keyboard.Key.Down))
-            {
                 move.Y = 1;
-            }
+
             else  if (KeyboardInputManager.Downward(Keyboard.Key.Left))
-            {
                 move.X = -1;
-            }
+
             else if (KeyboardInputManager.Downward(Keyboard.Key.Right))
-            {
                 move.X = 1;
-            }
+
             return move;
         }
 
@@ -358,13 +337,33 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    if (controllid == it.id)
+                    if (controllid == it.id)                                                   //Setzt den Focus auf aktuellen Bot
                         currentFocus = it.sprite.Position + new Vector2f(it.sprite.Size.X/2f, it.sprite.Size.Y/2f);
                 }
                 Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
+                DestroyBotForPoints(it);
             }
             botList.RemoveAll(deleteList.Contains);
             deleteList = new List<Bot>();
+        }
+
+        void DestroyBotForPoints(Bot it)
+        {
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 1) && it == botList.Find(b => b.id == 1))
+            {
+                scoreCounter += it.counter * 10;
+                it.counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 2) && it == botList.Find(b => b.id == 2))
+            {
+                scoreCounter += it.counter * 10;
+                it.counter = 0;
+            }
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 3) && it == botList.Find(b => b.id == 3))
+            {
+                scoreCounter += it.counter * 10;
+                it.counter = 0;
+            }
         }
 
         private void Check(Bot bot)

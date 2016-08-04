@@ -47,7 +47,7 @@ namespace MemoryMaze
             Programmierer.Scale = new Vector2f(2, 2);
 
 
-            Grafiker = new Text("Grafiker \n Frieda Prinz \n\n", fontforall);
+            Grafiker = new Text("Grafiker \n Frieder Prinz \n\n", fontforall);
             Grafiker.Position = new Vector2f(450, 750);
             Grafiker.Color = Color.White;
             Grafiker.Scale = new Vector2f(2, 2);

@@ -141,7 +141,7 @@ namespace MemoryMaze
             }
             else
             {
-                if (index != -1 && index != 0 && index != 5)
+                if (index != -1 && index != 0 && index != 6)
                 {
                     textlist[index].Color = Color.Blue;
                 }
