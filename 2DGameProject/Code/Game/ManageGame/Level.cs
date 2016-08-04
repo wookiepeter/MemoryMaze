@@ -47,6 +47,7 @@ namespace MemoryMaze
             trapHandler = _trapHandler;
             keysToUnlock = _keysToUnlock;
             this.setScoreCounter(_playerScore);
+
         }
 
         public Level Copy()
