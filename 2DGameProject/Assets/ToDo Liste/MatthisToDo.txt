@@ -3,9 +3,7 @@
 				   
 ToDo: Benny 3 Euro geben!
 - Levers(buttons)
-- BackGround Schwarz machen tiles
-- Map verbessern (Zeichnen)
-
-
-
+- Map verbessern (Zeichnen) 
+-- nur neu zeichnen wenn notwendig
+-- eventuell auf ne rendertexture zeichnen und denn nur neu zeichnen wenn sich was auf der map ändert
 */
