@@ -232,11 +232,18 @@ namespace MemoryMaze
             return true;
         }
 
-        public cellContent getContentOfCell(Vector2i position)
+        public cellContent GetContentOfCell(Vector2i position)
         {
             if (!isInMap(position))
                 throw new Exception("Invalid position is not on Map -> has no Cellcontent");
             return cellMap[position.X, position.Y].GetContent();
+        }
+
+        public void SetContentOfCell(Vector2i position, cellContent content)
+        {
+            if(!isInMap(position))
+                throw new Exception("Invalid position is not on Map -> has no Cellcontent");
+            cellMap[position.X, position.Y].SetContent(content);
         }
 
         public Boolean Vector2iAreEqual(Vector2i vec1, Vector2i vec2)

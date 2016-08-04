@@ -12,16 +12,27 @@ namespace MemoryMaze
     public class Lever
     {
         Vector2i position;
-        Sprite sprite;
+        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever));
+        MapManipulation mapManil;
 
-        public Lever()
+        bool active = false;
+
+        public Lever(Vector2i _position, Map map, MapManipulation _mapManil)
         {
-
+            position = _position;
+            mapManil = _mapManil;
+            sprite.Position = new Vector2f(position.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f, 
+                position.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f);
+            sprite.Scale = new Vector2f((float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.X,
+                (float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.Y);
         }
 
         private Lever(Lever _lever)
         {
-
+            position = _lever.position;
+            mapManil = _lever.mapManil;
+            sprite.Position = _lever.sprite.Position;
+            sprite.Scale = _lever.sprite.Scale;
         }
 
         public Lever Copy()
@@ -31,13 +42,34 @@ namespace MemoryMaze
 
         public void Update(List<Vector2i> botPosList, Map map, float deltaTime)
         {
+            foreach(Vector2i vec in botPosList)
+            {
+                if(map.Vector2iAreEqual(vec, position))
+                {
+                    if(!active)
+                    {
+                        active = true;
+                        Execute(map);
+                    }
+                    return;
+                }
+            }
+            if (active)
+                Execute(map);
+            active = false;
+        }
 
+        private void Execute(Map map)
+        {
+            mapManil.execute(map);
         }
 
         public void Draw(RenderTexture win, View view)
         {
-
+            win.Draw(sprite);
         }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 

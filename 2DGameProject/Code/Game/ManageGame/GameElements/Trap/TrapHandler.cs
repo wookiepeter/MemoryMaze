@@ -90,7 +90,7 @@ namespace MemoryMaze
                 for (int i = 0; i < map.mapSizeX; i++)
                 {
                     Vector2i curPos = new Vector2i(i, j);
-                    if (map.getContentOfCell(curPos) == cellContent.TrapTile)
+                    if (map.GetContentOfCell(curPos) == cellContent.TrapTile)
                     {
                         result.Add(new AntivirTrap(new Vector2i(i, j), map));
                     }

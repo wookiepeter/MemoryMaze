@@ -75,7 +75,7 @@ namespace MemoryMaze
                 for(int i = 0; i < map.mapSizeX; i++)
                 {
                     Vector2i curPos = new Vector2i(i, j);
-                    switch(map.getContentOfCell(curPos))
+                    switch(map.GetContentOfCell(curPos))
                     {
                         case cellContent.Item: result.Add(new Key(curPos, map));
                             break;

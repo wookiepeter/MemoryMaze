@@ -17,6 +17,7 @@ namespace MemoryMaze
         Map map;
         ItemList itemList;
         TrapHandler trapHandler;
+        LevelutionHandler levelution;
 
         int mapStatus = 0;
         int playerScore = 0;
@@ -31,6 +32,7 @@ namespace MemoryMaze
             player = new Player(position, map);
             itemList = new ItemList(map);
             trapHandler = new TrapHandler(map);
+            levelution = new LevelutionHandler(new Lever(new Vector2i(2, 9), map, new MapManipulation(new Vector2i(3, 9), cellContent.Movable)));
             keysToUnlock = _keysToUnlock;
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
@@ -39,20 +41,22 @@ namespace MemoryMaze
         }
 
         // Constructor for the Copy function
-        public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, int _playerScore, int _keysToUnlock)
+        public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, 
+            LevelutionHandler _levelution, int _playerScore, int _keysToUnlock)
         {
             map = _map;
             player = _player;
             itemList = _itemList;
             trapHandler = _trapHandler;
             keysToUnlock = _keysToUnlock;
+            levelution = _levelution;
             this.setScoreCounter(_playerScore);
 
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), playerScore, keysToUnlock);
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), playerScore, keysToUnlock);
         }
 
         public int update(float deltaTime)
@@ -63,6 +67,7 @@ namespace MemoryMaze
             player.Update(deltaTime, map);
             itemList.Update(map, player, deltaTime);
             trapHandler.Update(map, player, deltaTime);
+            levelution.Update(player.getListOfBotPositions(), map, deltaTime);
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
@@ -81,6 +86,7 @@ namespace MemoryMaze
             long tItems = watch.ElapsedTicks- tPlayer - tMap;
             trapHandler.Draw(win, view);
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
+            levelution.Draw(win, view);
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
 
