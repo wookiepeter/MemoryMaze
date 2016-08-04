@@ -1,7 +1,7 @@
 ﻿/* ToDo: Liste für Chris 
 
 - Chillen
-- Bot wieder löschen und die BewegungsPunkte zu dem Score rechnen (mit r löschen)
--- Tutorial level per MainMenu und erstellen
+- Bot wieder löschen und die BewegungsPunkte zu dem Score rechnen (mit r löschen) (DONE)
+-- Tutorial level per MainMenu und erstellen (DONE)
 
 */

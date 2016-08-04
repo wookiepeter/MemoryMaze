@@ -2,9 +2,9 @@
 
 				   
 ToDo: Benny 3 Euro geben!
-- Levers(buttons)
-- BackGround Schwarz machen tiles
-- Map verbessern (Zeichnen)
+-- Levers(buttons)
+-- BackGround Schwarz machen tiles
+-- Map verbessern (Zeichnen)
 
 
 
