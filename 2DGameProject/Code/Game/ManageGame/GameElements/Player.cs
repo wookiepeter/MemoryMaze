@@ -289,16 +289,16 @@ namespace MemoryMaze
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
-            if (KeyboardInputManager.Downward(Keyboard.Key.Up))
+            if (KeyboardInputManager.Downward(Keyboard.Key.W))
                 move.Y = -1;
 
-            else if (KeyboardInputManager.Downward(Keyboard.Key.Down))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.S))
                 move.Y = 1;
 
-            else  if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+            else  if (KeyboardInputManager.Downward(Keyboard.Key.A))
                 move.X = -1;
 
-            else if (KeyboardInputManager.Downward(Keyboard.Key.Right))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.D))
                 move.X = 1;
 
             return move;
