@@ -15,6 +15,8 @@ namespace MemoryMaze
         Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever));
         MapManipulation mapManil;
 
+        List<MapManipulation> mapManilList;
+
         bool active = false;
 
         public Lever(Vector2i _position, Map map, MapManipulation _mapManil)
@@ -25,6 +27,9 @@ namespace MemoryMaze
                 position.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f);
             sprite.Scale = new Vector2f((float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.X,
                 (float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.Y);
+
+            mapManilList = new List<MapManipulation>();
+            mapManilList.Add(mapManil);
         }
 
         private Lever(Lever _lever)
@@ -33,6 +38,11 @@ namespace MemoryMaze
             mapManil = _lever.mapManil;
             sprite.Position = _lever.sprite.Position;
             sprite.Scale = _lever.sprite.Scale;
+            mapManilList = new List<MapManipulation>();
+            foreach(MapManipulation mani in _lever.mapManilList)
+            {
+                mapManilList.Add(mani.Copy());
+            }
         }
 
         public Lever Copy()
@@ -40,28 +50,41 @@ namespace MemoryMaze
             return new Lever(this);
         }
 
-        public void Update(List<Vector2i> botPosList, Map map, float deltaTime)
+        public void Update(Player player, Map map, float deltaTime)
         {
-            foreach(Vector2i vec in botPosList)
+            if (VirusOnLever(player.getListWithPlayerAndBlueBot(), map) || map.GetContentOfCell(position) == cellContent.Movable)
             {
-                if(map.Vector2iAreEqual(vec, position))
+                if (!active)
                 {
-                    if(!active)
-                    {
-                        active = true;
-                        Execute(map);
-                    }
-                    return;
+                    Execute(map, player);
+                    active = !active;
                 }
             }
-            if (active)
-                Execute(map);
-            active = false;
+            else
+            {
+                if(active)
+                {
+                    Execute(map, player);
+                    active = !active;
+                }
+            }
+                
         }
 
-        private void Execute(Map map)
+        private Boolean VirusOnLever(List<Vector2i> botPosList, Map map)
         {
-            mapManil.execute(map);
+            if (botPosList.Contains(position))
+                return true;
+            return false;
+        }
+
+        private void Execute(Map map, Player player)
+        {
+            foreach(MapManipulation mani in mapManilList)
+            {
+                if (!player.getListOfBotPositions().Contains(mani.position))
+                    mani.execute(map);
+            }
         }
 
         public void Draw(RenderTexture win, View view)

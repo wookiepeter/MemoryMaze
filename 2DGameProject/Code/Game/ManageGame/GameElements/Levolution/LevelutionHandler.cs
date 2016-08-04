@@ -32,11 +32,11 @@ namespace MemoryMaze
             return new LevelutionHandler(this);
         }
 
-        public void Update(List<Vector2i> botPosList, Map map, float deltaTime)
+        public void Update(Player player, Map map, float deltaTime)
         {
             foreach(Lever lev in leverList)
             {
-                lev.Update(botPosList, map, deltaTime);
+                lev.Update(player, map, deltaTime);
             }
         }
 

@@ -10,7 +10,7 @@ namespace MemoryMaze
 {
     public class MapManipulation
     {
-        Vector2i position;
+        public Vector2i position { get; private set; }
         cellContent newContent;
         cellContent oldContent;
 

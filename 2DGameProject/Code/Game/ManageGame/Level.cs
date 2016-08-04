@@ -67,7 +67,7 @@ namespace MemoryMaze
             player.Update(deltaTime, map);
             itemList.Update(map, player, deltaTime);
             trapHandler.Update(map, player, deltaTime);
-            levelution.Update(player.getListOfBotPositions(), map, deltaTime);
+            levelution.Update(player, map, deltaTime);
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))

@@ -415,5 +415,17 @@ namespace MemoryMaze
                 result.Add(bot.mapPosition);
             return result;
         }
+
+        public List<Vector2i> getListWithPlayerAndBlueBot()
+        {
+            List<Vector2i> result = new List<Vector2i>();
+            result.Add(mapPosition);
+            foreach(Bot bot in botList)
+            {
+                if (bot.id == 2)
+                    result.Add(mapPosition);
+            }
+            return result;
+        }
     }
 }
