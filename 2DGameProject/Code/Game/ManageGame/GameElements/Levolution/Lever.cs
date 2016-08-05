@@ -13,29 +13,28 @@ namespace MemoryMaze
     {
         Vector2i position;
         Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever));
-        MapManipulation mapManil;
 
         List<MapManipulation> mapManilList;
 
         bool active = false;
 
-        public Lever(Vector2i _position, Map map, MapManipulation _mapManil)
+        public Lever(Vector2i _position, Map map, List<MapManipulation> _mapManiList)
         {
             position = _position;
-            mapManil = _mapManil;
+            mapManilList = new List<MapManipulation>();
+            foreach(MapManipulation mapmani in _mapManiList)
+            {
+                mapManilList.Add(mapmani);
+            }
             sprite.Position = new Vector2f(position.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f, 
                 position.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f);
             sprite.Scale = new Vector2f((float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.X,
                 (float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.Y);
-
-            mapManilList = new List<MapManipulation>();
-            mapManilList.Add(mapManil);
         }
 
         private Lever(Lever _lever)
         {
             position = _lever.position;
-            mapManil = _lever.mapManil;
             sprite.Position = _lever.sprite.Position;
             sprite.Scale = _lever.sprite.Scale;
             mapManilList = new List<MapManipulation>();
@@ -103,9 +102,10 @@ namespace MemoryMaze
         /// </summary>
         public static void MakeHeile()
         {
-            Random rand = new Random();
-            if (rand.Next(0, 1) == 0)
+            
+            if (Rand.IntValue(0, 2) == 0)
                 mirkohatrecht = true;
+            
 
             if (mirkohatrecht)
             {

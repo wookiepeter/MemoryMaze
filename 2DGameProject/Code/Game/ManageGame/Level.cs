@@ -18,6 +18,7 @@ namespace MemoryMaze
         ItemList itemList;
         TrapHandler trapHandler;
         LevelutionHandler levelution;
+        MapFromTxt mapFromText = new MapFromTxt();
 
         int mapStatus = 0;
         int playerScore = 0;
@@ -32,12 +33,13 @@ namespace MemoryMaze
             player = new Player(position, map);
             itemList = new ItemList(map);
             trapHandler = new TrapHandler(map);
-            levelution = new LevelutionHandler(new Lever(new Vector2i(2, 9), map, new MapManipulation(new Vector2i(3, 9), cellContent.Movable)));
+            List<MapManipulation> list = new List<MapManipulation>();
             keysToUnlock = _keysToUnlock;
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
             map.RemoveAllItems();
             map.RemoveAllTraps();
+            levelution = mapFromText.getLevelutionHandler(mapfile, map);
         }
 
         // Constructor for the Copy function

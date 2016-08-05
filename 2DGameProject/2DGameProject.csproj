@@ -110,6 +110,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\LeverTutorial.txt" />
     <Content Include="Assets\MapFiles\ExampleMap.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

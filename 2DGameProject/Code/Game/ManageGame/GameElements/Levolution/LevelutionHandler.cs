@@ -12,10 +12,13 @@ namespace MemoryMaze
     {
         List<Lever> leverList;
 
-        public LevelutionHandler(Lever _lever)
+        public LevelutionHandler(List<Lever> _leverList)
         {
             leverList = new List<Lever>();
-            leverList.Add(_lever);
+            foreach(Lever lever in _leverList)
+            {
+                leverList.Add(lever.Copy());
+            }
         }
 
         private LevelutionHandler(LevelutionHandler _levelutionHandler)

@@ -18,7 +18,6 @@ namespace MemoryMaze
         Cell[,] cellMap;
         RectangleShape mapSprite;
 
-        ItemList itemList;
         MapFromTxt mapFromText = new MapFromTxt();
 
         public Map(int mapSizeX, int mapSizeY)

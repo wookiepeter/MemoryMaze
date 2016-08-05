@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SFML.Graphics;
+using SFML.Window;
 
 namespace MemoryMaze
 {
@@ -10,6 +12,8 @@ namespace MemoryMaze
     {
         System.IO.StreamReader file;
         Boolean goalWasSet;
+
+        Dictionary<String, cellContent> cellContentDic= new Dictionary<String, cellContent>();
 
         /// <summary>
         /// Does create a Map from a txt file. First line and Second Line should contain
@@ -51,6 +55,91 @@ namespace MemoryMaze
             }
 
             return cellMap;
+        }
+
+        public LevelutionHandler getLevelutionHandler(String filename, Map map)
+        {
+            file = new System.IO.StreamReader(@filename);
+            List<Lever> leverList = new List<Lever>();
+            List<MapManipulation> curList;
+
+            String buffer;
+
+            while(!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                if (buffer.Contains("_map:"))
+                    break;
+            }
+
+            String[] array;
+            String[] innerBuffer;
+
+            Vector2i leverPosition;
+            List<MapManipulation> maniList;
+
+            cellContentDic.Add("empty", cellContent.Empty);
+            cellContentDic.Add("movable", cellContent.Movable);
+            cellContentDic.Add("wall", cellContent.Wall);
+
+            while(!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                array = buffer.Split(';');
+                
+                int size = array.Length;
+                
+                if (size < 1)
+                {
+                    break;
+                }
+
+                if (array[0].Contains("lever"))
+                {
+                    leverPosition = creatVector2i(array[0].Replace("lever", ""));
+                    if (!map.isInMap(leverPosition))
+                        Logger.Instance.Write("Lever is not in mapArea [mapfile: " + filename + "]", 0);
+                    maniList = new List<MapManipulation>();
+                    for (int i = 1; i < array.Length; i++)
+                    {
+                        maniList.Add(createManipulation(array[i]));
+                    }
+                    foreach (MapManipulation mani in maniList)
+                    {
+                        if (map.isInMap(mani.position))
+                        {
+                            Logger.Instance.Write("Mapmanipulation is not in mapArea [mapfile: " + filename + "]", 0);
+                        }
+                    }
+                    leverList.Add(new Lever(leverPosition, map, maniList));
+                }
+            }
+            return new LevelutionHandler(leverList);
+        } 
+
+        // str 
+        private MapManipulation createManipulation(String str)
+        {
+            Console.WriteLine(str);
+            foreach (String name in cellContentDic.Keys)
+            {
+                Console.WriteLine(name);
+                if (str.Contains(name))
+                {
+                    return new MapManipulation(creatVector2i(str.Replace(name, "")), cellContentDic[name]);
+                }
+            }
+            throw (new Exception("invalid Mapmanipulation"));
+        }
+
+        private Vector2i creatVector2i(String str)
+        {
+            Console.WriteLine(str);
+            str = str.Replace("(", "");
+            str = str.Replace(")", "");
+            String[] innerBuffer = str.Split(',');
+            Console.WriteLine(innerBuffer[0] + " " + innerBuffer[1]);
+            return new Vector2i(int.Parse(innerBuffer[0]), int.Parse(innerBuffer[1]));
         }
 
         // simply returns a collContent associated with the given char;

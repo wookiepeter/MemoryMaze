@@ -1,0 +1,9 @@
+﻿Tutorial
+...
+...
+...
+_map:												//here starts the tracking for the levers
+lever(2,8);movable(2,9);movable(4,8);movable(10,8)  
+// lever(0,0) creates a new lever at the said location
+// afterwards are all the cellcontents that can be manipulated with that lever
+// again the range is item(1, 2)
