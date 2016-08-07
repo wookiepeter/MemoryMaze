@@ -1,0 +1,14 @@
+﻿11
+19
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwgwwwwwwwwwwww
+wwwwwwweeewwwwwwwwww
+wwwwwwwewewwwwwwwwww
+wwwwwweeemeeeewwwwww
+wwwwweewewwwweewwwww
+wwwemeweewwwwwewwwww
+wwwwweeewwwwwwewwwww
+wwwwwwwwwwwwwwiwwwww
+wwwwwwwwwwwwwwwwwwww
+
+//StartPos: 7,2

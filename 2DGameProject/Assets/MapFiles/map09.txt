@@ -1,4 +1,4 @@
-﻿13
+﻿11
 21
 wwwwwwwwwwwwwwwwwwww
 wwwwwwwiwwwwwwwwwwww
@@ -8,10 +8,8 @@ wwwweewwwweeeemwwwww
 wwwwwewwwwwwwwewwwww
 wwwwweeeeeewwwewwwww
 wwwwweewweewwwewwwww
-wwwwwwwwwewwwweewwww
+wwwwwwwwwwewwweewwww
 wwwwwwwwweeeeeeewwww
 wwwwwwwwweewwwwwwwww
 wwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwww
 //10,4
-//Limit erreicht? Todo:Matthis

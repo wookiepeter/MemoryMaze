@@ -1,0 +1,16 @@
+﻿11
+20
+wwwwwwwwwwwwwwwwwwww
+wwgwwwwwettttewwwwew
+wwSSSwwwtwwwweeeGwew
+wwwwSeettwwwwewwwwmw
+wwwwwwwwwwwmmeeeBemw
+wwwwwwwwieemwwwwwwew
+wwwwwwwwwwwwwwwwwwew
+wwwwwwwwwmeewwweeeew
+wReeeeeeeemeeemmeeww
+weeewwwwwwwewwwSeeww
+wwwwwwwwwwwwwwwwwwww
+_map:
+lever(2,8);movable(2,9);movable(4,8);movable(10,8)
+lever(17,9);empty(18,3);empty(18,4)
