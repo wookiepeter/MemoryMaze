@@ -38,7 +38,7 @@ namespace MemoryMaze
         public void execute(Map map)
         {
             if (active)
-                Disengage(map);
+                Engage(map);
             else
                 Engage(map);
         }
@@ -49,14 +49,15 @@ namespace MemoryMaze
             oldContent = newContent;
             map.SetContentOfCell(position, newContent);
             active = !active;
-            newContent = oldContent;
+            newContent = help;
         }
 
         private void Disengage(Map map)
         {
+            Console.WriteLine("Matthis" +newContent+oldContent);
             cellContent help = newContent;
             newContent = oldContent;
-            map.SetContentOfCell(position, oldContent);
+            map.SetContentOfCell(position, newContent);
             active = !active;
             oldContent = help;
         }

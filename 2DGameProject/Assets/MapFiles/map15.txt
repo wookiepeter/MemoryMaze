@@ -1,0 +1,24 @@
+﻿12
+20
+wwwwwwwwwwwwwwwwwwww
+wiewwwwwwwwwwwwwwwww
+wwwtwwwwwwewwwwwwwww
+wwwtwwwwwwewwwwwwwww
+wwetttttemmewwwwwwww
+wwwtwwtwwwmwwwwwwwww
+wwwtweweeeweGwwwwwww
+wwwwwewewewwwwwwwwww
+weeeweemeewgwwwwwwww
+weeewewewwwwwwwwwwww
+wwwwwwweeeRwwwwwwwww
+wwwwwwwwwwwwwwwwwwww
+//Startpos: 8,6
+//x6,x5,x3,x2,x1
+_map:
+lever(2,4);empty(4,8)
+lever(11,4);empty(3,1);empty(3,7);empty(12,4);empty(12,5)
+lever(10,3);empty(6,6)
+lever(5,8);empty(10,6)
+lever(7,9);empty(8,5);empty(9,9);empty(10,8)
+
+
