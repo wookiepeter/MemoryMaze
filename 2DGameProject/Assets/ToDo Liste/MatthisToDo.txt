@@ -16,5 +16,6 @@ ToDo: Benny 3 Euro geben!
 -- #4) Lever1 erstellen (WICHTIG!)
 		--> Player/BlueBot blueBot aktivieren den Schalter(Schalter nur aktiv, wenn einer drauf ist)
 		--> 
-
+-- #5) Traps sind nicht walkebale für Ghostplayer und für Ordner
+-- #6) CurrentFocus im Player nochmal genau berechnen!(SCALE!)
 */

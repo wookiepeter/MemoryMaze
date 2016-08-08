@@ -39,13 +39,14 @@ namespace MemoryMaze
                     //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     UpdateSpritePosition(map);
                 }
-                else if (map.MoveIsPossible(mapPosition, move, botPosList))
-                {
-                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                    map.MoveBlock(mapPosition, move);
-                    mapPosition = mapPosition + move;
-                    counter--;
-                }
+                //Schieben von Bloecken!
+                //else if (map.MoveIsPossible(mapPosition, move, botPosList))
+                //{
+                //    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                //    map.MoveBlock(mapPosition, move);
+                //    mapPosition = mapPosition + move;
+                //    counter--;
+                //}
                 if (counter == 0)
                     isAlive = false;
             }
