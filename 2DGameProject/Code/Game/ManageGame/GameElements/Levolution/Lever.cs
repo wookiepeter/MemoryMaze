@@ -51,7 +51,7 @@ namespace MemoryMaze
 
         public void Update(Player player, Map map, float deltaTime)
         {
-            if (VirusOnLever(player.getListWithPlayerAndBlueBot(), map) || map.GetContentOfCell(position) == cellContent.Movable)
+            if (map.GetContentOfCell(position) == cellContent.Movable)
             {
                 if (!active)
                 {

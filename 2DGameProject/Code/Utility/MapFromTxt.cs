@@ -102,7 +102,7 @@ namespace MemoryMaze
                     maniList = new List<MapManipulation>();
                     for (int i = 1; i < array.Length; i++)
                     {
-                        maniList.Add(createManipulation(array[i]));
+                        maniList.Add(createManipulation(array[i], map));
                     }
                     foreach (MapManipulation mani in maniList)
                     {
@@ -118,7 +118,7 @@ namespace MemoryMaze
         } 
 
         // str 
-        private MapManipulation createManipulation(String str)
+        private MapManipulation createManipulation(String str, Map map)
         {
             Console.WriteLine(str);
             foreach (String name in cellContentDic.Keys)
@@ -126,7 +126,8 @@ namespace MemoryMaze
                 Console.WriteLine(name);
                 if (str.Contains(name))
                 {
-                    return new MapManipulation(creatVector2i(str.Replace(name, "")), cellContentDic[name]);
+                    Vector2i pos = creatVector2i(str.Replace(name, ""));
+                    return new MapManipulation(pos, cellContentDic[name], map.GetContentOfCell(pos));
                 }
             }
             throw (new Exception("invalid Mapmanipulation"));

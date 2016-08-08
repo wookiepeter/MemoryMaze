@@ -16,16 +16,18 @@ namespace MemoryMaze
 
         bool active = false;
 
-        public MapManipulation(Vector2i _position, cellContent _newContent)
+        public MapManipulation(Vector2i _position, cellContent _newContent, cellContent _oldContent)
         {
             position = _position;
             newContent = _newContent;
+            oldContent = _oldContent;
         }
 
         private MapManipulation(MapManipulation _mapMani)
         {
             position = _mapMani.position;
             newContent = _mapMani.newContent;
+            oldContent = _mapMani.oldContent;
         }
 
         public MapManipulation Copy()
@@ -43,16 +45,20 @@ namespace MemoryMaze
 
         private void Engage(Map map)
         {
-            oldContent = map.GetContentOfCell(position);
+            cellContent help = oldContent;
+            oldContent = newContent;
             map.SetContentOfCell(position, newContent);
             active = !active;
+            newContent = oldContent;
         }
 
         private void Disengage(Map map)
         {
-            newContent = map.GetContentOfCell(position);
+            cellContent help = newContent;
+            newContent = oldContent;
             map.SetContentOfCell(position, oldContent);
             active = !active;
+            oldContent = help;
         }
     }
 }
