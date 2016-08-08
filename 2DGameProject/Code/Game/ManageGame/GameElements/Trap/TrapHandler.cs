@@ -76,10 +76,10 @@ namespace MemoryMaze
            // antiviTrapList.RemoveAll(a => a.deleted == true);
 
         }
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             foreach (AntivirTrap trap in antiviTrapList)
-                trap.Draw(win, view);
+                trap.Draw(win, view, relViewDis);
         }
 
         private List<AntivirTrap> GetTrapsFromMap(Map map)                                  //Geht die Map durch und fügt bei jeder Collision die Falle in die Liste

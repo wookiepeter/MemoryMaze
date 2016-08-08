@@ -59,11 +59,11 @@ namespace MemoryMaze
             itemList.RemoveAll(a => a.deleted == true);
         }
 
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             foreach(Item item in itemList)
             {
-                item.Draw(win, view);
+                item.Draw(win, view, relViewDis);
             }
         }
 

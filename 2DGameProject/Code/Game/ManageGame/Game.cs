@@ -86,7 +86,8 @@ namespace MemoryMaze
 
         public void Draw(RenderTexture win, View view)
         {
-            level.Draw(win, view);
+            Vector2f relativeViewDistance = win.GetView().Center - view.Center;
+            level.Draw(win, view, relativeViewDistance);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

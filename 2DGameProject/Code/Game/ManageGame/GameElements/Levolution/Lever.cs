@@ -14,6 +14,9 @@ namespace MemoryMaze
         Vector2i position;
         Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever));
 
+        // Position of the sprite based on sizepercell and its position
+        Vector2f exactPosition;
+
         List<MapManipulation> mapManilList;
 
         bool active = false;
@@ -26,7 +29,7 @@ namespace MemoryMaze
             {
                 mapManilList.Add(mapmani);
             }
-            sprite.Position = new Vector2f(position.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f, 
+            exactPosition = new Vector2f(position.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f, 
                 position.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f);
             sprite.Scale = new Vector2f((float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.X,
                 (float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.Y);
@@ -38,6 +41,7 @@ namespace MemoryMaze
             sprite.Position = _lever.sprite.Position;
             sprite.Scale = _lever.sprite.Scale;
             mapManilList = new List<MapManipulation>();
+            exactPosition = _lever.exactPosition;
             foreach(MapManipulation mani in _lever.mapManilList)
             {
                 mapManilList.Add(mani.Copy());
@@ -86,8 +90,9 @@ namespace MemoryMaze
             }
         }
 
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
+            sprite.Position = exactPosition + relViewDis;
             win.Draw(sprite);
         }
 

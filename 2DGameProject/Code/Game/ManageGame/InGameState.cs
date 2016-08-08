@@ -27,7 +27,7 @@ namespace MemoryMaze
         {
             game = new Game(id);
         }
-       
+        
         public GameState Update(RenderWindow win, float deltaTime)
         {
             nextGameState = game.Update(deltaTime);
@@ -58,8 +58,10 @@ namespace MemoryMaze
 
             // Draws the Game.Draw on to backgroundMult
             backgroundMult.Clear(Color.Black);
-            game.Draw(backgroundMult, view);
 
+            game.Draw(backgroundMult, _view);
+
+            //win.SetView(view);
             // "buffers" backgroundMult
             backgroundMult.Display();
             
@@ -71,8 +73,10 @@ namespace MemoryMaze
             multTexture.Draw(overlay, add);
             multTexture.Display();
 
+            Console.WriteLine(" view.Center " + view.Center + " multTexture.Center" + multTexture.GetView().Center + " win.Center " + win.GetView().Center + " multTexture.Center " + multTexture.GetView().Center);
             // resets view of window
-            win.SetView(_view);
+            //win.SetView(_view);
+
             // multiplies lightMask with the Texture already in the window (because multstate)
             win.Draw(new Sprite(multTexture.Texture), multState);
         }

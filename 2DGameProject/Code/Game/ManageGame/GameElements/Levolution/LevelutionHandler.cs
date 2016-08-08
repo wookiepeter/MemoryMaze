@@ -43,11 +43,11 @@ namespace MemoryMaze
             }
         }
 
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             foreach(Lever lev in leverList)
             {
-                lev.Draw(win, view);
+                lev.Draw(win, view, relViewDis);
             }
         }
     }

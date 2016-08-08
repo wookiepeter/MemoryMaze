@@ -11,7 +11,7 @@ namespace MemoryMaze
 {
     public class Key : Item
     {
-        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));   
+        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));
 
         // This doesn't check if the item is valid
         public Key(Vector2i _position, Map map)
@@ -19,14 +19,16 @@ namespace MemoryMaze
             Logger.Instance.Write(_position.ToString(), 0);
             position = _position;
             deleted = false;
-            sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell*0.25f, position.Y * map.sizePerCell + map.sizePerCell*0.25f);
+            exactPosition = new Vector2f(position.X * map.sizePerCell + map.sizePerCell*0.25f, position.Y * map.sizePerCell + map.sizePerCell*0.25f);
             sprite.Scale = new Vector2f((float)map.sizePerCell*0.5f/(float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
+            
         }
 
         // CopyConstructor
         public Key(Key _key)
         {
             position = _key.position;
+            exactPosition = _key.exactPosition;
             sprite.Position = _key.sprite.Position;
             sprite.Scale = _key.sprite.Scale;
         }
@@ -42,8 +44,9 @@ namespace MemoryMaze
                 deleted = true;
         }
 
-        override public void Draw(RenderTexture win, View view)
+        override public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
+            sprite.Position = exactPosition + relViewDis;
             win.Draw(sprite);
         }
 

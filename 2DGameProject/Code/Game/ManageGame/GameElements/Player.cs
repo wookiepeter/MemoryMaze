@@ -138,6 +138,7 @@ namespace MemoryMaze
                 {
                     ghostPlayer.Update(deltaTime, map, this);
                     currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.Size.X / 2f, ghostPlayer.sprite.Size.Y / 2f);
+                    UpdateSpritePosition(map);
                 }
                 else
                 {
@@ -147,13 +148,13 @@ namespace MemoryMaze
                         if (map.CellIsWalkable(mapPosition + move))
                         {
                             mapPosition = mapPosition + move;
-                            UpdateSpritePosition(map);
                         }
                         else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
                         {
                             map.MoveBlock(mapPosition, move);
                             mapPosition = mapPosition + move;
                         }
+                        UpdateSpritePosition(map);
                         currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
                     }
                 }
@@ -170,23 +171,28 @@ namespace MemoryMaze
                     ghostaktiv = false;
                     iserstellt = false;
                 }
+                
                 //Target controll manager
                 SwitchTarget();
+                UpdateSpritePosition(map);
             }
+            
         }
  
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             view.Center = Vector2.lerp(view.Center, currentFocus, 0.025F);
-            if(isAlive)
+            sprite.Position = sprite.Position + relViewDis;
+
+            if (isAlive)
                 win.Draw(sprite);
             if (iserstellt)
-                ghostPlayer.Draw(win, view);
+                ghostPlayer.Draw(win, view, relViewDis);
 
             foreach (Bot it in botList)
             {
                 if(it != null)
-                    it.Render(win);
+                    it.Render(win, view, relViewDis);
             }
         }
 
@@ -289,16 +295,16 @@ namespace MemoryMaze
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
-            if (KeyboardInputManager.Downward(Keyboard.Key.W))
+            if (KeyboardInputManager.Downward(Keyboard.Key.W) || KeyboardInputManager.Downward(Keyboard.Key.Up))
                 move.Y = -1;
 
-            else if (KeyboardInputManager.Downward(Keyboard.Key.S))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.S) || KeyboardInputManager.Downward(Keyboard.Key.Down))
                 move.Y = 1;
 
-            else  if (KeyboardInputManager.Downward(Keyboard.Key.A))
+            else  if (KeyboardInputManager.Downward(Keyboard.Key.A) || KeyboardInputManager.Downward(Keyboard.Key.Left))
                 move.X = -1;
 
-            else if (KeyboardInputManager.Downward(Keyboard.Key.D))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.D) || KeyboardInputManager.Downward(Keyboard.Key.Right))
                 move.X = 1;
 
             return move;

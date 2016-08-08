@@ -103,7 +103,7 @@ namespace MemoryMaze
             return 0;
         }
         
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
             stopWatch.Start();    
@@ -114,6 +114,7 @@ namespace MemoryMaze
                     mapSprite.Texture = cellMap[j, i].GetTexture(getTextureIndexFromNeighbours(new Vector2i(j, i)));
                     //mapSprite.Scale = new Vector2f(sizePerCell / mapSprite.Texture.Size.X, sizePerCell / mapSprite.Texture.Size.Y);
                     mapSprite.Position = new Vector2(j * sizePerCell, i * sizePerCell);
+                    mapSprite.Position = mapSprite.Position + relViewDis;
                     win.Draw(mapSprite);
                 }
             }

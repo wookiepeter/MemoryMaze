@@ -42,20 +42,21 @@ namespace MemoryMaze
                     counter--;
                 mapPosition = mapPosition + move;
                 //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-                UpdateSpritePosition(map);
             }
+            UpdateSpritePosition(map);
             CreateBot(map, player); //player.botList, player.redbot, player.bluebot, player.greenbot);
         }
     
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
-            if(!iserstellt)
+            sprite.Position = sprite.Position + relViewDis;
+            if (!iserstellt)
                 win.Draw(sprite);
-            else
+         /*   else
             {
-                redBot.Render(win);
-            }
+                redBot.Render(win, view);
+            }*/
         }
 
        void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
@@ -143,22 +144,22 @@ namespace MemoryMaze
         Vector2i GetMove()
         {
             Vector2i move = new Vector2i(0, 0);
-            if (KeyboardInputManager.Downward(Keyboard.Key.W))
+            if (KeyboardInputManager.Downward(Keyboard.Key.W) || KeyboardInputManager.Downward(Keyboard.Key.Up))
             {
                 move.Y = -1;
    
             }
-            else if (KeyboardInputManager.Downward(Keyboard.Key.S))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.S) || KeyboardInputManager.Downward(Keyboard.Key.Down))
             {
                 move.Y = 1;
 
             }
-            else if (KeyboardInputManager.Downward(Keyboard.Key.A))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.A) || KeyboardInputManager.Downward(Keyboard.Key.Left))
             {
                 move.X = -1;
 
             }
-            else if (KeyboardInputManager.Downward(Keyboard.Key.D))
+            else if (KeyboardInputManager.Downward(Keyboard.Key.D) || KeyboardInputManager.Downward(Keyboard.Key.Right))
             {
                 move.X = 1;
 

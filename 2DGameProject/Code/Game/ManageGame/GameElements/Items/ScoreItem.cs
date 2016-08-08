@@ -19,7 +19,7 @@ namespace MemoryMaze
             //Logger.Instance.Write(_position.ToString(), 0);
             position = _position;
             deleted = false;
-            sprite.Position = new Vector2f(position.X * map.sizePerCell + map.sizePerCell * 0.25f, position.Y * map.sizePerCell + map.sizePerCell * 0.25f);
+            exactPosition = new Vector2f(position.X * map.sizePerCell + map.sizePerCell * 0.25f, position.Y * map.sizePerCell + map.sizePerCell * 0.25f);
             sprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
         }
 
@@ -28,6 +28,7 @@ namespace MemoryMaze
             position = _ScoreItem.position;
             sprite.Position = _ScoreItem.sprite.Position;
             sprite.Scale = _ScoreItem.sprite.Scale;
+            exactPosition = _ScoreItem.exactPosition;
         }
 
         override public Item Copy()
@@ -40,8 +41,9 @@ namespace MemoryMaze
                 deleted = true;
         }
 
-        override public void Draw(RenderTexture win, View view)
+        override public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
+            sprite.Position = exactPosition + relViewDis;
             win.Draw(sprite);
         }
     }
