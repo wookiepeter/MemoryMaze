@@ -70,7 +70,7 @@ public class AssetManager
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
-        textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/ItemTile.png"));
+        textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/Lever.png"));
     }
 
     public enum TextureName

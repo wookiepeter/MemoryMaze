@@ -8,9 +8,10 @@ weeeeewew
 wwwewwwew
 wweemeeew
 wwwwwwwew
-wwwewwwww
+wwwewRwww
 wwwgwwwww
 wwwwwwwww
 //Startpos: 1, 4
+_map:
 lever(7,3);empty(3,7)
-lever(7,7);empty(3,8)
+lever(7,7);empty(3,8);empty(5,7)

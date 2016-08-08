@@ -1,0 +1,23 @@
+﻿13
+15
+wwwwwwwwwwwwwwww
+wwwwwtBtwwwttttw
+wwttttwtttttiGtw
+wttteemeetttettw
+wtttteeettttwtww
+wtttttwtteweGtww
+wtttttettettttww
+wttteemttwtwwwww
+wtttteeeeetwwwww
+wwwteeeetwwwwwww
+wwwttttwtwwwwwww
+wwwwwwweegwwwwww
+wwwwwwwwwwwwwwww
+//Pos: 6, 4
+_map:
+lever(4,3);empty(6,2);empty(6,5)
+lever(8,3);empty(7,10)
+lever(6,9);empty(9,7)
+lever(4,9);empty(10,5);wall(6,5)
+lever(4,7);empty(12,4)
+
