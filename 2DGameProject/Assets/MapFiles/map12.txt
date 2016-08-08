@@ -1,0 +1,16 @@
+﻿11
+9
+wwwwwwwww
+wwweiwwww
+wwwewwwww
+wwemmeeew
+weeeeewew
+wwwewwwew
+wweemeeew
+wwwwwwwew
+wwwewwwww
+wwwgwwwww
+wwwwwwwww
+//Startpos: 1, 4
+lever(7,3);empty(3,7)
+lever(7,7);empty(3,8)

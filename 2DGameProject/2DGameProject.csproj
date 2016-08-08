@@ -129,19 +129,19 @@
     <Content Include="Assets\MapFiles\_map3Kopie.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map00 - Kopieren %2814%29.txt">
+    <Content Include="Assets\MapFiles\map14.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map00 - Kopieren %2815%29.txt">
+    <Content Include="Assets\MapFiles\map13.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map00 - Kopieren %2816%29.txt">
+    <Content Include="Assets\MapFiles\map12.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map00 - Kopieren %282%29.txt">
+    <Content Include="Assets\MapFiles\map11.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map00 - Kopieren %283%29.txt">
+    <Content Include="Assets\MapFiles\map10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map09.txt">

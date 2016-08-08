@@ -5,10 +5,13 @@ wwwwwwwgwwwwwwwwwwww
 wwwwwwweeewwwwwwwwww
 wwwwwwwewewwwwwwwwww
 wwwwwweeemeeeewwwwww
-wwwwweewewwwweewwwww
-wwwemeweewwwwwewwwww
+wwwwweewewewweewwwww
+wwwemeweewwwwwwwwwww
 wwwwweeewwwwwwewwwww
 wwwwwwwwwwwwwwiwwwww
 wwwwwwwwwwwwwwwwwwww
 
 //StartPos: 7,2
+_map:
+lever(3,6);empty(10, 3)
+lever(10,5);empty(14,6)

@@ -1,15 +1,19 @@
 ﻿11
 17
 wwwwwwwwwwwwwwww
-wwwwwwwwewwwwwww
-wwwwwwwwewwwwwww
+wwwwwiwwewwwwwww
+wwwwwewwewwwwwww
 wwwweeeeewwwwwww
 wwwweewwewwwwwww
-wweeeeiweeewwwww
+wweeeeemeeewwwww
 wwwewewwwmwwwwww
 wwwewmweeewwwwww
 wwwewewewwwwwwww
-wwweeeeeeeeeegww
+wwweeeeeewwwegww
 wwwwwwwwwwwwwwww
 
 //pos: 4,3
+_map:
+lever(8,1);empty(9, 9)
+lever(10,5);empty(10,9)
+lever(2,5);empty(11,9)
