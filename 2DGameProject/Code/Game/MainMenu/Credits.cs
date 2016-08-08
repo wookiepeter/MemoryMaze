@@ -18,7 +18,7 @@ namespace MemoryMaze
         //Sprite sbackground;
         Sprite blackback;
         //RectangleShape blackbox;
-        Text Musiker, Programmierer,Grafiker;
+        Text Musiker, Programmierer,Grafiker, Kreativ;
         Font fontforall, fontgamename;
         List<Text> namel;
         public Credits()
@@ -57,8 +57,12 @@ namespace MemoryMaze
             Musiker.Color = Color.White;
             Musiker.Scale = new Vector2f(2, 2);
 
+            Kreativ = new Text("Level Design\n Christian\n Christians Freundin \n\n", fontforall);
+            Kreativ.Position = new Vector2f(450, 1150);
+            Kreativ.Color = Color.White;
+            Kreativ.Scale = new Vector2f(2, 2);
 
-            Text[] namelist = { Musiker, Programmierer, Grafiker };
+            Text[] namelist = { Musiker, Programmierer, Grafiker, Kreativ };
             namel = namelist.ToList();
         }
 

@@ -1,8 +1,17 @@
 ﻿ /* Diese Liste ist für dich Matthis damit du nie Ruhen wirst und immer weiter an diesem Projekt arbeiten kannst!
 
-				   
+				
+			<red> ToDo: für die woche vom 8-15 August! <red>	   
 ToDo: Benny 3 Euro geben!
-- Map verbessern (Zeichnen)
--- nur neu zeichnen wenn notwendig
--- eventuell auf ne rendertexture zeichnen und denn nur neu zeichnen wenn sich was auf der map ändert
+-- Map verbessern (Zeichnen)
+-> nur neu zeichnen wenn notwendig
+-> eventuell auf ne rendertexture zeichnen und denn nur neu zeichnen wenn sich was auf der map ändert
+
+-- #1) Speicherplätze anlegen! (Prioriät ##2##) -> Beim ersten Start kann man den Virus einen Namen geben (So heißt das SaveGame dann)
+-- #2) (Baut auf 1 auf) --> Jedes lvl was geschafft wurde, kann man übér das MainMenu nochmal spielen!
+		--> "evtl" MainMenu: NeuesSpiel, Spielladen, SpielBeenden
+		--> NeueSpiel  - Name: VIRUSNAME ->go!
+		--> Spielladen - SpeicherplätzeAnzeigen -> MainMenuState2: SpielFortsetzen, Level(Freigeschaltete lvl), Spielbeenden
+-- #3) TeleportationSlots erstellen (Von TileA nach TileB porten) --> Player und BlueBot
+-- #4) 
 */
