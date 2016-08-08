@@ -7,9 +7,13 @@ wwwwweemwwwwwwwwwwww
 wwweemwewwwwwwwwwwww
 wwweweeeeewwwwwwwwww
 wwweemewewwwwwwwwwww
-wwwwwwwweeeiwwwwwwww
-wwwwwwwwwewwwwwwwwww
+wwwwwwwweweiwwwwwwww
+wwwwwwwwwwwwwwwwwwww
 wwwwwwwwwgwwwwwwwwww
 wwwwwwwwwwwwwwwwwwww
 
 //StartKoord: 3,1
+//8,1
+_map:
+lever(8,1);empty(9,7)
+lever(9,5);empty(9,8)

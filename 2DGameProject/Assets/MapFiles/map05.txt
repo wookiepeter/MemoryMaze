@@ -11,3 +11,5 @@ wwweeewwwwwwwwwwwwww
 wgeewwwwwwwwwwwwwwww
 wwwwwwwwwwwwwwwwwwww
 //pos: 7, 5
+_map:
+lever(7,3);empty(4,1)
