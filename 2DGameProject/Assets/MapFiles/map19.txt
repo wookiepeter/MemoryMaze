@@ -1,0 +1,23 @@
+﻿15
+21
+wwwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwww
+wwwSwmmmmwgwmmmmwSwww
+wwwwwwwwmwewmwwwwwwww
+wwwwwwemmwewmmewwwwww
+wwwwwwwmmBeBmmwwwwwww
+wRewwwwmmmemmmwwwweiw
+wwwewwwmmmemmmwwwewww
+wwwSwwwwwSwSwwwwwSwww
+wwwewmwmmmmmmmwmwewww
+wwwRBmwwwmmmwwwmBRwww
+wwwwwwweeeemeewwwwwww
+wwwwwwweeeeeeewwwwwww
+wwwwwwwwwwBwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwww
+//Start:10 ,12
+_map:
+lever(8,11);empty(6,9)
+lever(12,11);empty(14,9)
+lever(14,4);empty(3,6)
+lever(6,4);empty(17,6)
