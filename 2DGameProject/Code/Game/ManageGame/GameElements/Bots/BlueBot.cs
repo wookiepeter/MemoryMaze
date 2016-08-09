@@ -15,7 +15,7 @@ namespace MemoryMaze
         public BlueBot(Vector2i position, Map map)
         {
             id = 2;
-            this.counter = 10;
+            this.counter = 11;
             this.isAlive = true;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);

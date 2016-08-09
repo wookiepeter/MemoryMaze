@@ -4,13 +4,13 @@ wwwwwwwwwwwwwwwwwwwww
 wwwwwwwwwwwwwwwwwwwww
 wwwSwmmmmwgwmmmmwSwww
 wwwwwwwwmwewmwwwwwwww
-wwwwwwemmwewmmewwwwww
+wwwwwwemmeeemmewwwwww
 wwwwwwwmmBeBmmwwwwwww
 wRewwwwmmmemmmwwwweiw
 wwwewwwmmmemmmwwwewww
-wwwSwwwwwSwSwwwwwSwww
-wwwewmwmmmmmmmwmwewww
-wwwRBmwwwmmmwwwmBRwww
+wwwSwSwwwwewwwwSwewww
+wwwRwwwmmmmmmmwwwRwww
+wwwBemmwwmmmwwmmeBwww
 wwwwwwweeeemeewwwwwww
 wwwwwwweeeeeeewwwwwww
 wwwwwwwwwwBwwwwwwwwww
@@ -19,5 +19,5 @@ wwwwwwwwwwwwwwwwwwwww
 _map:
 lever(8,11);empty(6,9)
 lever(12,11);empty(14,9)
-lever(14,4);empty(3,6)
-lever(6,4);empty(17,6)
+lever(14,4);empty(3,6);empty(4,2);empty(6,8);empty(7,8);empty(8,8);empty(9,8)
+lever(6,4);empty(17,6);empty(16,2);empty(11,8);empty(12,8);empty(13,8);empty(14,8)
