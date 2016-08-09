@@ -111,7 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LeverTutorial.txt" />
-    <Content Include="Assets\MapFiles\ExampleMap.txt">
+    <Content Include="Assets\MapFiles\map20.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map19.txt">

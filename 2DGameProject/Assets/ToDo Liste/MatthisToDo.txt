@@ -19,11 +19,13 @@ ToDo: Benny 3 Euro geben!
 		--> Player/BlueBot blueBot aktivieren den Schalter(Schalter nur aktiv, wenn einer drauf ist)
 -- #5) Traps sind nicht walkebale für Ghostplayer und für Ordner!
 -- #6) CurrentFocus im Player nochmal genau berechnen!(SCALE!)
--- #7) Detected Modus (Spieler hat verloren) z.B  trap
+-- #7) Detected Modus (Spieler hat verloren) z.B  trap														(DONE!)
 -- #8) LevelLimitEinführen
 		--> Jeder Schritt -1, ScoreItem +X, BotLöschen +count
 		--> Gold,Silver,Bronze System einführen
 -- #9) BlueLevel(WICHTIG!)
 -- #10) GUI Interface Bots (Anzahl(**__) und Schritte)
+-- #11) Wenn man den Hebel aktiviert --> Die Platte die sich öffnet oder schließt kurz grafisch anzeigen
+-- #12) BUG!: Bots werden nicht gezeichnet, wenn man die controllid von dem bot ändert(loseControll)
 
 */

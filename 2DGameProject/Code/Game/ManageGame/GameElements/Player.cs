@@ -20,6 +20,7 @@ namespace MemoryMaze
         public Vector2i mapPosition { get; private set; }                       //
         public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
 
+        Text playerdetected;
         int id;
         bool ghostaktiv, iserstellt;                                            //Ghostaktiv (momentan existiert ein Ghost) |  iserstellt(Ghost wurde erstellt)
         GhostPlayer ghostPlayer;
@@ -44,6 +45,8 @@ namespace MemoryMaze
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
+            playerdetected = new Text("Virus entdeckt!", calibri);
+
             id = 0;
             isAlive = true;
             controllid = 0;
@@ -69,6 +72,7 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite)
         {
+            playerdetected = new Text("Virus entdeckt!", calibri);
             id = 0;
             controllid = 0;
             deleteList = new List<Bot>();
@@ -176,11 +180,20 @@ namespace MemoryMaze
                 SwitchTarget();
                 UpdateSpritePosition(map);
             }
+            else
+            {
+                
+                playerdetected.Position = new Vector2f(300, 200);
+                playerdetected.Scale = new Vector2f(4, 4);
+                playerdetected.Color = Color.Red;
+                playerdetected.Style = Text.Styles.Bold;
+            }
             
         }
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
+
             view.Center = Vector2.lerp(view.Center, currentFocus, 0.025F);
             sprite.Position = sprite.Position + relViewDis;
 
@@ -194,6 +207,7 @@ namespace MemoryMaze
                 if(it != null)
                     it.Render(win, view, relViewDis);
             }
+
         }
 
         private void SwitchTarget()
@@ -216,6 +230,8 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
+            if (!isAlive)
+                gui.Draw(playerdetected);
             Color low = new Color(255, 255, 255, 127);
             Color high = new Color(255, 255, 255, 255);
 
