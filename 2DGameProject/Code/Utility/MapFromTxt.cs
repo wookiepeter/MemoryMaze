@@ -61,7 +61,6 @@ namespace MemoryMaze
         {
             file = new System.IO.StreamReader(@filename);
             List<Lever> leverList = new List<Lever>();
-            List<MapManipulation> curList;
 
             String buffer;
 
@@ -73,7 +72,6 @@ namespace MemoryMaze
             }
 
             String[] array;
-            String[] innerBuffer;
 
             Vector2i leverPosition;
             List<MapManipulation> maniList;
@@ -111,7 +109,27 @@ namespace MemoryMaze
                             Logger.Instance.Write("Mapmanipulation is not in mapArea [mapfile: " + filename + "]", 0);
                         }
                     }
-                    leverList.Add(new Lever(leverPosition, map, maniList));
+                    leverList.Add(new PornLever(leverPosition, map, maniList));
+                }
+
+                if (array[0].Contains("bluelev"))
+                {
+                    leverPosition = creatVector2i(array[0].Replace("bluelev", ""));
+                    if (!map.isInMap(leverPosition))
+                        Logger.Instance.Write("Lever is not in mapArea [mapfile: " + filename + "]", 0);
+                    maniList = new List<MapManipulation>();
+                    for (int i = 1; i < array.Length; i++)
+                    {
+                        maniList.Add(createManipulation(array[i], map));
+                    }
+                    foreach (MapManipulation mani in maniList)
+                    {
+                        if (map.isInMap(mani.position))
+                        {
+                            Logger.Instance.Write("Mapmanipulation is not in mapArea [mapfile: " + filename + "]", 0);
+                        }
+                    }
+                    leverList.Add(new BlueLever(leverPosition, map, maniList));
                 }
             }
             return new LevelutionHandler(leverList);
