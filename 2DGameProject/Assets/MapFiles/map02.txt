@@ -1,11 +1,11 @@
 ﻿7
-13
-wwwwwwwwwwwwww
-wwwwwwwiwwwwww
-wwweewwewwwwww
-wwemeeeewwwwww
-wwweewwewwwwww
-wwwwwwwgwwwwww
-wwwwwwwwwwwwww
+10
+wwwwwwwwww
+wwwwwwwiww
+wwweewweww
+wwemeeeeww
+wwweewweww
+wwwwwwwgww
+wwwwwwwwww
 
 //pos 2,4

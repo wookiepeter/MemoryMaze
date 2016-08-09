@@ -73,6 +73,8 @@ namespace MemoryMaze
             trapHandler.Update(map, player, deltaTime);
             levelution.Update(player, map, deltaTime);
             transporterHandler.Update(player, deltaTime);
+            if (KeyboardInputManager.Upward(Keyboard.Key.Y))
+                mapStatus = 1;
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
