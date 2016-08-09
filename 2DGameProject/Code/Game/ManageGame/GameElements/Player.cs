@@ -17,7 +17,7 @@ namespace MemoryMaze
         public List<Bot> botList;                                               //aktuelle BotListe
         public int redItemCounter, blueItemCounter, greenItemCounter = 0;       //
         public int keyCounter { get; private set; } = 0;                        //
-        public Vector2i mapPosition { get; private set; }                       //
+        public Vector2i mapPosition { get; set; }                       //
         public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
 
         Text playerdetected;
@@ -448,6 +448,19 @@ namespace MemoryMaze
                     result.Add(mapPosition);
             }
             return result;
+        }
+
+        public void setBlueBotPosition(Vector2i newPosition)
+        {
+            if(bluebot)
+            {
+                botList.Find(b => b.id == 4).mapPosition = newPosition;
+            }
+            else
+            {
+                Logger.Instance.Write("Bluebot does not exist at the moment", Logger.level.Error);
+            }
+
         }
     }
 }

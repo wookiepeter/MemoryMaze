@@ -117,6 +117,69 @@ namespace MemoryMaze
             return new LevelutionHandler(leverList);
         } 
 
+        public TransportHandler getTransFromMap(String filename, Map map)
+        {
+            List<Transporter> transPorterList = new List<Transporter>();
+            file = new System.IO.StreamReader(@filename);
+
+            String buffer;
+
+            while (!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                if (buffer.Contains("_map:"))
+                    break;
+            }
+
+            String[] array;
+            Vector2i entrance;
+            Vector2i exit;
+
+
+            while (!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                array = buffer.Split(';');
+
+                int size = array.Length;
+
+                if (size < 1)
+                {
+                    break;
+                }
+                
+                if(size > 2)
+                {
+                    Logger.Instance.Write("Invalid Transporter in file[" + filename + "]", Logger.level.Error);
+                }
+
+                if (array[0].Contains("transport"))
+                {
+                    entrance = creatVector2i(array[0].Replace("transport", ""));
+                    if (!map.isInMap(entrance))
+                        Logger.Instance.Write("Lever is not in mapArea [mapfile: " + filename + "]", 0);
+                    
+                    if(array[1].Contains("portal"))
+                    {
+                        exit = creatVector2i(array[1].Replace("portal", ""));
+                        transPorterList.Add(new Portal(entrance, exit, map));
+                    }
+                    else if(array[1].Contains("teleport"))
+                    {
+                        exit = creatVector2i(array[1].Replace("teleport", ""));
+                        transPorterList.Add(new Teleporter(entrance, exit, map));
+                    }
+                    else
+                    {
+                        Logger.Instance.Write("Invalid Transporter in file[" + filename + "]", Logger.level.Error);
+                    }
+                }
+            }
+
+
+            return new TransportHandler(transPorterList);
+        }
+
         // str 
         private MapManipulation createManipulation(String str, Map map)
         {
