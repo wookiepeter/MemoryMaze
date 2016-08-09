@@ -23,7 +23,7 @@ ToDo: Benny 3 Euro geben!
 -- #8) LevelLimitEinführen
 		--> Jeder Schritt -1, ScoreItem +X, BotLöschen +count
 		--> Gold,Silver,Bronze System einführen
--- #9) BlueLever(WICHTIG!)																					(BEARBEITEN!)
+-- #9) BlueLever(WICHTIG!)																					(DONE?)
 -- #10) GUI Interface Bots (Anzahl(**__) und Schritte)
 -- #11) Wenn man den Hebel aktiviert --> Die Platte die sich öffnet oder schließt kurz grafisch anzeigen
 -- #12) BUG!: Bots werden nicht gezeichnet, wenn man die controllid von dem bot ändert(loseControll)		(DONE!)
