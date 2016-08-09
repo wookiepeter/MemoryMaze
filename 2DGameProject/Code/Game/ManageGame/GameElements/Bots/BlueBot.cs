@@ -22,9 +22,8 @@ namespace MemoryMaze
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BlueBot);
             this.mapPosition = position;
             UpdateSpritePosition(map);
-            
-
         }
+
         public override void Update(float deltaTime, Map map, int controllid, List<Vector2i> botPosList)
         {
             Vector2i move = GetMove();

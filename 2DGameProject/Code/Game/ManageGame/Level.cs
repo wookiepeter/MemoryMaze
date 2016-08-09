@@ -18,6 +18,7 @@ namespace MemoryMaze
         ItemList itemList;
         TrapHandler trapHandler;
         LevelutionHandler levelution;
+        TransportHandler transporterHandler;
         MapFromTxt mapFromText = new MapFromTxt();
 
         int mapStatus = 0;
@@ -40,11 +41,12 @@ namespace MemoryMaze
             map.RemoveAllItems();
             map.RemoveAllTraps();
             levelution = mapFromText.getLevelutionHandler(mapfile, map);
+            transporterHandler = mapFromText.getTransFromMap(mapfile, map);
         }
 
         // Constructor for the Copy function
         public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, 
-            LevelutionHandler _levelution, int _playerScore, int _keysToUnlock)
+            LevelutionHandler _levelution, TransportHandler _transporter, int _playerScore, int _keysToUnlock)
         {
             map = _map;
             player = _player;
@@ -52,13 +54,13 @@ namespace MemoryMaze
             trapHandler = _trapHandler;
             keysToUnlock = _keysToUnlock;
             levelution = _levelution;
+            transporterHandler = _transporter;
             this.setScoreCounter(_playerScore);
-
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), playerScore, keysToUnlock);
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), transporterHandler.Copy(), playerScore, keysToUnlock);
         }
 
         public int update(float deltaTime)
@@ -70,6 +72,7 @@ namespace MemoryMaze
             itemList.Update(map, player, deltaTime);
             trapHandler.Update(map, player, deltaTime);
             levelution.Update(player, map, deltaTime);
+            transporterHandler.Update(player, deltaTime);
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 mapStatus = 1;
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
@@ -89,6 +92,7 @@ namespace MemoryMaze
             trapHandler.Draw(win, view, relViewDif);
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
             levelution.Draw(win, view, relViewDif);
+            transporterHandler.Draw(win, view, relViewDif);
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
 
