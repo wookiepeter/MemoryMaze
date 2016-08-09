@@ -62,11 +62,12 @@ namespace MemoryMaze
                     mapPosition = mapPosition + move;
                     counter -= 1;
                 }
-                UpdateSpritePosition(map);
+                
             }
 
             if (counter == 0)
                 isAlive = false;
+            UpdateSpritePosition(map);
         }
 
         public override void DrawGUI(GUI gui, float deltaTime)
@@ -83,6 +84,7 @@ namespace MemoryMaze
         {
             sprite.FillColor =  new Color(255, 255, 255, (byte)(127.0 + ((128.0 / 10.0) * (Double)counter)));
             sprite.Position = sprite.Position + relViewDis;
+            Console.WriteLine(sprite.Position);
             window.Draw(sprite);
         }
 
@@ -122,7 +124,7 @@ namespace MemoryMaze
 
         void UpdateSpritePosition(Map map)
         {
-            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
+            sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.1F);
         }
 
         Vector2f GetSpritePosition(Map map)

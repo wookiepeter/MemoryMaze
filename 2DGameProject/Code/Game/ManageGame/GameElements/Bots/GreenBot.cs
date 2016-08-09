@@ -48,8 +48,8 @@ namespace MemoryMaze
                 //}
                 if (counter == 0)
                     isAlive = false;
-                UpdateSpritePosition(map);
             }
+            UpdateSpritePosition(map);
         }
 
         public override void DrawGUI(GUI gui, float deltaTime)
