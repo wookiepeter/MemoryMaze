@@ -44,7 +44,8 @@ namespace MemoryMaze
 
         override public void Update(Player player, Map map, float deltaTime)
         {
-            if (player.getListWithPlayerAndBlueBot().Contains(position))
+            Console.WriteLine(player.getListOfBotPositions().Count);
+            if (VirusOnLever(player.getListOfBotPositions(), map))
             {
                 if(!active)
                 {
