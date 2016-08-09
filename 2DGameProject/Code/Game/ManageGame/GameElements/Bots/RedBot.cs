@@ -60,7 +60,7 @@ namespace MemoryMaze
                     map.MoveBlock(mapPosition + move, move);    // moves first Block
                     map.MoveBlock(mapPosition, move);           // moves second Block
                     mapPosition = mapPosition + move;
-                    counter--;
+                    counter -= 2;
                 }
                 
             }

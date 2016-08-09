@@ -19,3 +19,4 @@ lever(11,3);wall(7,2);empty(7,3);wall(7,4)
 lever(4,5);empty(7,2);wall(7,4)
 lever(10,5);empty(7,4)
 
+
