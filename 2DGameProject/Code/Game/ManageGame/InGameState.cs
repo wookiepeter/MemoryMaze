@@ -34,6 +34,7 @@ namespace MemoryMaze
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
+                game.SaveGame();
                 return GameState.MainMenu;
             }
             return nextGameState;

@@ -10,7 +10,7 @@ using System.IO;
 
 namespace MemoryMaze
 {
-    class ManageStars
+    public class ManageStars
     {
         // TODO check validity of ManageStars?!
         public String PlayerName;
@@ -25,10 +25,12 @@ namespace MemoryMaze
             Gold = 3,
         }
 
-        public ManageStars(String _playerName, List<Level> _levelList)
+        public ManageStars() { }
+
+        public ManageStars(String _playerName, int levelCount)
         {
             PlayerName = _playerName;
-            levelRating = new Rating[_levelList.Count];
+            levelRating = new Rating[levelCount];
             for(int i = 0; i < levelRating.Length; i++)
             {
                 levelRating[i] = Rating.Fail;
@@ -53,25 +55,30 @@ namespace MemoryMaze
             return levelRating[index];
         }
 
+
+        
         /// <summary>
         /// Save ManageStars object with XmlSerializer
         /// </summary>
         /// <param name="player_">player object</param>
-        private void savePlayerData(ManageStars manageStars, String fileName)
+        private void saveRatings(ManageStars manageStars, String fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(ManageStars));
             FileStream stream = new FileStream(fileName, FileMode.Create);
 
             ser.Serialize(stream, manageStars);
             stream.Close();
+        }
 
-
+        public void saveManageStars()
+        {
+            saveRatings(this, "Assets/" + PlayerName);
         }
         /// <summary>
         /// Load ManageStars class
         /// </summary>
         /// <returns>loaded player</returns>
-        private ManageStars loadPlayerData(String fileName)
+        private ManageStars loadRatings(String fileName)
         {
             XmlSerializer ser = new XmlSerializer(typeof(ManageStars));
             StreamReader reader = new StreamReader(fileName);
@@ -81,6 +88,11 @@ namespace MemoryMaze
             reader.Close();
 
             return manageStars;
+        }
+
+        public ManageStars loadManageStars()
+        {
+            return loadRatings("Assets/" + PlayerName);
         }
     }
 }

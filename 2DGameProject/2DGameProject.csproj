@@ -415,6 +415,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\SaveGames\" />
     <Folder Include="Code\Game\InGame\" />
   </ItemGroup>
   <ItemGroup>

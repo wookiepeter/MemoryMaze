@@ -22,6 +22,8 @@ namespace MemoryMaze
 
         Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
 
+        ManageStars manageStars;
+
         public Game(int id)
         {
             Console.WriteLine("Sind in der GameFunktion mit der: " +id);
@@ -72,6 +74,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/Chris04.txt", 64, new Vector2i(10,3), 1));
             levelList.Add(new Level("Assets/MapFiles/Chris05.txt", 64, new Vector2i(10,12), 1));
             nextGameState = GameState.InGame;
+            manageStars = new ManageStars("Penis", levelList.Count);
         }
 
         public GameState Update(float deltaTime)
@@ -81,9 +84,14 @@ namespace MemoryMaze
             if (levelStatus == 1)
             {
                 int curScore = level.getScoreCounter();
+                if (nextGameState == GameState.InGame)
+                {
+                    manageStars.UpdateScoreOfLevel(curIndex, levelList[curIndex].getRating());
+                }
                 curIndex++;
                 if (curIndex >= levelList.Count)
                 {
+                    SaveGame();
                     nextGameState = GameState.MainMenu;
                 }
                 else
@@ -114,6 +122,14 @@ namespace MemoryMaze
             levelNumber.Position = new Vector2f(gui.view.Size.X-100, gui.view.Size.Y-50);
             gui.Draw(levelNumber);
             level.DrawGUI(gui, deltaTime);
+        }
+
+        public void SaveGame()
+        {
+            if(nextGameState == GameState.InGame)
+            {
+                manageStars.saveManageStars();
+            }
         }
     }
 }

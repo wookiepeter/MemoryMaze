@@ -123,5 +123,10 @@ namespace MemoryMaze
         {
             return playerScore;
         }
+
+        public ManageStars.Rating getRating()
+        {
+            return ManageStars.Rating.Silver;
+        }
     }
 }
