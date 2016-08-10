@@ -1,27 +1,21 @@
-﻿15
-21
-wwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwewwwwwwwwww
-wwwSwmmmmwgwmmmmwSwww
-wwwwwwwwmwewmwwwwwwww
-wwwwwwemmeeemmewwwwww
-wwwwwwwmmBeBmmwwwwwww
-weewwwwmmmemmmwwwweiw
-wwwewwwmmmemmmwwwewww
-wwwewewwwwmwwwwewewww
-wwwRwwwwmmmmmwwwwRwww
-wwwBemmmwmemwmmmeBwww
-wwwwwwwwwwewwwwwwwwww
-wwwwwwweeeemeewwwwwww
-wwwwwwweeeeBeewwwwwww
-wwwwwwwwwwwwwwwwwwwww
-//Start:10 ,12
-//BLUELEVEL noch einführen hier!
+﻿11
+17
+wwwwwwwwwwwwwwwww
+wgeewwwwwwweeReew
+wwwwwwwwwwwwwwwww
+wwwwwwwewwwwwwwww
+wwwwweeeeewwwwwww
+wewwwwwewwweeewww
+wewwwwwwwwweeewww
+wemmeewwwwweeewww
+wweiwwwwwwwwwwwww
+wwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwww
+//player 7,4
 _map:
-lever(8,12);empty(7,9)
-lever(12,12);empty(13,9)
-lever(14,4);empty(3,6);empty(4,2);empty(6,8);empty(7,8);empty(8,8);empty(9,8);wall(13,9);wall(10,9);wall(7,9)
-lever(6,4);empty(17,6);empty(16,2);empty(11,8);empty(12,8);empty(13,8);empty(14,8);wall(7,9);wall(13,9)
-transport(15,8);teleport(3,8)
-transport(5,8);teleport(17,8)
-transport(1,6);portal(10,1)
+transport(9,4);teleport(1,5)
+transport(5,4);portal(3,1)
+transport(2,8);portal(7,3)
+transport(7,5);teleport(11,1)
+transport(15,1);portal(12,6)
+

@@ -1,0 +1,27 @@
+﻿17
+23
+wwwwwwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwtttww
+wwwwwwwwwwewewwwwwwtBtww
+wwwwwwwwwwewwwwwtttteRtw
+wwwwwwwwweeewwwwttmmettw
+wwwwwwwweeteewewtmmtttww
+wwSwwwweetttemewtmttwwww
+wwwewweettttteewwwwwwwww
+wemmeeettttttteewBwwwwww
+wemmeettttgtttteweRweeww
+wemmewettttttteewSwwweww
+wwewwweetttttewwweemmeww
+wwewwwweettteewewmmmmwww
+wwwwwwwweeteewwwwiwwwwww
+wwwwwwwwweeewwwwwwwwwwww
+wwwwwwwwwwGwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwwwwwww
+//Start: 10,3
+_map:
+lever(14,6);empty(13,7)
+lever(14,5);empty(16,9);empty(11,2);wall(13,6)
+lever(4,10);empty(2,7);empty(17,7);empty(19,9);empty(15,11)
+lever(17,11);empty(14,11);empty(5,10)
+transport(17,10);portal(12,2)
+transport(2,6);portal(15,12)

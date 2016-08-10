@@ -39,7 +39,7 @@ namespace MemoryMaze
         }
         void Tutorial()
         {
-            levelList.Add(new Level("Assets/MapFiles/map00.txt", 64, new Vector2i(4,5), 1));
+            levelList.Add(new Level("Assets/MapFiles/map00.txt", 64, new Vector2i(8,1), 1));
             nextGameState = GameState.Intro;
         }
         void MainCampaign()
@@ -58,14 +58,19 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/map12.txt", 64, new Vector2i(1, 4), 1));
             levelList.Add(new Level("Assets/MapFiles/map13.txt", 64, new Vector2i(7, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/map14.txt", 64, new Vector2i(5, 7), 1));
-            levelList.Add(new Level("Assets/MapFiles/map15.txt", 64, new Vector2i(8, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/map16.txt", 64, new Vector2i(4, 11), 1));
-            levelList.Add(new Level("Assets/MapFiles/map17.txt", 64, new Vector2i(6,  4), 1));
-            levelList.Add(new Level("Assets/MapFiles/map18.txt", 64, new Vector2i(10, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/map19.txt", 64, new Vector2i(10, 12), 1));
-            levelList.Add(new Level("Assets/MapFiles/map20.txt", 64, new Vector2i(7,7), 1));
-            levelList.Add(new Level("Assets/MapFiles/map21.txt", 64, new Vector2i(5,5), 1));
-            levelList.Add(new Level("Assets/MapFiles/map22.txt", 64, new Vector2i(4,3), 1));
+            levelList.Add(new Level("Assets/MapFiles/map15.txt", 64, new Vector2i(4,3), 1));
+            levelList.Add(new Level("Assets/MapFiles/map16.txt", 64, new Vector2i(6,2), 1));
+            levelList.Add(new Level("Assets/MapFiles/map17.txt", 64, new Vector2i(1,6), 1));
+            levelList.Add(new Level("Assets/MapFiles/map18.txt", 64, new Vector2i(4,5), 1));
+            levelList.Add(new Level("Assets/MapFiles/map19.txt", 64, new Vector2i(7,4), 1));
+            levelList.Add(new Level("Assets/MapFiles/map20.txt", 64, new Vector2i(8,1), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris06.txt", 64, new Vector2i(7,7), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris01.txt", 64, new Vector2i(8,6), 1));
+            levelList.Add(new Level("Assets/MapFiles/chris02.txt", 64, new Vector2i(4,10), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris03.txt", 64, new Vector2i(6,4), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chis07.txt", 64, new Vector2i(5,5), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris04.txt", 64, new Vector2i(10,3), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris05.txt", 64, new Vector2i(10,12), 1));
             nextGameState = GameState.InGame;
         }
 
