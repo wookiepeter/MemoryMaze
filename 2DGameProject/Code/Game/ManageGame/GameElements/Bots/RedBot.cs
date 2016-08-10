@@ -49,23 +49,33 @@ namespace MemoryMaze
                 //Bewegt 1 Block weiter!
                 else if (map.MoveIsPossible(mapPosition, move, botPosList))
                 {
-                    //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
-                    map.MoveBlock(mapPosition, move);
-                    mapPosition = mapPosition + move;
-                    counter--;
+                    if (counter != 0)
+                    {
+                        //Logger.Instance.Write("moves Block from " + (mapPosition + move).ToString() + " to " + (mapPosition + move + move).ToString(), Logger.level.Info);
+                        map.MoveBlock(mapPosition, move);
+                        mapPosition = mapPosition + move;
+                        counter--;
+                    }
+                    else
+                        counter--;
+
                 }   
                 //Bewegt 2 M aufeinmal
-                else if (map.StrongMoveIsPossible(mapPosition, move, botPosList))
+                else if (map.StrongMoveIsPossible(mapPosition, move, botPosList) && counter != 0)
                 {
-                    map.MoveBlock(mapPosition + move, move);    // moves first Block
-                    map.MoveBlock(mapPosition, move);           // moves second Block
-                    mapPosition = mapPosition + move;
-                    counter -= 1;
+                    if (counter != 0)
+                    {
+                        map.MoveBlock(mapPosition + move, move);    // moves first Block
+                        map.MoveBlock(mapPosition, move);           // moves second Block
+                        mapPosition = mapPosition + move;
+                        counter -= 1;
+                    }
+                    else
+                        counter--;
                 }
                 
             }
-
-            if (counter == 0)
+            if (counter == -1)
                 isAlive = false;
             UpdateSpritePosition(map);
         }
@@ -84,7 +94,6 @@ namespace MemoryMaze
         {
             sprite.FillColor =  new Color(255, 255, 255, (byte)(127.0 + ((128.0 / 10.0) * (Double)counter)));
             sprite.Position = sprite.Position + relViewDis;
-            Console.WriteLine(sprite.Position);
             window.Draw(sprite);
         }
 

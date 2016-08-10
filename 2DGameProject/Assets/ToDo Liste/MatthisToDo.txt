@@ -16,11 +16,13 @@ ToDo: Benny 3 Euro geben!
 -- #5) Traps sind nicht walkebale für Ghostplayer und für Ordner!
 -- #6) CurrentFocus im Player nochmal genau berechnen!(SCALE!)
 -- #8) ScoreBerechner
-		--> Jeder Schritt -1, ScoreItem +X, BotLöschen +count
-		--> Gold,Silver,Bronze System einführen
+		--> Jeder Schritt +1, ScoreItem -X, BotLöschen +count*(-1)											(DONE!)
+		--> Gold,Silver,Bronze System einführen																(DONE!)
+		--> Noch für jedes lvl einzeln berechnen!
+
 -- #10) GUI Interface Bots (Anzahl(**__) und Schritte)														(CORD!)
 -- #11) Wenn man den Hebel aktiviert --> Die Platte die sich öffnet oder schließt kurz grafisch anzeigen	(CORD!)
--- #13) Nur BlueBot und Player koennen Items einsammeln!													(MATTHIS!)
+-- #14) ScorePunkte nach dem Level auf 0 setzen
 
 													!DONE!
 
@@ -31,4 +33,5 @@ ToDo: Benny 3 Euro geben!
 -- #12) BUG!: Bots werden nicht gezeichnet, wenn man die controllid von dem bot ändert(loseControll)		(DONE!)
 -- #9) BlueLever(WICHTIG!)																					(DONE!)
 -- #7) Detected Modus (Spieler hat verloren) z.B  trap														(DONE!)
+-- #13) Nur BlueBot und Player koennen Items einsammeln!													(DONE!)
 */

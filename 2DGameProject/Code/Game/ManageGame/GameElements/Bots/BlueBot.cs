@@ -15,7 +15,7 @@ namespace MemoryMaze
         public BlueBot(Vector2i position, Map map)
         {
             id = 2;
-            this.counter = 11;
+            this.counter = 10;
             this.isAlive = true;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
             this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
@@ -29,13 +29,20 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if (controllid == id)
             {
-                if (map.CellIsWalkable(mapPosition + move) || map.CellIsMovable(mapPosition + move))
+                if (counter != 0)
                 {
-                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
-                        counter--;
-                    mapPosition = mapPosition + move;
-                    //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
-               }
+                    if (map.CellIsWalkable(mapPosition + move) || map.CellIsMovable(mapPosition + move))
+                    {
+                        if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
+                            counter--;
+                        mapPosition = mapPosition + move;
+                        //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                    }
+                }
+                else
+                    counter--;
+
+            
                //Kann nicht Blöcke verschieben! (BADSMILIE)
                //else if (map.MoveIsPossible(mapPosition, move))
                //{
@@ -44,7 +51,7 @@ namespace MemoryMaze
                //    mapPosition = mapPosition + move;
                //    
                //}
-                if (counter == 0)
+                if (counter == -1)
                     isAlive = false;
             }
             UpdateSpritePosition(map);

@@ -17,7 +17,7 @@ namespace MemoryMaze
         public List<Bot> botList;                                               //aktuelle BotListe
         public int redItemCounter, blueItemCounter, greenItemCounter = 0;       //
         public int keyCounter { get; private set; } = 0;                        //
-        public Vector2i mapPosition { get; set; }                       //
+        public Vector2i mapPosition { get; set; }                       
         public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
 
         Text playerdetected;
@@ -152,6 +152,8 @@ namespace MemoryMaze
                         if (map.CellIsWalkable(mapPosition + move))
                         {
                             mapPosition = mapPosition + move;
+                            if(move.X != 0 || move.Y != 0) //ProSchritt wird der Counter um 1 erhöht
+                                scoreCounter++;
                         }
                         else if (map.MoveIsPossible(mapPosition, move, this.getListOfBotPositions()))
                         {
@@ -314,6 +316,7 @@ namespace MemoryMaze
             if (KeyboardInputManager.Downward(Keyboard.Key.W) || KeyboardInputManager.Downward(Keyboard.Key.Up))
                 move.Y = -1;
 
+
             else if (KeyboardInputManager.Downward(Keyboard.Key.S) || KeyboardInputManager.Downward(Keyboard.Key.Down))
                 move.Y = 1;
 
@@ -353,7 +356,7 @@ namespace MemoryMaze
                 it.Update(deltaTime, map, controllid, botPosList);
                 if (!it.isAlive)
                 {
-                    deleteList.Add(it); //´zerstoere Player
+                    deleteList.Add(it); //zerstoere Bot
                     if (it.id == controllid)
                         controllid = 0;
                 }
@@ -373,18 +376,18 @@ namespace MemoryMaze
         {
             if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 1) && it == botList.Find(b => b.id == 1))
             {
-                scoreCounter += it.counter * 10;
-                it.counter = 0;
+                scoreCounter += it.counter * (-1);
+                it.isAlive = false;
             }
             if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 2) && it == botList.Find(b => b.id == 2))
             {
-                scoreCounter += it.counter * 10;
-                it.counter = 0;
+                scoreCounter += it.counter * (-1);
+                it.isAlive = false;
             }
             if (KeyboardInputManager.IsPressed(Keyboard.Key.R) && (controllid == 3) && it == botList.Find(b => b.id == 3))
             {
-                scoreCounter += it.counter * 10;
-                it.counter = 0;
+                scoreCounter += it.counter * (-1);
+                it.isAlive = false;
             }
         }
 
@@ -425,7 +428,7 @@ namespace MemoryMaze
             if (item is GreenItem)
                 greenItemCounter++;
             if (item is ScoreItem)
-                scoreCounter= scoreCounter +10;
+                scoreCounter= scoreCounter -5;
                  
         }
 
@@ -445,7 +448,7 @@ namespace MemoryMaze
             foreach(Bot bot in botList)
             {
                 if (bot.id == 2)
-                    result.Add(mapPosition);
+                    result.Add(bot.mapPosition);
             }
             return result;
         }
