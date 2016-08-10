@@ -24,7 +24,7 @@ namespace MemoryMaze
         public GameState Update(RenderWindow win, float deltaTime)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-                return GameState.MainMenu;
+                return GameState.LoadLevelState;
             else
                 return GameState.Steuerung;
         }

@@ -15,6 +15,7 @@ namespace MemoryMaze
         Reset,
         Steuerung,
         Credits,
-        
+        LoadLevelState,
+
     }
 }

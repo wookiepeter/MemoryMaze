@@ -108,6 +108,9 @@ namespace MemoryMaze
                 case GameState.Steuerung:
                     state = new Steuerung();
                     break;
+                case GameState.LoadLevelState:
+                    state = new LoadLevelState();
+                    break;
                 case GameState.Credits:
                     state = new Credits();
                     break;

@@ -23,6 +23,7 @@ namespace MemoryMaze
         List<Text> namel;
         public Credits()
         {
+            Console.WriteLine("CREDITS");
             Initialize();
         }
         public void Initialize()
@@ -74,7 +75,6 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-
 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                 return GameState.MainMenu;

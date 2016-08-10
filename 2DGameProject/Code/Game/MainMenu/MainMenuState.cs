@@ -14,7 +14,8 @@ namespace MemoryMaze
     {
         Font font;
         Stopwatch stopwatch;
-        Text gamename, exit, start, credits, steuerung, mainmenu, tutorial;
+        Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
+        Text gamename, exit, start, credits, loadGame, mainmenu, tutorial;
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
@@ -25,6 +26,7 @@ namespace MemoryMaze
 
         public MainMenuState()
         {
+            Console.WriteLine("MAINMENUSTATE");
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
 
@@ -33,6 +35,8 @@ namespace MemoryMaze
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
+            stopwatch1 = new Stopwatch();
+            stopwatch1.Start();
             funactivJoh = false;
             funacitvBenni = false;
             font = new Font("Assets/Fonts/calibri.ttf");
@@ -86,13 +90,13 @@ namespace MemoryMaze
             exit.Position = new Vector2f(250, 550);
             exit.CharacterSize = 40;
 
-            steuerung = new Text("Steuerung", font);
-            steuerung.Position = new Vector2f(250, 450);
-            steuerung.CharacterSize = 40;
+            loadGame = new Text("Spiel laden", font);
+            loadGame.Position = new Vector2f(250, 450);
+            loadGame.CharacterSize = 40;
 
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
-            Text[] array = { mainmenu, start,tutorial,  steuerung, credits, exit, gamename };
+            Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit, gamename };
             textlist = array.ToList();
 
         }
@@ -105,50 +109,51 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-
-            int index = -1;
-
-            for (int e = 0; e < 7; e++)
+            if (stopwatch1.ElapsedMilliseconds > 500)
             {
-                if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
+                int index = -1;
+
+                for (int e = 0; e < 7; e++)
                 {
-                    index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
-                    break;
-                }
-            }
-            if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
-            {
-                Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
-                switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
-                {                                                               //bearbeitet das aktuelle TextFeld
-                    //start
-                    case 0: funacitvBenni = true; stopwatch.Restart();
+                    if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
+                    {
+                        index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
-                    case 1: return GameState.InGame;
-                    //end
-                    case 2: return GameState.Intro;
-                    //credits
-                    case 3: return GameState.Steuerung;
-                    case 4: return GameState.Credits;
-                    case 5: return GameState.None;
-                    case 6: funactivJoh = true; stopwatch.Restart();
-                        break;
-                        //    case 5: break;
-                        //    case 6: break;
-                        //    case 7: break;
-                        //    default: break;
+                    }
                 }
-            }
-            else
-            {
-                if (index != -1 && index != 0 && index != 6)
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                 {
-                    textlist[index].Color = Color.Blue;
+                    //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
+                    switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
+                    {                                                               //bearbeitet das aktuelle TextFeld
+                                                                                    //start
+                        case 0:
+                            funacitvBenni = true; stopwatch.Restart();
+                            break;
+                        case 1: return GameState.InGame;
+                        //end
+                        case 2: return GameState.Intro;
+                        //LoadLevel
+                        case 3: return GameState.LoadLevelState;
+                        case 4: return GameState.Credits;
+                        case 5: return GameState.None;
+                        case 6:
+                            funactivJoh = true; stopwatch.Restart();
+                            break;
+                            //    case 5: break;
+                            //    case 6: break;
+                            //    case 7: break;
+                            //    default: break;
+                    }
+                }
+                else
+                {
+                    if (index != -1 && index != 0 && index != 6)
+                    {
+                        textlist[index].Color = Color.Blue;
+                    }
                 }
             }
-
-
-
             return GameState.MainMenu;
         }
 
