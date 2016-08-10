@@ -25,6 +25,7 @@ namespace MemoryMaze
 
         public MainMenuState()
         {
+            Console.WriteLine("MAINMENUSTATE");
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
 
@@ -105,50 +106,51 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-
-            int index = -1;
-
-            for (int e = 0; e < 7; e++)
+            if (stopwatch.Elapsed.Milliseconds > 500)
             {
-                if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
+                int index = -1;
+
+                for (int e = 0; e < 7; e++)
                 {
-                    index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
-                    break;
-                }
-            }
-            if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
-            {
-                Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
-                switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
-                {                                                               //bearbeitet das aktuelle TextFeld
-                    //start
-                    case 0: funacitvBenni = true; stopwatch.Restart();
+                    if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
+                    {
+                        index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
-                    case 1: return GameState.InGame;
-                    //end
-                    case 2: return GameState.Intro;
-                    //credits
-                    case 3: return GameState.Steuerung;
-                    case 4: return GameState.Credits;
-                    case 5: return GameState.None;
-                    case 6: funactivJoh = true; stopwatch.Restart();
-                        break;
-                        //    case 5: break;
-                        //    case 6: break;
-                        //    case 7: break;
-                        //    default: break;
+                    }
                 }
-            }
-            else
-            {
-                if (index != -1 && index != 0 && index != 6)
+                if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                 {
-                    textlist[index].Color = Color.Blue;
+                    //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
+                    switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
+                    {                                                               //bearbeitet das aktuelle TextFeld
+                                                                                    //start
+                        case 0:
+                            funacitvBenni = true; stopwatch.Restart();
+                            break;
+                        case 1: return GameState.InGame;
+                        //end
+                        case 2: return GameState.Intro;
+                        //LoadLevel
+                        case 3: return GameState.LoadLevelState;
+                        case 4: return GameState.Credits;
+                        case 5: return GameState.None;
+                        case 6:
+                            funactivJoh = true; stopwatch.Restart();
+                            break;
+                            //    case 5: break;
+                            //    case 6: break;
+                            //    case 7: break;
+                            //    default: break;
+                    }
+                }
+                else
+                {
+                    if (index != -1 && index != 0 && index != 6)
+                    {
+                        textlist[index].Color = Color.Blue;
+                    }
                 }
             }
-
-
-
             return GameState.MainMenu;
         }
 
