@@ -14,7 +14,8 @@ namespace MemoryMaze
     {
         Font font;
         Stopwatch stopwatch;
-        Text gamename, exit, start, credits, steuerung, mainmenu, tutorial;
+        Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
+        Text gamename, exit, start, credits, loadGame, mainmenu, tutorial;
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
@@ -34,6 +35,8 @@ namespace MemoryMaze
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
+            stopwatch1 = new Stopwatch();
+            stopwatch1.Start();
             funactivJoh = false;
             funacitvBenni = false;
             font = new Font("Assets/Fonts/calibri.ttf");
@@ -87,13 +90,13 @@ namespace MemoryMaze
             exit.Position = new Vector2f(250, 550);
             exit.CharacterSize = 40;
 
-            steuerung = new Text("Steuerung", font);
-            steuerung.Position = new Vector2f(250, 450);
-            steuerung.CharacterSize = 40;
+            loadGame = new Text("Spiel laden", font);
+            loadGame.Position = new Vector2f(250, 450);
+            loadGame.CharacterSize = 40;
 
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
-            Text[] array = { mainmenu, start,tutorial,  steuerung, credits, exit, gamename };
+            Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit, gamename };
             textlist = array.ToList();
 
         }
@@ -106,7 +109,7 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-            if (stopwatch.Elapsed.Milliseconds > 500)
+            if (stopwatch1.ElapsedMilliseconds > 500)
             {
                 int index = -1;
 
