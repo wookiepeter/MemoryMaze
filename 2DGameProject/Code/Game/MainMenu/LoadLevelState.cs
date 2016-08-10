@@ -74,7 +74,7 @@ namespace MemoryMaze
             //if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             //    return GameState.MainMenu;
             int index = -1;
-            if (stopwatch.Elapsed.Milliseconds > 500)
+            if (stopwatch.ElapsedMilliseconds > 500)
             {
 
             
