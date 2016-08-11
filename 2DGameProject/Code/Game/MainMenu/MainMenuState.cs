@@ -130,7 +130,7 @@ namespace MemoryMaze
                         case 0:
                             funacitvBenni = true; stopwatch.Restart();
                             break;
-                        case 1: return GameState.InGame;
+                        case 1: return GameState.ChooseSaveSlotState;
                         //end
                         case 2: return GameState.Intro;
                         //LoadLevel

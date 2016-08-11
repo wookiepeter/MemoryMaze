@@ -22,6 +22,7 @@ namespace MemoryMaze
 
         Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
 
+        ManageProfiles manageProfiles;
         ManageStars manageStars;
 
         public Game(int id)
@@ -74,7 +75,14 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/Chris04.txt", 64, new Vector2i(10,3), 1));
             levelList.Add(new Level("Assets/MapFiles/Chris05.txt", 64, new Vector2i(10,12), 1));
             nextGameState = GameState.InGame;
-            manageStars = new ManageStars("Penis", levelList.Count);
+
+            // manageProfiles has to load all active profiles before it can be accessed
+            manageProfiles = new ManageProfiles();
+            manageProfiles = manageProfiles.loadManageProfiles();
+            manageStars = new ManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
+            manageStars = manageStars.loadManageStars(levelList.Count);
+            curIndex = manageStars.getIndexOfFirstUnsolvedLevel();
+            Console.WriteLine(curIndex);
         }
 
         public GameState Update(float deltaTime)

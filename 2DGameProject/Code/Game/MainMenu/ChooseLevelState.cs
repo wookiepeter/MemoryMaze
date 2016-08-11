@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace MemoryMaze
 {
-    class LoadLevelState : IGameState
+    class ChooseLevelState : IGameState
     {
         Font font;
         Text playOn, levelSelect, control, back;
@@ -19,36 +19,38 @@ namespace MemoryMaze
         List<IntRect> list;
         Stopwatch stopwatch;
 
-        public LoadLevelState()
+        bool selectingLevel = false;
+
+        public ChooseLevelState()
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
-            Console.WriteLine("LOADLEVELSTATE");
-            Initialisation();
+            Console.WriteLine("CHOOSELEVELSTATE");
+            Initialization();
             //background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
         }
 
-        void Initialisation()
+        void Initialization()
         {
             font = new Font("Assets/Fonts/calibri.ttf");
             list = new List<IntRect>();
 
-            list.Add(new IntRect(250, 420, 220, 60));   //ContinueGame   0
-            list.Add(new IntRect(250, 470, 220, 60));   //Levels         1
-            list.Add(new IntRect(250, 520, 220, 60));   //Settings       2   
+            list.Add(new IntRect(250, 420, 220, 60));   //choose a level 0
+            list.Add(new IntRect(250, 470, 220, 60));   //slot2          1
+            list.Add(new IntRect(250, 520, 220, 60));   //slot3          2   
             list.Add(new IntRect(250, 570, 220, 60));   //Back           3   
 
             //Initialisieren von  Text
 
-            playOn = new Text("Continue Game ", font);
+            playOn = new Text("Enter Level", font);
             playOn.Position = new Vector2f(250, 400);
             playOn.CharacterSize = 40;
 
-            levelSelect = new Text("Levels", font);
+            levelSelect = new Text("...", font);
             levelSelect.Position = new Vector2f(250, 450);
             levelSelect.CharacterSize = 40;
 
-            control = new Text("Settings", font);
+            control = new Text("...", font);
             control.Position = new Vector2f(250, 500);
             control.CharacterSize = 40;
 
@@ -56,7 +58,7 @@ namespace MemoryMaze
             back.Position = new Vector2f(250, 550);
             back.CharacterSize = 40;
 
-            Text[] array = { playOn, levelSelect, control, back};
+            Text[] array = { playOn, levelSelect, control, back };
             textlist = array.ToList();
 
         }
@@ -78,39 +80,56 @@ namespace MemoryMaze
             int index = -1;
             if (stopwatch.ElapsedMilliseconds > 500)
             {
+                if(Keyboard.IsKeyPressed(Keyboard.Key.Escape) && selectingLevel)
+                {
+                    stopwatch.Restart();
+                    selectingLevel = false;
+                    return GameState.ChooseLevelState;
+                }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-                    return GameState.MainMenu;
+                    return GameState.ChooseSaveSlotState;
                 for (int e = 0; e < 4; e++)
-                {   
+                {
                     if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
                     {
                         index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
                     }
                 }
-                if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
+                if (selectingLevel)
                 {
-                    //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
-                    switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
-                    {                                                               //bearbeitet das aktuelle TextFeld
-                    //
-                    case 0: return GameState.InGame;
-                    //
-                    case 1: return GameState.ChooseLevelState;
-                    //
-                    case 2: return GameState.Steuerung;
-                    //Choose ur saveslot
-                    case 3: return GameState.ChooseSaveSlotState;
-
-                    }
+                    String input = Console.ReadLine();
+                    int level = int.Parse(input);
+                    
+                    selectingLevel = false;
                 }
                 else
                 {
-                if (index != -1)
-                    textlist[index].Color = Color.Blue;
+                    if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
+                    {
+                        //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
+                        switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
+                        {                                                               //bearbeitet das aktuelle TextFeld
+                            case 0: return GameState.LoadLevelState;
+                            //Levels
+                            case 1:
+                                selectingLevel = true;
+                                return GameState.ChooseLevelState; //LevelsStarten
+                                                                 //Steuerung
+                            case 2: return GameState.LoadLevelState;
+                            //MainMenu
+                            case 3: return GameState.LoadLevelState;
+                        }
+                    }
+                    else
+                    {
+                        if (index != -1)
+                            textlist[index].Color = Color.Blue;
+                    }
                 }
             }
-            return GameState.LoadLevelState;
+
+            return GameState.ChooseLevelState;
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
@@ -126,6 +145,5 @@ namespace MemoryMaze
         {
 
         }
-
     }
 }

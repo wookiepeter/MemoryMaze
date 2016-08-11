@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Game\MainMenu\ChooseLevelState.cs" />
+    <Compile Include="Code\Game\MainMenu\ChooseSaveSlotState.cs" />
     <Compile Include="Code\Game\MainMenu\Credits.cs" />
     <Compile Include="Code\Game\MainMenu\LoadLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Steuerung.cs" />
@@ -79,12 +81,12 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\TransportHandler.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Trap\AntivirTrap.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Trap\TrapHandler.cs" />
+    <Compile Include="Code\Game\ManageGame\ManageProfiles.cs" />
     <Compile Include="Code\Game\ManageGame\ManageStars.cs" />
     <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bot.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\Collision.cs" />
     <Compile Include="Code\Game\ManageGame\GameState.cs" />
     <Compile Include="Code\Game\ManageGame\IGameState.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Cell.cs" />
