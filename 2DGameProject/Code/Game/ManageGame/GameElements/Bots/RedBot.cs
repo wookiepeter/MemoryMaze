@@ -38,14 +38,21 @@ namespace MemoryMaze
             Vector2i move = GetMove();
             if(controllid == id)
             {
+                
                 //Schaut nach ob man gehen kann (Kein Hinderniss)
                 if (map.CellIsWalkable(mapPosition + move))
                 {
-                    if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
+                    if (counter != 0)
+                    {
+                        if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
+                            counter--;
+                        mapPosition = mapPosition + move;
+                        //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
+                    }
+                    else
                         counter--;
-                    mapPosition = mapPosition + move;
-                    //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                 }
+
                 //Bewegt 1 Block weiter!
                 else if (map.MoveIsPossible(mapPosition, move, botPosList))
                 {
@@ -59,7 +66,7 @@ namespace MemoryMaze
                     else
                         counter--;
 
-                }   
+                }
                 //Bewegt 2 M aufeinmal
                 else if (map.StrongMoveIsPossible(mapPosition, move, botPosList) && counter != 0)
                 {
@@ -68,11 +75,13 @@ namespace MemoryMaze
                         map.MoveBlock(mapPosition + move, move);    // moves first Block
                         map.MoveBlock(mapPosition, move);           // moves second Block
                         mapPosition = mapPosition + move;
-                        counter -= 1;
+                        counter--;
                     }
                     else
                         counter--;
                 }
+                else
+                    counter--;
                 
             }
             if (counter == -1)

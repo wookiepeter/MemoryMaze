@@ -48,7 +48,6 @@ namespace MemoryMaze
                 item.Update(map, deltaTime);
                 foreach (Vector2i vec in botPosList)
                 {
-                    Console.WriteLine(vec.X + " " + vec.Y);
                     
                     if (!item.deleted)
                     {

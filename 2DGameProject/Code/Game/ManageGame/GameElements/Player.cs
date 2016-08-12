@@ -17,13 +17,13 @@ namespace MemoryMaze
         public List<Bot> botList;                                               //aktuelle BotListe
         public int redItemCounter, blueItemCounter, greenItemCounter = 0;       //
         public int keyCounter { get; private set; } = 0;                        //
-        public Vector2i mapPosition { get; set; }                       
+        public Vector2i mapPosition { get; set; }
         public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
 
         Text playerdetected;
         int id;
-        bool ghostaktiv, iserstellt;                                            //Ghostaktiv (momentan existiert ein Ghost) |  iserstellt(Ghost wurde erstellt)
-        GhostPlayer ghostPlayer;
+        public bool ghostaktiv, iserstellt;                                  //Ghostaktiv (momentan existiert ein Ghost) |  iserstellt(Ghost wurde erstellt)
+        public GhostPlayer ghostPlayer;
         RectangleShape sprite;
         List<Bot> deleteList;
         Vector2f currentFocus;
@@ -72,7 +72,7 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite)
         {
-            playerdetected = new Text("Virus entdeckt!", calibri);
+            playerdetected = new Text("Virus detected!", calibri);
             id = 0;
             controllid = 0;
             deleteList = new List<Bot>();
@@ -170,13 +170,19 @@ namespace MemoryMaze
                     ghostPlayer = new GhostPlayer(mapPosition, map);
                     iserstellt = true;
                 }
+                if (!ghostaktiv)
+                {
+                    ghostPlayer = null;
+                    iserstellt = false;
+                }
                 //Destroy GhostPlayer
-                if (KeyboardInputManager.Upward(Keyboard.Key.Space) || iserstellt && ghostPlayer.GetCount() == 0)
+                else if (KeyboardInputManager.Upward(Keyboard.Key.Space) || iserstellt && ghostPlayer.GetCount() == 0)
                 {
                     ghostPlayer = null;
                     ghostaktiv = false;
                     iserstellt = false;
                 }
+
                 
                 //Target controll manager
                 SwitchTarget();
@@ -457,7 +463,7 @@ namespace MemoryMaze
         {
             if(bluebot)
             {
-                botList.Find(b => b.id == 4).mapPosition = newPosition;
+                botList.Find(b => b.id == 3).mapPosition = newPosition;
             }
             else
             {

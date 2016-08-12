@@ -9,9 +9,9 @@ ToDo: Benny 3 Euro geben!
 
 -- #1) Speicherplätze anlegen! (Prioriät ##2##) -> Beim ersten Start kann man den Virus einen Namen geben (So heißt das SaveGame dann) (MATHIS!)
 -- #2) (Baut auf 1 auf) --> Jedes lvl was geschafft wurde, kann man übér das MainMenu nochmal spielen!
-		--> "evtl" MainMenu: NeuesSpiel, Spielladen, SpielBeenden
+		--> "evtl" MainMenu: NeuesSpiel, Spielladen, Credits, SpielBeenden
 		--> NeueSpiel  - Name: VIRUSNAME ->go!
-		--> Spielladen - SpeicherplätzeAnzeigen -> MainMenuState2: SpielFortsetzen, Level(Freigeschaltete lvl), Spielbeenden
+		--> Spielladen - SpeicherplätzeAnzeigen -> MainMenuState2: SpielFortsetzen, Level(Freigeschaltete lvl),Steuerung, Spielbeenden
 		--> LvL-Liste erstellen
 -- #5) Traps sind nicht walkebale für Ghostplayer und für Ordner!
 -- #6) CurrentFocus im Player nochmal genau berechnen!(SCALE!)
@@ -23,6 +23,10 @@ ToDo: Benny 3 Euro geben!
 -- #10) GUI Interface Bots (Anzahl(**__) und Schritte)														(CORD!)
 -- #11) Wenn man den Hebel aktiviert --> Die Platte die sich öffnet oder schließt kurz grafisch anzeigen	(CORD!)
 -- #14) ScorePunkte nach dem Level auf 0 setzen
+-- #14) Level zu ende editieren																				(CHRIS!)
+-- #15) Score für jedes Lvl fessetzen																		(CHRIS!)
+-- #16) RankingSystem einführen																				(MATTHIS!)
+
 
 													!DONE!
 
