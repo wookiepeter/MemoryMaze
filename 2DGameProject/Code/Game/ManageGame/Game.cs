@@ -34,6 +34,13 @@ namespace MemoryMaze
             if (id == 1)
                 MainCampaign();
 
+            // this does require the set level(levelToPlay) to be valid(both an existing level and an already unlocked one)
+            if (id == 2)
+            {
+                MainCampaign();
+                curIndex = ProfileConstants.levelToPlay;
+            }
+
 
             level = levelList[curIndex].Copy();
 
@@ -79,8 +86,9 @@ namespace MemoryMaze
             // manageProfiles has to load all active profiles before it can be accessed
             manageProfiles = new ManageProfiles();
             manageProfiles = manageProfiles.loadManageProfiles();
-            manageStars = new ManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
-            manageStars = manageStars.loadManageStars(levelList.Count);
+            manageStars = new ManageStars();
+            Console.WriteLine("playerName: " + manageProfiles.getActiveProfileName());
+            manageStars = manageStars.loadManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
             curIndex = manageStars.getIndexOfFirstUnsolvedLevel();
             Console.WriteLine(curIndex);
         }
@@ -136,7 +144,7 @@ namespace MemoryMaze
         {
             if(nextGameState == GameState.InGame)
             {
-                manageStars.saveManageStars();
+                manageStars.saveManageStars(manageProfiles.getActiveProfileName());
             }
         }
     }

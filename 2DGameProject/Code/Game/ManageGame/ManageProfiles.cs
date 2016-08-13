@@ -17,6 +17,8 @@ namespace MemoryMaze
     public static class ProfileConstants
     {
         public static profiles activeProfile;
+        // TODO: move this somewhere else or find a better workaround
+        public static int levelToPlay;
     }
 
     public class ManageProfiles

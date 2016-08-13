@@ -18,5 +18,6 @@ namespace MemoryMaze
         LoadLevelState,
         ChooseSaveSlotState,
         ChooseLevelState,
+        StartGameAtLevel,
     }
 }

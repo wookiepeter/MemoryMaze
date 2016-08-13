@@ -100,7 +100,25 @@ namespace MemoryMaze
                 {
                     String input = Console.ReadLine();
                     int level = int.Parse(input);
-                    
+
+                    ManageProfiles manageProfiles = new ManageProfiles();
+                    manageProfiles = manageProfiles.loadManageProfiles();
+
+                    ManageStars manageStars = new ManageStars();
+                    // TODO: find a freakin better way to do this... fucking hax :(
+                    manageStars = manageStars.unsafelyLoadManageStars(manageProfiles.getActiveProfileName());
+
+                    if(manageStars.levelIsUnlocked(level))
+                    {
+                        Console.WriteLine("Level " + level + " is starting...");
+                        ProfileConstants.levelToPlay = level;
+                        return GameState.StartGameAtLevel;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Level " + level + " was not yet unlocked");
+                    }
+
                     selectingLevel = false;
                 }
                 else
@@ -110,11 +128,11 @@ namespace MemoryMaze
                         //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
                         switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                         {                                                               //bearbeitet das aktuelle TextFeld
-                            case 0: return GameState.LoadLevelState;
-                            //Levels
-                            case 1:
+                            case 0:
                                 selectingLevel = true;
-                                return GameState.ChooseLevelState; //LevelsStarten
+                                return GameState.ChooseLevelState;
+                            //Levels
+                            case 1: return GameState.LoadLevelState; //LevelsStarten
                                                                  //Steuerung
                             case 2: return GameState.LoadLevelState;
                             //MainMenu

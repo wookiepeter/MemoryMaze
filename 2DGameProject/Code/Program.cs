@@ -105,6 +105,10 @@ namespace MemoryMaze
                 case GameState.Intro:
                     state = new InGameState(0);
                     break;
+                // this gamestate should only be used when u start at a certain level
+                case GameState.StartGameAtLevel:
+                    state = new InGameState(2);
+                    break;
                 case GameState.Steuerung:
                     state = new Steuerung();
                     break;

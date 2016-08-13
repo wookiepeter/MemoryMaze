@@ -82,8 +82,6 @@ namespace MemoryMaze
         /// <param name="player_">player object</param>
         private void saveRatings(ManageStars manageStars, String fileName)
         {
-            Console.WriteLine(PlayerName);
-            Console.WriteLine(fileName);
             XmlSerializer ser = new XmlSerializer(typeof(ManageStars));
             FileStream stream = new FileStream(fileName, FileMode.Create);
 
@@ -91,20 +89,21 @@ namespace MemoryMaze
             stream.Close();
         }
 
-        public void saveManageStars()
+        public void saveManageStars(String pladerName)
         {
-            saveRatings(this, "Assets/" + PlayerName);
+            saveRatings(this, "Assets/" + pladerName);
         }
         /// <summary>
         /// Load ManageStars class
         /// </summary>
         /// <returns>loaded player</returns>
-        private ManageStars loadRatings(String fileName, int numberOfRatings)
+        private ManageStars loadRatings(String playerName, int numberOfRatings)
         {
             try
             {
+                Console.WriteLine("PlayerName " + playerName);
                 XmlSerializer ser = new XmlSerializer(typeof(ManageStars));
-                StreamReader reader = new StreamReader("Assets/" + fileName);
+                StreamReader reader = new StreamReader("Assets/" + playerName);
 
                 ManageStars manageStars = (ManageStars)ser.Deserialize(reader);
                 
@@ -122,7 +121,7 @@ namespace MemoryMaze
             {
                 if(e is System.IO.FileNotFoundException || e.Message == "InvalidNumberOfLevels")
                 {
-                    ManageStars manageStars = new ManageStars(fileName, numberOfRatings);
+                    ManageStars manageStars = new ManageStars("Assets/" + playerName, numberOfRatings);
                     return manageStars;
                 }
                 else
@@ -132,9 +131,38 @@ namespace MemoryMaze
             }
         }
 
-        public ManageStars loadManageStars(int numberOfRatings)
+        public ManageStars loadManageStars(String playerName, int numberOfRatings)
         {
-            return loadRatings(PlayerName, numberOfRatings);
+            Console.WriteLine(playerName);
+            return loadRatings(playerName, numberOfRatings);
+        }
+
+        // TODO: try to find a better way to do this
+        public ManageStars unsafelyLoadManageStars(String playerName)
+        {
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(ManageStars));
+                StreamReader reader = new StreamReader("Assets/" + playerName);
+
+                ManageStars manageStars = (ManageStars)ser.Deserialize(reader);
+
+                reader.Close();
+
+                return manageStars;
+            }
+            catch (Exception e)
+            {
+                if (e is System.IO.FileNotFoundException)
+                {
+                    ManageStars manageStars = new ManageStars("Assets/" + playerName, 40);
+                    return manageStars;
+                }
+                else
+                {
+                    throw e;
+                }
+            }
         }
     }
 }
