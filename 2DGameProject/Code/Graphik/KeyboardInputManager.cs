@@ -53,4 +53,22 @@ public class KeyboardInputManager
 
         return previousKeyIsPressed[(int)key] && !currentKeyIsPressed[(int)key];
     }
+
+    public static char KeyToChar(Keyboard.Key key)
+    {
+        return (char)((int)key + (int)'A');
+    }
+
+    public static List<Keyboard.Key> PressedKeys()
+    {
+        List<Keyboard.Key> pressedKeys = new List<Keyboard.Key>();
+        for (int i = 0; i < currentKeyIsPressed.Length; i++)
+        {
+            if(currentKeyIsPressed[i])
+            {
+                pressedKeys.Add((Keyboard.Key)i);
+            }
+        }
+        return pressedKeys;
+    }
 }

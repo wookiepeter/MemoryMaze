@@ -13,8 +13,9 @@ namespace MemoryMaze
     class TrapHandler
     {
         List<AntivirTrap> antiviTrapList;                                                   //Liste mit allen Fallen auf der Map
+        List<AntivirTrap> deleteList;
         public TrapHandler(Map map) {
-
+            deleteList = new List<AntivirTrap>();
             antiviTrapList = new List<AntivirTrap>();
             foreach (AntivirTrap trap in GetTrapsFromMap(map))                              //GetTrapsFromMap result List
             {
@@ -24,6 +25,7 @@ namespace MemoryMaze
 
         TrapHandler(TrapHandler _trapHandler)
         {
+            deleteList = new List<AntivirTrap>();
             antiviTrapList = new List<AntivirTrap>();
             foreach (AntivirTrap trap in _trapHandler.antiviTrapList)
             {
@@ -43,7 +45,14 @@ namespace MemoryMaze
             List<Vector2i> botPosList = player.getListOfBotPositions();                              //Liste mit "allen" Positionen von Bot und Player
             //List<Item> removeList = new List<Item>();                                              //-> zu faul lösche nichts ^.^
             foreach (AntivirTrap trap in antiviTrapList)
-            {                                                                                        //Alle aktuellen Fallen
+            {
+                if (player.iserstellt)                                                               //Existiert der GhostPlayer?
+                {
+                    if (player.ghostPlayer.mapPosition.X == trap.position.X && player.ghostPlayer.mapPosition.Y == trap.position.Y) //Befindet sich der Ghostplayer auf der gleichen Position wie eine Falle?
+                        player.ghostPlayer.counter = 0;                                             //Lösche den GhostPlayer!
+
+                }
+                //Alle aktuellen Fallen
                 trap.Update(map, deltaTime);
                 foreach (Vector2i vec in botPosList)                                                 //Alle Spieler(bots)
                 {
@@ -52,28 +61,27 @@ namespace MemoryMaze
                         if (trap.position.X == vec.X && trap.position.Y == vec.Y)                    //Befindet sich ein Spieler(bot) auf der Falle?
                         {
                             if (player.controllid == 1)                                              //Ist es der RedBot?
-                            {
                                 player.botList.Find(b => b.id == 1).isAlive = false;                 //Loesche ihn!
-                            }
-                            else if (player.controllid == 2)                                         //Ist es der BlueBot?
-                            {
+
+                            else if (player.controllid == 2)                                         //Ist es der BlueBot
                                 player.botList.Find(b => b.id == 2).isAlive = false;                 //Loesche ihn!
-                            }
+
                             else if (player.controllid == 0)                                         //Ist es der Player?
-                            {
                                 player.isAlive = false;                                              //Loesche ihn!
 
-                            }
                         }
                         if (trap.position.X == vec.X && trap.position.Y == vec.Y && player.greenbot && player.controllid == 3)
                         {//Ist es der GrüneBot???
                             trap.isAlive = false;                                                    //Falle deaktiviert! ^.^
+                            deleteList.Add(trap);                                                    //Element in die deleteList hinzufügen
                         }
-                    }
-                        
+                    }      
                 }
             }
-           // antiviTrapList.RemoveAll(a => a.deleted == true);
+            // Nach der Schleife alle Objekte von der deleteList in der antiviTrapList löschen!
+            antiviTrapList.RemoveAll(deleteList.Contains);                                         
+            deleteList = new List<AntivirTrap>();
+            // antiviTrapList.RemoveAll(a => a.deleted == true);
 
         }
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
