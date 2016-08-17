@@ -1,0 +1,26 @@
+﻿10
+17
+wwwwwwwwwwwwwwwww
+wweweRewwewwwwwww
+wwwwmwwwweBwwwwww
+wBemmwewwewwwwwww
+wweeewwwwwwewweww
+wwemmewwweeemeegw
+wwwewwwwmmmemeeww
+wwwweewwmwwwwwwww
+wweweeiwewwwwwwww
+wwwwwwwwwwwwwwwww
+
+//Startpos: 2,5
+//x1,x2,x3,x4
+_map:
+lever(5,5);empty(6,2)
+lever(11,4);empty(3,8)
+lever(2,8);empty(7,8)
+transport(2,1);teleport(9,1)
+transport(9,3);teleport(14,7)
+transport(14,4);teleport(11,6)
+bluelev(6,3);empty(2,2)
+bluelev(8,8);empty(4,6)
+
+

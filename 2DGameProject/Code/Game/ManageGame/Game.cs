@@ -81,6 +81,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/Chis07.txt", 64, new Vector2i(5,5), 1));
             levelList.Add(new Level("Assets/MapFiles/Chris04.txt", 64, new Vector2i(10,3), 1));
             levelList.Add(new Level("Assets/MapFiles/Chris05.txt", 64, new Vector2i(10,12), 1));
+            levelList.Add(new Level("Assets/MapFiles/Chris08.txt", 64, new Vector2i(2, 5), 1));
             nextGameState = GameState.InGame;
 
             // manageProfiles has to load all active profiles before it can be accessed
