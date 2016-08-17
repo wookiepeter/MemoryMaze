@@ -12,12 +12,14 @@ namespace MemoryMaze
     class ChooseLevelState : IGameState
     {
         Font font;
-        Text playOn, levelSelect, control, back;
+        Text selectLevel, levelSelect, control, back, currentNumberInputDisplay;
         Sprite background;
 
         List<Text> textlist;
         List<IntRect> list;
         Stopwatch stopwatch;
+
+        String numberInput;
 
         bool selectingLevel = false;
 
@@ -42,9 +44,9 @@ namespace MemoryMaze
 
             //Initialisieren von  Text
 
-            playOn = new Text("Enter Level", font);
-            playOn.Position = new Vector2f(250, 400);
-            playOn.CharacterSize = 40;
+            selectLevel = new Text("Enter Level", font);
+            selectLevel.Position = new Vector2f(250, 400);
+            selectLevel.CharacterSize = 40;
 
             levelSelect = new Text("...", font);
             levelSelect.Position = new Vector2f(250, 450);
@@ -58,7 +60,12 @@ namespace MemoryMaze
             back.Position = new Vector2f(250, 550);
             back.CharacterSize = 40;
 
-            Text[] array = { playOn, levelSelect, control, back };
+            currentNumberInputDisplay = new Text("", font, 40);
+            currentNumberInputDisplay.Position = new Vector2f(750, 400);
+
+            numberInput = "";
+
+            Text[] array = { selectLevel, levelSelect, control, back , currentNumberInputDisplay };
             textlist = array.ToList();
 
         }
@@ -84,6 +91,8 @@ namespace MemoryMaze
                 {
                     stopwatch.Restart();
                     selectingLevel = false;
+                    currentNumberInputDisplay.DisplayedString = "";
+                    numberInput = "";
                     return GameState.ChooseLevelState;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -98,28 +107,41 @@ namespace MemoryMaze
                 }
                 if (selectingLevel)
                 {
-                    String input = Console.ReadLine();
-                    int level = int.Parse(input);
-
-                    ManageProfiles manageProfiles = new ManageProfiles();
-                    manageProfiles = manageProfiles.loadManageProfiles();
-
-                    ManageStars manageStars = new ManageStars();
-                    // TODO: find a freakin better way to do this... fucking hax :(
-                    manageStars = manageStars.unsafelyLoadManageStars(manageProfiles.getActiveProfileName());
-
-                    if(manageStars.levelIsUnlocked(level))
+                    if(KeyboardInputManager.Downward(Keyboard.Key.Back) && numberInput != "")
                     {
-                        Console.WriteLine("Level " + level + " is starting...");
-                        ProfileConstants.levelToPlay = level;
-                        return GameState.StartGameAtLevel;
+                        numberInput = numberInput.Remove(numberInput.Length - 1);
                     }
-                    else
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Return) && numberInput != "")
                     {
-                        Console.WriteLine("Level " + level + " was not yet unlocked");
-                    }
+                        int level = int.Parse(numberInput);
+                        numberInput = "";
+                        ManageProfiles manageProfiles = new ManageProfiles();
+                        manageProfiles = manageProfiles.loadManageProfiles();
 
-                    selectingLevel = false;
+                        ManageStars manageStars = new ManageStars();
+                        // TODO: find a freakin better way to do this... fucking hax :(
+                        manageStars = manageStars.unsafelyLoadManageStars(manageProfiles.getActiveProfileName());
+
+                        if (manageStars.levelIsUnlocked(level))
+                        {
+                            Logger.Instance.Write("Level " + level + " is starting...", Logger.level.Info);
+                            ProfileConstants.levelToPlay = level;
+                            return GameState.StartGameAtLevel;
+                        }
+                        else
+                        {
+                            Logger.Instance.Write("Level " + level + " was not yet unlocked", Logger.level.Info);
+                            currentNumberInputDisplay.DisplayedString = "Level was not yet unlocked";
+                            selectingLevel = false;
+                            return GameState.ChooseLevelState;
+                        }
+                    }
+                    List<char> charList = KeyboardInputManager.getNumberInput();
+                    foreach(char c in charList)
+                    {
+                        numberInput += c;
+                    }
+                    currentNumberInputDisplay.DisplayedString = numberInput;
                 }
                 else
                 {

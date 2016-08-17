@@ -71,4 +71,51 @@ public class KeyboardInputManager
         }
         return pressedKeys;
     }
+
+    public static List<char> getCharInput()
+    {
+        List<char> result = new List<char>();
+        for (Keyboard.Key i = Keyboard.Key.A; i <= Keyboard.Key.Z; i++)
+        {
+            if(Downward(i))
+            {
+                if(IsPressed(Keyboard.Key.LShift) || IsPressed(Keyboard.Key.RShift))
+                {
+                    result.Add(KeyToChar(i));
+                }
+                else
+                {
+                    result.Add((char)(KeyToChar(i) + ('a' - 'A')));
+                }
+            }
+        }
+        return result;
+    }
+
+    public static char NumberKeyToChar(Keyboard.Key key)
+    {
+        return (char)((key >= Keyboard.Key.Num0 && key <= Keyboard.Key.Num9) ? 
+            ((int)key - (Keyboard.Key.Num0) + (int)'0') : ((int)key - (Keyboard.Key.Numpad0) + (int)'0'));
+    } 
+
+    public static List<char> getNumberInput()
+    {
+        List<char> result = new List<char>();
+
+        for (Keyboard.Key i = Keyboard.Key.Num0; i <= Keyboard.Key.Num9; i++)
+        {
+            if(Downward(i))
+            {
+                result.Add(NumberKeyToChar(i));
+            }
+        }
+        for (Keyboard.Key i = Keyboard.Key.Numpad0; i <= Keyboard.Key.Numpad9; i++)
+        {
+            if(Downward(i))
+            {
+                result.Add(NumberKeyToChar(i));
+            }
+        }
+        return result;
+    }
 }

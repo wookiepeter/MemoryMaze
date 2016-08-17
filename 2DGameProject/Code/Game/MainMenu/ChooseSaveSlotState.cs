@@ -20,6 +20,7 @@ namespace MemoryMaze
         Stopwatch stopwatch;
 
         ManageProfiles profiles;
+        String currentInput;
 
         bool settingNewProfile = false;
 
@@ -102,12 +103,6 @@ namespace MemoryMaze
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape) && !settingNewProfile)
                     return GameState.MainMenu;
-                if (Keyboard.IsKeyPressed(Keyboard.Key.Escape) && settingNewProfile)
-                {
-                    settingNewProfile = false;
-                    stopwatch.Restart();
-                    return GameState.ChooseSaveSlotState;
-                }
                 for (int e = 0; e < 7; e++)
                 {
                     if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
@@ -116,19 +111,39 @@ namespace MemoryMaze
                         break;
                     }
                 }
+                // set a new profilename via Keyboardinput - so far only a-zA-Z
                 if (settingNewProfile)
                 {
-                    String newProfileName = Console.ReadLine();
-                    profiles.setProfile(newProfileName, ProfileConstants.activeProfile);
-                    settingNewProfile = false;
-                    switch(ProfileConstants.activeProfile)
+                    List<char> charList = KeyboardInputManager.getCharInput();
+                    foreach (char c in charList)
+                        currentInput += c;
+                    UpdateSelectedProfileText(currentInput);
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Back))
                     {
-                        case MemoryMaze.profiles.one: profileOneText.DisplayedString = profiles.getActiveProfileName();
-                            break;
-                        case MemoryMaze.profiles.two: profileTwoText.DisplayedString = profiles.getActiveProfileName();
-                            break;
-                        case MemoryMaze.profiles.three: profileThreeText.DisplayedString = profiles.getActiveProfileName();
-                            break;
+                        if(currentInput != "")
+                        {
+                            currentInput = currentInput.Remove(currentInput.Length - 1);
+                        }
+                    }
+                    if (KeyboardInputManager.IsPressed(Keyboard.Key.Escape) && settingNewProfile)
+                    {
+                        settingNewProfile = false;
+                        stopwatch.Restart();
+                        UpdateActiveProfileText();
+                        return GameState.ChooseSaveSlotState;
+                    }
+                    if (KeyboardInputManager.IsPressed(Keyboard.Key.Return))
+                    {
+                        if (currentInput != "")
+                        {
+                            profiles.setProfile(currentInput, ProfileConstants.activeProfile);
+                            settingNewProfile = false;
+                            UpdateActiveProfileText();
+                        }
+                        else
+                        {
+                            Logger.Instance.Write("ProfileName cannot be empty", Logger.level.Info);
+                        }
                     }
                 }
                 else
@@ -144,6 +159,7 @@ namespace MemoryMaze
                             case 1:
                                 ProfileConstants.activeProfile = MemoryMaze.profiles.one;
                                 settingNewProfile = true;
+                                currentInput = "";
                                 break;
                             case 2:
                                 ProfileConstants.activeProfile = MemoryMaze.profiles.two;
@@ -151,6 +167,7 @@ namespace MemoryMaze
                             case 3:
                                 ProfileConstants.activeProfile = MemoryMaze.profiles.two;
                                 settingNewProfile = true;
+                                currentInput = "";
                                 break;
                             case 4:
                                 ProfileConstants.activeProfile = MemoryMaze.profiles.three;
@@ -158,6 +175,7 @@ namespace MemoryMaze
                             case 5:
                                 ProfileConstants.activeProfile = MemoryMaze.profiles.three;
                                 settingNewProfile = true;
+                                currentInput = "";
                                 break;
                             case 6: return GameState.MainMenu;
 
@@ -173,7 +191,37 @@ namespace MemoryMaze
             return GameState.ChooseSaveSlotState;
         }
 
+        private void UpdateActiveProfileText()
+        {
+            switch (ProfileConstants.activeProfile)
+            {
+                case MemoryMaze.profiles.one:
+                    profileOneText.DisplayedString = profiles.getActiveProfileName();
+                    break;
+                case MemoryMaze.profiles.two:
+                    profileTwoText.DisplayedString = profiles.getActiveProfileName();
+                    break;
+                case MemoryMaze.profiles.three:
+                    profileThreeText.DisplayedString = profiles.getActiveProfileName();
+                    break;
+            }
+        }
 
+        private void UpdateSelectedProfileText(String currentInput)
+        {
+            switch (ProfileConstants.activeProfile)
+            {
+                case MemoryMaze.profiles.one:
+                    profileOneText.DisplayedString = currentInput;
+                    break;
+                case MemoryMaze.profiles.two:
+                    profileTwoText.DisplayedString = currentInput;
+                    break;
+                case MemoryMaze.profiles.three:
+                    profileThreeText.DisplayedString = currentInput;
+                    break;
+            }
+        }
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
