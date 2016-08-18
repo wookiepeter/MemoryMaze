@@ -136,49 +136,49 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau4.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris08.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau93.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Grün1.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map20.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot6.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map19.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map18.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot4.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map17.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map16.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00 - Kopieren %285%29 - Kopieren.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chis07.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot6.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris06.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb_Bearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris05.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau92.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris04.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau91.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris03.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau9.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\Chris01.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün9.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\chris02.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün91.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\_mal0Kopie.txt">
@@ -193,52 +193,52 @@
     <Content Include="Assets\MapFiles\_map3Kopie.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map14.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map13.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot4.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map12.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map11.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map10.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map09.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb9.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map15.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map07.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb7.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map08.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb8.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map06.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb6.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map05.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map04.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb4.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map01.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map02.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\map03.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\BackgrundSteuerung.png">
@@ -440,9 +440,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\MapFiles\1_Gelb\" />
-    <Folder Include="Assets\MapFiles\2_Rot\" />
-    <Folder Include="Assets\MapFiles\3_Grün\" />
     <Folder Include="Assets\SaveGames\" />
     <Folder Include="Code\Game\InGame\" />
   </ItemGroup>
