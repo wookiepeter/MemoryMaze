@@ -121,7 +121,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LeverTutorial.txt" />
+    <Content Include="Assets\MapFiles\4_Blau\Blau5.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau3.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\MapFiles\Chris08.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\Grün1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map20.txt">
@@ -422,6 +440,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\MapFiles\1_Gelb\" />
+    <Folder Include="Assets\MapFiles\2_Rot\" />
+    <Folder Include="Assets\MapFiles\3_Grün\" />
     <Folder Include="Assets\SaveGames\" />
     <Folder Include="Code\Game\InGame\" />
   </ItemGroup>

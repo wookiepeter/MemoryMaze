@@ -1,0 +1,16 @@
+﻿6
+13
+wwwwwwwwwwwww
+wwwwwgwewieww
+wwwwwwwewweww
+weBeeeewmmeew
+wwwwRwwwwwwww
+wwwwwwwwwwwww
+
+
+//Startpos: 5,3
+
+_map:
+bluelev(3,3);empty(7,3)
+bluelev(11,3);empty(8,1)
+lever(1,3);empty(5,2)

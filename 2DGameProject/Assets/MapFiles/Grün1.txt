@@ -1,0 +1,13 @@
+﻿6
+10
+wwwwwwwwww
+wwwtitwwww
+wwwtttwwww
+wwetemeeew
+wgwttteeGw
+wwwwwwwwww
+
+//Startpos: 4,3
+
+_map:
+lever(2,3);empty(2,4)
