@@ -135,10 +135,10 @@ namespace MemoryMaze
             return nextGameState;
         }
 
-        public void Draw(RenderTexture win, View view)
+        public void Draw(RenderTexture win, View view, float deltaTime)
         {
             Vector2f relativeViewDistance = win.GetView().Center - view.Center;
-            level.Draw(win, view, relativeViewDistance);
+            level.Draw(win, view, relativeViewDistance, deltaTime);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

@@ -60,7 +60,7 @@ namespace MemoryMaze
             // Draws the Game.Draw on to backgroundMult
             backgroundMult.Clear(Color.Black);
 
-            game.Draw(backgroundMult, _view);
+            game.Draw(backgroundMult, _view, deltaTime);
 
             //win.SetView(view);
             // "buffers" backgroundMult

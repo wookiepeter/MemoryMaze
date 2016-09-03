@@ -199,10 +199,10 @@ namespace MemoryMaze
             
         }
  
-        public void Draw(RenderTexture win, View view, Vector2f relViewDis)
+        public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
         {
 
-            view.Center = Vector2.lerp(view.Center, currentFocus, 0.025F);
+            view.Center = Vector2.lerp(view.Center, currentFocus, deltaTime*3);
             sprite.Position = sprite.Position + relViewDis;
 
             if (isAlive)

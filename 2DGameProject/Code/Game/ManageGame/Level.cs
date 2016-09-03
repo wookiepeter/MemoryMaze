@@ -82,12 +82,12 @@ namespace MemoryMaze
             return mapStatus;
         }
 
-        public void Draw(RenderTexture win, View view, Vector2f relViewDif)        {
+        public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
             watch.Start();
             map.Draw(win, view, relViewDif);
             long tMap = watch.ElapsedTicks;
-            player.Draw(win, view, relViewDif);
+            player.Draw(win, view, relViewDif, deltaTime);
             long tPlayer = watch.ElapsedTicks - tMap;
             itemList.Draw(win, view, relViewDif);
             long tItems = watch.ElapsedTicks- tPlayer - tMap;
