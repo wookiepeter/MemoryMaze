@@ -27,6 +27,7 @@ namespace MemoryMaze
         {
             // initialize window and view
             win = new RenderWindow(new VideoMode((uint)windowSize.X, (uint)windowSize.Y), "Hadoken!!!");
+            win.SetFramerateLimit(120);
             view = new View();
             ResetView();
             gui = new GUI(win, view);

@@ -2,18 +2,18 @@
 
 				
 													ToDo´s   
-ToDo: Benny 3 Euro geben!
+
 -- Map verbessern (Zeichnen)
--> nur neu zeichnen wenn notwendig
+-> nur neu zeichnen wenn notwendig																			
 -> eventuell auf ne rendertexture zeichnen und denn nur neu zeichnen wenn sich was auf der map ändert
 
--- #1) Speicherplätze anlegen! (Prioriät ##2##) -> Beim ersten Start kann man den Virus einen Namen geben (So heißt das SaveGame dann) (MATHIS!)
+
 -- #2) (Baut auf 1 auf) --> Jedes lvl was geschafft wurde, kann man übér das MainMenu nochmal spielen!
 		--> "evtl" MainMenu: NeuesSpiel, Spielladen, Credits, SpielBeenden
 		--> NeueSpiel  - Name: VIRUSNAME ->go!
 		--> Spielladen - SpeicherplätzeAnzeigen -> MainMenuState2: SpielFortsetzen, Level(Freigeschaltete lvl),Steuerung, Spielbeenden
 		--> LvL-Liste erstellen
--- #5) Traps sind nicht walkebale für Ghostplayer und für Ordner!
+-- #5) Traps sind nicht walkable für Ghostplayer und für Ordner!
 -- #6) CurrentFocus im Player nochmal genau berechnen!(SCALE!)
 -- #8) ScoreBerechner
 		--> Jeder Schritt +1, ScoreItem -X, BotLöschen +count*(-1)											(DONE!)
@@ -38,4 +38,6 @@ ToDo: Benny 3 Euro geben!
 -- #9) BlueLever(WICHTIG!)																					(DONE!)
 -- #7) Detected Modus (Spieler hat verloren) z.B  trap														(DONE!)
 -- #13) Nur BlueBot und Player koennen Items einsammeln!													(DONE!)
+ToDo: Benny 3 Euro geben!																					(DONE!)
+-- #1) Speicherplätze anlegen! (Prioriät ##2##) -> Beim ersten Start kann man den Virus einen Namen geben (So heißt das SaveGame dann) (DONE!)
 */
