@@ -224,8 +224,10 @@ namespace MemoryMaze
                     buffer = buffer.Replace(")", "");
                     array = buffer.Split(',');
                     if (array.Length != 3)
+                    {
+                        Logger.Instance.Write("Wrong Number of Ratings in file: " + filename, Logger.level.Error);
                         throw new Exception("InvalidNumbersInRating");
-
+                    }
                     for (int i = 0; i <3; i++)
                     {
                         result[i] = int.Parse(array[i]);
