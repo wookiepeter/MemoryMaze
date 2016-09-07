@@ -293,8 +293,6 @@ namespace MemoryMaze
             if (redbot)
                 guiRedCounter.DisplayedString = "" + botList.Find(b => b.id == 1).counter;
 
-
-
             else
                 guiRedCounter.DisplayedString = "" + 0;
 

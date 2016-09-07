@@ -1,9 +1,9 @@
 ﻿5
 14
 wwwwwwwwwwwwww
-wwwwweeeeewwww
-wweeeiwwwewwww
-wwwwwwwwgewwww
+wwweeeeeeeewww
+wweeeiewweewww
+wwweeewwgewwww
 wwwwwwwwwwwwww
 _map:
 rating(200,100, 0)
