@@ -198,6 +198,45 @@ namespace MemoryMaze
             return new TransportHandler(transPorterList);
         }
 
+        public int[] getRatingNumbersFromMap(String filename)
+        {
+            int[] result = new int[3];
+
+            file = new System.IO.StreamReader(@filename);
+
+            String buffer;
+
+            while (!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                if (buffer.Contains("_map:"))
+                    break;
+            }
+
+            String[] array;
+            while (!file.EndOfStream)
+            {
+                buffer = file.ReadLine();
+                if (buffer.Contains("rating"))
+                {
+                    buffer = buffer.Replace("rating", "");
+                    buffer = buffer.Replace("(", "");
+                    buffer = buffer.Replace(")", "");
+                    array = buffer.Split(',');
+                    if (array.Length != 3)
+                        throw new Exception("InvalidNumbersInRating");
+
+                    for (int i = 0; i <3; i++)
+                    {
+                        result[i] = int.Parse(array[i]);
+                    }
+                    return result;
+                }
+            }
+            Logger.Instance.Write("No mapRating in file: " + filename, Logger.level.Error);
+            throw new Exception("NoRatingFoundInMapfile");
+        }
+
         // str 
         private MapManipulation createManipulation(String str, Map map)
         {

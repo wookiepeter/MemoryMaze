@@ -8,5 +8,5 @@ wwwemewewwewww
 wwwwewwmeeewww
 wwwweeeewwegww
 wwwwwwwwwwwwww
-
-
+_map:
+rating(200,100, 0)

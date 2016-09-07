@@ -17,3 +17,4 @@ wwwwwwwwwwwwwwwwwwww
 _map:
 lever(8,1);empty(9,7)
 lever(9,5);empty(9,8)
+rating(200,100, 0)

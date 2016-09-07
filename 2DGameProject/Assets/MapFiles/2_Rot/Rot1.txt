@@ -9,4 +9,5 @@ wwwwewwwwww
 wwwwieegwww
 wwwwwwwwwww
 //Startpos: 8,3
-
+_map:
+rating(200,100, 0)

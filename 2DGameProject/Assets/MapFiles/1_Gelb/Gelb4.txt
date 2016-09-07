@@ -12,3 +12,5 @@ wwwwgeeeeeewwwww
 wwwwwwwwwwwwwwww
 
 //StartKoord: 8,1
+_map:
+rating(200,100, 0)
