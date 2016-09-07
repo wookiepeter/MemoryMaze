@@ -32,14 +32,18 @@ namespace MemoryMaze
                 Tutorial();
 
             if (id == 1)
+            {
+                Console.WriteLine("Game was continued");
                 MainCampaign();
-
+            }
             // this does require the set level(levelToPlay) to be valid(both an existing level and an already unlocked one)
             if (id == 2)
             {
+                Console.WriteLine("levelToPlay: " + ProfileConstants.levelToPlay);
                 MainCampaign();
                 curIndex = ProfileConstants.levelToPlay;
             }
+            Console.WriteLine("Here Now " + curIndex);
 
 
             level = levelList[curIndex].Copy();
@@ -108,6 +112,7 @@ namespace MemoryMaze
 
             if (levelStatus == 1)
             {
+                Console.WriteLine("Might hapen a few times");
                 int curScore = level.getScoreCounter();
                 if (nextGameState == GameState.InGame)
                 {

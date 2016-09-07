@@ -25,6 +25,7 @@ namespace MemoryMaze
 
         public InGameState(int id)
         {
+            Console.WriteLine("Might get called twice");
             game = new Game(id);
         }
         
