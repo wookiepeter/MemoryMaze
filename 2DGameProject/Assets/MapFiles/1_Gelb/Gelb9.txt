@@ -14,4 +14,4 @@ wwwwwwwwwweewwwwwwww
 wwwwwwwwwwwwwwwwwwww
 //10,4
 _map:
-lever(8,3);empty(10,3)
+lever(8,3);empty(9,2);empty(8,2)
