@@ -89,6 +89,7 @@ namespace MemoryMaze
 
         static void HandleNewGameState()
         {
+            // #Haxxx#GoodCodeIsForBadCoders#GamesprogrammerGoneWild
             bool shouldRemainInGame = false;
 
             switch (currentGameState)

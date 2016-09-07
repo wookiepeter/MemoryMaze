@@ -126,7 +126,6 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    levelList[curIndex].setScoreCounter(curScore);
                     Logger.Instance.Write("THIS SHOULD HAPPEN ONCE", 2);
                     level = levelList[curIndex].Copy();
                 }
