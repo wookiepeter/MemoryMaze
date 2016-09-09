@@ -79,7 +79,10 @@ namespace MemoryMaze
             if (KeyboardInputManager.Upward(Keyboard.Key.Y))
                 mapStatus = 1;
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
+            {
+                addScoreFromBots();
                 mapStatus = 1;
+            }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
                 mapStatus = 2;
             return mapStatus;
@@ -137,6 +140,11 @@ namespace MemoryMaze
                 }
             }
             return ManageStars.Rating.Gold;
+        }
+
+        private void addScoreFromBots()
+        {
+            playerScore += player.addScoreFromBots();
         }
     }
 }

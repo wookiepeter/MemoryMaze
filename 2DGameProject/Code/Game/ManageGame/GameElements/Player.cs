@@ -361,6 +361,7 @@ namespace MemoryMaze
                 if (!it.isAlive)
                 {
                     deleteList.Add(it); //zerstoere Bot
+                    Console.WriteLine("Some Bot is getting destroyed");
                     if (it.id == controllid)
                         controllid = 0;
                 }
@@ -468,6 +469,19 @@ namespace MemoryMaze
                 Logger.Instance.Write("Bluebot does not exist at the moment", Logger.level.Error);
             }
 
+        }
+
+        public int addScoreFromBots()
+        {
+            int result = 0;
+            foreach (Bot b in botList)
+            {
+                if (b != null)
+                {
+                    result -= b.counter;
+                }
+            }
+            return result;
         }
     }
 }

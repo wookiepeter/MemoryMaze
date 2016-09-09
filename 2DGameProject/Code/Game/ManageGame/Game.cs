@@ -112,7 +112,6 @@ namespace MemoryMaze
 
             if (levelStatus == 1)
             {
-                Console.WriteLine("Might hapen a few times");
                 int curScore = level.getScoreCounter();
                 if (nextGameState == GameState.InGame)
                 {
@@ -126,7 +125,6 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    Logger.Instance.Write("THIS SHOULD HAPPEN ONCE", 2);
                     level = levelList[curIndex].Copy();
                 }
             }
@@ -154,7 +152,7 @@ namespace MemoryMaze
         }
 
         public void SaveGame()
-        {
+        {   
             if(nextGameState == GameState.InGame)
             {
                 manageStars.saveManageStars(manageProfiles.getActiveProfileName());

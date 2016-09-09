@@ -25,7 +25,6 @@ namespace MemoryMaze
 
         public InGameState(int id)
         {
-            Console.WriteLine("Might get called twice");
             game = new Game(id);
         }
         
@@ -48,8 +47,6 @@ namespace MemoryMaze
                 InitializeRenderShit(win);
                 isInitialized = true;
             }
-
-
 
             //  backgroundMult.Display();
             if(_view == null)
