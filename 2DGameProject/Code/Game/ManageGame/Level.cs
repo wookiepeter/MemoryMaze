@@ -23,6 +23,7 @@ namespace MemoryMaze
 
         int mapStatus = 0;
         int playerScore = 0;
+        int[] ratingNumbers = new int[3];
         public int keysToUnlock { get; private set; }
 
         Text guiScore = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
@@ -36,6 +37,7 @@ namespace MemoryMaze
             trapHandler = new TrapHandler(map);
             List<MapManipulation> list = new List<MapManipulation>();
             keysToUnlock = _keysToUnlock;
+            ratingNumbers = mapFromText.getRatingNumbersFromMap(mapfile);
             // deletes all items from map AFTER they have been saved in the itemList
             // to simplify the placing of items without cluttering the map with extra blocks
             map.RemoveAllItems();
@@ -46,7 +48,7 @@ namespace MemoryMaze
 
         // Constructor for the Copy function
         public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, 
-            LevelutionHandler _levelution, TransportHandler _transporter, int _playerScore, int _keysToUnlock)
+            LevelutionHandler _levelution, TransportHandler _transporter, int _playerScore, int _keysToUnlock, int[] _ratingNumbers)
         {
             map = _map;
             player = _player;
@@ -56,11 +58,12 @@ namespace MemoryMaze
             levelution = _levelution;
             transporterHandler = _transporter;
             this.setScoreCounter(_playerScore);
+            ratingNumbers = _ratingNumbers;
         }
 
         public Level Copy()
         {
-            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), transporterHandler.Copy(), playerScore, keysToUnlock);
+            return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), transporterHandler.Copy(), playerScore, keysToUnlock, ratingNumbers);
         }
 
         public int update(float deltaTime)
@@ -76,7 +79,10 @@ namespace MemoryMaze
             if (KeyboardInputManager.Upward(Keyboard.Key.Y))
                 mapStatus = 1;
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
+            {
+                addScoreFromBots();
                 mapStatus = 1;
+            }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
                 mapStatus = 2;
             return mapStatus;
@@ -126,7 +132,19 @@ namespace MemoryMaze
 
         public ManageStars.Rating getRating()
         {
-            return ManageStars.Rating.Silver;
+            for (int i = 0; i < 3;i++)
+            {
+                if (ratingNumbers[i] < playerScore)
+                {
+                    return (ManageStars.Rating)i;
+                }
+            }
+            return ManageStars.Rating.Gold;
+        }
+
+        private void addScoreFromBots()
+        {
+            playerScore += player.addScoreFromBots();
         }
     }
 }

@@ -48,8 +48,6 @@ namespace MemoryMaze
                 isInitialized = true;
             }
 
-
-
             //  backgroundMult.Display();
             if(_view == null)
             {

@@ -20,5 +20,5 @@ lever(11,4);empty(3,1);empty(3,7);empty(12,4);empty(12,5)
 lever(10,3);empty(6,6)
 lever(5,8);empty(10,6)
 lever(7,9);empty(8,5);empty(9,9);empty(10,8);empty(7,10)
-
+rating(200,100, 0)
 

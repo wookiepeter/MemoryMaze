@@ -26,6 +26,14 @@
 -- #14) Level zu ende editieren																				(CHRIS!)
 -- #15) Score für jedes Lvl fessetzen																		(CHRIS!)
 -- #16) RankingSystem einführen																				(MATTHIS!)
+-- #17) Schalter Aktiviert -> Leuchtendes Symbol zum aktiviertenOrt
+-- #18) MainMenu neu gestalten
+-- #19) RadiusDesSpielers erstmal belassen!
+-- #20) Teleporter: Spieler leuchtet von A nach B (Camera beachten! Matthis hat das schon super gemacht)
+-- #21) Zeichnen der Wege neu machen!
+-- #22) Bot stirb und die Punkte wandeln mit dem GLOW nach OBEN! (GEIL)
+-- #23) Nach jedem Level FREEZ und "Du hast xy Punkte" *** <-- das sollen Sterne sein
+-- #24) Nach jedem LevelEnde bot sterben (Punkte verrechnen!)
 
 
 													!DONE!

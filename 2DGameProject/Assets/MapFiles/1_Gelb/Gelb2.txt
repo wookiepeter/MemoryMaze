@@ -9,3 +9,5 @@ wwwwwwwgww
 wwwwwwwwww
 
 //pos 2,4
+_map:
+rating(200,100, 0)

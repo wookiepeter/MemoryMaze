@@ -89,6 +89,9 @@ namespace MemoryMaze
 
         static void HandleNewGameState()
         {
+            // #Haxxx#GoodCodeIsForBadCoders#GamesprogrammerGoneWild
+            bool shouldRemainInGame = false;
+
             switch (currentGameState)
             {
                 case GameState.None:
@@ -107,6 +110,7 @@ namespace MemoryMaze
                     break;
                 // this gamestate should only be used when u start at a certain level
                 case GameState.StartGameAtLevel:
+                    shouldRemainInGame = true;
                     state = new InGameState(2);
                     break;
                 case GameState.Steuerung:
@@ -133,7 +137,10 @@ namespace MemoryMaze
             }
 
             prevGameState = currentGameState;
-
+            if(shouldRemainInGame)
+            {
+                prevGameState = GameState.InGame;
+            }
             ResetView();
         }
 
