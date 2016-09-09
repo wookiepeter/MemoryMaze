@@ -16,6 +16,9 @@ namespace MemoryMaze
         Stopwatch stopwatch;
         Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
         Text gamename, exit, start, credits, loadGame, mainmenu, tutorial;
+        String gameTitle, currentTitleString, currentlyAppendedLetters;
+        float currentDeltaSum, anotherDeltaSum;
+        int currentlySwitchedTitle;
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
@@ -49,7 +52,11 @@ namespace MemoryMaze
             list.Add(new IntRect(250, 520, 220, 60));   //credit        4
             list.Add(new IntRect(250, 570, 220, 60));   //End           5
             list.Add(new IntRect(100, 100, 60, 60));    //johfeld       6
-            
+
+            gameTitle = "MemoryMaze!";
+            currentTitleString = "";
+            currentlyAppendedLetters = "012";
+            currentDeltaSum = 0;
             
             //Witze hahahahhahaha witzig faggot....stfu das ist witzig..ne ist es nicht...ohh mr. Ernst! :/
             funBenni = new Text("Benni heisst Online: KleinerHoden, hihi", font);
@@ -65,9 +72,9 @@ namespace MemoryMaze
 
 
             //Initializiere alle Texte
-            gamename = new Text("MemoryMaze!", font);
-            gamename.Position = new Vector2f(100, -5);
-            gamename.CharacterSize = 180;
+            gamename = new Text("", new Font("Assets/Fonts/pixelhole.ttf"));
+            gamename.Position = new Vector2f(150, -50);
+            gamename.CharacterSize = 240;
 
             mainmenu = new Text("SpielMenü", font);
             mainmenu.Position = new Vector2f(425, 225);
@@ -154,7 +161,35 @@ namespace MemoryMaze
                     }
                 }
             }
+            UpdateMainTitle(deltaTime);
             return GameState.MainMenu;
+        }
+
+        void UpdateMainTitle(float deltaTime)
+        {
+            currentDeltaSum += deltaTime;
+            anotherDeltaSum += deltaTime;
+            if ((currentDeltaSum > 0.25) && (gameTitle.Length > currentTitleString.Length))
+            {
+                currentDeltaSum = 0;
+                currentTitleString += gameTitle[currentTitleString.Length];
+            }
+            if (anotherDeltaSum > 0.05)
+            {
+                int lettersToAppend = ((gameTitle.Length - currentTitleString.Length) < 3) ? gameTitle.Length - currentTitleString.Length : 3;
+                if (currentlyAppendedLetters.Length > lettersToAppend)
+                {
+                    currentlyAppendedLetters = currentlyAppendedLetters.Remove(gameTitle.Length - currentTitleString.Length);
+                }
+                if (lettersToAppend > 0)
+                {
+                    anotherDeltaSum = 0;
+                    int randomIndex = Rand.IntValue(0, lettersToAppend);
+                    currentlyAppendedLetters = currentlyAppendedLetters.Remove(randomIndex, 1);
+                    currentlyAppendedLetters = currentlyAppendedLetters.Insert(randomIndex, ((char)Rand.IntValue(32, 126)).ToString());
+                }
+            }
+            gamename.DisplayedString = currentTitleString + currentlyAppendedLetters;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
