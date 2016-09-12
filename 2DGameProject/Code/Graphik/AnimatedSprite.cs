@@ -39,14 +39,14 @@ public class AnimatedSprite : Sprite
         startSecond = null;
     }
 
-    public Sprite UpdateFrame(GameTime currentTime)
+    public Sprite UpdateFrame(GameTime deltaTime)
     {
         int currentFrame = 0;
 
         if (startSecond.HasValue)
         {
             float passedSeconds = 0F;
-            passedSeconds = (float)currentTime.TotalTime.TotalSeconds - startSecond.Value;
+            passedSeconds = (float)deltaTime.TotalTime.TotalSeconds - startSecond.Value;
             passedSeconds /= ((float)frameCount * secondsPerFrame);
             passedSeconds -= (float)Math.Floor(passedSeconds);
 
