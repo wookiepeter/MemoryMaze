@@ -22,22 +22,22 @@ public class AssetManager
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
-        textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/lonely floor.png"));
-        textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/end floor top.png"));
-        textures.Add(TextureName.Ground1left, new Texture("Assets/Textures/set_01/floor/end floor right.png"));
-        textures.Add(TextureName.Ground1right, new Texture("Assets/Textures/set_01/floor/end floor left.png"));
-        textures.Add(TextureName.Ground1top, new Texture("Assets/Textures/set_01/floor/end floor bottom.png"));
-        textures.Add(TextureName.Ground2bottomright, new Texture("Assets/Textures/set_01/floor/corner floor right bottom.png"));
-        textures.Add(TextureName.Ground2topright, new Texture("Assets/Textures/set_01/floor/corner floor right top.png"));
-        textures.Add(TextureName.Ground2leftbottom, new Texture("Assets/Textures/set_01/floor/corner floor left bottom.png"));
-        textures.Add(TextureName.Ground2lefttop, new Texture("Assets/Textures/set_01/floor/corner floor left top.png"));
-        textures.Add(TextureName.Ground2horizontal, new Texture("Assets/Textures/set_01/floor/floor straight horizontal.png"));
-        textures.Add(TextureName.Ground2vertical, new Texture("Assets/Textures/set_01/floor/floor straight vertical.png"));
-        textures.Add(TextureName.Ground3left, new Texture("Assets/Textures/set_01/floor/intersection tlb.png"));
-        textures.Add(TextureName.Ground3top, new Texture("Assets/Textures/set_01/floor/intersection ltr.png"));
-        textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/intersection trb.png"));
-        textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/intersection lbr.png"));
-        textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/center two.png"));
+        textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/old/lonely floor.png"));
+        textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/old/end floor top.png"));
+        textures.Add(TextureName.Ground1left, new Texture("Assets/Textures/set_01/floor/old/end floor right.png"));
+        textures.Add(TextureName.Ground1right, new Texture("Assets/Textures/set_01/floor/old/end floor left.png"));
+        textures.Add(TextureName.Ground1top, new Texture("Assets/Textures/set_01/floor/old/end floor bottom.png"));
+        textures.Add(TextureName.Ground2bottomright, new Texture("Assets/Textures/set_01/floor/old/corner floor right bottom.png"));
+        textures.Add(TextureName.Ground2topright, new Texture("Assets/Textures/set_01/floor/old/corner floor right top.png"));
+        textures.Add(TextureName.Ground2leftbottom, new Texture("Assets/Textures/set_01/floor/old/corner floor left bottom.png"));
+        textures.Add(TextureName.Ground2lefttop, new Texture("Assets/Textures/set_01/floor/old/corner floor left top.png"));
+        textures.Add(TextureName.Ground2horizontal, new Texture("Assets/Textures/set_01/floor/old/floor straight horizontal.png"));
+        textures.Add(TextureName.Ground2vertical, new Texture("Assets/Textures/set_01/floor/old/floor straight vertical.png"));
+        textures.Add(TextureName.Ground3left, new Texture("Assets/Textures/set_01/floor/old/intersection tlb.png"));
+        textures.Add(TextureName.Ground3top, new Texture("Assets/Textures/set_01/floor/old/intersection ltr.png"));
+        textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/old/intersection trb.png"));
+        textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/old/intersection lbr.png"));
+        textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/old/center two.png"));
         textures.Add(TextureName.GoalLonely, new Texture("Assets/Textures/set_01/goal/lonely goal.png"));
         textures.Add(TextureName.Goal1bottom, new Texture("Assets/Textures/set_01/goal/goal b.png"));
         textures.Add(TextureName.Goal1left, new Texture("Assets/Textures/set_01/goal/goal l.png"));
@@ -54,6 +54,7 @@ public class AssetManager
         textures.Add(TextureName.Goal3right, new Texture("Assets/Textures/set_01/goal/goal ltb.png"));
         textures.Add(TextureName.Goal3bottom, new Texture("Assets/Textures/set_01/goal/goal ltr.png"));
         textures.Add(TextureName.Goal4, new Texture("Assets/Textures/set_01/goal/goal all.png"));
+        textures.Add(TextureName.Teleporter, new Texture("Assets/Textures/set_01/teleporter.png"));
         textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
         textures.Add(TextureName.RedBot, new Texture("Assets/Textures/RedBot.png"));
         textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/GreenBot.png"));
@@ -117,6 +118,7 @@ public class AssetManager
         Goal3left,
         Goal3top,
         Goal4,
+        Teleporter,
         Item,
         Movable,
         Enemy,
