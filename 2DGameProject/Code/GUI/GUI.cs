@@ -25,7 +25,8 @@ namespace MemoryMaze
             transformDrawable.Scale *= viewScale;
             transformDrawable.Position = view.Center - view.Size / 2F + transformDrawable.Position * viewScale;
 
-            win.Draw(transformDrawable);
+            transformDrawable.Draw(win, RenderStates.Default);
+            //win.Draw(transformDrawable);
 
             // reset to originalValues
             transformDrawable.Scale = originalScale;

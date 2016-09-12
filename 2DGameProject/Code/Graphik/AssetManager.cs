@@ -17,7 +17,7 @@ public class AssetManager
     static void LoadTextures()
     {
         textures.Add(TextureName.WhitePixel, new Texture("Assets/Textures/pixel.png"));
-        textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/MainMenu_Background.jpg"));
+        textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/Menu/Menu_Background2.png"));
         textures.Add(TextureName.Player, new Texture("Assets/Textures/playerface.png"));
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
@@ -63,7 +63,6 @@ public class AssetManager
         textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
         textures.Add(TextureName.ScoreItem, new Texture("Assets/Textures/ScoreItem.png"));
         textures.Add(TextureName.TrapTile, new Texture("Assets/Textures/Traptile.png"));
-
         textures.Add(TextureName.DasC, new Texture("Assets/Textures/DasC.png"));
         textures.Add(TextureName.DasF, new Texture("Assets/Textures/DasF.png"));
         textures.Add(TextureName.DasM, new Texture("Assets/Textures/DasM.png"));
@@ -135,7 +134,8 @@ public class AssetManager
 		DasM,
         BackGroundSteuerung,
         DasF,
-        Lever
+        Lever, 
+        
 
     }
 }

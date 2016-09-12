@@ -15,14 +15,20 @@ namespace MemoryMaze
         Font font;
         Stopwatch stopwatch;
         Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
-        Text gamename, exit, start, credits, loadGame, mainmenu, tutorial;
+        Text exit, start, credits, loadGame, mainmenu, tutorial;
+        SuperText gameName;
         String gameTitle, currentTitleString, currentlyAppendedLetters;
-        float currentDeltaSum, anotherDeltaSum;
-        int currentlySwitchedTitle;
+        float currentDeltaSum, anotherDeltaSum, enoughDeltaSums, andADealtTimeCounter;
+        int currentlySwitchedTitle, currentlySwitchedCharinTitle;
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
         Sprite background;
+        Color MainTitleColor;
+        Color ProfileNameColor;
+        Color MenuTextColor;
+
+        char[] PossibleChars;
 
         List<Text> textlist;
         List<IntRect> list;
@@ -44,6 +50,9 @@ namespace MemoryMaze
             funacitvBenni = false;
             font = new Font("Assets/Fonts/calibri.ttf");
             list = new List<IntRect>();
+            MainTitleColor = new Color(8, 45, 3);
+            ProfileNameColor = new Color(125, 253, 108);
+            MenuTextColor = new Color(114, 217, 100);
  
             list.Add(new IntRect(100, 280, 420, 100));  //MainMenu      0
             list.Add(new IntRect(250, 370, 220, 60));   //Start         1
@@ -53,12 +62,16 @@ namespace MemoryMaze
             list.Add(new IntRect(250, 570, 220, 60));   //End           5
             list.Add(new IntRect(100, 100, 60, 60));    //johfeld       6
 
-            gameTitle = "MemoryMaze!";
+            gameTitle = "RAMification!";
             currentTitleString = "";
             currentlyAppendedLetters = "012";
             currentDeltaSum = 0;
+            enoughDeltaSums = 0;
+            andADealtTimeCounter = 0;
+            currentlySwitchedCharinTitle = 0;
+            PossibleChars = new char[] { '_', '$', '#', '%', '=', '&', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             
-            //Witze hahahahhahaha witzig faggot....stfu das ist witzig..ne ist es nicht...ohh mr. Ernst! :/
+            // Witze hahahahhahaha witzig faggot....stfu das ist witzig..ne ist es nicht...ohh mr. Ernst! :/
             funBenni = new Text("Benni heisst Online: KleinerHoden, hihi", font);
             funBenni.Position = new Vector2f(800, 250);
             funBenni.CharacterSize = 30;
@@ -70,11 +83,11 @@ namespace MemoryMaze
             funJohannes.CharacterSize = 40;
             funJohannes.Color = Color.Red;
 
-
             //Initializiere alle Texte
-            gamename = new Text("", new Font("Assets/Fonts/pixelhole.ttf"));
-            gamename.Position = new Vector2f(150, -50);
-            gamename.CharacterSize = 240;
+            gameName = new SuperText("", new Font("Assets/Fonts/pixelhole.ttf"), 0.1f);
+            gameName.Position = new Vector2f(60, -50);
+            gameName.CharacterSize = 240;
+            gameName.Color = MainTitleColor;
 
             mainmenu = new Text("SpielMenü", font);
             mainmenu.Position = new Vector2f(425, 225);
@@ -103,7 +116,7 @@ namespace MemoryMaze
 
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
-            Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit, gamename };
+            Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit};
             textlist = array.ToList();
 
         }
@@ -116,6 +129,7 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
+            gameName.Update(deltaTime);
             if (stopwatch1.ElapsedMilliseconds > 500)
             {
                 int index = -1;
@@ -157,7 +171,7 @@ namespace MemoryMaze
                 {
                     if (index != -1 && index != 0 && index != 6)
                     {
-                        textlist[index].Color = Color.Blue;
+                        
                     }
                 }
             }
@@ -189,12 +203,13 @@ namespace MemoryMaze
                     currentlyAppendedLetters = currentlyAppendedLetters.Insert(randomIndex, ((char)Rand.IntValue(32, 126)).ToString());
                 }
             }
-            gamename.DisplayedString = currentTitleString + currentlyAppendedLetters;
+            gameName.DisplayedString = currentTitleString + currentlyAppendedLetters;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
-            //win.Draw(background);
+            win.Draw(background);
+            gameName.Draw(win, RenderStates.Default);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
@@ -214,8 +229,8 @@ namespace MemoryMaze
             foreach (Text txt in textlist)
             {
                 gui.Draw(txt);
-                txt.Color = Color.White;
             }
+            
         }
     }
 }
