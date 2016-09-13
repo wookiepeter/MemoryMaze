@@ -10,7 +10,7 @@ public class AnimatedSprite : Sprite
     public int frameCount { get; private set; }
     Vector2i upperLeftCorner;
 
-    float? startSecond;
+    float? animationTime;
 
     public AnimatedSprite(Texture spriteSheet, float secondsPerFrame, int frameCount, Vector2i spriteSize)
         : this(spriteSheet, secondsPerFrame, frameCount, spriteSize, new Vector2i(0, 0))
@@ -24,33 +24,31 @@ public class AnimatedSprite : Sprite
         this.frameCount = frameCount;
         this.spriteSize = spriteSize;
         this.upperLeftCorner = upperLeftCorner;
-        startSecond = 0F;
+        animationTime = 0F;
     }
 
     /// <summary>start or restart the animation</summary>
     public void RestartAnimation(GameTime currentTime)
     {
-        startSecond = (float)currentTime.TotalTime.TotalSeconds;
+        animationTime = 0F;
     }
 
     /// <summary>start or restart the animation</summary>
     public void StopAnimation()
     {
-        startSecond = null;
+        animationTime = null;
     }
 
-    public Sprite UpdateFrame(GameTime deltaTime)
+    public Sprite UpdateFrame(float deltaTime)
     {
         int currentFrame = 0;
 
-        if (startSecond.HasValue)
+        if (animationTime.HasValue)
         {
-            float passedSeconds = 0F;
-            passedSeconds = (float)deltaTime.TotalTime.TotalSeconds - startSecond.Value;
-            passedSeconds /= ((float)frameCount * secondsPerFrame);
-            passedSeconds -= (float)Math.Floor(passedSeconds);
+            animationTime += deltaTime;
+            animationTime = (animationTime > (secondsPerFrame * frameCount)) ? animationTime - (secondsPerFrame * frameCount) : animationTime;
 
-            currentFrame = (int)(passedSeconds * frameCount);
+            currentFrame = (int)(animationTime / secondsPerFrame);
         }
 
         TextureRect = new IntRect(upperLeftCorner.X + (currentFrame * spriteSize.X), upperLeftCorner.Y, spriteSize.X, spriteSize.Y);

@@ -55,6 +55,7 @@ public class AssetManager
         textures.Add(TextureName.Goal3bottom, new Texture("Assets/Textures/set_01/goal/goal ltr.png"));
         textures.Add(TextureName.Goal4, new Texture("Assets/Textures/set_01/goal/goal all.png"));
         textures.Add(TextureName.Teleporter, new Texture("Assets/Textures/set_01/teleporter.png"));
+        textures.Add(TextureName.TeleporterExitOnly, new Texture("Assets/Textures/set_01/teleporter_exit.png"));
         textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
         textures.Add(TextureName.RedBot, new Texture("Assets/Textures/RedBot.png"));
         textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/GreenBot.png"));
@@ -120,6 +121,7 @@ public class AssetManager
         Goal3top,
         Goal4,
         Teleporter,
+        TeleporterExitOnly,
         Item,
         Movable,
         Enemy,
