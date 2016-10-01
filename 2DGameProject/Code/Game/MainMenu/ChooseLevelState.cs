@@ -96,7 +96,7 @@ namespace MemoryMaze
                     return GameState.ChooseLevelState;
                 }
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
-                    return GameState.ChooseSaveSlotState;
+                    return GameState.LoadLevelState;
                 for (int e = 0; e < 4; e++)
                 {
                     if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!

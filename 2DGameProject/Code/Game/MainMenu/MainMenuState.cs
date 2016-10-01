@@ -12,14 +12,13 @@ namespace MemoryMaze
 {
     class MainMenuState : IGameState
     {
-        Font font;
+        Font font, sexyFont;
         Stopwatch stopwatch;
         Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
         Text exit, start, credits, loadGame, mainmenu, tutorial;
         SuperText gameName;
         String gameTitle, currentTitleString, currentlyAppendedLetters;
-        float currentDeltaSum, anotherDeltaSum, enoughDeltaSums, andADealtTimeCounter;
-        int currentlySwitchedTitle, currentlySwitchedCharinTitle;
+        float currentDeltaSum, anotherDeltaSum; 
         Text funBenni;
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
@@ -28,14 +27,24 @@ namespace MemoryMaze
         Color ProfileNameColor;
         Color MenuTextColor;
 
-        char[] PossibleChars;
+        bool settingNewProfile = false;
+        String currentInput;
 
+        SuperText profileOneText, profileTwoText, profileThreeText;
+        List<SuperText> superTextList;
         List<Text> textlist;
-        List<IntRect> list;
+        List<IntRect> rectList;
+
+        RectangleShape debugRect = new RectangleShape();
+        RectangleShape debugButtonsRect = new RectangleShape();
+
+        ManageProfiles profiles = new ManageProfiles();
 
         public MainMenuState()
         {
             Console.WriteLine("MAINMENUSTATE");
+            profiles = new ManageProfiles();
+            profiles = profiles.loadManageProfiles();
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
 
@@ -49,27 +58,29 @@ namespace MemoryMaze
             funactivJoh = false;
             funacitvBenni = false;
             font = new Font("Assets/Fonts/calibri.ttf");
-            list = new List<IntRect>();
+            sexyFont = new Font("Assets/Fonts/pixelhole.ttf");
+            rectList = new List<IntRect>();
             MainTitleColor = new Color(8, 45, 3);
             ProfileNameColor = new Color(125, 253, 108);
             MenuTextColor = new Color(114, 217, 100);
  
-            list.Add(new IntRect(100, 280, 420, 100));  //MainMenu      0
-            list.Add(new IntRect(250, 370, 220, 60));   //Start         1
-            list.Add(new IntRect(250, 420, 220, 60));   //Tutorial      2
-            list.Add(new IntRect(250, 470, 220, 60));   //Steuerung     3
-            list.Add(new IntRect(250, 520, 220, 60));   //credit        4
-            list.Add(new IntRect(250, 570, 220, 60));   //End           5
-            list.Add(new IntRect(100, 100, 60, 60));    //johfeld       6
+            // MainMenuField was too big -> had to make it smaller
+            
+            rectList.Add(new IntRect(250, 310, 500, 80));   //One           0
+            rectList.Add(new IntRect(800, 310, 80, 80));    //OneReset      1
+            rectList.Add(new IntRect(250, 410, 500, 80));   //Two           2
+            rectList.Add(new IntRect(800, 410, 80, 80));    //TwoReset      3
+            rectList.Add(new IntRect(250, 510, 500, 80));   //Three         4
+            rectList.Add(new IntRect(800, 510, 80, 80));    //ThreeReset    5
+            rectList.Add(new IntRect(600, 610, 80, 80));    //Options       6
+            rectList.Add(new IntRect(700, 610, 80, 80));    //Credits       7
+            rectList.Add(new IntRect(800, 610, 80, 80));    //Exit          8
+            rectList.Add(new IntRect(100, 100, 60, 60));    //johfeld       9
 
             gameTitle = "RAMification!";
             currentTitleString = "";
             currentlyAppendedLetters = "012";
             currentDeltaSum = 0;
-            enoughDeltaSums = 0;
-            andADealtTimeCounter = 0;
-            currentlySwitchedCharinTitle = 0;
-            PossibleChars = new char[] { '_', '$', '#', '%', '=', '&', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             
             // Witze hahahahhahaha witzig faggot....stfu das ist witzig..ne ist es nicht...ohh mr. Ernst! :/
             funBenni = new Text("Benni heisst Online: KleinerHoden, hihi", font);
@@ -84,7 +95,7 @@ namespace MemoryMaze
             funJohannes.Color = Color.Red;
 
             //Initializiere alle Texte
-            gameName = new SuperText("", new Font("Assets/Fonts/pixelhole.ttf"), 0.1f);
+            gameName = new SuperText("", sexyFont, 0.1f);
             gameName.Position = new Vector2f(60, -50);
             gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
@@ -114,6 +125,16 @@ namespace MemoryMaze
             loadGame.Position = new Vector2f(250, 450);
             loadGame.CharacterSize = 40;
 
+            profileOneText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.one), font, 0.15f);
+            profileOneText.Position = new Vector2f(250, 300);
+            profileOneText.CharacterSize = 70;
+            profileTwoText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.two), font, 0.15f);
+            profileTwoText.Position = new Vector2f(250, 400);
+            profileTwoText.CharacterSize = 70;
+            profileThreeText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.three), font, 0.15f);
+            profileThreeText.Position = new Vector2f(250, 500);
+            profileThreeText.CharacterSize = 70;
+            superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText};
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
             Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit};
@@ -122,7 +143,7 @@ namespace MemoryMaze
         }
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
         {
-            Vector2i mouse = Mouse.GetPosition() - win.Position;
+            Vector2i mouse = win.InternalGetMousePosition();                                    // @chris -> das nehmen um die interne mausposition zu kriegen
             return (rect.Left < mouse.X && rect.Left + rect.Width > mouse.X
                         && rect.Top < mouse.Y && rect.Top + rect.Height > mouse.Y);
         }
@@ -130,52 +151,107 @@ namespace MemoryMaze
         public GameState Update(RenderWindow win, float deltaTime)
         {
             gameName.Update(deltaTime);
+
             if (stopwatch1.ElapsedMilliseconds > 500)
             {
                 int index = -1;
-
-                for (int e = 0; e < 7; e++)
+                debugRect.Position = new Vector2f(-1000, -1000);                    // moves this out of the picture... 
+                for (int e = 0; e < rectList.Count; e++)
                 {
-                    if (IsMouseInRectangle(list[e], win))                           //Geht die Liste mit rectInt duch!
+                    if (IsMouseInRectangle(rectList[e], win))                           //Geht die Liste mit rectInt duch!
                     {
                         index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
                     }
                 }
-                if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
+                if (settingNewProfile)
+                {
+                    List<char> charList = KeyboardInputManager.getCharInput();
+                    foreach (char c in charList)
+                        currentInput += c;
+                    UpdateSelectedProfileText(currentInput);
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Back))
+                    {
+                        if (currentInput != "")
+                        {
+                            currentInput = currentInput.Remove(currentInput.Length - 1);
+                        }
+                    }
+                    if ((KeyboardInputManager.IsPressed(Keyboard.Key.Escape) || Mouse.IsButtonPressed(Mouse.Button.Left)) && settingNewProfile)
+                    {
+                        settingNewProfile = false;
+                        stopwatch.Restart();
+                        UpdateActiveProfileText();
+                        return GameState.MainMenu;
+                    }
+                    if (KeyboardInputManager.IsPressed(Keyboard.Key.Return))
+                    {
+                        if (currentInput != "")
+                        {
+                            profiles.setProfile(currentInput, ProfileConstants.activeProfile);
+                            settingNewProfile = false;
+                            UpdateActiveProfileText();
+                        }
+                        else
+                        {
+                            Logger.Instance.Write("ProfileName cannot be empty", Logger.level.Info);
+                        }
+                    }
+                }
+                else if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                 {
                     //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
                     switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                     {                                                               //bearbeitet das aktuelle TextFeld
                                                                                     //start
                         case 0:
-                            funacitvBenni = true; stopwatch.Restart();
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.one;
+                            return GameState.LoadLevelState;
+                        case 1:
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.one;
+                            settingNewProfile = true;
+                            currentInput = "";
                             break;
-                        case 1: return GameState.ChooseSaveSlotState;
-                        //end
-                        case 2: return GameState.Intro;
-                        //LoadLevel
-                        case 3: return GameState.LoadLevelState;
-                        case 4: return GameState.Credits;
-                        case 5: return GameState.None;
-                        case 6:
+                        case 2:
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.two;
+                            return GameState.LoadLevelState;
+                        case 3:
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.two;
+                            settingNewProfile = true;
+                            currentInput = "";
+                            break;
+                        case 4:
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.three;
+                            return GameState.LoadLevelState;
+                        case 5:
+                            ProfileConstants.activeProfile = MemoryMaze.profiles.three;
+                            settingNewProfile = true;
+                            currentInput = "";
+                            break;
+                        case 6: return GameState.Intro;
+                        case 7: return GameState.Credits;
+                        case 8: return GameState.None;
+                        case 9:
                             funactivJoh = true; stopwatch.Restart();
                             break;
-                            //    case 5: break;
-                            //    case 6: break;
-                            //    case 7: break;
-                            //    default: break;
+                        default: break;
                     }
                 }
                 else
                 {
-                    if (index != -1 && index != 0 && index != 6)
+                    if (index >= 0 && index <= 9)
                     {
-                        
+                        IntRect rect = rectList[index];
+                        debugRect.Size = new Vector2f(rect.Width, rect.Height);
+                        debugRect.Position = new Vector2f(rectList[index].Left, rectList[index].Top);
+                        debugRect.FillColor = Color.Cyan;
                     }
                 }
             }
             UpdateMainTitle(deltaTime);
+
+            foreach (SuperText s in superTextList)
+                s.Update(deltaTime);
             return GameState.MainMenu;
         }
 
@@ -209,7 +285,21 @@ namespace MemoryMaze
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
             win.Draw(background);
+            // draw all rectangleshapes to see the Clickboxes
+            foreach(IntRect r in rectList)
+            {
+                debugButtonsRect.Size = new Vector2f(r.Width, r.Height);
+                debugButtonsRect.Position = new Vector2f(r.Left, r.Top);
+                debugButtonsRect.FillColor = Color.Black;
+                win.Draw(debugButtonsRect);
+            }
+            // Highlights the currently hovered Clickbox
+            win.Draw(debugRect);
             gameName.Draw(win, RenderStates.Default);
+            foreach (SuperText s in superTextList)
+            {
+                s.Draw(win, RenderStates.Default);
+            }
         }
 
         public void DrawGUI(GUI gui, float deltaTime)
@@ -226,11 +316,38 @@ namespace MemoryMaze
                 funactivJoh = false;
 
             //Alle Texte aus der Liste zeichnen
-            foreach (Text txt in textlist)
+        }
+
+        private void UpdateActiveProfileText()
+        {
+            switch (ProfileConstants.activeProfile)
             {
-                gui.Draw(txt);
+                case MemoryMaze.profiles.one:
+                    profileOneText.DisplayedString = profiles.getActiveProfileName();
+                    break;
+                case MemoryMaze.profiles.two:
+                    profileTwoText.DisplayedString = profiles.getActiveProfileName();
+                    break;
+                case MemoryMaze.profiles.three:
+                    profileThreeText.DisplayedString = profiles.getActiveProfileName();
+                    break;
             }
-            
+        }
+
+        private void UpdateSelectedProfileText(String currentInput)
+        {
+            switch (ProfileConstants.activeProfile)
+            {
+                case MemoryMaze.profiles.one:
+                    profileOneText.DisplayedString = currentInput;
+                    break;
+                case MemoryMaze.profiles.two:
+                    profileTwoText.DisplayedString = currentInput;
+                    break;
+                case MemoryMaze.profiles.three:
+                    profileThreeText.DisplayedString = currentInput;
+                    break;
+            }
         }
     }
 }

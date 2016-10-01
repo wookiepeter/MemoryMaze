@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Game\MainMenu\ChooseLevelState.cs" />
-    <Compile Include="Code\Game\MainMenu\ChooseSaveSlotState.cs" />
     <Compile Include="Code\Game\MainMenu\Credits.cs" />
     <Compile Include="Code\Game\MainMenu\LoadLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Steuerung.cs" />

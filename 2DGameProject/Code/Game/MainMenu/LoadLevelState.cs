@@ -100,7 +100,7 @@ namespace MemoryMaze
                     //
                     case 2: return GameState.Steuerung;
                     //Choose ur saveslot
-                    case 3: return GameState.ChooseSaveSlotState;
+                    case 3: return GameState.MainMenu;
 
                     }
                 }

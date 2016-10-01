@@ -43,12 +43,12 @@ namespace MemoryMaze
                 isActive = false;
             }
 
-            public void RandomizeChange(int lengthOfString, float minDuration, float maxDuration, float minFreqency, float maxFrequency)
+            public void RandomizeChange(int lengthOfString, float minDuration, float maxDuration, float minFrequency, float maxFrequency)
             {
                 newChar = possibleChars[Rand.IntValue(0, possibleChars.Length)];
                 position = Rand.IntValue(0, lengthOfString - 1);
                 duration = Rand.Value(minDuration, maxDuration);
-                downTime = Rand.Value(minFreqency, maxFrequency);
+                downTime = Rand.Value(minFrequency, maxFrequency);
                 isActive = false;
             }
 
@@ -64,8 +64,6 @@ namespace MemoryMaze
             UpdateLength();
             for (int i = 0; i < changeList.Count; i++)
             {
-                Console.WriteLine("duration: " + changeList[i].duration);
-                Console.WriteLine("downTime: " + changeList[i].downTime);
                 if(changeList[i].downTime <= 0f)
                 {
                     if (changeList[i].duration <= 0f)
@@ -99,7 +97,12 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    changeList.RemoveRange(changeListLength - 1, changeList.Count - changeListLength);
+                    if (changeListLength == 0)
+                        changeList.RemoveAll(b => true);
+                    else
+                        changeList.RemoveRange(changeListLength-1, changeList.Count - changeListLength);
+                    foreach (Change c in changeList)
+                        c.RandomizeChange(DisplayedString.Length, minDuration, maxDuration, minFrequency, maxFrequency);
                 }
             }
         }
@@ -117,6 +120,7 @@ namespace MemoryMaze
 
         void ApplyChangesToString(string str)
         {
+            UpdateLength();
             foreach (Change c in changeList)
             {
                 if (c.isActive)
