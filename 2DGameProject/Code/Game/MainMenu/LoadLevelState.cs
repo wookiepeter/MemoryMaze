@@ -30,6 +30,10 @@ namespace MemoryMaze
         float slideSpeed;
         bool sliding;
 
+        int currentLevel;
+        ManageProfiles profiles;
+        ManageStars stars;
+
         public LoadLevelState()
         {
             stopwatch = new Stopwatch();
@@ -48,6 +52,11 @@ namespace MemoryMaze
             rectList.Add(new IntRect(600, 600, 80, 80));   //Levels         1
             rectList.Add(new IntRect(900, 600, 80, 80));   //Settings       2   
             rectList.Add(new IntRect(1000, 600, 80, 80));  //Right          3   
+            
+            for (int i = 0; i < 5; i++) 
+            {
+                rectList.Add(new IntRect(300 + (int) (150 * i), 300, 80, 80)); // 4 - 8
+            }
 
             debugRect = new RectangleShape();
             debugButtonRect = new RectangleShape();
@@ -58,6 +67,12 @@ namespace MemoryMaze
             helpMap.Position = new Vector2f(-1000, -1000);
             slideSpeed = 10;
             sliding = false;
+
+            profiles = new ManageProfiles();
+            profiles = profiles.loadManageProfiles();
+            stars = new ManageStars();
+            stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
+            currentLevel = (stars.getIndexOfFirstUnsolvedLevel() > 0)? stars.getIndexOfFirstUnsolvedLevel()-1: 0;
 
             //Initialisieren von  Text
 
@@ -107,13 +122,35 @@ namespace MemoryMaze
                     SlideMap(deltaTime);
                     return GameState.LoadLevelState;
                 }
-                for (int e = 0; e < 4; e++)
+                for (int e = 0; e < rectList.Count; e++)
                 {   
                     if (IsMouseInRectangle(rectList[e], win))                           //Geht die Liste mit rectInt duch!
                     {
                         index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
                     }
+                }
+                if (KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right))
+                {
+                    if(KeyboardInputManager.Downward(Keyboard.Key.Left))
+                    {
+                        if (currentLevel > 0)
+                        {
+                            currentLevel--;
+                            if (currentLevel % 5 == 4)
+                                InitiateSlide(false);
+                        }
+                    }
+                    else
+                    {
+                        if (stars.levelIsUnlocked(currentLevel + 1))
+                        {
+                            currentLevel++;
+                            if (currentLevel % 5 == 0)
+                                InitiateSlide(true);
+                        }
+                    }
+                    return GameState.LoadLevelState;
                 }
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                 {
@@ -122,24 +159,26 @@ namespace MemoryMaze
                     {                                                               //bearbeitet das aktuelle TextFeld
                                                                                     //
                         case 0:
-                            InitiateSlide(false);
+                            CanSlide(false);
                             return GameState.LoadLevelState;
                         //
-                        case 1: return GameState.ChooseLevelState;
+                        case 1:
+                            return StartLevelIfUnlocked();
                         //
-                        case 2: return GameState.Steuerung;
+                        case 2:
+                            return GameState.Steuerung;
                         //Choose ur saveslot
                         case 3:
-                            InitiateSlide(true);
+                            CanSlide(true);
                             return GameState.LoadLevelState;
-
+                        default:
+                            return GameState.LoadLevelState;
                     }
                 }
                 else
                 {
                     if (index != -1)
-                    {
-                        textlist[index].Color = Color.Blue;
+                    { 
                         IntRect curRect = rectList[index];
                         debugRect.Position = new Vector2f(curRect.Left, curRect.Top);
                         debugRect.Size = new Vector2f(curRect.Width, curRect.Height);
@@ -199,12 +238,58 @@ namespace MemoryMaze
             win.Draw(helpMap);
             foreach(IntRect ir in rectList)
             {
+                
                 debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
                 debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
                 debugButtonRect.FillColor = Color.Black;
+                if (ir.Equals(rectList[4 + (currentLevel % 5)]))
+                    debugButtonRect.FillColor = Color.Magenta;
                 win.Draw(debugButtonRect);
             }
             win.Draw(debugRect);
+        }
+
+        private GameState StartLevelIfUnlocked()
+        {
+            if (stars.levelIsUnlocked(currentLevel))
+            {
+                Logger.Instance.Write("Level " + currentLevel + " is starting...", Logger.level.Info);
+                ProfileConstants.levelToPlay = currentLevel;
+                return GameState.StartGameAtLevel;
+            }
+            else
+            {
+                Logger.Instance.Write("Level " + currentLevel + " is not unlocked yet", Logger.level.Info);
+                return GameState.LoadLevelState;
+            }
+
+        }
+
+        private bool CanSlide(bool right)
+        {
+            int help = currentLevel;
+            int currentMod = help % 5;
+            if(right)
+            {
+                help = help + 5 - currentMod;
+                if (stars.levelIsUnlocked(help))
+                {
+                    currentLevel = help;
+                    InitiateSlide(true);
+                    return true;
+                }
+            }
+            else
+            {
+                help = help - currentMod - 1;
+                if (help >= 4)
+                {
+                    currentLevel = help;
+                    InitiateSlide(false);
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
