@@ -122,13 +122,9 @@ namespace MemoryMaze
                 case GameState.Credits:
                     state = new Credits();
                     break;
-                case GameState.ChooseSaveSlotState:
-                    state = new ChooseSaveSlotState();
-                    break;
                 case GameState.ChooseLevelState:
                     state = new ChooseLevelState();
                     break;
-
                 case GameState.Reset:
                     currentGameState = prevGameState;
                     prevGameState = GameState.Reset;

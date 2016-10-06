@@ -16,7 +16,6 @@ namespace MemoryMaze
         Steuerung,
         Credits,
         LoadLevelState,
-        ChooseSaveSlotState,
         ChooseLevelState,
         StartGameAtLevel,
     }
