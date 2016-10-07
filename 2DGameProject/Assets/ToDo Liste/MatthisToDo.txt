@@ -22,18 +22,29 @@
 
 -- #10) GUI Interface Bots (Anzahl(**__) und Schritte)														(CORD!)
 -- #11) Wenn man den Hebel aktiviert --> Die Platte die sich öffnet oder schließt kurz grafisch anzeigen	(CORD!)
--- #14) ScorePunkte nach dem Level auf 0 setzen
+-- #11.5) Lever(blue, normal) Grafiken erstellen!															(CORD!)
+
 -- #14) Level zu ende editieren																				(CHRIS!)
--- #15) Score für jedes Lvl fessetzen																		(CHRIS!)
--- #16) RankingSystem einführen																				(MATTHIS!)
--- #17) Schalter Aktiviert -> Leuchtendes Symbol zum aktiviertenOrt
--- #18) MainMenu neu gestalten
--- #19) RadiusDesSpielers erstmal belassen!
--- #20) Teleporter: Spieler leuchtet von A nach B (Camera beachten! Matthis hat das schon super gemacht)
--- #21) Zeichnen der Wege neu machen!
--- #22) Bot stirb und die Punkte wandeln mit dem GLOW nach OBEN! (GEIL)
--- #23) Nach jedem Level FREEZ und "Du hast xy Punkte" *** <-- das sollen Sterne sein
--- #24) Nach jedem LevelEnde bot sterben (Punkte verrechnen!)
+-- #15) Score für jedes Lvl fessetzen																		(CHRIS!)																
+-- #19) RadiusDesSpielers(vergrößern)
+-- #20) Teleporter: Spieler leuchtet von A nach B (Camera beachten! Matthis hat das schon super gemacht)	(MATTHIS)
+-- #22) Bot stirb und die Punkte wandeln mit dem GLOW nach OBEN! (GEIL)										(MATTHIS WE)
+-- #23) Nach jedem Level FREEZ und "Du hast xy Punkte" *** <-- das sollen Sterne sein						
+-- #24) Nach jedem LevelEnde bot sterben (Punkte verrechnen!)												(CHRIS!)
+-- #25) Sounds 
+		- kleiner Sounds 
+		- Ordner verschieben
+		- Level geschafft
+		- Sterben
+		- Botbeschwören
+		- Wechseln der Bots
+		- Hebel
+		- Teleporter
+		- Gegen die Wand laufen/nicht passierbare Objekte
+-- #26) Tutorial																							(CHRIS!)
+-- #27)
+
+
 
 
 													!DONE!
@@ -48,4 +59,7 @@
 -- #13) Nur BlueBot und Player koennen Items einsammeln!													(DONE!)
 ToDo: Benny 3 Euro geben!																					(DONE!)
 -- #1) Speicherplätze anlegen! (Prioriät ##2##) -> Beim ersten Start kann man den Virus einen Namen geben (So heißt das SaveGame dann) (DONE!)
+-- #14) ScorePunkte nach dem Level auf 0 setzen																(DONE)
+-- #16) RankingSystem einführen																				(MATTHIS!)
+-- #18) MainMenu neu gestalten		
 */
