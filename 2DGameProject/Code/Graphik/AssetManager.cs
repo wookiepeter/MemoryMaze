@@ -72,6 +72,9 @@ public class AssetManager
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
         textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/Lever.png"));
+        textures.Add(TextureName.MapBackground, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
+        textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
+        textures.Add(TextureName.LevelButtonMedium, new Texture("Assets/Textures/Menu/Button_Options.png"));
     }
 
     public enum TextureName
@@ -139,8 +142,9 @@ public class AssetManager
         BackGroundSteuerung,
         DasF,
         Lever, 
-        
-
+        MapBackground,
+        LevelButton,
+        LevelButtonMedium,
     }
 }
 

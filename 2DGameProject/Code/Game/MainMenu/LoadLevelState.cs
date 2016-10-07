@@ -12,15 +12,15 @@ namespace MemoryMaze
     class LoadLevelState : IGameState
     {
         Font font;
-        Text playOn, levelSelect, control, back;
-        Sprite background;
 
-        List<Text> textlist;
         List<IntRect> rectList;
         Stopwatch stopwatch;
+        SuperText lastScreen, nextScreen;
 
         RectangleShape debugRect;
         RectangleShape debugButtonRect;
+        RectangleShape levelButtons;            // used to draw all the positions of any buttons
+        RectangleShape screenButtons;           // used to draw the buttons for switching between screens
 
         RectangleShape mainMap;
         RectangleShape helpMap;
@@ -45,56 +45,52 @@ namespace MemoryMaze
 
         void Initialisation()
         {
-            font = new Font("Assets/Fonts/calibri.ttf");
+            font = new Font("Assets/Fonts/pixelhole.ttf");
             rectList = new List<IntRect>();
 
-            rectList.Add(new IntRect(200, 600, 80, 80));   //Left           0
-            rectList.Add(new IntRect(600, 600, 80, 80));   //Levels         1
-            rectList.Add(new IntRect(900, 600, 80, 80));   //Settings       2   
-            rectList.Add(new IntRect(1000, 600, 80, 80));  //Right          3   
-            
-            for (int i = 0; i < 5; i++) 
+            rectList.Add(new IntRect(45, 245, 85, 185));       //Left           0
+            rectList.Add(new IntRect(600, 600, 80, 80));        //Levels         1
+            rectList.Add(new IntRect(900, 600, 80, 80));        //Settings       2   
+            rectList.Add(new IntRect(1150, 250, 85, 185));      //Right          3   
+
+            for (int i = 0; i < 5; i++)
             {
-                rectList.Add(new IntRect(300 + (int) (150 * i), 300, 80, 80)); // 4 - 8
+                rectList.Add(new IntRect(300 + (int)(150 * i) + Rand.IntValue(-20, 20), Rand.IntValue(200, 500), 50, 50)); // 4 - 8
             }
 
             debugRect = new RectangleShape();
+            levelButtons = new RectangleShape();
+            levelButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
+            screenButtons = new RectangleShape();
+            screenButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonMedium);
+            screenButtons.Size = new Vector2f(screenButtons.Texture.Size.X, screenButtons.Texture.Size.Y);
+            screenButtons.Rotation = 90;
+            screenButtons.Origin = new Vector2f(0, screenButtons.TextureRect.Height);
             debugButtonRect = new RectangleShape();
-            mainMap = new RectangleShape(new Vector2f(980, 500));
-            mainMap.Position = new Vector2f(150, 50);
-            mainMap.FillColor = Color.Red;
+            mainMap = new RectangleShape(new Vector2f(1280, 720));
+            mainMap.Position = new Vector2f(0, 0);
+            mainMap.Texture = AssetManager.GetTexture(AssetManager.TextureName.MapBackground);
             helpMap = new RectangleShape(mainMap);
             helpMap.Position = new Vector2f(-1000, -1000);
             slideSpeed = 10;
             sliding = false;
 
+            lastScreen = new SuperText("<", font, 1);
+            lastScreen.CharacterSize = 200;
+            lastScreen.Position = new Vector2f(60, 175);
+            lastScreen.minFrequency = 5;
+            lastScreen.maxFrequency = 10;
+            nextScreen = new SuperText(">", font, 1);
+            nextScreen.CharacterSize = 200;
+            nextScreen.Position = new Vector2f(1160, 175);
+            nextScreen.minFrequency = 5;
+            nextScreen.maxFrequency = 10;
+
             profiles = new ManageProfiles();
             profiles = profiles.loadManageProfiles();
             stars = new ManageStars();
             stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
-            currentLevel = (stars.getIndexOfFirstUnsolvedLevel() > 0)? stars.getIndexOfFirstUnsolvedLevel()-1: 0;
-
-            //Initialisieren von  Text
-
-            playOn = new Text("Continue Game ", font);
-            playOn.Position = new Vector2f(250, 400);
-            playOn.CharacterSize = 40;
-
-            levelSelect = new Text("Levels", font);
-            levelSelect.Position = new Vector2f(250, 450);
-            levelSelect.CharacterSize = 40;
-
-            control = new Text("Settings", font);
-            control.Position = new Vector2f(250, 500);
-            control.CharacterSize = 40;
-
-            back = new Text("Back", font);
-            back.Position = new Vector2f(250, 550);
-            back.CharacterSize = 40;
-
-            Text[] array = { playOn, levelSelect, control, back};
-            textlist = array.ToList();
-
+            currentLevel = stars.getIndexOfFirstUnsolvedLevel() ;
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -113,6 +109,8 @@ namespace MemoryMaze
         {
             int index = -1;
             debugRect.Position = new Vector2f(-1000, -1000);
+            lastScreen.Update(deltaTime);
+            nextScreen.Update(deltaTime);
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -224,29 +222,50 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-            foreach (Text txt in textlist)
-            {
-                gui.Draw(txt);
-                txt.Color = Color.White;
-            }
+
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
-            win.Clear(Color.Green);
+            win.Clear(Color.Black);
             win.Draw(mainMap);
             win.Draw(helpMap);
-            foreach(IntRect ir in rectList)
+            for (int i = 0; i < rectList.Count; i++)
             {
-                
-                debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
-                debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
-                debugButtonRect.FillColor = Color.Black;
-                if (ir.Equals(rectList[4 + (currentLevel % 5)]))
-                    debugButtonRect.FillColor = Color.Magenta;
-                win.Draw(debugButtonRect);
+                IntRect ir = rectList[i];
+                if (i > 3 && i == 4 + (currentLevel % 5))
+                {
+                    debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
+                    debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
+                    debugButtonRect.FillColor = Color.Blue;
+                    win.Draw(debugButtonRect);
+
+                }
+                if (i < 4)
+                {
+                    if (i != 0 && i != 3)
+                    {
+                        debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
+                        debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
+                        debugButtonRect.FillColor = Color.Black;
+                        win.Draw(debugButtonRect);
+                    }
+                    else
+                    {
+                        screenButtons.Position = new Vector2f(ir.Left, ir.Top);
+                        win.Draw(screenButtons);
+                    }
+                }
+                else
+                {
+                    levelButtons.Position = new Vector2f(ir.Left, ir.Top);
+                    levelButtons.Size = new Vector2f(ir.Width, ir.Height);
+                    win.Draw(levelButtons);
+                }
             }
             win.Draw(debugRect);
+            lastScreen.Draw(win, RenderStates.Default);
+            nextScreen.Draw(win, RenderStates.Default);
         }
 
         private GameState StartLevelIfUnlocked()
