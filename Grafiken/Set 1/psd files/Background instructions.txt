@@ -1,3 +1,0 @@
-Background: Black
-line color: #37a6d4 (60%) (outer glow #37a6d4, 75%, 5px)
-lines: 4px (three times, spaces 10px apart)
