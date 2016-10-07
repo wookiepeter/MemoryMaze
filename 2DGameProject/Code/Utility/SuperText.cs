@@ -105,6 +105,7 @@ namespace MemoryMaze
                         c.RandomizeChange(DisplayedString.Length, minDuration, maxDuration, minFrequency, maxFrequency);
                 }
             }
+            Console.WriteLine(changeList.Count);
         }
 
         public new void Draw(RenderTarget target, RenderStates states)
