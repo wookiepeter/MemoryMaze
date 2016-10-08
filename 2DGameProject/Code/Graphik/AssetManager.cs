@@ -76,6 +76,7 @@ public class AssetManager
         textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/Lever.png"));
         textures.Add(TextureName.MapBackground, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
+        textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
         textures.Add(TextureName.LevelButtonMedium, new Texture("Assets/Textures/Menu/Button_Options.png"));
     }
 
@@ -148,6 +149,7 @@ public class AssetManager
         Lever, 
         MapBackground,
         LevelButton,
+        LevelButtonGlow,
         LevelButtonMedium,
     }
 }

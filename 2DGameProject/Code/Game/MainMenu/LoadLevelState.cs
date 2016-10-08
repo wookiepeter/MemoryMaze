@@ -11,7 +11,20 @@ namespace MemoryMaze
 {
     class LoadLevelState : IGameState
     {
+        struct LevelSelectionScreen
+        {
+            LevelSelectionScreen(Texture _texture, List<Vector2f> _posList)
+            {
+                posList = _posList;
+                texture = _texture;
+            }
+
+            public Texture texture;
+            public List<Vector2f> posList;
+        }
+
         Font font;
+        LevelSelectButton test;
 
         List<IntRect> rectList;
         Stopwatch stopwatch;
@@ -48,15 +61,17 @@ namespace MemoryMaze
             font = new Font("Assets/Fonts/pixelhole.ttf");
             rectList = new List<IntRect>();
 
-            rectList.Add(new IntRect(45, 245, 85, 185));       //Left           0
+            rectList.Add(new IntRect(45, 245, 85, 185));        //Left           0
             rectList.Add(new IntRect(600, 600, 80, 80));        //Levels         1
             rectList.Add(new IntRect(900, 600, 80, 80));        //Settings       2   
-            rectList.Add(new IntRect(1150, 250, 85, 185));      //Right          3   
+            rectList.Add(new IntRect(1145, 245, 85, 185));      //Right          3   
 
             for (int i = 0; i < 5; i++)
             {
-                rectList.Add(new IntRect(300 + (int)(150 * i) + Rand.IntValue(-20, 20), Rand.IntValue(200, 500), 50, 50)); // 4 - 8
+                rectList.Add(new IntRect(255 + (int) (200 * i), Rand.IntValue(200, 500), 50, 50)); // 4 - 8
             }
+
+            test = new LevelSelectButton(new Vector2f(200, 200), 10);
 
             debugRect = new RectangleShape();
             levelButtons = new RectangleShape();
@@ -65,6 +80,7 @@ namespace MemoryMaze
             screenButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonMedium);
             screenButtons.Size = new Vector2f(screenButtons.Texture.Size.X, screenButtons.Texture.Size.Y);
             screenButtons.Rotation = 90;
+            screenButtons.FillColor = new Color(255, 255, 255, 200);
             screenButtons.Origin = new Vector2f(0, screenButtons.TextureRect.Height);
             debugButtonRect = new RectangleShape();
             mainMap = new RectangleShape(new Vector2f(1280, 720));
@@ -111,6 +127,7 @@ namespace MemoryMaze
             debugRect.Position = new Vector2f(-1000, -1000);
             lastScreen.Update(deltaTime);
             nextScreen.Update(deltaTime);
+            test.Update(deltaTime, win);
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -121,16 +138,16 @@ namespace MemoryMaze
                     return GameState.LoadLevelState;
                 }
                 for (int e = 0; e < rectList.Count; e++)
-                {   
+                {
                     if (IsMouseInRectangle(rectList[e], win))                           //Geht die Liste mit rectInt duch!
                     {
                         index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
                         break;
                     }
                 }
-                if (KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right))
+                if (KeyboardInputManager.Downward(Keyboard.Key.Left))
                 {
-                    if(KeyboardInputManager.Downward(Keyboard.Key.Left))
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Left))
                     {
                         if (currentLevel > 0)
                         {
@@ -149,6 +166,10 @@ namespace MemoryMaze
                         }
                     }
                     return GameState.LoadLevelState;
+                }
+                if (KeyboardInputManager.Downward(Keyboard.Key.Return))
+                {
+                    return StartLevelIfUnlocked();
                 }
                 if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                 {
@@ -230,6 +251,7 @@ namespace MemoryMaze
             win.Clear(Color.Black);
             win.Draw(mainMap);
             win.Draw(helpMap);
+            test.Draw(win);
             for (int i = 0; i < rectList.Count; i++)
             {
                 IntRect ir = rectList[i];
