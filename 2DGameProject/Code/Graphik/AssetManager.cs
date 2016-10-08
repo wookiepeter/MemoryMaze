@@ -20,7 +20,7 @@ public class AssetManager
         textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/Menu/Menu_Background2.png"));
         textures.Add(TextureName.Player, new Texture("Assets/Textures/playerface.png"));
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
-        textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
+        textures.Add(TextureName.Item, new Texture("Assets/Textures/Item/key_glow.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
         textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/old/lonely floor.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/old/end floor top.png"));
