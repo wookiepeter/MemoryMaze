@@ -5,12 +5,28 @@ using System.Collections.Generic;
 
 public class AnimatedSprite : Sprite
 {
-    public float secondsPerFrame { get; private set; }
+    public float secondsPerFrame { get; set; }
+    public float framesPerSecond
+    {
+        get { return 1F / secondsPerFrame; }
+        set { secondsPerFrame = 1F / value; }
+    }
     public Vector2i spriteSize { get; private set; }
     public int frameCount { get; private set; }
     Vector2i upperLeftCorner;
 
     float? animationTime;
+
+    /// <summary>
+    /// simplyfied constructor for horizontal spritesheets
+    /// </summary>
+    /// <param name="spriteSheet">needs to be a horizontal spritesheet</param>
+    /// <param name="secondsPerFrame">seconds per frame</param>
+    /// <param name="frameCount">frame Count</param>
+    public AnimatedSprite(Texture spriteSheet, float secondsPerFrame, int frameCount)
+        : this(spriteSheet, secondsPerFrame, frameCount, new Vector2i((int)(spriteSheet.Size.X / frameCount), (int)spriteSheet.Size.Y))
+    {
+    }
 
     public AnimatedSprite(Texture spriteSheet, float secondsPerFrame, int frameCount, Vector2i spriteSize)
         : this(spriteSheet, secondsPerFrame, frameCount, spriteSize, new Vector2i(0, 0))

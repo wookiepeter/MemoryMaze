@@ -451,6 +451,9 @@
     <Content Include="Assets\Textures\set_01\star_rotating.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Textures\set_01\star_rotating2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Textures\set_01\teleporter.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
