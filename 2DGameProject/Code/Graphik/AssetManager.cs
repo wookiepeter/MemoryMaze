@@ -26,6 +26,7 @@ public class AssetManager
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/Item/key.png"));
         textures.Add(TextureName.KeyAnimated, new Texture("Assets/Textures/Item/key_animated.png"));
+        textures.Add(TextureName.ParticlesAnimated, new Texture("Assets/Textures/set_01/particles.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
         textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/old/lonely floor.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/old/end floor top.png"));
@@ -63,9 +64,9 @@ public class AssetManager
         textures.Add(TextureName.TeleporterExitOnly, new Texture("Assets/Textures/set_01/teleporter_exit.png"));
         textures.Add(TextureName.StarRotating, new Texture("Assets/Textures/set_01/star_rotating2.png"));
         textures.Add(TextureName.Star, new Texture("Assets/Textures/set_01/star.png"));
-        textures.Add(TextureName.RedItem, new Texture("Assets/Textures/RedItem.png"));
-        textures.Add(TextureName.BlueItem, new Texture("Assets/Textures/BlueItem.png"));
-        textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
+        textures.Add(TextureName.RedItem, new Texture("Assets/Textures/Virus/RedItem.png"));
+        textures.Add(TextureName.BlueItem, new Texture("Assets/Textures/Virus/BlueItem.png"));
+        textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/Virus/GreenItem.png"));
         textures.Add(TextureName.ScoreItem, new Texture("Assets/Textures/ScoreItem.png"));
         textures.Add(TextureName.TrapTile, new Texture("Assets/Textures/Traptile.png"));
         textures.Add(TextureName.DasC, new Texture("Assets/Textures/DasC.png"));
@@ -79,11 +80,6 @@ public class AssetManager
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
         textures.Add(TextureName.LevelButtonMedium, new Texture("Assets/Textures/Menu/Button_Options.png"));
-    }
-
-    public enum AnimatedTextures
-    {
-
     }
 
     public enum TextureName
@@ -137,6 +133,7 @@ public class AssetManager
         Star,
         Item,
         KeyAnimated,
+        ParticlesAnimated,
         Movable,
         Enemy,
         PlayerGhost,

@@ -11,7 +11,8 @@ namespace MemoryMaze
 {
     public class Key : Item
     {
-        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Item));
+        AnimatedSprite sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.KeyAnimated), 0.2F, 8);
+        AnimatedSprite particlesSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated), 0.055F, 13);
 
         // This doesn't check if the item is valid
         public Key(Vector2i _position, Map map)
@@ -20,8 +21,8 @@ namespace MemoryMaze
             position = _position;
             deleted = false;
             exactPosition = new Vector2f(position.X * map.sizePerCell, position.Y * map.sizePerCell);
-            sprite.Scale = new Vector2f((float)map.sizePerCell/(float)sprite.Texture.Size.X, (float)map.sizePerCell / (float)sprite.Texture.Size.Y);
-            
+            sprite.Scale = new Vector2f((float)map.sizePerCell/(float)sprite.spriteSize.X, (float)map.sizePerCell / (float)sprite.spriteSize.Y);
+            particlesSprite.Scale = new Vector2f((float)map.sizePerCell / (float)particlesSprite.spriteSize.X, (float)map.sizePerCell / (float)particlesSprite.spriteSize.Y);
         }
 
         // CopyConstructor
@@ -31,6 +32,8 @@ namespace MemoryMaze
             exactPosition = _key.exactPosition;
             sprite.Position = _key.sprite.Position;
             sprite.Scale = _key.sprite.Scale;
+            particlesSprite.Position = _key.particlesSprite.Position;
+            particlesSprite.Scale = _key.particlesSprite.Scale;
         }
 
         override public Item Copy()
@@ -42,11 +45,16 @@ namespace MemoryMaze
         {
             if (!map.CellIsWalkable(position))
                 deleted = true;
+            sprite.UpdateFrame(deltaTime);
+            particlesSprite.UpdateFrame(deltaTime);
         }
 
         override public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             sprite.Position = exactPosition + relViewDis;
+            particlesSprite.Position = exactPosition + relViewDis;
+
+            win.Draw(particlesSprite);
             win.Draw(sprite);
         }
 

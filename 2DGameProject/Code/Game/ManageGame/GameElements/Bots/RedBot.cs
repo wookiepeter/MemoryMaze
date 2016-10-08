@@ -22,7 +22,7 @@ namespace MemoryMaze
             this.counter = 10;
             this.isAlive = true;
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
+            this.sprite.Size = new Vector2f(map.GetSizePerCell(), map.GetSizePerCell());
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.RedBot);
             this.guiSprite = new RectangleShape(new Vector2f(2F, 2F));
             this.guiSprite.Size = new Vector2f(100, 100);
@@ -142,12 +142,12 @@ namespace MemoryMaze
 
         void UpdateSpritePosition(Map map)
         {
-            sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.1F);
+            sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell(), mapPosition.Y * map.GetSizePerCell());
         }
 
         Vector2f GetSpritePosition(Map map)
         {
-            return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
+            return new Vector2f(mapPosition.X * map.GetSizePerCell(), mapPosition.Y * map.GetSizePerCell());
         }
     }
 }

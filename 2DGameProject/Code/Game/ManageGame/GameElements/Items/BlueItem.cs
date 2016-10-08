@@ -19,8 +19,8 @@ namespace MemoryMaze
             //Logger.Instance.Write(_position.ToString(), 0);
             position = _position;
             deleted = false;
-            exactPosition = new Vector2f(position.X * map.sizePerCell + map.sizePerCell * 0.25f, position.Y * map.sizePerCell + map.sizePerCell * 0.25f);
-            sprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.X, (float)map.sizePerCell * 0.5f / (float)sprite.Texture.Size.Y);
+            exactPosition = new Vector2f(position.X * map.sizePerCell, position.Y * map.sizePerCell);
+            sprite.Scale = new Vector2f((float)map.sizePerCell / (float)sprite.Texture.Size.X, (float)map.sizePerCell / (float)sprite.Texture.Size.Y);
         }
         public BlueItem(BlueItem _blueItem)
         {
