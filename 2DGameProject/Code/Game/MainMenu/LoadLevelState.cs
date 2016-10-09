@@ -13,14 +13,16 @@ namespace MemoryMaze
     {
         struct LevelSelectionScreen
         {
-            LevelSelectionScreen(Texture _texture, List<Vector2f> _posList)
+            public LevelSelectionScreen(Texture _texture, List<Vector2f> _posList, int _startIndex)
             {
                 posList = _posList;
                 texture = _texture;
+                startIndex = _startIndex;
             }
 
             public Texture texture;
             public List<Vector2f> posList;
+            public int startIndex;
         }
 
         Font font;
@@ -47,6 +49,12 @@ namespace MemoryMaze
         ManageProfiles profiles;
         ManageStars stars;
 
+        List<LevelSelectionScreen> levelSelectList;
+        List<LevelSelectButton> mainButtonList;
+        List<LevelSelectButton> helpButtonList;
+
+        Vector2i currentScreenPosition;
+
         public LoadLevelState()
         {
             stopwatch = new Stopwatch();
@@ -71,7 +79,7 @@ namespace MemoryMaze
                 rectList.Add(new IntRect(255 + (int) (200 * i), Rand.IntValue(200, 500), 50, 50)); // 4 - 8
             }
 
-            test = new LevelSelectButton(new Vector2f(200, 200), 10);
+            
 
             debugRect = new RectangleShape();
             levelButtons = new RectangleShape();
@@ -107,6 +115,32 @@ namespace MemoryMaze
             stars = new ManageStars();
             stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
             currentLevel = stars.getIndexOfFirstUnsolvedLevel() ;
+
+            mainButtonList = new List<LevelSelectButton>();
+            helpButtonList = new List<LevelSelectButton>();
+
+            levelSelectList = new List<LevelSelectionScreen>();
+
+            // this list is used to initialize the levelscreens
+            List<List<Vector2f>> posList = new List<List<Vector2f>>() {
+                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(200, 200), new Vector2f( 300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200) },
+                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
+                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
+                new List<Vector2f>() { new Vector2f(300, 200), new Vector2f(600, 200), new Vector2f(900, 200) },
+                new List<Vector2f>() { new Vector2f(400, 200), new Vector2f(800, 200) } 
+            };
+            List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground), AssetManager.GetTexture(AssetManager.TextureName.MapBackground), AssetManager.GetTexture(AssetManager.TextureName.MapBackground), AssetManager.GetTexture(AssetManager.TextureName.MapBackground), AssetManager.GetTexture(AssetManager.TextureName.MapBackground)};
+            for ( int i = 0; i < posList.Count; i++)
+            {
+                levelSelectList.Add(new LevelSelectionScreen(backgroundList[i], posList[i], i));
+            }
+
+            mainButtonList = new List<LevelSelectButton>();
+            helpButtonList = new List<LevelSelectButton>();
+
+            currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
+            setButtonList(mainButtonList);
+            Console.WriteLine("Count " + mainButtonList.Count);
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -127,7 +161,10 @@ namespace MemoryMaze
             debugRect.Position = new Vector2f(-1000, -1000);
             lastScreen.Update(deltaTime);
             nextScreen.Update(deltaTime);
-            test.Update(deltaTime, win);
+            foreach(LevelSelectButton l in mainButtonList)
+            {
+                l.Update(deltaTime, win);
+            }
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -145,7 +182,7 @@ namespace MemoryMaze
                         break;
                     }
                 }
-                if (KeyboardInputManager.Downward(Keyboard.Key.Left))
+                if (KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right))
                 {
                     if (KeyboardInputManager.Downward(Keyboard.Key.Left))
                     {
@@ -251,7 +288,10 @@ namespace MemoryMaze
             win.Clear(Color.Black);
             win.Draw(mainMap);
             win.Draw(helpMap);
-            test.Draw(win);
+            foreach(LevelSelectButton l in mainButtonList)
+            {
+                l.Draw(win);
+            }
             for (int i = 0; i < rectList.Count; i++)
             {
                 IntRect ir = rectList[i];
@@ -333,5 +373,50 @@ namespace MemoryMaze
             return false;
         }
 
+        private int GetIndexOfCurrentLevelScreen()
+        {
+            int helpLevel = 0;
+            int curIndex = 0;
+            while(currentLevel > helpLevel)
+            {
+                helpLevel = helpLevel + levelSelectList[curIndex].posList.Count;
+                if (helpLevel > currentLevel)
+                    break;
+                curIndex++;
+            }
+            return curIndex;
+        }
+
+        private int GetPositionOnCurrentLevelScreen()
+        {
+            int helpLevel = 0;
+            int curPos = 0;
+            int curIndex = 0;
+            while (currentLevel < helpLevel)
+            {
+                helpLevel++;
+                curPos++;
+                if (curPos >= levelSelectList[curIndex].posList.Count)
+                {
+                    curIndex++;
+                    curPos = 0;
+                }
+            }
+            return curPos;
+        }
+
+        private void setButtonList(List<LevelSelectButton> buttonList)
+        {
+            buttonList.RemoveAll(b => true);
+            int curLevel = 0;
+            int mapIndex = GetIndexOfCurrentLevelScreen();
+            for (int i = 0; i < mapIndex; i++)
+                curLevel += levelSelectList[i].posList.Count;
+            foreach (Vector2f v in levelSelectList[mapIndex].posList)
+            {
+                buttonList.Add(new LevelSelectButton(v, curLevel));
+                curLevel++;
+            }
+        }
     }
 }
