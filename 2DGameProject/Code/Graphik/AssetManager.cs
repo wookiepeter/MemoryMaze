@@ -18,9 +18,15 @@ public class AssetManager
     {
         textures.Add(TextureName.WhitePixel, new Texture("Assets/Textures/pixel.png"));
         textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/Menu/Menu_Background2.png"));
-        textures.Add(TextureName.Player, new Texture("Assets/Textures/playerface.png"));
+        textures.Add(TextureName.Player, new Texture("Assets/Textures/Virus/Yellow.png"));
+        textures.Add(TextureName.RedBot, new Texture("Assets/Textures/Virus/Red.png"));
+        textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/Virus/Green.png"));
+        textures.Add(TextureName.BlueBot, new Texture("Assets/Textures/Virus/Blue.png"));
+        textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
-        textures.Add(TextureName.Item, new Texture("Assets/Textures/placeholder/ItemTile.png"));
+        textures.Add(TextureName.Item, new Texture("Assets/Textures/Item/key.png"));
+        textures.Add(TextureName.KeyAnimated, new Texture("Assets/Textures/Item/key_animated.png"));
+        textures.Add(TextureName.ParticlesAnimated, new Texture("Assets/Textures/set_01/particles.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
         textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/old/lonely floor.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/old/end floor top.png"));
@@ -56,15 +62,11 @@ public class AssetManager
         textures.Add(TextureName.Goal4, new Texture("Assets/Textures/set_01/goal/goal all.png"));
         textures.Add(TextureName.Teleporter, new Texture("Assets/Textures/set_01/teleporter.png"));
         textures.Add(TextureName.TeleporterExitOnly, new Texture("Assets/Textures/set_01/teleporter_exit.png"));
-        textures.Add(TextureName.StarRotating, new Texture("Assets/Textures/set_01/star_rotating.png"));
+        textures.Add(TextureName.StarRotating, new Texture("Assets/Textures/set_01/star_rotating2.png"));
         textures.Add(TextureName.Star, new Texture("Assets/Textures/set_01/star.png"));
-        textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
-        textures.Add(TextureName.RedBot, new Texture("Assets/Textures/RedBot.png"));
-        textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/GreenBot.png"));
-        textures.Add(TextureName.BlueBot, new Texture("Assets/Textures/BlueBot.png"));
-        textures.Add(TextureName.RedItem, new Texture("Assets/Textures/RedItem.png"));
-        textures.Add(TextureName.BlueItem, new Texture("Assets/Textures/BlueItem.png"));
-        textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/GreenItem.png"));
+        textures.Add(TextureName.RedItem, new Texture("Assets/Textures/Virus/RedItem.png"));
+        textures.Add(TextureName.BlueItem, new Texture("Assets/Textures/Virus/BlueItem.png"));
+        textures.Add(TextureName.GreenItem, new Texture("Assets/Textures/Virus/GreenItem.png"));
         textures.Add(TextureName.ScoreItem, new Texture("Assets/Textures/ScoreItem.png"));
         textures.Add(TextureName.TrapTile, new Texture("Assets/Textures/Traptile.png"));
         textures.Add(TextureName.DasC, new Texture("Assets/Textures/DasC.png"));
@@ -73,7 +75,7 @@ public class AssetManager
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
-        textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/Lever.png"));
+        textures.Add(TextureName.Lever, new Texture("Assets/Textures/set_01/floor/Lever.png"));
         textures.Add(TextureName.MapBackground, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
@@ -130,6 +132,8 @@ public class AssetManager
         StarRotating,
         Star,
         Item,
+        KeyAnimated,
+        ParticlesAnimated,
         Movable,
         Enemy,
         PlayerGhost,

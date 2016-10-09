@@ -92,6 +92,7 @@ namespace MemoryMaze
             Stopwatch watch = new Stopwatch();
             watch.Start();
             map.Draw(win, view, relViewDif);
+            levelution.Draw(win, view, relViewDif);
             long tMap = watch.ElapsedTicks;
             player.Draw(win, view, relViewDif, deltaTime);
             long tPlayer = watch.ElapsedTicks - tMap;
@@ -99,7 +100,6 @@ namespace MemoryMaze
             long tItems = watch.ElapsedTicks- tPlayer - tMap;
             trapHandler.Draw(win, view, relViewDif);
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
-            levelution.Draw(win, view, relViewDif);
             transporterHandler.Draw(win, view, relViewDif);
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
