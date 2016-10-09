@@ -139,8 +139,7 @@ namespace MemoryMaze
             helpButtonList = new List<LevelSelectButton>();
 
             currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
-            setButtonList(mainButtonList);
-            Console.WriteLine("Count " + mainButtonList.Count);
+            SetButtonList(mainButtonList);
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -163,12 +162,16 @@ namespace MemoryMaze
             nextScreen.Update(deltaTime);
             foreach(LevelSelectButton l in mainButtonList)
             {
-                l.Update(deltaTime, win);
+                l.Update(deltaTime, win, currentLevel);
             }
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                     return GameState.MainMenu;
+                foreach(LevelSelectButton l in mainButtonList)
+                {
+                    l.Update(deltaTime, win, currentLevel);
+                }
                 if (sliding)
                 {
                     SlideMap(deltaTime);
@@ -186,11 +189,16 @@ namespace MemoryMaze
                 {
                     if (KeyboardInputManager.Downward(Keyboard.Key.Left))
                     {
-                        if (currentLevel > 0)
+                        if(currentLevel > 0)
                         {
                             currentLevel--;
-                            if (currentLevel % 5 == 4)
+                            currentScreenPosition.X -= 1;
+                            if (currentScreenPosition.X < 0)
+                            {
                                 InitiateSlide(false);
+                                SetButtonList(mainButtonList);
+                                currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                            }
                         }
                     }
                     else
@@ -198,13 +206,17 @@ namespace MemoryMaze
                         if (stars.levelIsUnlocked(currentLevel + 1))
                         {
                             currentLevel++;
-                            if (currentLevel % 5 == 0)
+                            currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                            if (GetPositionOnCurrentLevelScreen() == 0)
+                            {
                                 InitiateSlide(true);
+                                SetButtonList(mainButtonList);
+                            }
                         }
                     }
                     return GameState.LoadLevelState;
                 }
-                if (KeyboardInputManager.Downward(Keyboard.Key.Return))
+                if (KeyboardInputManager.Downward(Keyboard.Key.Return) && currentScreenPosition.Y == 0)
                 {
                     return StartLevelIfUnlocked();
                 }
@@ -295,14 +307,6 @@ namespace MemoryMaze
             for (int i = 0; i < rectList.Count; i++)
             {
                 IntRect ir = rectList[i];
-                if (i > 3 && i == 4 + (currentLevel % 5))
-                {
-                    debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
-                    debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
-                    debugButtonRect.FillColor = Color.Blue;
-                    win.Draw(debugButtonRect);
-
-                }
                 if (i < 4)
                 {
                     if (i != 0 && i != 3)
@@ -317,12 +321,6 @@ namespace MemoryMaze
                         screenButtons.Position = new Vector2f(ir.Left, ir.Top);
                         win.Draw(screenButtons);
                     }
-                }
-                else
-                {
-                    levelButtons.Position = new Vector2f(ir.Left, ir.Top);
-                    levelButtons.Size = new Vector2f(ir.Width, ir.Height);
-                    win.Draw(levelButtons);
                 }
             }
             win.Draw(debugRect);
@@ -349,10 +347,10 @@ namespace MemoryMaze
         private bool CanSlide(bool right)
         {
             int help = currentLevel;
-            int currentMod = help % 5;
+            int currentMod = GetPositionOnCurrentLevelScreen();
             if(right)
             {
-                help = help + 5 - currentMod;
+                help = help + mainButtonList.Count - currentMod;
                 if (stars.levelIsUnlocked(help))
                 {
                     currentLevel = help;
@@ -363,7 +361,7 @@ namespace MemoryMaze
             else
             {
                 help = help - currentMod - 1;
-                if (help >= 4)
+                if (help >= levelSelectList[0].posList.Count)
                 {
                     currentLevel = help;
                     InitiateSlide(false);
@@ -392,7 +390,7 @@ namespace MemoryMaze
             int helpLevel = 0;
             int curPos = 0;
             int curIndex = 0;
-            while (currentLevel < helpLevel)
+            while (currentLevel > helpLevel)
             {
                 helpLevel++;
                 curPos++;
@@ -405,11 +403,29 @@ namespace MemoryMaze
             return curPos;
         }
 
-        private void setButtonList(List<LevelSelectButton> buttonList)
+        private void SetButtonList(List<LevelSelectButton> buttonList)
         {
             buttonList.RemoveAll(b => true);
             int curLevel = 0;
             int mapIndex = GetIndexOfCurrentLevelScreen();
+            for (int i = 0; i < mapIndex; i++)
+                curLevel += levelSelectList[i].posList.Count;
+            foreach (Vector2f v in levelSelectList[mapIndex].posList)
+            {
+                buttonList.Add(new LevelSelectButton(v, curLevel));
+                curLevel++;
+            }
+        }
+
+        private void SetButtonList(List<LevelSelectButton> buttonList, int mapIndex)
+        {
+            if (mapIndex < 0 || mapIndex > levelSelectList.Count)
+            {
+                Logger.Instance.Write("Invalid mapIndex: " + mapIndex, Logger.level.Warning);
+                return;
+            }
+            buttonList.RemoveAll(b => true);
+            int curLevel = 0;
             for (int i = 0; i < mapIndex; i++)
                 curLevel += levelSelectList[i].posList.Count;
             foreach (Vector2f v in levelSelectList[mapIndex].posList)

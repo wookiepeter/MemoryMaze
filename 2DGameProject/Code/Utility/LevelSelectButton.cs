@@ -15,8 +15,9 @@ namespace MemoryMaze
         Sprite sprite;
         IntRect spriteRect;
         bool highlighted;
+        int buttonLevel;
 
-        public LevelSelectButton(Vector2f _position, int buttonLevel)
+        public LevelSelectButton(Vector2f _position, int _buttonLevel)
         {
             position = _position;
             sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelButtonGlow));
@@ -26,11 +27,12 @@ namespace MemoryMaze
             sprite.Position = position;
             spriteRect = new IntRect((int)(position.X - sprite.Texture.Size.X * 0.5f), (int)(position.Y - sprite.Texture.Size.Y*0.5f), (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
             highlighted = false;
+            buttonLevel = _buttonLevel;
         }
 
-        public void Update(float deltaTime, RenderWindow win)
+        public void Update(float deltaTime, RenderWindow win, int currentLevel)
         {
-            if (MouseOnButton(win))
+            if (buttonLevel == currentLevel)
             {
                 highlighted = true;
             }
