@@ -306,7 +306,7 @@ namespace MemoryMaze
             }
 
             testSpriteForCord.UpdateFrame(deltaTime);
-            win.Draw(testSpriteForCord);
+            //win.Draw(testSpriteForCord);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

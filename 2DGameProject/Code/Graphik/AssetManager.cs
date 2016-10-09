@@ -75,7 +75,7 @@ public class AssetManager
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
-        textures.Add(TextureName.Lever, new Texture("Assets/Textures/placeholder/Lever.png"));
+        textures.Add(TextureName.Lever, new Texture("Assets/Textures/set_01/floor/Lever.png"));
         textures.Add(TextureName.MapBackground, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
