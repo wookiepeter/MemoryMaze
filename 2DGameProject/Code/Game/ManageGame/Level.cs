@@ -82,10 +82,21 @@ namespace MemoryMaze
             {
                 addScoreFromBots();
                 mapStatus = 1;
+                CheckLevel();
+                Logger.Instance.Write("\n" + "Rating: " + playerScore + "\n" + "Bronze: " +ratingNumbers[0]+ "\n" + "Silber: " + ratingNumbers[1] + "\n"+  "Gold: " + ratingNumbers[2] +"\n"+ "Sie haben " + CheckLevel() + " erreicht"  , Logger.level.Info);
             }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
                 mapStatus = 2;
             return mapStatus;
+        }
+        private String CheckLevel()
+        {
+            if (playerScore <= ratingNumbers[2])
+                return "Gold";
+            else if (playerScore <= ratingNumbers[1])
+                return "Silber";
+            else
+                return "Bronze";
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {

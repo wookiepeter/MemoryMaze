@@ -170,10 +170,18 @@ namespace MemoryMaze
                 return false;
             return cellMap[position.X, position.Y].IsGoal();
         }
+        
+        public Boolean CellisTrap(Vector2i position)
+        {
+            if (!isInMap(position))
+                return false;
+            return cellMap[position.X, position.Y].IsTrap();
+        }
 
         public Boolean MoveIsPossible(Vector2i position, Vector2i move, List<Vector2i> posList)
         {
-            if (CellIsMovable(position + move) && CellIsWalkable(position + move + move) && !Vec2iListContainsVector(posList, position+move+move))
+
+            if (CellIsMovable(position + move) && CellIsWalkable(position + move + move) && !Vec2iListContainsVector(posList, position+move+move) && !CellisTrap(position+ move+move))
             {
                 return true;
             }
@@ -214,8 +222,8 @@ namespace MemoryMaze
             {
                 for (int i = 0; i < mapSizeX; i++)
                 {
-                    if (cellMap[i, j].IsTrap())
-                        cellMap[i, j] = new Cell(cellContent.Empty);
+                    //if (cellMap[i, j].IsTrap())
+                    //    cellMap[i, j] = new Cell(cellContent.Empty);
                 }
             }
         }
