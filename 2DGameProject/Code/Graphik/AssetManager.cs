@@ -76,7 +76,12 @@ public class AssetManager
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
         textures.Add(TextureName.Lever, new Texture("Assets/Textures/set_01/floor/Lever.png"));
-        textures.Add(TextureName.MapBackground, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
+        textures.Add(TextureName.MapBackground1, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
+        textures.Add(TextureName.MapBackground2, new Texture("Assets/Textures/Menu/LevelSelect_Background_Dublin.png"));
+        textures.Add(TextureName.MapBackground3, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hatzte.png"));
+        textures.Add(TextureName.MapBackground4, new Texture("Assets/Textures/Menu/LevelSelect_Background_Larvik.png"));
+        textures.Add(TextureName.MapBackground5, new Texture("Assets/Textures/Menu/LevelSelect_Background_Lueblow.png"));
+        textures.Add(TextureName.MapBackground6, new Texture("Assets/Textures/Menu/LevelSelect_Background_Woerthersee.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
         textures.Add(TextureName.LevelButtonMedium, new Texture("Assets/Textures/Menu/Button_Options.png"));
@@ -151,7 +156,12 @@ public class AssetManager
         BackGroundSteuerung,
         DasF,
         Lever, 
-        MapBackground,
+        MapBackground1,
+        MapBackground2,
+        MapBackground3,
+        MapBackground4,
+        MapBackground5, 
+        MapBackground6,
         LevelButton,
         LevelButtonGlow,
         LevelButtonMedium,
