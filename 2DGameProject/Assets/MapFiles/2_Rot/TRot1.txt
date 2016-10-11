@@ -11,4 +11,4 @@ wwwwwwwwwwwww
 _map:
 transport(9,1);teleport(7,5)
 transport(1,5);teleport(10,4)
-rating(200,100, 0)
+rating(29,21, 15)

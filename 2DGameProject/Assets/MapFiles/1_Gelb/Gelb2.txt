@@ -10,4 +10,4 @@ wwwwwwwwww
 
 //pos 2,4
 _map:
-rating(200,100, 0)
+rating(30,22, 14)

@@ -17,4 +17,4 @@ _map:
 lever(8,1);empty(9, 9)
 lever(10,5);empty(10,9)
 lever(2,5);empty(11,9)
-rating(200,100, 0)
+rating(100,82, 72)

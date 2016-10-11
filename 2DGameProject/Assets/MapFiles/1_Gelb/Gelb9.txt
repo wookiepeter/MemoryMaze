@@ -15,4 +15,4 @@ wwwwwwwwwwwwwwwwwwww
 //10,4
 _map:
 lever(8,3);empty(9,2);empty(8,2)
-rating(200,100,0)
+rating(80,62, 45)
