@@ -51,7 +51,9 @@ namespace MemoryMaze
 
         List<LevelSelectionScreen> levelSelectList;
         List<LevelSelectButton> mainButtonList;
+        List<Vector2f> mainButtonTargetList;
         List<LevelSelectButton> helpButtonList;
+        List<Vector2f> helpButtonTargetList;
 
         Vector2i currentScreenPosition;
 
@@ -74,13 +76,6 @@ namespace MemoryMaze
             rectList.Add(new IntRect(900, 600, 80, 80));        //Settings       2   
             rectList.Add(new IntRect(1145, 245, 85, 185));      //Right          3   
 
-            for (int i = 0; i < 5; i++)
-            {
-                rectList.Add(new IntRect(255 + (int) (200 * i), Rand.IntValue(200, 500), 50, 50)); // 4 - 8
-            }
-
-            
-
             debugRect = new RectangleShape();
             levelButtons = new RectangleShape();
             levelButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
@@ -96,7 +91,7 @@ namespace MemoryMaze
             mainMap.Texture = AssetManager.GetTexture(AssetManager.TextureName.MapBackground1);
             helpMap = new RectangleShape(mainMap);
             helpMap.Position = new Vector2f(-1000, -1000);
-            slideSpeed = 10;
+            slideSpeed = 10f;
             sliding = false;
 
             lastScreen = new SuperText("<", font, 1);
@@ -117,7 +112,9 @@ namespace MemoryMaze
             currentLevel = stars.getIndexOfFirstUnsolvedLevel() ;
 
             mainButtonList = new List<LevelSelectButton>();
+            mainButtonTargetList = new List<Vector2f>();
             helpButtonList = new List<LevelSelectButton>();
+            helpButtonTargetList = new List<Vector2f>();
 
             levelSelectList = new List<LevelSelectionScreen>();
 
@@ -126,7 +123,7 @@ namespace MemoryMaze
                 new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(200, 200), new Vector2f( 300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200)},
                 new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
                 new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
-                new List<Vector2f>() { new Vector2f(300, 200), new Vector2f(600, 200), new Vector2f(900, 200) },
+                new List<Vector2f>() { new Vector2f(300, 200), new Vector2f(350, 200), new Vector2f(600, 200), new Vector2f(750, 200), new Vector2f(900, 200) },
                 new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4), AssetManager.GetTexture(AssetManager.TextureName.MapBackground5)};
@@ -266,28 +263,34 @@ namespace MemoryMaze
             sliding = true;
             slideEndPosition = mainMap.Position;
             SetButtonList(mainButtonList);
+            helpButtonTargetList.RemoveAll(b => true);
+            mainButtonTargetList.RemoveAll(b => true);
             int currentScreen = GetIndexOfCurrentLevelScreen();
             if (right)
             {
                 helpMap.Texture = levelSelectList[currentScreen - 1].texture;
                 SetButtonList(helpButtonList, currentScreen - 1);
+                slideOffscreenStartPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
+                slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
+                foreach (LevelSelectButton l in helpButtonList)
+                    helpButtonTargetList.Add(new Vector2f(l.position.X + 1280, l.position.Y));
             }
             else
             {
                 helpMap.Texture = levelSelectList[currentScreen + 1].texture;
                 SetButtonList(helpButtonList, currentScreen + 1);
-            }
-            if (right)
-            {
-                slideOffscreenStartPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
-                slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
-            }
-            else
-            {
                 slideOffscreenStartPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
                 slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
+                foreach (LevelSelectButton l in helpButtonList)
+                    helpButtonTargetList.Add(new Vector2f(l.position.X - 1280, l.position.Y));
+            }
+            foreach (LevelSelectButton l in mainButtonList)
+            {
+                mainButtonTargetList.Add(new Vector2f(l.position.X, l.position.Y));
+                l.position = (right)?l.position + new Vector2(-1280, 0) : l.position + new Vector2(1280, 0);
             }
             mainMap.Position = slideOffscreenStartPosition;
+            mainMap.Texture = levelSelectList[currentScreen].texture;
             helpMap.Position = slideEndPosition;
         }
 
@@ -295,11 +298,20 @@ namespace MemoryMaze
         {
             mainMap.Position = Vector2.lerp(mainMap.Position, slideEndPosition, slideSpeed * deltaTime);
             helpMap.Position = Vector2.lerp(helpMap.Position, slideOffsrceenEndPosition,  slideSpeed * deltaTime);
+            int i = 0;
+            foreach (LevelSelectButton l in mainButtonList)
+                l.position = Vector2.lerp(l.position, mainButtonTargetList[i++],slideSpeed * deltaTime);
+            i = 0;
+            foreach (LevelSelectButton l in helpButtonList)
+                l.position = Vector2.lerp(l.position, helpButtonTargetList[i++], slideSpeed * deltaTime);
             if (Math.Abs(Vector2.distance( mainMap.Position, slideEndPosition)) <= 0.8f)
             {
                 sliding = false;
                 mainMap.Position = slideEndPosition;
                 helpMap.Position = slideOffscreenStartPosition;
+                i = 0;
+                foreach (LevelSelectButton l in mainButtonList)
+                    l.position = mainButtonTargetList[i++];
             }
         }
 
