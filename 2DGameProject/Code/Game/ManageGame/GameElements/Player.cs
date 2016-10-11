@@ -472,7 +472,7 @@ namespace MemoryMaze
         {
             if(bluebot)
             {
-                botList.Find(b => b.id == 3).mapPosition = newPosition;
+                botList.Find(b => b.id == 2).mapPosition = newPosition;
             }
             else
             {
