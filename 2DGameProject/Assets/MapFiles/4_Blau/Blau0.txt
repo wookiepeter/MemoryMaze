@@ -22,4 +22,4 @@ wwwwwwwwwww
 //Startpos: 6,6
 
 _map:
-rating(200,100, 0)
+rating(180,140, 101)

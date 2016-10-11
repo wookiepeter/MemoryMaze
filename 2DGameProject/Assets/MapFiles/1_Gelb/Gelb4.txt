@@ -13,4 +13,4 @@ wwwwwwwwwwwwwwww
 
 //StartKoord: 8,1
 _map:
-rating(200,100, 0)
+rating(50,36, 30)

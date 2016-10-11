@@ -83,7 +83,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün1.txt", 64, new Vector2i(4, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün2.txt", 64, new Vector2i(10, 10), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün9.txt", 64, new Vector2i(8, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün91.txt", 64, new Vector2i(4, 11), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün91.txt", 64, new Vector2i(4, 10), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau0.txt", 64, new Vector2i(6,6), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau1.txt", 64, new Vector2i(4, 1), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau3.txt", 64, new Vector2i(5, 4), 1));
@@ -93,7 +93,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau9.txt", 64, new Vector2i(6, 4), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau91.txt", 64, new Vector2i(10, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau92.txt", 64, new Vector2i(10, 12), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau93.txt", 64, new Vector2i(3, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau93.txt", 64, new Vector2i(2, 5), 1));
 
 
             nextGameState = GameState.InGame;

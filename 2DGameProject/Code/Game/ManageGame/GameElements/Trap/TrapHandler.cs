@@ -73,6 +73,7 @@ namespace MemoryMaze
                         if (trap.position.X == vec.X && trap.position.Y == vec.Y && player.greenbot && player.controllid == 3)
                         {//Ist es der GrüneBot???
                             trap.isAlive = false;                                                    //Falle deaktiviert! ^.^
+                            map.SetContentOfCell(new Vector2i(trap.position.X, trap.position.Y), cellContent.Empty);
                             deleteList.Add(trap);                                                    //Element in die deleteList hinzufügen
                         }
                     }      

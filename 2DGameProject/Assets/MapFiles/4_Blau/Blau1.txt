@@ -8,4 +8,4 @@ wwwwwwwwwwwwww
 
 _map:
 bluelev(11,1);empty(2,1)
-rating(200,100, 0)
+rating(45,15, 2)

@@ -6,4 +6,4 @@ wweeeiewweewww
 wwweeewwgewwww
 wwwwwwwwwwwwww
 _map:
-rating(18,15,11)
+rating(25,18,12)
