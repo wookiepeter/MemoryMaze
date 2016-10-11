@@ -22,8 +22,9 @@ wttttttttttttttttttw
 wwwwwwwwwwwwwwwwwwww
 
 //Startpos: 10,10
-
+_map:
 transport(9,9);teleport(17,17)
 transport(9,11);teleport(4,4)
 transport(11,11);portal(17,4)
 transport(11,9);portal(4,17)
+rating(200,100,0)
