@@ -76,6 +76,7 @@ public class AssetManager
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
         textures.Add(TextureName.Lever, new Texture("Assets/Textures/set_01/floor/Lever.png"));
+        textures.Add(TextureName.Lever2, new Texture("Assets/Textures/set_01/floor/Lever_Condensator.png"));
         textures.Add(TextureName.MapBackground1, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
         textures.Add(TextureName.MapBackground2, new Texture("Assets/Textures/Menu/LevelSelect_Background_Dublin.png"));
         textures.Add(TextureName.MapBackground3, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hatzte.png"));
@@ -155,7 +156,8 @@ public class AssetManager
 		DasM,
         BackGroundSteuerung,
         DasF,
-        Lever, 
+        Lever,
+        Lever2,
         MapBackground1,
         MapBackground2,
         MapBackground3,

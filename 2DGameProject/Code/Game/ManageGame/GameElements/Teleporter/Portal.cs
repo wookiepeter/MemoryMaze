@@ -19,10 +19,10 @@ namespace MemoryMaze
             exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TeleporterExitOnly), 0.1F, 13);
 
             entranceExactPosition = new Vector2f(entrance.X * map.sizePerCell, entrance.Y * map.sizePerCell);
-            entranceSprite.Scale = new Vector2f((float)map.sizePerCell / (float)entranceSprite.Texture.Size.X, (float)map.sizePerCell / (float)entranceSprite.Texture.Size.Y);
+            entranceSprite.Scale = new Vector2f((float)map.sizePerCell / (float)entranceSprite.spriteSize.X, (float)map.sizePerCell / (float)entranceSprite.spriteSize.Y);
 
             exitExactPosition = new Vector2f(exit.X * map.sizePerCell, exit.Y * map.sizePerCell);
-            exitSprite.Scale = new Vector2f((float)map.sizePerCell / (float)exitSprite.Texture.Size.X, (float)map.sizePerCell / (float)exitSprite.Texture.Size.Y);
+            exitSprite.Scale = new Vector2f((float)map.sizePerCell / (float)exitSprite.spriteSize.X, (float)map.sizePerCell / (float)exitSprite.spriteSize.Y);
 
 
         }

@@ -18,6 +18,7 @@ namespace MemoryMaze
             {
                 mapManilList.Add(mapmani);
             }
+            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever2));
             exactPosition = new Vector2f(position.X * map.GetSizePerCell(), position.Y * map.GetSizePerCell());
             sprite.Scale = new Vector2f((float)map.GetSizePerCell() / (float)sprite.Texture.Size.X, (float)map.GetSizePerCell() / (float)sprite.Texture.Size.Y);
         }
@@ -25,6 +26,7 @@ namespace MemoryMaze
         private BlueLever(BlueLever _lever)
         {
             position = _lever.position;
+            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever2));
             sprite.Position = _lever.sprite.Position;
             sprite.Scale = _lever.sprite.Scale;
             mapManilList = new List<MapManipulation>();
