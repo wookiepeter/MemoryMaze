@@ -190,11 +190,13 @@ namespace MemoryMaze
                         {
                             currentLevel--;
                             currentScreenPosition.X -= 1;
+                            Console.WriteLine("oldScreenPosition: " + currentScreenPosition.X);
                             if (currentScreenPosition.X < 0)
                             {
                                 InitiateSlide(false);
                                 SetButtonList(mainButtonList);
                                 currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                                Console.WriteLine("currentScreenPosition: " + currentScreenPosition.X);
                             }
                         }
                     }
