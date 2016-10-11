@@ -44,6 +44,8 @@ public class AssetManager
         textures.Add(TextureName.Ground3right, new Texture("Assets/Textures/set_01/floor/old/intersection trb.png"));
         textures.Add(TextureName.Ground3bottom, new Texture("Assets/Textures/set_01/floor/old/intersection lbr.png"));
         textures.Add(TextureName.Ground4, new Texture("Assets/Textures/set_01/floor/old/center two.png"));
+        textures.Add(TextureName.Goal, new Texture("Assets/Textures/set_01/floor/goal.png"));
+        /// vvvvvvvvvvv will be deleted soon(ish) vvvvvvvvvvv
         textures.Add(TextureName.GoalLonely, new Texture("Assets/Textures/set_01/goal/lonely goal.png"));
         textures.Add(TextureName.Goal1bottom, new Texture("Assets/Textures/set_01/goal/goal b.png"));
         textures.Add(TextureName.Goal1left, new Texture("Assets/Textures/set_01/goal/goal l.png"));
@@ -60,6 +62,7 @@ public class AssetManager
         textures.Add(TextureName.Goal3right, new Texture("Assets/Textures/set_01/goal/goal ltb.png"));
         textures.Add(TextureName.Goal3bottom, new Texture("Assets/Textures/set_01/goal/goal ltr.png"));
         textures.Add(TextureName.Goal4, new Texture("Assets/Textures/set_01/goal/goal all.png"));
+        /// ^^^^^^^^^^^ will be deleted soon(ish) ^^^^^^^^^^^
         textures.Add(TextureName.Teleporter, new Texture("Assets/Textures/set_01/teleporter.png"));
         textures.Add(TextureName.TeleporterExitOnly, new Texture("Assets/Textures/set_01/teleporter_exit.png"));
         textures.Add(TextureName.StarRotating, new Texture("Assets/Textures/set_01/star_rotating2.png"));
@@ -75,8 +78,9 @@ public class AssetManager
         //textures.Add(TextureName.Enemy, new Texture("Assets/Textures/placeholder/antivirus.png"));
         textures.Add(TextureName.Overlay, new Texture("Assets/Textures/shader.png"));
         textures.Add(TextureName.BackGroundSteuerung, new Texture("Assets/Textures/BackgrundSteuerung.png"));
-        textures.Add(TextureName.Lever, new Texture("Assets/Textures/set_01/floor/Lever.png"));
-        textures.Add(TextureName.Lever2, new Texture("Assets/Textures/set_01/floor/Lever_Condensator.png"));
+        textures.Add(TextureName.LeverOpen, new Texture("Assets/Textures/set_01/floor/Lever.png"));
+        textures.Add(TextureName.LeverClosed, new Texture("Assets/Textures/set_01/floor/Lever_Closed.png"));
+        textures.Add(TextureName.LeverCondensator, new Texture("Assets/Textures/set_01/floor/Lever_Condensator.png"));
         textures.Add(TextureName.MapBackground1, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
         textures.Add(TextureName.MapBackground2, new Texture("Assets/Textures/Menu/LevelSelect_Background_Dublin.png"));
         textures.Add(TextureName.MapBackground3, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hatzte.png"));
@@ -117,6 +121,8 @@ public class AssetManager
         Ground3left,
         Ground3top,
         Ground4,
+        Goal,
+        /// vvvvvvvvvvv will be deleted soon(ish) vvvvvvvvvvv
         GoalLonely,
         Goal1bottom,
         Goal1right,
@@ -133,6 +139,7 @@ public class AssetManager
         Goal3left,
         Goal3top,
         Goal4,
+        /// ^^^^^^^^^^^ will be deleted soon(ish) ^^^^^^^^^^^
         Teleporter,
         TeleporterExitOnly,
         StarRotating,
@@ -156,8 +163,9 @@ public class AssetManager
 		DasM,
         BackGroundSteuerung,
         DasF,
-        Lever,
-        Lever2,
+        LeverOpen,
+        LeverClosed,
+        LeverCondensator,
         MapBackground1,
         MapBackground2,
         MapBackground3,
