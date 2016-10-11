@@ -1,0 +1,25 @@
+﻿16
+11
+
+wwwwwwwwwww
+wmmmmmmmmmw
+wmmmeGemmmw
+wmmmtttmmmw
+wmmmeeemmmw
+wmmmeeemmmw
+wmmmeeemmmw
+wmmmebemmmw
+wmmmeeemmmw
+wmmmeeemmmw
+wmmmmmmmmmw
+wmmmmgmmmmw
+wmmmmmmmmmw
+wmmmmimmmmw
+wmmmmmmmmmw
+wwwwwwwwwww
+
+
+//Startpos: 6,6
+
+_map:
+rating(200,100, 0)
