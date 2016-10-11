@@ -95,7 +95,11 @@ namespace MemoryMaze
 
         private Texture getGoalTextureFromIndex(int groundIndex)
         {
-            return AssetManager.GetTexture(AssetManager.TextureName.GoalLonely + groundIndex);
+            //Cord was here! Muhahaha
+            return AssetManager.GetTexture(AssetManager.TextureName.Goal);
+
+            // This was commented out by Cord! Matthis, do your job and make the Floor-Tile Great again
+            //return AssetManager.GetTexture(AssetManager.TextureName.GoalLonely + groundIndex);
         }
     }
 }

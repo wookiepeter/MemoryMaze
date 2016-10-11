@@ -49,6 +49,7 @@ namespace MemoryMaze
                 {
                     Execute(map, player);
                     active = !active;
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LeverClosed);
                 }
             }
             else
@@ -57,6 +58,7 @@ namespace MemoryMaze
                 {
                     Execute(map, player);
                     active = !active;
+                    sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LeverOpen);
                 }
             }
         }
