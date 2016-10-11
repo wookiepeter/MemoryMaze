@@ -15,8 +15,8 @@ namespace MemoryMaze
             entrance = _entrance;
             exit = _exit;
 
-            entranceSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.DasC));
-            exitSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.DasF));
+            entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13);
+            exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TeleporterExitOnly), 0.1F, 13);
 
             entranceExactPosition = new Vector2f(entrance.X * map.sizePerCell, entrance.Y * map.sizePerCell);
             entranceSprite.Scale = new Vector2f((float)map.sizePerCell / (float)entranceSprite.Texture.Size.X, (float)map.sizePerCell / (float)entranceSprite.Texture.Size.Y);
@@ -61,6 +61,9 @@ namespace MemoryMaze
                     player.setBlueBotPosition(exit);
                 }
             }
+
+            entranceSprite.UpdateFrame(deltaTime);
+            exitSprite.UpdateFrame(deltaTime);
         }
 
         public override void Draw(RenderTexture win, View view, Vector2f relViewDis)
