@@ -131,6 +131,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LeverTutorial.txt" />
+    <Content Include="Assets\MapFiles\3_Grün\Grün2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün99Laby.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
