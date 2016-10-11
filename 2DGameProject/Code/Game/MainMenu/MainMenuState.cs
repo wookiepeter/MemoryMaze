@@ -40,6 +40,8 @@ namespace MemoryMaze
 
         ManageProfiles profiles = new ManageProfiles();
 
+        AnimatedSprite testSpriteForCord;
+
         public MainMenuState()
         {
             Console.WriteLine("MAINMENUSTATE");
@@ -48,6 +50,8 @@ namespace MemoryMaze
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
 
+            testSpriteForCord = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.KeyAnimated), 0.1F, 8);
+            testSpriteForCord.Position = new Vector2f(20, 100);
         }
         public void Initialisation()
         {
@@ -300,6 +304,9 @@ namespace MemoryMaze
             {
                 s.Draw(win, RenderStates.Default);
             }
+
+            testSpriteForCord.UpdateFrame(deltaTime);
+            //win.Draw(testSpriteForCord);
         }
 
         public void DrawGUI(GUI gui, float deltaTime)

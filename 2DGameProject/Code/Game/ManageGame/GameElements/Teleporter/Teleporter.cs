@@ -18,15 +18,15 @@ namespace MemoryMaze
             entrance = _entrance;
             exit = _exit;
 
-            entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13, new Vector2i(64,64));
-            exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TeleporterExitOnly), 0.1F, 13, new Vector2i(64, 64));
+            entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13);
+            exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13);
 
             //NEXTTIME beim nächsten mal können wir für sowas eine gemeinsam genutzte Methode in der Basisklasse erstellen
-            entranceExactPosition = new Vector2f(entrance.X * map.sizePerCell + map.sizePerCell * 0.25f, entrance.Y * map.sizePerCell + map.sizePerCell * 0.25f);
-            entranceSprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)((AnimatedSprite)entranceSprite).spriteSize.X, (float)map.sizePerCell * 0.5f / (float)((AnimatedSprite)entranceSprite).spriteSize.Y);
+            entranceExactPosition = new Vector2f(entrance.X * map.sizePerCell, entrance.Y * map.sizePerCell);
+            entranceSprite.Scale = new Vector2f((float)map.sizePerCell / (float)entranceSprite.spriteSize.X, (float)map.sizePerCell / (float)entranceSprite.spriteSize.Y);
 
-            exitExactPosition = new Vector2f(exit.X * map.sizePerCell + map.sizePerCell * 0.25f, exit.Y * map.sizePerCell + map.sizePerCell * 0.25f);
-            exitSprite.Scale = new Vector2f((float)map.sizePerCell * 0.5f / (float)((AnimatedSprite)exitSprite).spriteSize.X, (float)map.sizePerCell * 0.5f / (float)((AnimatedSprite)exitSprite).spriteSize.Y);
+            exitExactPosition = new Vector2f(exit.X * map.sizePerCell, exit.Y * map.sizePerCell);
+            exitSprite.Scale = new Vector2f((float)map.sizePerCell / (float)exitSprite.spriteSize.X, (float)map.sizePerCell / (float)exitSprite.spriteSize.Y);
 
             entranceDisabled  = false;
             exitDisabled = false;

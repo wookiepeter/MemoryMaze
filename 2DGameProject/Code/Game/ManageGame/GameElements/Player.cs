@@ -133,6 +133,8 @@ namespace MemoryMaze
         {
             if (isAlive == true)
             {
+                if (controllid != 0)
+                    SwitchToGhostPlayer();
                 UpdateBots(deltaTime, map, getListOfBotPositions());
 
                 if (KeyboardInputManager.Downward(Keyboard.Key.Space))
@@ -159,6 +161,7 @@ namespace MemoryMaze
                         {
                             map.MoveBlock(mapPosition, move);
                             mapPosition = mapPosition + move;
+                            scoreCounter++;
                         }
                         UpdateSpritePosition(map);
                         currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
@@ -355,27 +358,28 @@ namespace MemoryMaze
 
         private void UpdateBots(float deltaTime, Map map, List<Vector2i> botPosList)
         {
-            foreach (Bot it in botList)
-            {
-                it.Update(deltaTime, map, controllid, botPosList);
-                if (!it.isAlive)
+                foreach (Bot it in botList)
                 {
-                    deleteList.Add(it); //zerstoere Bot
-                    Console.WriteLine("Some Bot is getting destroyed");
-                    if (it.id == controllid)
-                        controllid = 0;
+                    it.Update(deltaTime, map, controllid, botPosList);
+                    if (!it.isAlive)
+                    {
+                        deleteList.Add(it); //zerstoere Bot
+                        Console.WriteLine("Some Bot is getting destroyed");
+                        if (it.id == controllid)
+                            controllid = 0;
+                    }
+                    else
+                    {
+                        if (controllid == it.id)                                                   //Setzt den Focus auf aktuellen Bot
+                            currentFocus = it.sprite.Position + new Vector2f(it.sprite.Size.X / 2f, it.sprite.Size.Y / 2f);
+                    }
+                    Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
+                    DestroyBotForPoints(it);
                 }
-                else
-                {
-                    if (controllid == it.id)                                                   //Setzt den Focus auf aktuellen Bot
-                        currentFocus = it.sprite.Position + new Vector2f(it.sprite.Size.X/2f, it.sprite.Size.Y/2f);
-                }
-                Check(it); //Überprüft ob Red,Blue, Green in der Liste ist
-                DestroyBotForPoints(it);
-            }
-            botList.RemoveAll(deleteList.Contains);
-            deleteList = new List<Bot>();
+                botList.RemoveAll(deleteList.Contains);
+                deleteList = new List<Bot>();
         }
+            
 
         void DestroyBotForPoints(Bot it)
         {
@@ -393,6 +397,12 @@ namespace MemoryMaze
             {
                 scoreCounter += it.counter * (-1);
                 it.isAlive = false;
+            }
+        }
+        void SwitchToGhostPlayer()
+        {
+            if (KeyboardInputManager.Downward(Keyboard.Key.Space)){
+                controllid = 0;
             }
         }
 

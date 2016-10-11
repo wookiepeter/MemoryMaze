@@ -57,6 +57,7 @@ namespace MemoryMaze
 
         public int getIndexOfFirstUnsolvedLevel()
         {
+            Console.WriteLine("Level.Count: " + levelRating.Length);
             for (int i = 0; i < levelRating.Length; i++)
             {
                 if(levelRating[i] == Rating.Fail)
@@ -69,7 +70,7 @@ namespace MemoryMaze
 
         public bool levelIsUnlocked(int level)
         {
-            if (level < 0 || level > levelRating.Length)
+            if (level < 0 || level >= levelRating.Length)
                 return false;
             if(level == 0)
                 return true;

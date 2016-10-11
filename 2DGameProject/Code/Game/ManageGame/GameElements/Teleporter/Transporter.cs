@@ -13,8 +13,8 @@ namespace MemoryMaze
         protected Vector2i entrance;
         protected Vector2i exit;
 
-        protected Sprite entranceSprite;
-        protected Sprite exitSprite;
+        protected AnimatedSprite entranceSprite;
+        protected AnimatedSprite exitSprite;
 
         protected Vector2f entranceExactPosition;
         protected Vector2f exitExactPosition;

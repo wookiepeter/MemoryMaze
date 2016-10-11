@@ -82,16 +82,28 @@ namespace MemoryMaze
             {
                 addScoreFromBots();
                 mapStatus = 1;
+                CheckLevel();
+                Logger.Instance.Write("\n" + "Rating: " + playerScore + "\n" + "Bronze: " +ratingNumbers[0]+ "\n" + "Silber: " + ratingNumbers[1] + "\n"+  "Gold: " + ratingNumbers[2] +"\n"+ "Sie haben " + CheckLevel() + " erreicht"  , Logger.level.Info);
             }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
                 mapStatus = 2;
             return mapStatus;
+        }
+        private String CheckLevel()
+        {
+            if (playerScore <= ratingNumbers[2])
+                return "Gold";
+            else if (playerScore <= ratingNumbers[1])
+                return "Silber";
+            else
+                return "Bronze";
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
             watch.Start();
             map.Draw(win, view, relViewDif);
+            levelution.Draw(win, view, relViewDif);
             long tMap = watch.ElapsedTicks;
             player.Draw(win, view, relViewDif, deltaTime);
             long tPlayer = watch.ElapsedTicks - tMap;
@@ -99,7 +111,6 @@ namespace MemoryMaze
             long tItems = watch.ElapsedTicks- tPlayer - tMap;
             trapHandler.Draw(win, view, relViewDif);
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
-            levelution.Draw(win, view, relViewDif);
             transporterHandler.Draw(win, view, relViewDif);
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }

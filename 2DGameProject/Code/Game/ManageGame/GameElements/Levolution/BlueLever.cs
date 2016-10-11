@@ -18,15 +18,15 @@ namespace MemoryMaze
             {
                 mapManilList.Add(mapmani);
             }
-            exactPosition = new Vector2f(position.X * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f,
-                position.Y * map.GetSizePerCell() + (float)map.GetSizePerCell() * 0.25f);
-            sprite.Scale = new Vector2f((float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.X,
-                (float)map.GetSizePerCell() * 0.5f / (float)sprite.Texture.Size.Y);
+            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever2));
+            exactPosition = new Vector2f(position.X * map.GetSizePerCell(), position.Y * map.GetSizePerCell());
+            sprite.Scale = new Vector2f((float)map.GetSizePerCell() / (float)sprite.Texture.Size.X, (float)map.GetSizePerCell() / (float)sprite.Texture.Size.Y);
         }
 
         private BlueLever(BlueLever _lever)
         {
             position = _lever.position;
+            sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Lever2));
             sprite.Position = _lever.sprite.Position;
             sprite.Scale = _lever.sprite.Scale;
             mapManilList = new List<MapManipulation>();
