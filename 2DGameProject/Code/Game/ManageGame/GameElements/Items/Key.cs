@@ -54,6 +54,9 @@ namespace MemoryMaze
             sprite.Position = exactPosition + relViewDis;
             particlesSprite.Position = exactPosition + relViewDis;
 
+            particlesSprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated);
+            win.Draw(particlesSprite);
+            particlesSprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.ParticlesOutgoingAnimated);
             win.Draw(particlesSprite);
             win.Draw(sprite);
         }
