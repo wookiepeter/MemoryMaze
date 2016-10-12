@@ -270,24 +270,24 @@ namespace MemoryMaze
             {
                 helpMap.Texture = levelSelectList[currentScreen - 1].texture;
                 SetButtonList(helpButtonList, currentScreen - 1);
-                slideOffscreenStartPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
-                slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
-                foreach (LevelSelectButton l in helpButtonList)
-                    helpButtonTargetList.Add(new Vector2f(l.position.X + 1280, l.position.Y));
-            }
-            else
-            {
-                helpMap.Texture = levelSelectList[currentScreen + 1].texture;
-                SetButtonList(helpButtonList, currentScreen + 1);
                 slideOffscreenStartPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
                 slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
                 foreach (LevelSelectButton l in helpButtonList)
                     helpButtonTargetList.Add(new Vector2f(l.position.X - 1280, l.position.Y));
             }
+            else
+            {
+                helpMap.Texture = levelSelectList[currentScreen + 1].texture;
+                SetButtonList(helpButtonList, currentScreen + 1);
+                slideOffscreenStartPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
+                slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
+                foreach (LevelSelectButton l in helpButtonList)
+                    helpButtonTargetList.Add(new Vector2f(l.position.X + 1280, l.position.Y));
+            }
             foreach (LevelSelectButton l in mainButtonList)
             {
                 mainButtonTargetList.Add(new Vector2f(l.position.X, l.position.Y));
-                l.position = (right)?l.position + new Vector2(-1280, 0) : l.position + new Vector2(1280, 0);
+                l.position = (!right)?l.position + new Vector2(-1280, 0) : l.position + new Vector2(1280, 0);
             }
             mainMap.Position = slideOffscreenStartPosition;
             mainMap.Texture = levelSelectList[currentScreen].texture;
