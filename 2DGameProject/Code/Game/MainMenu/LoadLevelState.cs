@@ -385,12 +385,19 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    while (stars.getIndexOfFirstUnsolvedLevel() > currentLevel)
+                    if (stars.getIndexOfFirstUnsolvedLevel() == 0 && currentLevel != 0)
                     {
-                        Console.WriteLine("ffooooo");
-                        currentLevel++;
+                        currentLevel = mainButtonList[mainButtonList.Count - 1].buttonLevel;
+                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     }
-                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    else
+                    {
+                        while (stars.getIndexOfFirstUnsolvedLevel() > currentLevel)
+                        {
+                            currentLevel++;
+                        }
+                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    }
                 }
             }
             else
