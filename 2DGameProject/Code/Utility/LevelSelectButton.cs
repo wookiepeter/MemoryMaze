@@ -11,7 +11,7 @@ namespace MemoryMaze
 {
     class LevelSelectButton
     {
-        Vector2 position;
+        public Vector2 position;
         Sprite sprite;
         IntRect spriteRect;
         bool highlighted;
@@ -45,6 +45,7 @@ namespace MemoryMaze
 
         public void Draw(RenderWindow win)
         {
+            sprite.Position = position;
             win.Draw(sprite);
         }
 
