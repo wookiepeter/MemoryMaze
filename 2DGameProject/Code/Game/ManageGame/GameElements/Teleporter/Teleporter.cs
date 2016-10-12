@@ -18,15 +18,20 @@ namespace MemoryMaze
             entrance = _entrance;
             exit = _exit;
 
-            entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13);
-            exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), 0.1F, 13);
+            entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), AnimationSecondsPerFrame, 8);
+            exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), AnimationSecondsPerFrame, 8);
+            entranceParticleSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated), particleAnimationSecondsPerFrame, 13);
+            exitParticleSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated), particleAnimationSecondsPerFrame, 13);
+
 
             //NEXTTIME beim nächsten mal können wir für sowas eine gemeinsam genutzte Methode in der Basisklasse erstellen
             entranceExactPosition = new Vector2f(entrance.X * map.sizePerCell, entrance.Y * map.sizePerCell);
             entranceSprite.Scale = new Vector2f((float)map.sizePerCell / (float)entranceSprite.spriteSize.X, (float)map.sizePerCell / (float)entranceSprite.spriteSize.Y);
+            entranceParticleSprite.Scale = entranceSprite.Scale;
 
             exitExactPosition = new Vector2f(exit.X * map.sizePerCell, exit.Y * map.sizePerCell);
             exitSprite.Scale = new Vector2f((float)map.sizePerCell / (float)exitSprite.spriteSize.X, (float)map.sizePerCell / (float)exitSprite.spriteSize.Y);
+            exitParticleSprite.Scale = exitSprite.Scale;
 
             entranceDisabled  = false;
             exitDisabled = false;
@@ -39,12 +44,16 @@ namespace MemoryMaze
 
             entranceSprite = _transporter.entranceSprite;
             exitSprite = _transporter.exitSprite;
+            entranceParticleSprite = _transporter.entranceParticleSprite;
+            exitParticleSprite = _transporter.exitParticleSprite;
 
             entranceExactPosition = _transporter.entranceExactPosition;
             entranceSprite.Scale = _transporter.entranceSprite.Scale;
+            entranceParticleSprite.Scale = _transporter.entranceParticleSprite.Scale;
 
             exitExactPosition = _transporter.exitExactPosition;
             exitSprite.Scale = _transporter.exitSprite.Scale;
+            exitParticleSprite.Scale = _transporter.exitParticleSprite.Scale;
 
             entranceDisabled = _transporter.entranceDisabled;
             exitDisabled = _transporter.exitDisabled;
@@ -57,8 +66,6 @@ namespace MemoryMaze
 
         public override void Update(Player player, float deltaTime)
         {
-            ((AnimatedSprite)entranceSprite).UpdateFrame(deltaTime);
-            ((AnimatedSprite)exitSprite).UpdateFrame(deltaTime);
 
 
             bool entranceInList = player.getListWithPlayerAndBlueBot().Contains(entrance);
@@ -103,15 +110,24 @@ namespace MemoryMaze
                     exitDisabled = false;
                 }
             }
+
+            entranceSprite.UpdateFrame(deltaTime);
+            exitSprite.UpdateFrame(deltaTime);
+            entranceParticleSprite.UpdateFrame(deltaTime);
+            exitParticleSprite.UpdateFrame(deltaTime);
         }
 
         public override void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             entranceSprite.Position = entranceExactPosition + relViewDis;
             win.Draw(entranceSprite);
+            entranceParticleSprite.Position = entranceExactPosition + relViewDis;
+            win.Draw(entranceParticleSprite);
 
             exitSprite.Position = exitExactPosition + relViewDis;
             win.Draw(exitSprite);
+            exitParticleSprite.Position = exitExactPosition + relViewDis;
+            win.Draw(exitParticleSprite);
         }
     }
 }

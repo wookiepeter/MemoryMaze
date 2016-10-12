@@ -15,7 +15,7 @@ namespace MemoryMaze
         Sprite sprite;
         IntRect spriteRect;
         bool highlighted;
-        int buttonLevel;
+        public int buttonLevel;
 
         public LevelSelectButton(Vector2f _position, int _buttonLevel)
         {

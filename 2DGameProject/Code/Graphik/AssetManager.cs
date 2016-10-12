@@ -27,6 +27,7 @@ public class AssetManager
         textures.Add(TextureName.Item, new Texture("Assets/Textures/Item/key.png"));
         textures.Add(TextureName.KeyAnimated, new Texture("Assets/Textures/Item/key_animated.png"));
         textures.Add(TextureName.ParticlesAnimated, new Texture("Assets/Textures/set_01/particles.png"));
+        textures.Add(TextureName.ParticlesOutgoingAnimated, new Texture("Assets/Textures/set_01/particlesOutgoing.png"));
         textures.Add(TextureName.Movable, new Texture("Assets/Textures/set_01/movable.png"));
         textures.Add(TextureName.GroundLonely, new Texture("Assets/Textures/set_01/floor/old/lonely floor.png"));
         textures.Add(TextureName.Ground1bottom, new Texture("Assets/Textures/set_01/floor/old/end floor top.png"));
@@ -147,6 +148,7 @@ public class AssetManager
         Item,
         KeyAnimated,
         ParticlesAnimated,
+        ParticlesOutgoingAnimated,
         Movable,
         Enemy,
         PlayerGhost,

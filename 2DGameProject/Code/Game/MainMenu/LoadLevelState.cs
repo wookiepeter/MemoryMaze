@@ -190,10 +190,12 @@ namespace MemoryMaze
                         {
                             currentLevel--;
                             currentScreenPosition.X -= 1;
+                            Console.WriteLine("oldScreenPosition: " + currentScreenPosition.X);
                             if (currentScreenPosition.X < 0)
                             {
                                 InitiateSlide(false);
                                 currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                                Console.WriteLine("currentScreenPosition: " + currentScreenPosition.X);
                             }
                         }
                     }
@@ -383,11 +385,19 @@ namespace MemoryMaze
                 }
                 else
                 {
-                    while (stars.getIndexOfFirstUnsolvedLevel() > currentLevel)
+                    if (stars.getIndexOfFirstUnsolvedLevel() == 0 && currentLevel != 0)
                     {
-                        currentLevel++;
+                        currentLevel = mainButtonList[mainButtonList.Count - 1].buttonLevel;
+                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     }
-                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    else
+                    {
+                        while (stars.getIndexOfFirstUnsolvedLevel() > currentLevel)
+                        {
+                            currentLevel++;
+                        }
+                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    }
                 }
             }
             else
