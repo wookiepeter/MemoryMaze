@@ -194,7 +194,6 @@ namespace MemoryMaze
                             if (currentScreenPosition.X < 0)
                             {
                                 InitiateSlide(false);
-                                SetButtonList(mainButtonList);
                                 currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                                 Console.WriteLine("currentScreenPosition: " + currentScreenPosition.X);
                             }
@@ -209,7 +208,6 @@ namespace MemoryMaze
                             if (GetPositionOnCurrentLevelScreen() == 0)
                             {
                                 InitiateSlide(true);
-                                SetButtonList(mainButtonList);
                             }
                         }
                     }
@@ -381,8 +379,18 @@ namespace MemoryMaze
                 if (stars.levelIsUnlocked(help))
                 {
                     currentLevel = help;
+                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     InitiateSlide(true);
                     return true;
+                }
+                else
+                {
+                    while (stars.getIndexOfFirstUnsolvedLevel() > currentLevel)
+                    {
+                        Console.WriteLine("ffooooo");
+                        currentLevel++;
+                    }
+                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                 }
             }
             else
@@ -391,8 +399,14 @@ namespace MemoryMaze
                 if (help >= levelSelectList[0].posList.Count - 1)
                 {
                     currentLevel = help;
+                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     InitiateSlide(false);
                     return true;
+                }
+                else if (currentLevel <= levelSelectList[0].posList.Count )
+                {
+                    currentLevel = 0;
+                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                 }
             }
             return false;
