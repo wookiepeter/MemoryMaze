@@ -15,6 +15,8 @@ namespace MemoryMaze
 
         protected AnimatedSprite entranceSprite;
         protected AnimatedSprite exitSprite;
+        protected AnimatedSprite entranceParticleSprite;
+        protected AnimatedSprite exitParticleSprite;
 
         protected Vector2f entranceExactPosition;
         protected Vector2f exitExactPosition;
