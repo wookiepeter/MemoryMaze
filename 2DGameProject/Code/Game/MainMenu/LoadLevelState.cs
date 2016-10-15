@@ -124,7 +124,7 @@ namespace MemoryMaze
                 new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
                 new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
                 new List<Vector2f>() { new Vector2f(300, 200), new Vector2f(350, 200), new Vector2f(600, 200), new Vector2f(750, 200), new Vector2f(900, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) },
-                new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) } 
+                new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200), new Vector2f(1300, 200) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4), AssetManager.GetTexture(AssetManager.TextureName.MapBackground5)};
             for ( int i = 0; i < posList.Count; i++)
