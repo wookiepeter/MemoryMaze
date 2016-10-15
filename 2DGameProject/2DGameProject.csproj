@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Game\MainMenu\Button.cs" />
     <Compile Include="Code\Game\MainMenu\ChooseLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Credits.cs" />
     <Compile Include="Code\Game\MainMenu\LoadLevelState.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
     <Compile Include="Code\GUI\GUI.cs" />
-    <Compile Include="Code\Utility\LevelSelectButton.cs" />
+    <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
     <Compile Include="Code\Utility\Helper.cs" />
     <Compile Include="Code\Graphik\KeyboardInputManager.cs" />
@@ -294,6 +295,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\Button_Options.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Menu\Button_Options_glow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\Button_Profile.png">
