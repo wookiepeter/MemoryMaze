@@ -91,7 +91,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün05-NEW.txt", 64, new Vector2i(4, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün06.txt", 64, new Vector2i(8, 6), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün07-ChrisBearbeiten.txt", 64, new Vector2i(4, 10), 1));
-            //LAbyrinith einfüghen
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün99Laby.txt", 64, new Vector2i(3,3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün08-NEW.txt", 64, new Vector2i(4, 3), 1));
 
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau01-NEW.txt", 64, new Vector2i(6, 6), 1));
