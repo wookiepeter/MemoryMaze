@@ -9,6 +9,6 @@ weegwwwewwwww
 wwwwwwwwwwwww
 //Start:4,3
 _map:
-transport(9,1);teleport(7,5)
-transport(1,5);teleport(10,4)
+transport(1,5);teleport(7,5)
+transport(9,1);teleport(10,4)
 rating(29,21, 15)

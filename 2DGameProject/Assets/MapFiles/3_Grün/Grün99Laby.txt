@@ -1,23 +1,40 @@
-﻿48
-48
-wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwGwwwwwwwwwww
-wweeeeeeeeeeweewweeweewwweeeeeewwweeeewwweeeewww
-wweeeeeeeeeeweewweeweewwweeeeeeeeeeeeeewweeeewww
-wweewwwwwweeweeeeeeeeeeeeeewweeeeeeeeeeeewweewww
-wweeeeeeeeeeweeeeeeeeeeeeewwweeweeweeeeeeeweewww
-wweeeeeeeeeeeewwwweewwwwwweewwweewwwwwwwweeeweeeww
-wwwwweewwweeeeeeeeeeeeeeeeeeeeeeeewweeweewweeeww
-wweeweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeewww
+﻿29
+29
+wwwwwwwwwwwwwwwwwwwwwwwwwwwww
+weeeeeweeeeeeeeeweeeeeeeweeew
+wewwwewewwwwwwwewewwwwwewewew
+weeeweweeeweeewewewgeewewewew
+wwwwwewwwwwewewewewwwewewwwew
+weeeeeweeeweweweweeeeeweweeew
+wwwwwewewewwwewewwwwwwwewewew
+weeeeeweweeeeeeeweeeeeeeeewew
+wewwwewwwewwwwwewewwwewwwwwew
+weweweeeeeweeeweweweweweeewew
+wewewwwwwwwewwwewewewewewwwww
+weeeweeeeeweeeeeweeeweeeweeew
+wewewewewwwewwwwwewewewewewww
+weweweweeeweweeeeeweweweeeeew
+wewewewwwewewwwwwwwwwewwwwwww
+wewewewiweweeeeeeeeeweeeeewew
+weweweweweeewwwwwwwewwewwewew
+wewewwwewwwwweeeeeweweeeweeew
+weweeeeeeeeewewwwewewwwewwwew
+wewwweweweeeweeeweweeeeeeewew
+weweeewewwwwwwwwwewewwwwwewew
+wewewwweeeeeweeeweweweeewewew
+wewewewwwwweweweweeewewwwewww
+weeeweweeeweeeweweweweeeeeeew
+wwwwwewewewewewewewewwwwwwwww
+weeeeeeeweweweweeeweeeeeeeeew
+wewwwwwwwewwwewwewwwwewwwweww
+weeeeeeeweeeeeweeeweeeeeweeew
+wwwwwwwwwwwwwwwwwwwwwwwwwwwww
 
 
-//Startpos: 7,7
+
+//Startpos: 3,3
 //x1,x2,x3,x4
 _map:
-lever(3,3);wall(7,2);wall(7,3);wall(7,4);empty(7,5)
-lever(11,3);wall(7,2);empty(7,3);wall(7,4)
-lever(4,5);empty(7,2);wall(7,4)
-lever(10,5);empty(7,4)
 rating(200,100,0)
 
 

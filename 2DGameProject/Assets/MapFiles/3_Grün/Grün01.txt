@@ -1,0 +1,14 @@
+﻿6
+10
+wwwwwwwwww
+wwwwwwwwww
+wwwwwwwwww
+wwwwwwwwww
+wwwwwwwwww
+wwwwwwwwww
+
+//Startpos: 4,3
+
+_map:
+lever(2,3);empty(2,4)
+rating(25,18,13)
