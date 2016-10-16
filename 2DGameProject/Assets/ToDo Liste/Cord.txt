@@ -4,4 +4,7 @@ Titelbildschirm schick machen
 - Icons (Optionen, Exit, ...)
 - Hintergrund
 
+Window-Scaling
+- Matthis treten oder selber machen
+
 */

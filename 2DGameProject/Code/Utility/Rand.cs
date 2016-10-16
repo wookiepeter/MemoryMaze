@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 public class Rand
 {
@@ -29,13 +28,13 @@ public class Rand
         return random.Next();
     }
 
-    /// <summary>random nonNegative number, less than maxValue</summary>
+    /// <summary>random integer [minValue, maxValue)</summary>
     public static int IntValue(int maxValue)
     {
         return random.Next(maxValue);
     }
 
-    /// <summary>random number, less than maxValue</summary>
+    /// <summary>random integer [minValue, maxValue)</summary>
     public static int IntValue(int minValue, int maxValue)
     {
         return random.Next(minValue, maxValue);
