@@ -20,9 +20,10 @@ namespace MemoryMaze
         String gameTitle, currentTitleString, currentlyAppendedLetters;
         float currentDeltaSum, anotherDeltaSum; 
         Text funBenni;
-        Text funJohannes;
+
         Boolean funacitvBenni, funactivJoh;
         Sprite background;
+        Sprite shinyEffectBarSprite;
         Color MainTitleColor;
         Color ProfileNameColor;
         Color MenuTextColor;
@@ -49,6 +50,8 @@ namespace MemoryMaze
             profiles = profiles.loadManageProfiles();
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
+            shinyEffectBarSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.ShinyEffectBar));
+            shinyEffectBarSprite.Position = new Vector2(0, -3.9F * shinyEffectBarSprite.TextureRect.Height);
 
             testSpriteForCord = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.KeyAnimated), 0.1F, 8);
             testSpriteForCord.Position = new Vector2f(20, 100);
@@ -64,7 +67,7 @@ namespace MemoryMaze
             font = new Font("Assets/Fonts/calibri.ttf");
             sexyFont = new Font("Assets/Fonts/pixelhole.ttf");
             rectList = new List<IntRect>();
-            MainTitleColor = new Color(8, 45, 3);
+            MainTitleColor = new Color(0, 2, 42);
             ProfileNameColor = new Color(125, 253, 108);
             MenuTextColor = new Color(114, 217, 100);
  
@@ -79,7 +82,6 @@ namespace MemoryMaze
             rectList.Add(new IntRect(600, 610, 80, 80));    //Options       6
             rectList.Add(new IntRect(700, 610, 80, 80));    //Credits       7
             rectList.Add(new IntRect(800, 610, 80, 80));    //Exit          8
-            rectList.Add(new IntRect(100, 100, 60, 60));    //johfeld       9
 
             gameTitle = "RAMification!";
             currentTitleString = "";
@@ -92,11 +94,6 @@ namespace MemoryMaze
             funBenni.CharacterSize = 30;
             funBenni.Color = Color.Red;
             funBenni.Rotation = 45;
-
-            funJohannes = new Text("Johannes hatte frueher Locken, true Story!", font);
-            funJohannes.Position = new Vector2f(400, 650);
-            funJohannes.CharacterSize = 40;
-            funJohannes.Color = Color.Red;
 
             //Initializiere alle Texte
             gameName = new SuperText("", sexyFont, 0.1f);
@@ -288,18 +285,43 @@ namespace MemoryMaze
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
+            // draw background
             win.Draw(background);
+
+            // draw background-Effect
+            shinyEffectBarSprite.Position = new Vector2(shinyEffectBarSprite.Position.X, ((shinyEffectBarSprite.Position.Y + deltaTime * 400)));
+            if(shinyEffectBarSprite.Position.Y > win.Size.Y)
+            {
+                shinyEffectBarSprite.Position = new Vector2(0, -Rand.Value(1, 5) * shinyEffectBarSprite.TextureRect.Height);
+            }
+            win.Draw(shinyEffectBarSprite);
+
             // draw all rectangleshapes to see the Clickboxes
-            foreach(IntRect r in rectList)
+            foreach (IntRect r in rectList)
             {
                 debugButtonsRect.Size = new Vector2f(r.Width, r.Height);
                 debugButtonsRect.Position = new Vector2f(r.Left, r.Top);
                 debugButtonsRect.FillColor = Color.Black;
                 win.Draw(debugButtonsRect);
             }
+
             // Highlights the currently hovered Clickbox
             win.Draw(debugRect);
+
+            // Make fancy text fancy
             gameName.Draw(win, RenderStates.Default);
+            gameName.Position = (Vector2)gameName.Position + Vector2.One * 5;
+            gameName.Draw(win, RenderStates.Default);
+            gameName.Position = (Vector2)gameName.Position + Vector2.One * 4;
+            gameName.Draw(win, RenderStates.Default);
+            gameName.Position = (Vector2)gameName.Position + Vector2.One * 2;
+            gameName.Draw(win, RenderStates.Default);
+            gameName.Position = (Vector2)gameName.Position - Vector2.One * 1;
+            gameName.Color = Color.White;
+            gameName.Draw(win, RenderStates.Default);
+            gameName.Position = (Vector2)gameName.Position - Vector2.One * 10;
+            gameName.Color = MainTitleColor;
+
             foreach (SuperText s in superTextList)
             {
                 s.Draw(win, RenderStates.Default);
@@ -316,11 +338,6 @@ namespace MemoryMaze
                 gui.Draw(funBenni);
             else
                 funacitvBenni = false;
-
-            if (funactivJoh && stopwatch.Elapsed.Seconds < 3)
-                gui.Draw(funJohannes);
-            else
-                funactivJoh = false;
 
             //Alle Texte aus der Liste zeichnen
         }

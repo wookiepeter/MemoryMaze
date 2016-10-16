@@ -1,5 +1,12 @@
 ﻿/* ToDo: Diese Liste ist für dich Cord damit du nie Ruhen wirst und immer weiter an diesem Projekt arbeiten kannst!
 
+Titelbildschirm schick machen
+- Icons (Optionen, Exit, ...)
+- Hintergrund
 
+Tutorials
+
+Window-Scaling
+- Matthis treten oder selber machen
 
 */

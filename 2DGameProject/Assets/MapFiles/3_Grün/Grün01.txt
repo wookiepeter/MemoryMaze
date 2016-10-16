@@ -1,14 +1,13 @@
-﻿6
+﻿7
 10
 wwwwwwwwww
-wwwwwwwwww
-wwwwwwwwww
-wwwwwwwwww
-wwwwwwwwww
+weeeeeieew
+wettteeeew
+wetgtemeew
+wettteeeew
+weeeeeGeew
 wwwwwwwwww
 
-//Startpos: 4,3
-
+//Startpos: 8,3
 _map:
-lever(2,3);empty(2,4)
-rating(25,18,13)
+rating(200,100,0)
