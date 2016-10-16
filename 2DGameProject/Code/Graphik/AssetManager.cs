@@ -82,12 +82,12 @@ public class AssetManager
         textures.Add(TextureName.LeverOpen, new Texture("Assets/Textures/set_01/floor/Lever.png"));
         textures.Add(TextureName.LeverClosed, new Texture("Assets/Textures/set_01/floor/Lever_Closed.png"));
         textures.Add(TextureName.LeverCondensator, new Texture("Assets/Textures/set_01/floor/Lever_Condensator.png"));
-        textures.Add(TextureName.MapBackground1, new Texture("Assets/Textures/Menu/LevelSelect_Background.png"));
-        textures.Add(TextureName.MapBackground2, new Texture("Assets/Textures/Menu/LevelSelect_Background_Dublin.png"));
-        textures.Add(TextureName.MapBackground3, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hatzte.png"));
-        textures.Add(TextureName.MapBackground4, new Texture("Assets/Textures/Menu/LevelSelect_Background_Larvik.png"));
-        textures.Add(TextureName.MapBackground5, new Texture("Assets/Textures/Menu/LevelSelect_Background_Lueblow.png"));
-        textures.Add(TextureName.MapBackground6, new Texture("Assets/Textures/Menu/LevelSelect_Background_Woerthersee.png"));
+        textures.Add(TextureName.MapBackground1, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hatzte.png"));
+        textures.Add(TextureName.MapBackground2, new Texture("Assets/Textures/Menu/LevelSelect_Background_Lueblow.png"));
+        textures.Add(TextureName.MapBackground3, new Texture("Assets/Textures/Menu/LevelSelect_Background_Hildesheim.png"));
+        textures.Add(TextureName.MapBackground4, new Texture("Assets/Textures/Menu/LevelSelect_Background_Scheuerfeld.png"));
+        textures.Add(TextureName.MapBackground5, new Texture("Assets/Textures/Menu/LevelSelect_Background_Dublin_green.png"));
+        textures.Add(TextureName.MapBackground6, new Texture("Assets/Textures/Menu/LevelSelect_Background_Woerthersee_green.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
         textures.Add(TextureName.LevelButtonOptions, new Texture("Assets/Textures/Menu/Button_Options.png"));
