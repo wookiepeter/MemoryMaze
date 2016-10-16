@@ -55,6 +55,7 @@ namespace MemoryMaze
         List<LevelSelectButton> helpButtonList;
         List<Vector2f> helpButtonTargetList;
         Button leftButton, rightButton;
+        LevelInfo levelInfo;
 
         Vector2i currentScreenPosition;
 
@@ -144,6 +145,8 @@ namespace MemoryMaze
             worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
+            levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], stars.GetScoreOfLevel(currentLevel));
+            SetCurrentLevelInfo();
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -167,6 +170,7 @@ namespace MemoryMaze
             {
                 l.Update(deltaTime, win, currentScreenPosition);
             }
+            levelInfo.Update(deltaTime);
             leftButton.Update(deltaTime, win, currentScreenPosition);
             rightButton.Update(deltaTime, win, currentScreenPosition);
             if (stopwatch.ElapsedMilliseconds > 500)
@@ -359,6 +363,7 @@ namespace MemoryMaze
             {
                 l.Draw(win);
             }
+            levelInfo.Draw(win);
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
         }
@@ -446,6 +451,11 @@ namespace MemoryMaze
                 curIndex++;
             }
             return curIndex;
+        }
+
+        private void SetCurrentLevelInfo()
+        {
+            levelInfo.SetNewLevel(mainButtonList[GetPositionOnCurrentLevelScreen()], stars.GetScoreOfLevel(currentLevel));
         }
 
         private int GetPositionOnCurrentLevelScreen()

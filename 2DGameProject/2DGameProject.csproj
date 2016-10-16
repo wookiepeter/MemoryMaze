@@ -57,6 +57,7 @@
     <Compile Include="Code\Game\MainMenu\Button.cs" />
     <Compile Include="Code\Game\MainMenu\ChooseLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Credits.cs" />
+    <Compile Include="Code\Game\MainMenu\LevelInfo.cs" />
     <Compile Include="Code\Game\MainMenu\LoadLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Steuerung.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\BlueBot.cs" />

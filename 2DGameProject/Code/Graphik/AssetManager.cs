@@ -92,6 +92,7 @@ public class AssetManager
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
         textures.Add(TextureName.LevelButtonOptions, new Texture("Assets/Textures/Menu/Button_Options.png"));
         textures.Add(TextureName.LevelButtonOptionsGlow, new Texture("Assets/Textures/Menu/Button_Options_glow.png"));
+        textures.Add(TextureName.LevelInfo, new Texture("Assets/Textures/Menu/Button_Levelinfo.png"));
     }
 
     public enum TextureName
@@ -179,6 +180,7 @@ public class AssetManager
         LevelButtonGlow,
         LevelButtonOptions,
         LevelButtonOptionsGlow,
+        LevelInfo,
     }
 }
 

@@ -11,6 +11,7 @@ namespace MemoryMaze
 {
     class LevelSelectButton
     {
+        // sprite Position is centered
         public Vector2 position;
         Vector2i screenPosition;
         Sprite sprite;
