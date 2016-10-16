@@ -58,42 +58,55 @@ namespace MemoryMaze
         }
         void MainCampaign()
         {
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb1.txt", 64, new Vector2i(2, 2), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb2.txt", 64, new Vector2i(2, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb3.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb9.txt", 64, new Vector2i(10, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb4.txt", 64, new Vector2i(8, 1), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb5.txt", 64, new Vector2i(7, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb8.txt", 64, new Vector2i(7, 2), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb6.txt", 64, new Vector2i(3, 1), 1));
-            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb7.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb01.txt", 64, new Vector2i(2, 2), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb02-EinführungOrdner.txt", 64, new Vector2i(2, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb03.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb04.txt", 64, new Vector2i(8, 1), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb05-EinführungSchalter.txt", 64, new Vector2i(6,4), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb06.txt", 64, new Vector2i(7, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb07.txt", 64, new Vector2i(10, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb08.txt", 64, new Vector2i(7, 2), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb09.txt", 64, new Vector2i(3, 1), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb10.txt", 64, new Vector2i(4, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb_Bearbeiten.txt", 64, new Vector2i(7, 7), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot1.txt", 64, new Vector2i(8, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot2.txt", 64, new Vector2i(1, 1), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot3.txt", 64, new Vector2i(1, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot4.txt", 64, new Vector2i(7, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot5.txt", 64, new Vector2i(5, 7), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot6.txt", 64, new Vector2i(5, 5), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot1.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot2.txt", 64, new Vector2i(6, 2), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot3.txt", 64, new Vector2i(1, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot4.txt", 64, new Vector2i(4, 5), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot5.txt", 64, new Vector2i(7, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot6.txt", 64, new Vector2i(8, 1), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün1.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün2.txt", 64, new Vector2i(10, 10), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün9.txt", 64, new Vector2i(8, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün91.txt", 64, new Vector2i(4, 10), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau0.txt", 64, new Vector2i(6,6), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau1.txt", 64, new Vector2i(4, 1), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau3.txt", 64, new Vector2i(5, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau5.txt", 64, new Vector2i(4, 5), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau2.txt", 64, new Vector2i(5, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau4.txt", 64, new Vector2i(11, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau9.txt", 64, new Vector2i(6, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau91.txt", 64, new Vector2i(10, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau92.txt", 64, new Vector2i(10, 12), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau93.txt", 64, new Vector2i(2, 5), 1));
+
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot01-EinführungRoterBot.txt", 64, new Vector2i(8, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot02.txt", 64, new Vector2i(1, 1), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot03.txt", 64, new Vector2i(1, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot04-KatiBearbeiten.txt", 64, new Vector2i(7, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot05.txt", 64, new Vector2i(5, 7), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/Rot06.txt", 64, new Vector2i(5, 5), 1));
+
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot01-EinführungTeleporter.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot02-KatiBearbeiten.txt", 64, new Vector2i(6, 2), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot03-KatiBearbeiten.txt", 64, new Vector2i(1, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot04-KatiBearbeiten.txt", 64, new Vector2i(4, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot05.txt", 64, new Vector2i(7, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot06-KatiBearbeiten.txt", 64, new Vector2i(8, 1), 1));
+
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün01.txt", 64, new Vector2i(8, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün02.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün03-KatiBearbeiten.txt", 64, new Vector2i(10, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün04-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün05-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün06.txt", 64, new Vector2i(8, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün07-ChrisBearbeiten.txt", 64, new Vector2i(4, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün99Laby.txt", 64, new Vector2i(3,3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Grün/Grün08-NEW.txt", 64, new Vector2i(4, 3), 1));
+
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau01-NEW.txt", 64, new Vector2i(6, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau02-NEW.txt", 64, new Vector2i(6, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau03-KatiBearbeiten.txt", 64, new Vector2i(4, 1), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau04-KatiBearbeiten.txt", 64, new Vector2i(6,6), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau05.txt", 64, new Vector2i(5, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau06.txt", 64, new Vector2i(4, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau07.txt", 64, new Vector2i(5, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau08.txt", 64, new Vector2i(11, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau09.txt", 64, new Vector2i(6, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau10.txt", 64, new Vector2i(2, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau11.txt", 64, new Vector2i(10, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau12.txt", 64, new Vector2i(10, 12), 1));
+            
 
 
             nextGameState = GameState.InGame;

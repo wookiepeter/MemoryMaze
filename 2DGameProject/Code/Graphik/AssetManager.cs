@@ -90,7 +90,9 @@ public class AssetManager
         textures.Add(TextureName.MapBackground6, new Texture("Assets/Textures/Menu/LevelSelect_Background_Woerthersee.png"));
         textures.Add(TextureName.LevelButton, new Texture("Assets/Textures/Menu/Button_Levelselection.png"));
         textures.Add(TextureName.LevelButtonGlow, new Texture("Assets/Textures/Menu/Button_Levelselection_glow.png"));
-        textures.Add(TextureName.LevelButtonMedium, new Texture("Assets/Textures/Menu/Button_Options.png"));
+        textures.Add(TextureName.LevelButtonOptions, new Texture("Assets/Textures/Menu/Button_Options.png"));
+        textures.Add(TextureName.LevelButtonOptionsGlow, new Texture("Assets/Textures/Menu/Button_Options_glow.png"));
+        textures.Add(TextureName.LevelInfo, new Texture("Assets/Textures/Menu/Button_Levelinfo.png"));
     }
 
     public enum TextureName
@@ -176,7 +178,9 @@ public class AssetManager
         MapBackground6,
         LevelButton,
         LevelButtonGlow,
-        LevelButtonMedium,
+        LevelButtonOptions,
+        LevelButtonOptionsGlow,
+        LevelInfo,
     }
 }
 

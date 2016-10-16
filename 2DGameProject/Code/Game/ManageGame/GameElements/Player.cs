@@ -96,31 +96,33 @@ namespace MemoryMaze
             //playerStatus.Scale = new Vector2f(1, 1);
             redBotStatus.Position = new Vector2f(125, 25);
             //redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
-            blueBotStatus.Position = new Vector2f(225, 25);
-            //blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
-            greenBotStatus.Position = new Vector2f(325, 25);
+            greenBotStatus.Position = new Vector2f(225, 25);
             //greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+            blueBotStatus.Position = new Vector2f(335, 25);
+            //blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
+
 
             // initialize text for stepcounter
             guiGhostCounter = new Text("0", calibri, 20);
             guiRedCounter = new Text("0", calibri, 20);
-            guiBlueCounter = new Text("0", calibri, 20);
             guiGreenCounter = new Text("0", calibri, 20);
+            guiBlueCounter = new Text("0", calibri, 20);
+
             // initialize text for itemcounter
             guiPlayerItemCounter = new Text("" + keyCounter, calibri, 20);
             guiRedItemCounter = new Text("" + redItemCounter , calibri, 20);
-            guiBlueItemCounter = new Text("" +blueItemCounter, calibri, 20);
             guiGreenItemCounter = new Text("" + greenItemCounter, calibri, 20);
+            guiBlueItemCounter = new Text("" + blueItemCounter, calibri, 20);
 
             guiGhostCounter.Position = new Vector2f(playerStatus.Position.X, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height*playerStatus.Scale.Y);
             guiRedCounter.Position = new Vector2f(redBotStatus.Position.X, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height*redBotStatus.Scale.Y);
-            guiBlueCounter.Position = new Vector2f(blueBotStatus.Position.X, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height*blueBotStatus.Scale.Y);
             guiGreenCounter.Position = new Vector2f(greenBotStatus.Position.X, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height*greenBotStatus.Scale.Y);
+            guiBlueCounter.Position = new Vector2f(blueBotStatus.Position.X, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height * blueBotStatus.Scale.Y);
 
             guiPlayerItemCounter.Position = new Vector2f(playerStatus.Position.X + (float)playerStatus.TextureRect.Width* playerStatus.Scale.X * 0.85f, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height * playerStatus.Scale.Y);
             guiRedItemCounter.Position = new Vector2f(redBotStatus.Position.X + (float)redBotStatus.TextureRect.Width * redBotStatus.Scale.X * 0.85f, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height * playerStatus.Scale.Y);
-            guiBlueItemCounter.Position = new Vector2f(blueBotStatus.Position.X + (float)blueBotStatus.TextureRect.Width * blueBotStatus.Scale.X * 0.85f, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height * playerStatus.Scale.Y);
             guiGreenItemCounter.Position = new Vector2f(greenBotStatus.Position.X + (float)greenBotStatus.TextureRect.Width * greenBotStatus.Scale.X * 0.85f, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height * playerStatus.Scale.Y);
+            guiBlueItemCounter.Position = new Vector2f(blueBotStatus.Position.X + (float)blueBotStatus.TextureRect.Width * blueBotStatus.Scale.X * 0.85f, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height * playerStatus.Scale.Y);
 
         }
 
@@ -226,10 +228,10 @@ namespace MemoryMaze
             if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num2)) && redbot)
                 controllid = 1;
 
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && bluebot)
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num4)) && bluebot)
                 controllid = 2;
 
-            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num4)) && greenbot)
+            else if (!(KeyboardInputManager.IsPressed(Keyboard.Key.Space)) && (KeyboardInputManager.Downward(Keyboard.Key.Num3)) && greenbot)
                 controllid = 3;
 
             else

@@ -54,8 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Game\MainMenu\Button.cs" />
     <Compile Include="Code\Game\MainMenu\ChooseLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Credits.cs" />
+    <Compile Include="Code\Game\MainMenu\LevelInfo.cs" />
     <Compile Include="Code\Game\MainMenu\LoadLevelState.cs" />
     <Compile Include="Code\Game\MainMenu\Steuerung.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\BlueBot.cs" />
@@ -96,7 +98,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
     <Compile Include="Code\GUI\GUI.cs" />
-    <Compile Include="Code\Utility\LevelSelectButton.cs" />
+    <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
     <Compile Include="Code\Utility\Helper.cs" />
     <Compile Include="Code\Graphik\KeyboardInputManager.cs" />
@@ -131,73 +133,94 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LeverTutorial.txt" />
-    <Content Include="Assets\MapFiles\3_Grün\Grün2.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb05-EinführungSchalter.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün08-NEW.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün04-NEW.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün05-NEW.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Grün\Grün03-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\3_Grün\Grün99Laby.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau0.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau04-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau5.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau01-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau1.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau02-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau2.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau3.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau03-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau4.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau93.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün1.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau08.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot6.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot5.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot4.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot06-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot3.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot2.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot04-KatiBearbeiten.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\2_Rot\TRot03-KatiBearbeiten.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\2_Rot\TRot02-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00 - Kopieren %285%29 - Kopieren.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot6.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\1_Gelb\Gelb_Bearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau92.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau12.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau91.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau11.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau9.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau09.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün9.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün91.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Grün07-ChrisBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\_mal0Kopie.txt">
@@ -212,52 +235,52 @@
     <Content Include="Assets\MapFiles\_map3Kopie.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot5.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot4.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot04-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot3.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot2.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot1.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot01-EinführungRoterBot.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb9.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot1.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot01-EinführungTeleporter.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb7.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb8.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb08.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb6.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb09.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb5.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb4.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb1.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb2.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb02-EinführungOrdner.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb3.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\BackgrundSteuerung.png">
@@ -294,6 +317,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\Button_Options.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Menu\Button_Options_glow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\Button_Profile.png">

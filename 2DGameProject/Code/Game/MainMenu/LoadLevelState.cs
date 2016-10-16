@@ -30,11 +30,10 @@ namespace MemoryMaze
 
         List<IntRect> rectList;
         Stopwatch stopwatch;
-        SuperText lastScreen, nextScreen;
+        SuperText lastScreen, nextScreen, worldName;
 
         RectangleShape debugRect;
         RectangleShape debugButtonRect;
-        RectangleShape levelButtons;            // used to draw all the positions of any buttons
         RectangleShape screenButtons;           // used to draw the buttons for switching between screens
 
         RectangleShape mainMap;
@@ -42,6 +41,7 @@ namespace MemoryMaze
         Vector2f slideOffscreenStartPosition;
         Vector2f slideEndPosition;
         Vector2f slideOffsrceenEndPosition;
+        Vector2f worldNameRealPos, worldNameFakePos, worldNameRealPosTarget, worldNameFakeposTarget;
         float slideSpeed;
         bool sliding;
 
@@ -54,6 +54,8 @@ namespace MemoryMaze
         List<Vector2f> mainButtonTargetList;
         List<LevelSelectButton> helpButtonList;
         List<Vector2f> helpButtonTargetList;
+        Button leftButton, rightButton;
+        LevelInfo levelInfo;
 
         Vector2i currentScreenPosition;
 
@@ -68,19 +70,10 @@ namespace MemoryMaze
 
         void Initialisation()
         {
-            font = new Font("Assets/Fonts/pixelhole.ttf");
-            rectList = new List<IntRect>();
+            font = new Font("Assets/Fonts/pixelhole.ttf"); 
 
-            rectList.Add(new IntRect(45, 245, 85, 185));        //Left           0
-            rectList.Add(new IntRect(600, 600, 80, 80));        //Levels         1
-            rectList.Add(new IntRect(900, 600, 80, 80));        //Settings       2   
-            rectList.Add(new IntRect(1145, 245, 85, 185));      //Right          3   
-
-            debugRect = new RectangleShape();
-            levelButtons = new RectangleShape();
-            levelButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
             screenButtons = new RectangleShape();
-            screenButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonMedium);
+            screenButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions);
             screenButtons.Size = new Vector2f(screenButtons.Texture.Size.X, screenButtons.Texture.Size.Y);
             screenButtons.Rotation = 90;
             screenButtons.FillColor = new Color(255, 255, 255, 200);
@@ -96,14 +89,20 @@ namespace MemoryMaze
 
             lastScreen = new SuperText("<", font, 1);
             lastScreen.CharacterSize = 200;
-            lastScreen.Position = new Vector2f(60, 175);
+            lastScreen.Position = new Vector2f(275, 445);
             lastScreen.minFrequency = 5;
             lastScreen.maxFrequency = 10;
             nextScreen = new SuperText(">", font, 1);
             nextScreen.CharacterSize = 200;
-            nextScreen.Position = new Vector2f(1160, 175);
+            nextScreen.Position = new Vector2f(865, 445);
             nextScreen.minFrequency = 5;
             nextScreen.maxFrequency = 10;
+
+            worldName = new SuperText("1", font, 0.2f);
+            worldName.CharacterSize = 145;
+            worldName.Position = new Vector2f(400, 500);
+            worldNameFakePos = new Vector2f(-1000, -1000);
+            worldNameRealPos = worldName.Position;
 
             profiles = new ManageProfiles();
             profiles = profiles.loadManageProfiles();
@@ -120,23 +119,34 @@ namespace MemoryMaze
 
             // this list is used to initialize the levelscreens
             List<List<Vector2f>> posList = new List<List<Vector2f>>() {
-                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(200, 200), new Vector2f( 300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200)},
-                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
-                new List<Vector2f>() { new Vector2f(100, 200), new Vector2f(250, 200), new Vector2f(400, 200), new Vector2f(550, 200), new Vector2f(700, 200), new Vector2f(850, 200) },
-                new List<Vector2f>() { new Vector2f(300, 200), new Vector2f(350, 200), new Vector2f(600, 200), new Vector2f(750, 200), new Vector2f(900, 200) },
-                new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200) } 
+                new List<Vector2f>() { new Vector2f(115, 345), new Vector2f(205, 385), new Vector2f(325, 345), new Vector2f(445, 305), new Vector2f(545, 355),
+                    new Vector2f(635, 335), new Vector2f(735, 365), new Vector2f(855, 385), new Vector2f(965, 345), new Vector2f(1045, 385), new Vector2f( 1125, 325)},
+                new List<Vector2f>() { new Vector2f(175, 385), new Vector2f(375, 435), new Vector2f(555, 305), new Vector2f(685, 345), new Vector2f(845, 305), new Vector2f(935, 465) },
+                new List<Vector2f>() { new Vector2f(265, 435), new Vector2f(455, 425), new Vector2f(655, 405), new Vector2f(805, 435), new Vector2f(935, 305), new Vector2f(1095, 425) },
+                new List<Vector2f>() { new Vector2f(355, 405), new Vector2f(465, 325), new Vector2f(565, 345), new Vector2f(655, 305), new Vector2f(745, 365), new Vector2f(835, 395),
+                    new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) },
+                new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200), new Vector2f(1300, 200) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4), AssetManager.GetTexture(AssetManager.TextureName.MapBackground5)};
+            int curStartIndex = 0;
             for ( int i = 0; i < posList.Count; i++)
             {
-                levelSelectList.Add(new LevelSelectionScreen(backgroundList[i], posList[i], i));
+                levelSelectList.Add(new LevelSelectionScreen(backgroundList[i], posList[i], curStartIndex));
+                curStartIndex += posList[i].Count ;
             }
 
             mainButtonList = new List<LevelSelectButton>();
             helpButtonList = new List<LevelSelectButton>();
 
+            leftButton = new Button(new Vector2f(300, 600), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow));
+            rightButton = new Button(new Vector2f(900, 600), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow));
+
             currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
+            worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
+            mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
+            levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], stars.GetScoreOfLevel(currentLevel));
+            SetCurrentLevelInfo();
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -154,35 +164,52 @@ namespace MemoryMaze
         public GameState Update(RenderWindow win, float deltaTime)
         {
             int index = -1;
-            debugRect.Position = new Vector2f(-1000, -1000);
             lastScreen.Update(deltaTime);
             nextScreen.Update(deltaTime);
             foreach(LevelSelectButton l in mainButtonList)
             {
-                l.Update(deltaTime, win, currentLevel);
+                l.Update(deltaTime, win, currentScreenPosition);
             }
+            levelInfo.Update(deltaTime);
+            leftButton.Update(deltaTime, win, currentScreenPosition);
+            rightButton.Update(deltaTime, win, currentScreenPosition);
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                     return GameState.MainMenu;
-                foreach(LevelSelectButton l in mainButtonList)
-                {
-                    l.Update(deltaTime, win, currentLevel);
-                }
                 if (sliding)
                 {
                     SlideMap(deltaTime);
                     return GameState.LoadLevelState;
                 }
-                for (int e = 0; e < rectList.Count; e++)
+                if(KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down))
                 {
-                    if (IsMouseInRectangle(rectList[e], win))                           //Geht die Liste mit rectInt duch!
+                    int bottomLength = 1;
+                    if(KeyboardInputManager.Downward(Keyboard.Key.Up) && currentScreenPosition.Y != 0)
                     {
-                        index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
-                        break;
+                        currentScreenPosition.Y = 0;
+                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    }
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Down) && currentScreenPosition.Y != 1)
+                    {
+                        currentScreenPosition.Y = 1;
+                        float help = (float) currentScreenPosition.X * (float) bottomLength / (float) (mainButtonList.Count - 1);
+                        currentScreenPosition.X = (int) Math.Round(help);
                     }
                 }
-                if (KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right))
+                if((KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right)) & currentScreenPosition.Y == 1)
+                {
+                    int bottomLength = 1;
+                    if(KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < bottomLength)
+                    {
+                        currentScreenPosition.X += 1;
+                    }
+                    if(KeyboardInputManager.Downward(Keyboard.Key.Left) && currentScreenPosition.X > 0)
+                    {
+                        currentScreenPosition.X -= 1;
+                    }
+                }
+                if ((KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right)) && currentScreenPosition.Y == 0)
                 {
                     if (KeyboardInputManager.Downward(Keyboard.Key.Left))
                     {
@@ -190,12 +217,10 @@ namespace MemoryMaze
                         {
                             currentLevel--;
                             currentScreenPosition.X -= 1;
-                            Console.WriteLine("oldScreenPosition: " + currentScreenPosition.X);
                             if (currentScreenPosition.X < 0)
                             {
                                 InitiateSlide(false);
                                 currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
-                                Console.WriteLine("currentScreenPosition: " + currentScreenPosition.X);
                             }
                         }
                     }
@@ -217,23 +242,16 @@ namespace MemoryMaze
                 {
                     return StartLevelIfUnlocked();
                 }
-                if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
+                if (KeyboardInputManager.Downward(Keyboard.Key.Return) && currentScreenPosition.Y == 1)                       //Wurde die LinkeMaustaste gedrückt?
                 {
                     //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
-                    switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
+                    switch (currentScreenPosition.X)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                     {                                                               //bearbeitet das aktuelle TextFeld
                                                                                     //
-                          case 0:
+                        case 0:
                             CanSlide(false);
                             return GameState.LoadLevelState;
-                        //
                         case 1:
-                            return StartLevelIfUnlocked();
-                        //
-                        case 2:
-                            return GameState.Steuerung;
-                        //Choose ur saveslot
-                        case 3:
                             CanSlide(true);
                             return GameState.LoadLevelState;
                         default:
@@ -266,6 +284,8 @@ namespace MemoryMaze
             helpButtonTargetList.RemoveAll(b => true);
             mainButtonTargetList.RemoveAll(b => true);
             int currentScreen = GetIndexOfCurrentLevelScreen();
+            worldNameFakePos = worldNameRealPos;
+            worldNameRealPosTarget = worldNameRealPos;
             if (right)
             {
                 helpMap.Texture = levelSelectList[currentScreen - 1].texture;
@@ -274,6 +294,8 @@ namespace MemoryMaze
                 slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X - 1280, mainMap.Position.Y);
                 foreach (LevelSelectButton l in helpButtonList)
                     helpButtonTargetList.Add(new Vector2f(l.position.X - 1280, l.position.Y));
+                worldNameRealPos = new Vector2f(worldNameRealPos.X - 1280, worldNameRealPos.Y);
+                worldNameFakeposTarget = new Vector2f(worldNameFakePos.X + 1280, worldNameFakePos.Y);
             }
             else
             {
@@ -283,12 +305,15 @@ namespace MemoryMaze
                 slideOffsrceenEndPosition = new Vector2f(mainMap.Position.X + 1280, mainMap.Position.Y);
                 foreach (LevelSelectButton l in helpButtonList)
                     helpButtonTargetList.Add(new Vector2f(l.position.X + 1280, l.position.Y));
+                worldNameRealPos = new Vector2f(worldNameRealPos.X + 1280, worldNameRealPos.Y);
+                worldNameFakeposTarget = new Vector2f(worldNameFakePos.X - 1280, worldNameFakePos.Y);
             }
             foreach (LevelSelectButton l in mainButtonList)
             {
                 mainButtonTargetList.Add(new Vector2f(l.position.X, l.position.Y));
                 l.position = (!right)?l.position + new Vector2(-1280, 0) : l.position + new Vector2(1280, 0);
             }
+            worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
             mainMap.Position = slideOffscreenStartPosition;
             mainMap.Texture = levelSelectList[currentScreen].texture;
             helpMap.Position = slideEndPosition;
@@ -298,6 +323,8 @@ namespace MemoryMaze
         {
             mainMap.Position = Vector2.lerp(mainMap.Position, slideEndPosition, slideSpeed * deltaTime);
             helpMap.Position = Vector2.lerp(helpMap.Position, slideOffsrceenEndPosition,  slideSpeed * deltaTime);
+            worldNameFakePos = Vector2.lerp(worldNameFakePos, worldNameFakeposTarget, slideSpeed * deltaTime);
+            worldNameRealPos = Vector2.lerp(worldNameRealPos, worldNameRealPosTarget, slideSpeed * deltaTime);
             int i = 0;
             foreach (LevelSelectButton l in mainButtonList)
                 l.position = Vector2.lerp(l.position, mainButtonTargetList[i++],slideSpeed * deltaTime);
@@ -309,6 +336,7 @@ namespace MemoryMaze
                 sliding = false;
                 mainMap.Position = slideEndPosition;
                 helpMap.Position = slideOffscreenStartPosition;
+                worldNameRealPos = worldNameRealPosTarget;
                 i = 0;
                 foreach (LevelSelectButton l in mainButtonList)
                     l.position = mainButtonTargetList[i++];
@@ -325,30 +353,17 @@ namespace MemoryMaze
             win.Clear(Color.Black);
             win.Draw(mainMap);
             win.Draw(helpMap);
+            worldName.Position = worldNameRealPos;
+            worldName.Draw(win, RenderStates.Default);
+            worldName.Position = worldNameFakePos;
+            worldName.Draw(win, RenderStates.Default);
+            leftButton.Draw(win);
+            rightButton.Draw(win);
             foreach(LevelSelectButton l in mainButtonList)
             {
                 l.Draw(win);
             }
-            for (int i = 0; i < rectList.Count; i++)
-            {
-                IntRect ir = rectList[i];
-                if (i < 4)
-                {
-                    if (i != 0 && i != 3)
-                    {
-                        debugButtonRect.Position = new Vector2f(ir.Left, ir.Top);
-                        debugButtonRect.Size = new Vector2f(ir.Width, ir.Height);
-                        debugButtonRect.FillColor = Color.Black;
-                        win.Draw(debugButtonRect);
-                    }
-                    else
-                    {
-                        screenButtons.Position = new Vector2f(ir.Left, ir.Top);
-                        win.Draw(screenButtons);
-                    }
-                }
-            }
-            win.Draw(debugRect);
+            //levelInfo.Draw(win);
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
         }
@@ -379,8 +394,9 @@ namespace MemoryMaze
                 if (stars.levelIsUnlocked(help))
                 {
                     currentLevel = help;
-                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    //currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     InitiateSlide(true);
+                    currentScreenPosition.X = 1;
                     return true;
                 }
                 else
@@ -388,7 +404,7 @@ namespace MemoryMaze
                     if (stars.getIndexOfFirstUnsolvedLevel() == 0 && currentLevel != 0)
                     {
                         currentLevel = mainButtonList[mainButtonList.Count - 1].buttonLevel;
-                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                        Console.WriteLine("currentLevel: " + currentLevel);
                     }
                     else
                     {
@@ -396,8 +412,10 @@ namespace MemoryMaze
                         {
                             currentLevel++;
                         }
-                        currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     }
+                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    Console.WriteLine("currentScreenPos: " + currentScreenPosition.X);
+                    currentScreenPosition.Y = 0;
                 }
             }
             else
@@ -406,14 +424,16 @@ namespace MemoryMaze
                 if (help >= levelSelectList[0].posList.Count - 1)
                 {
                     currentLevel = help;
-                    currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    //currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     InitiateSlide(false);
+                    currentScreenPosition.X = 0;
                     return true;
                 }
                 else if (currentLevel <= levelSelectList[0].posList.Count )
                 {
                     currentLevel = 0;
                     currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
+                    currentScreenPosition.Y = 0;
                 }
             }
             return false;
@@ -431,6 +451,11 @@ namespace MemoryMaze
                 curIndex++;
             }
             return curIndex;
+        }
+
+        private void SetCurrentLevelInfo()
+        {
+            levelInfo.SetNewLevel(mainButtonList[GetPositionOnCurrentLevelScreen()], stars.GetScoreOfLevel(currentLevel));
         }
 
         private int GetPositionOnCurrentLevelScreen()
@@ -460,7 +485,7 @@ namespace MemoryMaze
                 curLevel += levelSelectList[i].posList.Count;
             foreach (Vector2f v in levelSelectList[mapIndex].posList)
             {
-                buttonList.Add(new LevelSelectButton(v, curLevel));
+                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(curLevel - levelSelectList[mapIndex].startIndex, 0)));
                 curLevel++;
             }
         }
@@ -478,7 +503,7 @@ namespace MemoryMaze
                 curLevel += levelSelectList[i].posList.Count;
             foreach (Vector2f v in levelSelectList[mapIndex].posList)
             {
-                buttonList.Add(new LevelSelectButton(v, curLevel));
+                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(currentLevel - levelSelectList[mapIndex].startIndex, 0)));
                 curLevel++;
             }
         }
