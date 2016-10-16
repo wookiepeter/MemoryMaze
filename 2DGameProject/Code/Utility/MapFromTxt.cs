@@ -132,7 +132,7 @@ namespace MemoryMaze
                     leverList.Add(new BlueLever(leverPosition, map, maniList));
                 }
             }
-            return new LevelutionHandler(leverList);
+            return new LevelutionHandler(leverList, map.sizePerCell);
         } 
 
         public TransportHandler getTransFromMap(String filename, Map map)

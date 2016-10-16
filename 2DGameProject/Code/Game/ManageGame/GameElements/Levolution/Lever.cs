@@ -12,13 +12,13 @@ namespace MemoryMaze
 
     public abstract class Lever
     {
-        protected Vector2i position;
+        public Vector2i position;
         protected Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LeverOpen));
 
         // Position of the sprite based on sizepercell and its position
-        protected Vector2f exactPosition;
+        public Vector2f exactPosition;
 
-        protected List<MapManipulation> mapManilList;
+        public List<MapManipulation> mapManilList;
 
         protected bool active = false;
 

@@ -102,6 +102,7 @@ namespace MemoryMaze
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
             watch.Start();
+            levelution.DrawOutlines(win, view, relViewDif);
             map.Draw(win, view, relViewDif);
             levelution.Draw(win, view, relViewDif);
             long tMap = watch.ElapsedTicks;
