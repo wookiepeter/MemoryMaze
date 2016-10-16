@@ -89,7 +89,7 @@ namespace MemoryMaze
 
             }
 
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!player.bluebot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (!player.bluebot)) //ToDo: Bedingungen zum erstelelen
             {
                 if(player.blueItemCounter > 0)
                 {
@@ -101,7 +101,7 @@ namespace MemoryMaze
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (player.bluebot))
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (player.bluebot))
             {
                 if (player.blueItemCounter > 0)
                 {
@@ -115,7 +115,7 @@ namespace MemoryMaze
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (!player.greenbot)) //ToDo: Bedingungen zum erstelelen
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (!player.greenbot)) //ToDo: Bedingungen zum erstelelen
             {
                 if(player.greenItemCounter > 0)
                 {
@@ -127,7 +127,7 @@ namespace MemoryMaze
                 }
 
             }
-            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num4) && (!iserstellt) && (player.greenbot))
+            if (KeyboardInputManager.IsPressed(Keyboard.Key.Num3) && (!iserstellt) && (player.greenbot))
             {
                 if(player.greenItemCounter > 0)
                 {

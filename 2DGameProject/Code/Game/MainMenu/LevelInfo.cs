@@ -24,31 +24,7 @@ namespace MemoryMaze
 
         public LevelInfo(LevelSelectButton _button, ManageStars.Rating _rating)
         {
-            background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo));
-            background.Origin = new Vector2f(background.Texture.Size.X * 0.5f, background.Texture.Size.X * 0.5f);
-            background.Rotation = 90;
-            button = _button;
-            position = button.position + new Vector2(-background.Texture.Size.X * 0.5f, -(background.Texture.Size.Y + 200));
-            background.Position = position + new Vector2(background.Texture.Size.X * 0.5f, background.Texture.Size.Y * 0.5f);
-            rating = _rating;
-
-            levelName = new SuperText("Level " + button.buttonLevel, font, 0.2f);
-            levelName.Position = position + new Vector2(30, 100);
-            starList = new List<AnimatedSprite>();
-            lockedStarList = new List<Sprite>();
-            for (int i = 0; i < 3; i++)
-            {
-                if (i < (int) rating)
-                {
-                    starList.Add(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.StarRotating), 0.1f, 8));
-                    starList[starList.Count-1].Position = position + new Vector2(20 + i * 50, 300);
-                }
-                else
-                {
-                    lockedStarList.Add(new Sprite(AssetManager.GetTexture(AssetManager.TextureName.Star)));
-                    lockedStarList[lockedStarList.Count - 1].Position = position + new Vector2(20 + i * 50, 300);
-                }
-            }
+            SetNewLevel(_button, _rating);
         }
 
         public void Update(float deltaTime)
@@ -70,7 +46,7 @@ namespace MemoryMaze
 
         public void SetNewLevel(LevelSelectButton _button, ManageStars.Rating rating)
         {
-            background.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelInfo);
+            background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo));
             background.Origin = new Vector2f(background.Texture.Size.X * 0.5f, background.Texture.Size.X * 0.5f);
             button = _button;
             position = button.position + new Vector2(-background.Texture.Size.X * 0.5f, -(background.Texture.Size.Y));
