@@ -363,7 +363,7 @@ namespace MemoryMaze
             {
                 l.Draw(win);
             }
-            levelInfo.Draw(win);
+            //levelInfo.Draw(win);
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
         }
