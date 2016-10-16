@@ -18,6 +18,7 @@ public class AssetManager
     {
         textures.Add(TextureName.WhitePixel, new Texture("Assets/Textures/pixel.png"));
         textures.Add(TextureName.MainMenuBackground, new Texture("Assets/Textures/Menu/Menu_Background2.png"));
+        textures.Add(TextureName.ShinyEffectBar, new Texture("Assets/Textures/Menu/Menu_BackgroundEffect.png"));
         textures.Add(TextureName.Player, new Texture("Assets/Textures/Virus/Yellow.png"));
         textures.Add(TextureName.RedBot, new Texture("Assets/Textures/Virus/Red.png"));
         textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/Virus/Green.png"));
@@ -106,6 +107,7 @@ public class AssetManager
         */
         WhitePixel,
         MainMenuBackground,
+        ShinyEffectBar,
         Player,
         Wall,
         GroundLonely,

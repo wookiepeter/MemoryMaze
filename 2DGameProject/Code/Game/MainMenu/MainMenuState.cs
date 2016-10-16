@@ -23,6 +23,7 @@ namespace MemoryMaze
         Text funJohannes;
         Boolean funacitvBenni, funactivJoh;
         Sprite background;
+        Sprite shinyEffectBarSprite;
         Color MainTitleColor;
         Color ProfileNameColor;
         Color MenuTextColor;
@@ -49,6 +50,8 @@ namespace MemoryMaze
             profiles = profiles.loadManageProfiles();
             Initialisation();
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
+            shinyEffectBarSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.ShinyEffectBar));
+            shinyEffectBarSprite.Position = new Vector2(0, -3.9F * shinyEffectBarSprite.TextureRect.Height);
 
             testSpriteForCord = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.KeyAnimated), 0.1F, 8);
             testSpriteForCord.Position = new Vector2f(20, 100);
@@ -288,15 +291,26 @@ namespace MemoryMaze
 
         public void Draw(RenderWindow win, View view, float deltaTime)
         {
+            // draw background
             win.Draw(background);
+
+            // draw background-Effect
+            shinyEffectBarSprite.Position = new Vector2(shinyEffectBarSprite.Position.X, ((shinyEffectBarSprite.Position.Y + deltaTime * 400)));
+            if(shinyEffectBarSprite.Position.Y > win.Size.Y)
+            {
+                shinyEffectBarSprite.Position = new Vector2(0, -Rand.Value(1, 5) * shinyEffectBarSprite.TextureRect.Height);
+            }
+            win.Draw(shinyEffectBarSprite);
+
             // draw all rectangleshapes to see the Clickboxes
-            foreach(IntRect r in rectList)
+            foreach (IntRect r in rectList)
             {
                 debugButtonsRect.Size = new Vector2f(r.Width, r.Height);
                 debugButtonsRect.Position = new Vector2f(r.Left, r.Top);
                 debugButtonsRect.FillColor = Color.Black;
                 win.Draw(debugButtonsRect);
             }
+
             // Highlights the currently hovered Clickbox
             win.Draw(debugRect);
             gameName.Draw(win, RenderStates.Default);
