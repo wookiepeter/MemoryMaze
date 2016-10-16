@@ -91,14 +91,15 @@ public struct Vector2
     /// <summary>returs a vector rotated around the given angle</summary>
     public Vector2 rotate(float angle)
     {
-        Vector2 ret = new Vector2();
+        Vector2 result = new Vector2();
         float cosA = (float)System.Math.Cos(angle);
         float sinA = (float)System.Math.Sin(angle);
 
-        ret.X = X * cosA - Y * sinA;
-        ret.Y = Y * cosA + X * sinA;
+        result.X = X * cosA - Y * sinA;
+        result.Y = Y * cosA + X * sinA;
 
-        return ret;
+        this = result;
+        return this;
     }
 
     public Vector2 right { get { return new Vector2(Y, -X); } }
@@ -141,6 +142,11 @@ public struct Vector2
     public static float dot(Vector2 v1, Vector2 v2)
     {
         return v1.X * v2.X + v1.Y * v2.Y;
+    }
+
+    public static float angleBetween(Vector2 v1, Vector2 v2)
+    {
+        return (float)Math.Acos(dot(v1.normalized, v2.normalized));
     }
 
     //------------------------------------------//
