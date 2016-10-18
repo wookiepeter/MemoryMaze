@@ -84,15 +84,15 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot05.txt", 64, new Vector2i(7, 4), 1));
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot06-KatiBearbeiten.txt", 64, new Vector2i(8, 1), 1));
 
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen01.txt", 64, new Vector2i(8, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen02.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen03-KatiBearbeiten.txt", 64, new Vector2i(10, 10), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen04-NEW.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen05-NEW.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen06.txt", 64, new Vector2i(8, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen07-ChrisBearbeiten.txt", 64, new Vector2i(4, 10), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen99Laby.txt", 64, new Vector2i(3,3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Grün/Gruen08-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen01.txt", 64, new Vector2i(8, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen02.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen03-KatiBearbeiten.txt", 64, new Vector2i(10, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen04-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen05-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen06.txt", 64, new Vector2i(8, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen07-ChrisBearbeiten.txt", 64, new Vector2i(4, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen99Laby.txt", 64, new Vector2i(3,3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen08-NEW.txt", 64, new Vector2i(4, 3), 1));
 
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau01-NEW.txt", 64, new Vector2i(6, 6), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau02-NEW.txt", 64, new Vector2i(6, 6), 1));
