@@ -11,7 +11,7 @@ namespace MemoryMaze
     public class LevelutionHandler
     {
         List<Lever> leverList;
-        LeverOutlines outlines;
+        List<LeverOutlines> outlines;
         int sizePerCell;
 
         public LevelutionHandler(List<Lever> _leverList, int _sizePerCell)
@@ -22,9 +22,10 @@ namespace MemoryMaze
             {
                 leverList.Add(lever.Copy());
             }
-            if(leverList.Count > 0)
+            outlines = new List<LeverOutlines>();
+            foreach(Lever lever in leverList)
             {
-                outlines = new LeverOutlines(leverList[0], sizePerCell);
+                outlines.Add(new LeverOutlines(lever, _sizePerCell));
             }
         }
 
@@ -36,9 +37,10 @@ namespace MemoryMaze
             {
                 leverList.Add(lev.Copy());
             }
-            if (leverList.Count > 0)
+            outlines = new List<LeverOutlines>();
+            foreach(Lever lever in leverList)
             {
-                outlines = new LeverOutlines(leverList[0], sizePerCell);
+                outlines.Add(new LeverOutlines(lever, _sizePerCell));
             }
         }
 
@@ -53,21 +55,26 @@ namespace MemoryMaze
             {
                 lev.Update(player, map, deltaTime);
             }
+            foreach(LeverOutlines outline in outlines)
+            {
+                outline.Update(deltaTime);
+            }
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
-            foreach(Lever lev in leverList)
+            foreach (Lever lev in leverList)
             {
                 lev.Draw(win, view, relViewDis);
             }
+            
         }
 
         public void DrawOutlines(RenderTexture win, View view, Vector2f relViewDis)
         {
-            if(outlines != null)
+            foreach(LeverOutlines outline in outlines)
             {
-                outlines.Draw(win, view, relViewDis);
+                outline.Draw(win, view, relViewDis);
             }
         }
     }

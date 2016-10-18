@@ -20,7 +20,7 @@ namespace MemoryMaze
 
         public List<MapManipulation> mapManilList;
 
-        protected bool active = false;
+        public bool active = false;
 
         public abstract Lever Copy();
 
