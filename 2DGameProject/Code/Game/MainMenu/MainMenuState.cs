@@ -97,7 +97,7 @@ namespace MemoryMaze
 
             //Initializiere alle Texte
             gameName = new SuperText("", sexyFont, 0.1f);
-            gameName.Position = new Vector2f(60, -50);
+            gameName.Position = new Vector2f(55, -45);
             gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
 
@@ -309,6 +309,7 @@ namespace MemoryMaze
             win.Draw(debugRect);
 
             // Make fancy text fancy
+            // Shadow
             gameName.Draw(win, RenderStates.Default);
             gameName.Position = (Vector2)gameName.Position + Vector2.One * 5;
             gameName.Draw(win, RenderStates.Default);
@@ -318,6 +319,7 @@ namespace MemoryMaze
             gameName.Draw(win, RenderStates.Default);
             gameName.Position = (Vector2)gameName.Position - Vector2.One * 1;
             gameName.Color = Color.White;
+            // Actual Text
             gameName.Draw(win, RenderStates.Default);
             gameName.Position = (Vector2)gameName.Position - Vector2.One * 10;
             gameName.Color = MainTitleColor;
