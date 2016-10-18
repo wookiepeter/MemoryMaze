@@ -134,25 +134,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\LeverTutorial.txt" />
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb05-EinführungSchalter.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb05-EinfuehrungSchalter.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün08-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen08-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün04-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen04-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün05-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen05-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün01.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün03-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen03-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün99Laby.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen99Laby.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau04-KatiBearbeiten.txt">
@@ -182,7 +182,7 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün02.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot06-KatiBearbeiten.txt">
@@ -218,10 +218,10 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau09.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün06.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Grün07-ChrisBearbeiten.txt">
+    <Content Include="Assets\MapFiles\3_Grün\Gruen07-ChrisBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\_mal0Kopie.txt">
@@ -248,13 +248,13 @@
     <Content Include="Assets\MapFiles\2_Rot\Rot02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot01-EinführungRoterBot.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot01-EinfuehrungRoterBot.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\1_Gelb\Gelb07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot01-EinführungTeleporter.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot01-EinfuehrungTeleporter.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\1_Gelb\Gelb10.txt">
@@ -278,7 +278,7 @@
     <Content Include="Assets\MapFiles\1_Gelb\Gelb01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb02-EinführungOrdner.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb02-EinfuehrungOrdner.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\1_Gelb\Gelb03.txt">
