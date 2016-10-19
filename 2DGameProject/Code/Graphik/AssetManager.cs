@@ -94,6 +94,10 @@ public class AssetManager
         textures.Add(TextureName.LevelButtonOptions, new Texture("Assets/Textures/Menu/Button_Options.png"));
         textures.Add(TextureName.LevelButtonOptionsGlow, new Texture("Assets/Textures/Menu/Button_Options_glow.png"));
         textures.Add(TextureName.LevelInfo, new Texture("Assets/Textures/Menu/Button_Levelinfo.png"));
+        textures.Add(TextureName.ProfileButton, new Texture("Assets/Textures/Menu/Button_Profile.png"));
+        textures.Add(TextureName.ProfileButtonGlow, new Texture("Assets/Textures/Menu/Button_Profile_glow.png"));
+        textures.Add(TextureName.ProfileDeleteButton, new Texture("Assets/Textures/Menu/Button_ProfileDeletion.png"));
+        textures.Add(TextureName.ProfileDeleteButtonGlow, new Texture("Assets/Textures/Menu/Button_ProfileDeletion_glow.png"));
     }
 
     public enum TextureName
@@ -183,6 +187,10 @@ public class AssetManager
         LevelButtonOptions,
         LevelButtonOptionsGlow,
         LevelInfo,
+        ProfileButton,
+        ProfileButtonGlow,
+        ProfileDeleteButton,
+        ProfileDeleteButtonGlow,
     }
 }
 

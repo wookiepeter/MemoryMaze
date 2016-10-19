@@ -138,8 +138,8 @@ namespace MemoryMaze
             mainButtonList = new List<LevelSelectButton>();
             helpButtonList = new List<LevelSelectButton>();
 
-            leftButton = new Button(new Vector2f(300, 600), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow));
-            rightButton = new Button(new Vector2f(900, 600), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow));
+            leftButton = new Button(new Vector2f(300, 600), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow), 90);
+            rightButton = new Button(new Vector2f(900, 600), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow), 90);
 
             currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
             worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();

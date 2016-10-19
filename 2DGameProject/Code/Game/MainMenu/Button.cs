@@ -18,6 +18,11 @@ namespace MemoryMaze
         public Vector2i buttonPosition;
         Texture defaultTexture, glowTexture;
 
+        public Button(Vector2f _position, Vector2i _buttonPosition, Texture _defaultTexture, Texture _glowTexture, float _rotation) : this(_position, _buttonPosition, _defaultTexture, _glowTexture)
+        {
+            sprite.Rotation = _rotation;
+        }
+
         public Button(Vector2f _position, Vector2i _buttonPosition, Texture _defaultTexture, Texture _glowTexture)
         {
             position = _position;
@@ -27,7 +32,6 @@ namespace MemoryMaze
             sprite.Texture = defaultTexture;
             sprite.Origin = new Vector2f(sprite.Texture.Size.X * 0.5f, sprite.Texture.Size.Y);
             sprite.TextureRect = new IntRect(0, 0, (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
-            sprite.Rotation = 90;
             sprite.Position = position;
             spriteRect = new IntRect((int)(position.X - sprite.Texture.Size.X * 0.5f), (int)(position.Y - sprite.Texture.Size.Y * 0.5f), (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
             highlighted = false;
