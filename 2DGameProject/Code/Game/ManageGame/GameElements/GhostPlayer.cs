@@ -26,7 +26,7 @@ namespace MemoryMaze
         {
             counter = 10;//ANzahl der Schritte
             iserstellt = false;
-            this.sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.PlayerGhostAnimated), 10.1F, 4, new Vector2i(64,64), new Vector2i(0,0));
+            this.sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.PlayerGhostAnimated), 0.1F, 4, new Vector2i(64,64), new Vector2i(0,0));
        
             this.mapPosition = position;
             UpdateSpritePosition(map);
