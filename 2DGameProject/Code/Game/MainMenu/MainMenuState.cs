@@ -34,14 +34,16 @@ namespace MemoryMaze
         SuperText profileOneText, profileTwoText, profileThreeText;
         List<SuperText> superTextList;
         List<Text> textlist;
-        List<IntRect> rectList;
-
+        
         RectangleShape debugRect = new RectangleShape();
         RectangleShape debugButtonsRect = new RectangleShape();
+        List<Button> buttonList;
 
         ManageProfiles profiles = new ManageProfiles();
 
         AnimatedSprite testSpriteForCord;
+
+        Vector2i currentScreenPosition;
 
         public MainMenuState()
         {
@@ -56,6 +58,7 @@ namespace MemoryMaze
             testSpriteForCord = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.KeyAnimated), 0.1F, 8);
             testSpriteForCord.Position = new Vector2f(20, 100);
         }
+
         public void Initialisation()
         {
             stopwatch = new Stopwatch();
@@ -66,22 +69,20 @@ namespace MemoryMaze
             funacitvBenni = false;
             font = new Font("Assets/Fonts/calibri.ttf");
             sexyFont = new Font("Assets/Fonts/pixelhole.ttf");
-            rectList = new List<IntRect>();
             MainTitleColor = new Color(0, 2, 42);
             ProfileNameColor = new Color(125, 253, 108);
             MenuTextColor = new Color(114, 217, 100);
- 
-            // MainMenuField was too big -> had to make it smaller
-            
-            rectList.Add(new IntRect(250, 310, 500, 80));   //One           0
-            rectList.Add(new IntRect(800, 310, 80, 80));    //OneReset      1
-            rectList.Add(new IntRect(250, 410, 500, 80));   //Two           2
-            rectList.Add(new IntRect(800, 410, 80, 80));    //TwoReset      3
-            rectList.Add(new IntRect(250, 510, 500, 80));   //Three         4
-            rectList.Add(new IntRect(800, 510, 80, 80));    //ThreeReset    5
-            rectList.Add(new IntRect(600, 610, 80, 80));    //Options       6
-            rectList.Add(new IntRect(700, 610, 80, 80));    //Credits       7
-            rectList.Add(new IntRect(800, 610, 80, 80));    //Exit          8
+
+            buttonList = new List<Button>();
+            buttonList.Add(new Button(new Vector2f(550, 330), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(550, 460), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(550, 590), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(1060, 330), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(1060, 460), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(1060, 590), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(600, 700), new Vector2i(0, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
+            buttonList.Add(new Button(new Vector2f(800, 700), new Vector2i(1, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
+            buttonList.Add(new Button(new Vector2f(1000, 700), new Vector2i(2, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
 
             gameTitle = "RAMification!";
             currentTitleString = "";
@@ -97,14 +98,12 @@ namespace MemoryMaze
 
             //Initializiere alle Texte
             gameName = new SuperText("", sexyFont, 0.1f);
-            gameName.Position = new Vector2f(55, -45);
-            gameName.CharacterSize = 240;
+            gameName.Position = new Vector2f(55, -45);            gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
 
             mainmenu = new Text("SpielMenü", font);
             mainmenu.Position = new Vector2f(425, 225);
             mainmenu.CharacterSize = 70;
-
 
             credits = new Text("Credits", font);
             credits.Position = new Vector2f(250, 500);
@@ -137,11 +136,13 @@ namespace MemoryMaze
             profileThreeText.CharacterSize = 70;
             superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText};
 
+            currentScreenPosition = new Vector2i(0, 0);
+
             //Alle Texte in ein Array Speichern -> Liste übertragen!
             Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit};
             textlist = array.ToList();
-
         }
+
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
         {
             Vector2i mouse = win.InternalGetMousePosition();                                    // @chris -> das nehmen um die interne mausposition zu kriegen
@@ -152,19 +153,14 @@ namespace MemoryMaze
         public GameState Update(RenderWindow win, float deltaTime)
         {
             gameName.Update(deltaTime);
-
-            if (stopwatch1.ElapsedMilliseconds > 500)
+            foreach(Button b in buttonList)
+            {
+                b.Update(deltaTime, win, currentScreenPosition);
+            }
+            if (stopwatch1.ElapsedMilliseconds > 200)
             {
                 int index = -1;
                 debugRect.Position = new Vector2f(-1000, -1000);                    // moves this out of the picture... 
-                for (int e = 0; e < rectList.Count; e++)
-                {
-                    if (IsMouseInRectangle(rectList[e], win))                           //Geht die Liste mit rectInt duch!
-                    {
-                        index = e;                                                  //Maus war auf einem -> der index wird gespeichert! (nummer des Rectint)
-                        break;
-                    }
-                }
                 if (settingNewProfile)
                 {
                     List<char> charList = KeyboardInputManager.getCharInput();
@@ -199,29 +195,58 @@ namespace MemoryMaze
                         }
                     }
                 }
-                else if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
+                else if (KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down) || KeyboardInputManager.Downward(Keyboard.Key.Right) || KeyboardInputManager.Downward(Keyboard.Key.Left))
+                {
+                    if( KeyboardInputManager.Downward(Keyboard.Key.Up) && currentScreenPosition.Y > 0)
+                    {
+                        currentScreenPosition.Y -= 1;
+                        if (currentScreenPosition.X == 2)
+                            currentScreenPosition.X = 1;
+                        else if (currentScreenPosition.X == 1 && currentScreenPosition.Y == 2)
+                            currentScreenPosition.X = 0;
+                    }
+                    if ( KeyboardInputManager.Downward(Keyboard.Key.Down) && currentScreenPosition.Y < 3)
+                    {
+                        currentScreenPosition.Y += 1;
+                        if (currentScreenPosition.Y == 3 && currentScreenPosition.X == 1)
+                            currentScreenPosition.X = 2;
+                    }
+                    if ( KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < 1)
+                    {
+                        currentScreenPosition.X += 1;
+                    }
+                    else if (KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < 3 && currentScreenPosition.Y == 3)
+                    {
+                        currentScreenPosition.X = 2;
+                    }
+                    if ( KeyboardInputManager.Downward(Keyboard.Key.Left) && currentScreenPosition.X > 0)
+                    {
+                        currentScreenPosition.X -= 1;
+                    }
+                }
+                else if (KeyboardInputManager.Downward(Keyboard.Key.Return))                       //Wurde die LinkeMaustaste gedrückt?
                 {
                     //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
-                    switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
+                    switch (IndexFromScreenPos())                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                     {                                                               //bearbeitet das aktuelle TextFeld
                                                                                     //start
                         case 0:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.one;
                             return GameState.LoadLevelState;
-                        case 1:
+                        case 3:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.one;
                             settingNewProfile = true;
                             currentInput = "";
                             break;
-                        case 2:
+                        case 1:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.two;
                             return GameState.LoadLevelState;
-                        case 3:
+                        case 4:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.two;
                             settingNewProfile = true;
                             currentInput = "";
                             break;
-                        case 4:
+                        case 2:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.three;
                             return GameState.LoadLevelState;
                         case 5:
@@ -238,22 +263,24 @@ namespace MemoryMaze
                         default: break;
                     }
                 }
-                else
-                {
-                    if (index >= 0 && index <= 9)
-                    {
-                        IntRect rect = rectList[index];
-                        debugRect.Size = new Vector2f(rect.Width, rect.Height);
-                        debugRect.Position = new Vector2f(rectList[index].Left, rectList[index].Top);
-                        debugRect.FillColor = Color.Cyan;
-                    }
-                }
             }
             UpdateMainTitle(deltaTime);
 
             foreach (SuperText s in superTextList)
                 s.Update(deltaTime);
             return GameState.MainMenu;
+        }
+
+        int IndexFromScreenPos()
+        {
+            int index = 0;
+            while (index < buttonList.Count)
+            {
+                if (currentScreenPosition.Equals(buttonList[index].buttonPosition))
+                    break;
+                index++;
+            }
+            return index;
         }
 
         void UpdateMainTitle(float deltaTime)
@@ -296,15 +323,6 @@ namespace MemoryMaze
             }
             win.Draw(shinyEffectBarSprite);
 
-            // draw all rectangleshapes to see the Clickboxes
-            foreach (IntRect r in rectList)
-            {
-                debugButtonsRect.Size = new Vector2f(r.Width, r.Height);
-                debugButtonsRect.Position = new Vector2f(r.Left, r.Top);
-                debugButtonsRect.FillColor = Color.Black;
-                win.Draw(debugButtonsRect);
-            }
-
             // Highlights the currently hovered Clickbox
             win.Draw(debugRect);
 
@@ -323,6 +341,11 @@ namespace MemoryMaze
             gameName.Draw(win, RenderStates.Default);
             gameName.Position = (Vector2)gameName.Position - Vector2.One * 10;
             gameName.Color = MainTitleColor;
+
+            foreach (Button b in buttonList)
+            {
+                b.Draw(win);
+            }
 
             foreach (SuperText s in superTextList)
             {
