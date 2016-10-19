@@ -23,7 +23,7 @@ public class AssetManager
         textures.Add(TextureName.RedBot, new Texture("Assets/Textures/Virus/Red.png"));
         textures.Add(TextureName.GreenBot, new Texture("Assets/Textures/Virus/Green.png"));
         textures.Add(TextureName.BlueBot, new Texture("Assets/Textures/Virus/Blue.png"));
-        textures.Add(TextureName.PlayerGhost, new Texture("Assets/Textures/playerfaceGhost.png"));
+        textures.Add(TextureName.PlayerGhostAnimated, new Texture("Assets/Textures/Virus/ghost.png"));
         textures.Add(TextureName.Wall, new Texture("Assets/Textures/placeholder/WallTile.png"));
         textures.Add(TextureName.Item, new Texture("Assets/Textures/Item/key.png"));
         textures.Add(TextureName.KeyAnimated, new Texture("Assets/Textures/Item/key_animated.png"));
@@ -159,7 +159,7 @@ public class AssetManager
         ParticlesOutgoingAnimated,
         Movable,
         Enemy,
-        PlayerGhost,
+        PlayerGhostAnimated,
         RedBot,
         GreenBot,
         BlueBot,

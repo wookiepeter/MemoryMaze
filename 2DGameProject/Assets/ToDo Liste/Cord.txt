@@ -4,6 +4,10 @@ Titelbildschirm schick machen
 - Icons (Optionen, Exit, ...)
 - Hintergrund
 
+Tiles
+- Trap
+- movable Block
+
 Tutorials
 
 Window-Scaling
