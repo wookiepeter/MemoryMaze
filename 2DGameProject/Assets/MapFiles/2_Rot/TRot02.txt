@@ -1,0 +1,21 @@
+﻿10
+20
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwiwwwwwww
+wwwwwwewewwwewwwwwww
+wwwweeeemmmeewwwwwww
+wewwweweewwwwwwwweww
+weeemewwwwwwwwwwweww
+weeewemmeeeeeeeeeeew
+wwewwwwwwwewwwweeeww
+wwRwwwwwwwewwgwwewww
+wwwwwwwwwwwwwwwwwwww
+
+//Start 6,2
+_map:
+lever(1,4);empty(12,2)
+lever(17,4);empty(11,8)
+lever(18,6);empty(12,8)
+transport(4,3);teleport(11,3)
+transport(10,7);teleport(16,8)
+rating(91,72, 60)

@@ -1,0 +1,24 @@
+﻿13
+17
+wwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwww
+wwewwwweemewwwww
+wweeeeeewRwwwwww
+wwemmewwwwwwwwww
+weemmewwwwwwwwww
+wweeeeeewwwwwwww
+wwwweewwwewwwwww
+wwwwwewwweewwegw
+wwwwwwwwwewwwwww
+wwwwweemewiwwwww
+wwwwwwwweeewwwww
+wwwwwwwwwwwwwwww
+
+//Pos: 7,2
+_map:
+lever(2,2);empty(5,9)
+lever(1,5);empty(5,9)
+lever(7,6);empty(11,8)
+lever(4,7);empty(9,10)
+lever(9,7);empty(12,8)
+rating(80,55,47)

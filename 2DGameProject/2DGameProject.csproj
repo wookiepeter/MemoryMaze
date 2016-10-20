@@ -138,22 +138,31 @@
     <Content Include="Assets\MapFiles\1_Gelb\Gelb05-EinfuehrungSchalter.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen08-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen04-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen05-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen03-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen01.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen04-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen03-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen05-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen99Laby.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen06.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen07-ChrisBearbeiten.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen08-NEW.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen99Laby.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau04-KatiBearbeiten.txt">
@@ -183,9 +192,6 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen02.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot06-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -195,10 +201,10 @@
     <Content Include="Assets\MapFiles\2_Rot\TRot04-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot03-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot02-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00 - Kopieren %285%29 - Kopieren.txt">
@@ -207,7 +213,7 @@
     <Content Include="Assets\MapFiles\2_Rot\Rot06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\1_Gelb\Gelb_Bearbeiten.txt">
+    <Content Include="Assets\MapFiles\1_Gelb\Gelb11.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau12.txt">
@@ -217,12 +223,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau09.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen06.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\MapFiles\3_Grün\Gruen07-ChrisBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\_mal0Kopie.txt">
@@ -240,7 +240,7 @@
     <Content Include="Assets\MapFiles\2_Rot\Rot05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\Rot04-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\Rot04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\Rot03.txt">
@@ -328,6 +328,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\Button_ProfileDeletion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Menu\Button_ProfileDeletion_glow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Menu\Button_Profile_glow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Menu\LevelSelect_Background_Hatzte.png">
@@ -529,6 +535,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Virus\BlueItem.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Textures\Virus\ghost.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\Virus\Green.png">

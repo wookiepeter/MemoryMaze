@@ -1,0 +1,23 @@
+﻿10
+15
+wwwwwwwwwwwwwww
+wweewwwgwiweeww
+weeeewwwwweeeew
+weemeewwweemeew
+wweeeeeweeeeeww
+wweemeeeeemeeww
+wwweeeeeeeeewww
+wwwwweeeeewwwww
+wwwwwwwewwwwwww
+wwwwwwwwwwwwwww
+
+//Startpos: 7,7
+//4 - 2 - 1 - 3
+_map:
+lever(3,2);empty(8,1)
+lever(11,2);empty(6,2);wall(5,2);wall(8,1)
+lever(4,4);empty(7,2);wall(6,2);wall(5,2);wall(8,1)
+lever(10,4);empty(5,2);wall(8,1)
+rating(109,80, 58)
+
+

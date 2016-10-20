@@ -1,0 +1,25 @@
+﻿12
+20
+wwwwwwwwwwwwwwwwwwww
+wwwwwwGwwwtwwiwwwwww
+wwwwRwwwwwtwwwwwwwww
+wwwtetwttwtwweeewwww
+wwttweeetwemmweeGwww
+weewemeetwtwweeewwww
+wwteeeeetwtwwwwwwwww
+wgweeeeetwwwwwwwwwww
+wwteeeettweewwwwwwww
+wwttmtttwemewwwwwwww
+wwwwewwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwww
+//Start 4,11
+_map:
+lever(4,7);empty(3,5)
+lever(5,7);empty(6,2)
+lever(6,6);empty(4,4);empty(9,4)
+lever(6,5);empty(6,3);empty(13,4)
+lever(15,3);empty(11,1)
+lever(14,3);empty(10,7)
+lever(9,9);empty(12,1);empty(7,8);wall(10,7);empty(8,8);empty(9,8)
+lever(1,5);empty(2,7)
+rating(200,100,0)

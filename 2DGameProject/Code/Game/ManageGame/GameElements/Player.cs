@@ -145,7 +145,7 @@ namespace MemoryMaze
                 if (iserstellt)
                 {
                     ghostPlayer.Update(deltaTime, map, this);
-                    currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.Size.X / 2f, ghostPlayer.sprite.Size.Y / 2f);
+                    currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.spriteSize.X / 2f, ghostPlayer.sprite.spriteSize.Y / 2f);
                     UpdateSpritePosition(map);
                 }
                 else

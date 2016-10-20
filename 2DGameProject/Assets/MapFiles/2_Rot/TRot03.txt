@@ -1,0 +1,24 @@
+﻿13
+25
+wwwwwwwwwwwwwwwwwwwwwwwww
+wwwwwwwwewwwwwwwwwwwwwwww
+wwwwwweeeeeeeeeeewwwwwwww
+wwwwwwweeeeeemmmeewwwwwww
+wwwwwwweeeeeeeeeewwwwgwww
+wwwwRwweeeeeeeeeewwwwewww
+weeeeeeeeeeeeeeeewwmmeeew
+wwwwwwweeeeeeeeeewwwwwwww
+wwwwiwweeeeeeeeeewwwwwwww
+wwwwwwwemmmeeeeeeewwwwwww
+wwwwwwweeeeeeeeeeewwwwwww
+wwwwwwwwwwwwwwwewwwwwwwww
+wwwwwwwwwwwwwwwwwwwwwwwww
+//Start 1,6
+_map:
+lever(8,1)
+lever(17,9);empty(4,7)
+lever(17,10)
+lever(15,11);empty(18,6)
+lever(17,3)
+lever(6,2);empty(17,6)
+rating(180,160, 135)

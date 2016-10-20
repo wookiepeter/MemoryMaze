@@ -13,9 +13,10 @@ namespace MemoryMaze
     {
         struct Connection
         {
-            public Connection(List<RectangleShape> rectList)
+            public Connection(List<RectangleShape> rectList, Vector2f _target)
             {
                 lineList = rectList;
+                target = _target;
             }
 
             public void Draw(RenderTexture win, View view, Vector2f relViewDis, Color fillColor)
@@ -31,6 +32,7 @@ namespace MemoryMaze
                 }
             }
 
+            public Vector2f target;
             List<RectangleShape> lineList;
         }
 
@@ -39,8 +41,13 @@ namespace MemoryMaze
         int sizePercell;
         bool prevLeverState;
         float fadeTime;
+        float animFadeTime;
         Color defaultColor;
         Color fillColor;
+        Color animColor;
+        AnimatedSprite anim;
+
+        float particleAnimationSecondsPerFrame = 0.06F;
 
         public LeverOutlines(Lever _lever, int _sizePerCell)
         {
@@ -49,28 +56,45 @@ namespace MemoryMaze
             connections = new List<Connection>();
             prevLeverState = lever.active;
             fadeTime = 0;
-            defaultColor = new Color(255, 0, 0, 0);
-            foreach(MapManipulation mani in _lever.mapManilList)
+            defaultColor = new Color(180, 221, 252, 0);
+            anim = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated), particleAnimationSecondsPerFrame, 13);
+            anim.Origin = (Vector2)anim.spriteSize * 0.5F;
+            foreach (MapManipulation mani in _lever.mapManilList)
             {
-                connections.Add(new Connection(GenerateConnection(mani)));
-            }            
+                connections.Add(new Connection(GenerateConnection(mani), new Vector2f(mani.position.X * sizePercell + sizePercell * 0.5f, mani.position.Y * sizePercell + sizePercell * 0.5f)));
+            }   
+            
+                     
         }
 
         public void Update(float deltaTime)
         {
+            anim.UpdateFrame(deltaTime);
+            anim.Color = animColor;
+            Console.WriteLine("fillColor " + anim.Color);
             if (lever.active != prevLeverState)
             {
                 prevLeverState = lever.active;
                 fillColor = defaultColor;
                 fillColor.A = 255;
                 fadeTime = 0.5f;
+                animFadeTime = 2.0f;
+                animColor = anim.Color;
+                animColor = new Color(255, 255, 255, 0);
+            }
+            if (animFadeTime > 0)
+            {
+                animColor.A = (byte)(255 * animFadeTime / 0.5f);
+                animFadeTime -= deltaTime;
+            }
+            else
+            {
+                animFadeTime = 0;
             }
             if (fadeTime > 0)
             {
                 fillColor.A = (byte)(255 * fadeTime / 0.5f);
-                Console.WriteLine("fillColor" + fillColor.A + fillColor);
                 fadeTime -= deltaTime;
-                Console.WriteLine(fadeTime);
             }
             else
             {
@@ -83,6 +107,16 @@ namespace MemoryMaze
             foreach(Connection con in connections)
             {
                 con.Draw(win, view, relViewDis, fillColor);
+                anim.Position = con.target + relViewDis;
+                win.Draw(anim);
+                anim.Rotation += 90F;
+                win.Draw(anim);
+                anim.Rotation += 90F;
+                win.Draw(anim);
+                anim.Rotation += 90F;
+                win.Draw(anim);
+                anim.Rotation += 90F;
+
             }
         }
 
@@ -133,7 +167,7 @@ namespace MemoryMaze
             }
             for( int i = 1; i < posList.Count; i++)
             {
-                result.Add(GenerateLine(posList[i-1], posList[i], 2));
+                result.Add(GenerateLine(posList[i-1], posList[i], 4));
             }
             return result;
         }

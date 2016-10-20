@@ -13,22 +13,20 @@ namespace MemoryMaze
     public class GhostPlayer
     {
         
-        public RectangleShape sprite { get; private set; }
+        public AnimatedSprite sprite { get; private set; }
         RedBot redBot;
         BlueBot blueBot;
         GreenBot greenBot;
         bool iserstellt;
         public int counter { get;  set; }
         public Vector2i mapPosition { get; private set; }
-        Vector2f size { get { return sprite.Size; } set { sprite.Size = value; } }
+        Vector2f size { get { return new Vector2f(sprite.spriteSize.X, sprite.spriteSize.Y); } }
 
         public GhostPlayer(Vector2i position, Map map)
         {
             counter = 10;//ANzahl der Schritte
             iserstellt = false;
-            this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.Size = new Vector2f(map.GetSizePerCell() * 0.8F, map.GetSizePerCell() * 0.8F);
-            this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.PlayerGhost);
+            this.sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.PlayerGhostAnimated), 0.1F, 4, new Vector2i(64,64), new Vector2i(0,0));
        
             this.mapPosition = position;
             UpdateSpritePosition(map);
@@ -45,6 +43,8 @@ namespace MemoryMaze
             }
             UpdateSpritePosition(map);
             CreateBot(map, player); //player.botList, player.redbot, player.bluebot, player.greenbot);
+
+            sprite.UpdateFrame(deltaTime);
         }
     
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
@@ -180,12 +180,12 @@ namespace MemoryMaze
 
         void UpdateSpritePosition(Map map)
         {
-            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
+            this.sprite.Position = new Vector2f(mapPosition.X * map.GetSizePerCell(), mapPosition.Y * map.GetSizePerCell());
         }
 
         Vector2f GetSpritePosition(Map map)
         {
-            return new Vector2f(mapPosition.X * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F, mapPosition.Y * map.GetSizePerCell() + map.GetSizePerCell() * 0.1F);
+            return new Vector2f(mapPosition.X * map.GetSizePerCell(), mapPosition.Y * map.GetSizePerCell());
         }
         public int GetCount() { return counter; }
     }
