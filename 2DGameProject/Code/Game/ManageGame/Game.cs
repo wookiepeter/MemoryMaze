@@ -130,7 +130,7 @@ namespace MemoryMaze
                 int curScore = level.getScoreCounter();
                 if (nextGameState == GameState.InGame)
                 {
-                    manageStars.UpdateScoreOfLevel(curIndex, levelList[curIndex].getRating());
+                    manageStars.UpdateScoreOfLevel(curIndex, level.getRating());
                 }
                 curIndex++;
                 if (curIndex >= levelList.Count)

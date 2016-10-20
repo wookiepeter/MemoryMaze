@@ -98,6 +98,9 @@ public class AssetManager
         textures.Add(TextureName.ProfileButtonGlow, new Texture("Assets/Textures/Menu/Button_Profile_glow.png"));
         textures.Add(TextureName.ProfileDeleteButton, new Texture("Assets/Textures/Menu/Button_ProfileDeletion.png"));
         textures.Add(TextureName.ProfileDeleteButtonGlow, new Texture("Assets/Textures/Menu/Button_ProfileDeletion_glow.png"));
+        textures.Add(TextureName.BotBronze, new Texture("Assets/Textures/Virus/medal_bronze.png"));
+        textures.Add(TextureName.BotSilver, new Texture("Assets/Textures/Virus/medal_silver.png"));
+        textures.Add(TextureName.BotGold, new Texture("Assets/Textures/Virus/medal_gold.png"));
     }
 
     public enum TextureName
@@ -191,6 +194,9 @@ public class AssetManager
         ProfileButtonGlow,
         ProfileDeleteButton,
         ProfileDeleteButtonGlow,
+        BotBronze,
+        BotSilver,
+        BotGold,
     }
 }
 

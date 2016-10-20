@@ -77,7 +77,7 @@ namespace MemoryMaze
             //win.SetView(_view);
 
             // multiplies lightMask with the Texture already in the window (because multstate)
-            win.Draw(new Sprite(multTexture.Texture), multState);
+            //win.Draw(new Sprite(multTexture.Texture), multState);
         }
 
         private void InitializeRenderShit(RenderWindow win)
