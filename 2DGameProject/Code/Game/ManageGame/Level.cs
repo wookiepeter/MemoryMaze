@@ -144,14 +144,15 @@ namespace MemoryMaze
 
         public ManageStars.Rating getRating()
         {
-            for (int i = 0; i < 3;i++)
+            for (int i = 2; i > 0; i--)
             {
-                if (ratingNumbers[i] < playerScore)
+                Console.WriteLine("Rating: " + ratingNumbers[i] + " - " + playerScore);
+                if (ratingNumbers[i] > playerScore)
                 {
-                    return (ManageStars.Rating)i;
+                    return (ManageStars.Rating)i+1;
                 }
             }
-            return ManageStars.Rating.Gold;
+            return ManageStars.Rating.Bronze;
         }
 
         private void addScoreFromBots()

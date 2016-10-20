@@ -56,7 +56,8 @@ namespace MemoryMaze
             connections = new List<Connection>();
             prevLeverState = lever.active;
             fadeTime = 0;
-            defaultColor = new Color(180, 221, 252, 0);
+            //defaultColor = new Color(180, 221, 252, 0);
+            defaultColor = new Color(255, 255, 255);
             anim = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.ParticlesAnimated), particleAnimationSecondsPerFrame, 13);
             anim.Origin = (Vector2)anim.spriteSize * 0.5F;
             foreach (MapManipulation mani in _lever.mapManilList)
@@ -71,20 +72,19 @@ namespace MemoryMaze
         {
             anim.UpdateFrame(deltaTime);
             anim.Color = animColor;
-            Console.WriteLine("fillColor " + anim.Color);
             if (lever.active != prevLeverState)
             {
                 prevLeverState = lever.active;
                 fillColor = defaultColor;
                 fillColor.A = 255;
-                fadeTime = 0.5f;
-                animFadeTime = 2.0f;
+                fadeTime = 1f;
+                animFadeTime = 2f;
                 animColor = anim.Color;
                 animColor = new Color(255, 255, 255, 0);
             }
             if (animFadeTime > 0)
             {
-                animColor.A = (byte)(255 * animFadeTime / 0.5f);
+                animColor.A = (byte)(255 * animFadeTime / 2f);
                 animFadeTime -= deltaTime;
             }
             else
@@ -93,7 +93,7 @@ namespace MemoryMaze
             }
             if (fadeTime > 0)
             {
-                fillColor.A = (byte)(255 * fadeTime / 0.5f);
+                fillColor.A = (byte)(255 * fadeTime / 1f);
                 fadeTime -= deltaTime;
             }
             else
@@ -146,9 +146,6 @@ namespace MemoryMaze
             Vector2f target = new Vector2f(mapMani.position.X * sizePercell + sizePercell * 0.5f, mapMani.position.Y * sizePercell + sizePercell * 0.5f);
             while (!posList[posList.Count - 1].Equals(target))
             {
-                Console.WriteLine("posList" + posList[posList.Count - 1]);
-                Console.WriteLine("target" + target);
-
                 int randXDif = (horizontalDist != 0)?Rand.IntValue(1, horizontalDist): 0;
                 int randYDif = (verticalDist != 0)?Rand.IntValue(1, verticalDist) : 0;
                 int xDif = (randXDif < (horizontalDist - Math.Abs(curX))) ? randXDif : (horizontalDist - Math.Abs(curX));

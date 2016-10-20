@@ -145,7 +145,7 @@ namespace MemoryMaze
             worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
-            levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], stars.GetScoreOfLevel(currentLevel));
+            levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
             SetCurrentLevelInfo();
         }
 
@@ -170,6 +170,8 @@ namespace MemoryMaze
             {
                 l.Update(deltaTime, win, currentScreenPosition);
             }
+            if (levelInfo.GetInfoButtonLevel() != currentLevel)
+                SetCurrentLevelInfo();
             levelInfo.Update(deltaTime);
             leftButton.Update(deltaTime, win, currentScreenPosition);
             rightButton.Update(deltaTime, win, currentScreenPosition);
@@ -363,7 +365,7 @@ namespace MemoryMaze
             {
                 l.Draw(win);
             }
-            //levelInfo.Draw(win);
+            levelInfo.Draw(win);
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
         }
