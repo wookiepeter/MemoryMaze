@@ -36,6 +36,7 @@ namespace MemoryMaze
                 Console.WriteLine("Game was continued");
                 MainCampaign();
             }
+
             // this does require the set level(levelToPlay) to be valid(both an existing level and an already unlocked one)
             if (id == 2)
             {

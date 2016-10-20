@@ -85,7 +85,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Trap\TrapHandler.cs" />
     <Compile Include="Code\Game\ManageGame\ManageProfiles.cs" />
     <Compile Include="Code\Game\ManageGame\ManageStars.cs" />
-    <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />
+    <Compile Include="Code\Game\ManageGame\Sound\GameAudio.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bot.cs" />
@@ -100,6 +100,7 @@
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
     <Compile Include="Code\GUI\GUI.cs" />
     <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
+    <Compile Include="Code\MusicManager\MusicManager.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
     <Compile Include="Code\Utility\Helper.cs" />
     <Compile Include="Code\Graphik\KeyboardInputManager.cs" />
@@ -552,6 +553,9 @@
     <Content Include="Assets\ToDo Liste\Chris.txt" />
     <Content Include="Assets\ToDo Liste\MatthisToDo.txt" />
     <Content Include="Assets\ToDo Liste\FriederToDo.txt" />
+    <Content Include="Assets\Musics\MyFirstSong V2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
