@@ -1,4 +1,4 @@
-﻿11
+﻿10
 17
 wwwwwwwwwwwwwwwww
 wgeewwwwwwweeReew
@@ -10,7 +10,7 @@ wewwwwwwwwweeewww
 wemmeewwwwweeewww
 wweiwwwwwwwwwwwww
 wwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwww
+
 //player 7,4
 _map:
 transport(9,4);teleport(1,5)

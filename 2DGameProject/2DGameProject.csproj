@@ -191,13 +191,13 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot06-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot04-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot03.txt">

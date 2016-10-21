@@ -80,9 +80,9 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot01-EinfuehrungTeleporter.txt", 64, new Vector2i(4, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot02.txt", 64, new Vector2i(6, 2), 1));
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot03.txt", 64, new Vector2i(1, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot04-KatiBearbeiten.txt", 64, new Vector2i(4, 5), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot04.txt", 64, new Vector2i(1, 5), 1));
             levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot05.txt", 64, new Vector2i(7, 4), 1));
-            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot06-KatiBearbeiten.txt", 64, new Vector2i(8, 1), 1));
+            levelList.Add(new Level("Assets/MapFiles/2_Rot/TRot06.txt", 64, new Vector2i(8, 1), 1));
 
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen01.txt", 64, new Vector2i(8, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen02.txt", 64, new Vector2i(4, 3), 1));
