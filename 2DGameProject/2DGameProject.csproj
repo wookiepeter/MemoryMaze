@@ -143,13 +143,13 @@
     <Content Include="Assets\MapFiles\3_Gruen\Gruen02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Gruen\Gruen03-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\3_Gruen\Gruen04-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Gruen\Gruen05-NEW.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen03-NEW.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\3_Gruen\Gruen06.txt">
@@ -167,10 +167,10 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau04-KatiBearbeiten.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau01-NEW.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau02-NEW.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau06.txt">
@@ -191,13 +191,13 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot06-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\2_Rot\TRot04-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\2_Rot\TRot04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot03.txt">
