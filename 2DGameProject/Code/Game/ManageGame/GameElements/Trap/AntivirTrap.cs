@@ -24,7 +24,7 @@ namespace MemoryMaze
         public AntivirTrap() { }
         public AntivirTrap(Vector2i _position, Map map)
         {
-            isAlive = true;
+            isAlive = true; 
             position = _position;
             exactPosition = new Vector2f(position.X * map.sizePerCell, position.Y * map.sizePerCell );
             sprite.Scale = new Vector2f((float)map.sizePerCell  / (float)sprite.Texture.Size.X, (float)map.sizePerCell  / (float)sprite.Texture.Size.Y);
