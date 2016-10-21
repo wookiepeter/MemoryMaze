@@ -1,15 +1,17 @@
 ﻿using System.Collections.Generic;
 using SFML.Graphics;
+using SFML.Audio;
 
 public class AssetManager
 {
     static Dictionary<TextureName, Texture> textures = new Dictionary<TextureName, Texture>();
+    static Dictionary<MusicName, Music> musics = new Dictionary<MusicName, Music>();
 
     public static Texture GetTexture(TextureName textureName)
     {
         if (textures.Count == 0)
         {
-            LoadTextures(); 
+            LoadTextures();
         }
         return textures[textureName];
     }
@@ -170,10 +172,10 @@ public class AssetManager
         BlueItem,
         GreenItem,
         ScoreItem,
-		TrapTile,
-		Overlay,
-		DasC,
-		DasM,
+        TrapTile,
+        Overlay,
+        DasC,
+        DasM,
         BackGroundSteuerung,
         DasF,
         LeverOpen,
@@ -183,7 +185,7 @@ public class AssetManager
         MapBackground2,
         MapBackground3,
         MapBackground4,
-        MapBackground5, 
+        MapBackground5,
         MapBackground6,
         LevelButton,
         LevelButtonGlow,
@@ -197,6 +199,23 @@ public class AssetManager
         BotBronze,
         BotSilver,
         BotGold,
+    }
+    public enum MusicName
+    {
+        MainMenu,
+    }
+    public static Music GetMusic(MusicName musicName)
+    {
+        if (musics.Count == 0)
+        {
+            LoadMusic();
+        }
+        return musics[musicName];
+    }
+
+    static void LoadMusic()
+    {
+        musics.Add(MusicName.MainMenu, new Music("Assets/Musics/MyFirstSong V2.wav"));
     }
 }
 

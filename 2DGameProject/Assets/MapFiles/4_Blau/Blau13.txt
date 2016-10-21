@@ -1,0 +1,29 @@
+﻿13
+14
+wwwwwwwwwwwwww
+wwwwwwewwwwwww
+wwwwwweeewwwww
+wwwewwmwwwwwww
+wwweewmeewwwww
+wwwwwwRwewwwww
+wwweeeweeewwRw
+wgweeeweeeweew
+wwweeeweeewwBw
+wwwwwwwemewwww
+wwwwwwwwewwwww
+weiewwwwwwwwww
+wwwwwwwwwwwwww
+
+//Start:8,10
+//BLUELEVEL noch einführen hier!
+_map:
+lever(8,7);empty(10,7);empty(2,7)
+lever(4,7);empty(11,7);empty(10,7)
+lever(3,3);empty(5,4)
+lever(8,4);empty(8,3)
+bluelev(8,5);empty(6,7)
+bluelev(7,4);empty(3,5)
+bluelev(12,7);wall(11,7)
+transport(1,11);teleport(8,2)
+transport(7,2);teleport(3,11)
+rating(200,100, 0)

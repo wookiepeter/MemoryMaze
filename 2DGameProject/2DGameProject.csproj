@@ -86,7 +86,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Tutorial.cs" />
     <Compile Include="Code\Game\ManageGame\ManageProfiles.cs" />
     <Compile Include="Code\Game\ManageGame\ManageStars.cs" />
-    <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />
+    <Compile Include="Code\Game\ManageGame\Sound\GameAudio.cs" />
     <Compile Include="Code\Graphik\AnimatedSprite.cs" />
     <Compile Include="Code\Graphik\AssetManager.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Bots\Bot.cs" />
@@ -99,8 +99,9 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Map.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
-    <Compile Include="Code\GUI\GUI.cs" />
+    <Compile Include="Code\Graphik\GUI\GUI.cs" />
     <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
+    <Compile Include="Code\MusicManager\MusicManager.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
     <Compile Include="Code\Utility\Helper.cs" />
     <Compile Include="Code\Graphik\KeyboardInputManager.cs" />
@@ -156,7 +157,7 @@
     <Content Include="Assets\MapFiles\3_Gruen\Gruen06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Gruen\Gruen07-ChrisBearbeiten.txt">
+    <Content Include="Assets\MapFiles\3_Gruen\Gruen07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\3_Gruen\Gruen08-NEW.txt">
@@ -205,6 +206,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau13.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00 - Kopieren %285%29 - Kopieren.txt">
@@ -571,6 +575,9 @@
     <Content Include="Assets\ToDo Liste\Chris.txt" />
     <Content Include="Assets\ToDo Liste\MatthisToDo.txt" />
     <Content Include="Assets\ToDo Liste\FriederToDo.txt" />
+    <Content Include="Assets\Musics\MyFirstSong V2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="csfml-audio-2.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

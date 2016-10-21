@@ -122,13 +122,12 @@ namespace MemoryMaze
             List<List<Vector2f>> posList = new List<List<Vector2f>>() {
                 new List<Vector2f>() { new Vector2f(115, 345), new Vector2f(205, 385), new Vector2f(325, 345), new Vector2f(445, 305), new Vector2f(545, 355),
                     new Vector2f(635, 335), new Vector2f(735, 365), new Vector2f(855, 385), new Vector2f(965, 345), new Vector2f(1045, 385), new Vector2f( 1125, 325)},
-                new List<Vector2f>() { new Vector2f(175, 385), new Vector2f(375, 435), new Vector2f(555, 305), new Vector2f(685, 345), new Vector2f(845, 305), new Vector2f(935, 465) },
-                new List<Vector2f>() { new Vector2f(265, 435), new Vector2f(455, 425), new Vector2f(655, 405), new Vector2f(805, 435), new Vector2f(935, 305), new Vector2f(1095, 425) },
+                new List<Vector2f>() { new Vector2f(175, 385), new Vector2f(375, 435), new Vector2f(555, 305), new Vector2f(685, 345), new Vector2f(845, 305), new Vector2f(935, 465), new Vector2f(975, 475), new Vector2f(1025, 450), new Vector2f(1055, 425), new Vector2f(1095, 375), new Vector2f(1125, 455), new Vector2f(1175, 505)},
                 new List<Vector2f>() { new Vector2f(355, 405), new Vector2f(465, 325), new Vector2f(565, 345), new Vector2f(655, 305), new Vector2f(745, 365), new Vector2f(835, 395),
-                    new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) },
+                new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) },
                 new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200), new Vector2f(1300, 200) } 
             };
-            List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4), AssetManager.GetTexture(AssetManager.TextureName.MapBackground5)};
+            List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4)};
             int curStartIndex = 0;
             for ( int i = 0; i < posList.Count; i++)
             {

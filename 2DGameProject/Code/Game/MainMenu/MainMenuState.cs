@@ -42,11 +42,13 @@ namespace MemoryMaze
         ManageProfiles profiles = new ManageProfiles();
 
         AnimatedSprite testSpriteForCord;
+        
 
         Vector2i currentScreenPosition;
 
         public MainMenuState()
         {
+            MusicManager.PlayMusic(AssetManager.MusicName.MainMenu);
             Console.WriteLine("MAINMENUSTATE");
             profiles = new ManageProfiles();
             profiles = profiles.loadManageProfiles();
@@ -61,6 +63,7 @@ namespace MemoryMaze
 
         public void Initialisation()
         {
+            MusicManager.PlayMusic(AssetManager.MusicName.MainMenu);
             stopwatch = new Stopwatch();
             stopwatch.Start();
             stopwatch1 = new Stopwatch();
@@ -152,6 +155,7 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
+
             gameName.Update(deltaTime);
             foreach(Button b in buttonList)
             {

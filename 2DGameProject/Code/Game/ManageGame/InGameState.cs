@@ -25,6 +25,7 @@ namespace MemoryMaze
 
         public InGameState(int id)
         {
+            MusicManager.StopMusic();
             game = new Game(id);
         }
         
