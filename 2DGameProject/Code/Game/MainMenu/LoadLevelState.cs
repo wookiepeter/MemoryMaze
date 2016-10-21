@@ -172,7 +172,7 @@ namespace MemoryMaze
             }
             if (levelInfo.GetInfoButtonLevel() != currentLevel)
                 SetCurrentLevelInfo();
-            levelInfo.Update(deltaTime);
+            levelInfo.Update(deltaTime, currentScreenPosition);
             leftButton.Update(deltaTime, win, currentScreenPosition);
             rightButton.Update(deltaTime, win, currentScreenPosition);
             if (stopwatch.ElapsedMilliseconds > 500)
@@ -361,11 +361,11 @@ namespace MemoryMaze
             worldName.Draw(win, RenderStates.Default);
             leftButton.Draw(win);
             rightButton.Draw(win);
-            foreach(LevelSelectButton l in mainButtonList)
+            levelInfo.Draw(win);
+            foreach (LevelSelectButton l in mainButtonList)
             {
                 l.Draw(win);
             }
-            levelInfo.Draw(win);
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
         }
