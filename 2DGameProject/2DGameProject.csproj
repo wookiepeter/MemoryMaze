@@ -98,7 +98,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Map.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
-    <Compile Include="Code\GUI\GUI.cs" />
+    <Compile Include="Code\Graphik\GUI\GUI.cs" />
     <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
     <Compile Include="Code\MusicManager\MusicManager.cs" />
     <Compile Include="Code\Utility\GameTime.cs" />
@@ -205,6 +205,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\2_Rot\TRot02.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau13.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\map00 - Kopieren %285%29 - Kopieren.txt">
