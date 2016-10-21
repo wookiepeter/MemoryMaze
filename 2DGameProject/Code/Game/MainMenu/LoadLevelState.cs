@@ -58,7 +58,6 @@ namespace MemoryMaze
         LevelInfo levelInfo;
 
         Vector2i currentScreenPosition;
-        Text mousePos;
 
         public LoadLevelState()
         {
@@ -121,7 +120,7 @@ namespace MemoryMaze
             // this list is used to initialize the levelscreens
             List<List<Vector2f>> posList = new List<List<Vector2f>>() {
                 new List<Vector2f>() { new Vector2f(115, 345), new Vector2f(205, 385), new Vector2f(325, 345), new Vector2f(445, 305), new Vector2f(545, 355),
-                    new Vector2f(635, 335), new Vector2f(735, 365), new Vector2f(855, 385), new Vector2f(965, 345), new Vector2f(1045, 385), new Vector2f( 1125, 325)},
+                new Vector2f(635, 335), new Vector2f(735, 365), new Vector2f(855, 385), new Vector2f(965, 345), new Vector2f(1045, 385), new Vector2f( 1125, 325)},
                 new List<Vector2f>() { new Vector2f(175, 385), new Vector2f(375, 435), new Vector2f(555, 305), new Vector2f(685, 345), new Vector2f(845, 305), new Vector2f(935, 465), new Vector2f(975, 475), new Vector2f(1025, 450), new Vector2f(1055, 425), new Vector2f(1095, 375), new Vector2f(1125, 455), new Vector2f(1175, 505)},
                 new List<Vector2f>() { new Vector2f(355, 405), new Vector2f(465, 325), new Vector2f(565, 345), new Vector2f(655, 305), new Vector2f(745, 365), new Vector2f(835, 395),
                 new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200) },
@@ -146,7 +145,6 @@ namespace MemoryMaze
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
             levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
-            mousePos = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
             SetCurrentLevelInfo();
         }
 
@@ -167,8 +165,6 @@ namespace MemoryMaze
             int index = -1;
             lastScreen.Update(deltaTime);
             nextScreen.Update(deltaTime);
-            mousePos.Position = (Vector2) win.InternalGetMousePosition();
-            mousePos.DisplayedString = win.InternalGetMousePosition().ToString();
             foreach(LevelSelectButton l in mainButtonList)
             {
                 l.Update(deltaTime, win, currentScreenPosition);
@@ -371,7 +367,6 @@ namespace MemoryMaze
             }
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
-            win.Draw(mousePos);
         }
 
         private GameState StartLevelIfUnlocked()
