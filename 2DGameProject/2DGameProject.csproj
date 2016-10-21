@@ -81,8 +81,9 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\Teleporter.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\Transporter.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\TransportHandler.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\Trap\AntivirTrap.cs" />
-    <Compile Include="Code\Game\ManageGame\GameElements\Trap\TrapHandler.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\Trap\AntivirTrap.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Teleporter\Trap\TrapHandler.cs" />
+    <Compile Include="Code\Game\ManageGame\GameElements\Tutorial.cs" />
     <Compile Include="Code\Game\ManageGame\ManageProfiles.cs" />
     <Compile Include="Code\Game\ManageGame\ManageStars.cs" />
     <Compile Include="Code\Game\ManageGame\Sound\Sound.cs" />

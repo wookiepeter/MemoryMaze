@@ -58,6 +58,7 @@ namespace MemoryMaze
         LevelInfo levelInfo;
 
         Vector2i currentScreenPosition;
+        Text mousePos;
 
         public LoadLevelState()
         {
@@ -146,6 +147,7 @@ namespace MemoryMaze
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
             levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
+            mousePos = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
             SetCurrentLevelInfo();
         }
 
@@ -166,6 +168,8 @@ namespace MemoryMaze
             int index = -1;
             lastScreen.Update(deltaTime);
             nextScreen.Update(deltaTime);
+            mousePos.Position = (Vector2) win.InternalGetMousePosition();
+            mousePos.DisplayedString = win.InternalGetMousePosition().ToString();
             foreach(LevelSelectButton l in mainButtonList)
             {
                 l.Update(deltaTime, win, currentScreenPosition);
@@ -368,6 +372,7 @@ namespace MemoryMaze
             }
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);
+            win.Draw(mousePos);
         }
 
         private GameState StartLevelIfUnlocked()
