@@ -1,0 +1,16 @@
+﻿8
+7
+wwwwwww
+wwBiwww
+wwewwww
+wwewwww
+weeewww
+weeewgw
+weeewww
+wwwwwww
+
+//Startpos: 2,5
+
+_map:
+bluelev(2,3);empty(4,5)
+rating(200,100, 0)

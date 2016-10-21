@@ -4,4 +4,6 @@
 - Bot wieder löschen und die BewegungsPunkte zu dem Score rechnen (mit r löschen) (DONE)
 -- Tutorial level per MainMenu und erstellen (DONE)
 
+Vanessa möchte auch eine To-Do-Liste :O - da könnte sie jetzt gaaanz viel abhacken, weil sie sooo fleißig war!!!
+
 */

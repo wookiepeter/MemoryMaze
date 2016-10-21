@@ -1,0 +1,20 @@
+﻿11
+23
+wwwwwwwwwwwwwwwwwwwwwww
+wwwwwwweeeeeeeeewwwwwww
+wwwwwwweeeeeeemewwwwwww
+wweeeeweewwwwweewwwwwww
+wwwwweweewwewweeeemeeew
+weeeeeeeeweieweewwwweww
+wwwwwwweewwwwweewwgeeww
+wwwwwwweewwwwweewwwwwww
+weeeRwwemmeeeeeewwwwwww
+wwwwwwweeeeeeeeewwwwwww
+wwwwwwwwwwwwwwwwwwwwwww
+//start 1,5
+_map:
+lever(13,8);empty(13,5)
+lever(14,8);empty(11,3)
+lever(8,2);empty(9,5)
+transport(2,3);teleport(1,8)
+rating(79,63, 51)

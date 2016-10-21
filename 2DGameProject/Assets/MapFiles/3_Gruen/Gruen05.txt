@@ -2,29 +2,29 @@
 20
 wwwwwwwwwwwwwwwwwwww
 wttttttttttttttttttw
-wtgettttttttttttegtw
-wteeetttttttttteeetw
+wtGetttttitttttteGtw
+wteeettttittttteeetw
 wttettttttttttttettw
 wttttttttttttttttttw
 wttttttttttttttttttw
 wttttttttttttttttttw
-wtttttttXeXttttttttw
-wttttttteGettttttttw
-wtttttttXeXttttttttw
+wttttttteeettttttttw
+wtttttttegettttttttw
+wttttttteeettttttttw
 wttttttttttttttttttw
 wttttttttttttttttttw
-wttttttttttttttttttw
+wttttttitttitttttttw
 wttttttttttttttttttw
 wttettttttttttttettw
 wteeetttttttttteeetw
-wtgettttttttttttegtw
+wtGetttttttttttteGtw
 wttttttttttttttttttw
 wwwwwwwwwwwwwwwwwwww
 
-//Startpos: 10,10
+//Startpos: 9,9
 _map:
-transport(9,9);teleport(17,17)
-transport(9,11);teleport(4,4)
-transport(11,11);portal(17,4)
-transport(11,9);portal(4,17)
+transport(8,8);teleport(16,16)
+transport(8,10);teleport(3,3)
+transport(10,10);portal(16,3)
+transport(10,8);portal(3,16)
 rating(200,100,0)
