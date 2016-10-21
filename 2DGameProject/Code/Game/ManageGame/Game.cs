@@ -86,16 +86,16 @@ namespace MemoryMaze
 
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen01.txt", 64, new Vector2i(8, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen02.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen03-KatiBearbeiten.txt", 64, new Vector2i(10, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen03-NEW.txt", 64, new Vector2i(4, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen04-NEW.txt", 64, new Vector2i(4, 3), 1));
-            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen05-NEW.txt", 64, new Vector2i(4, 3), 1));
+            levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen05.txt", 64, new Vector2i(9, 9), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen06.txt", 64, new Vector2i(8, 6), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen07-ChrisBearbeiten.txt", 64, new Vector2i(4, 10), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen99Laby.txt", 64, new Vector2i(3,3), 1));
             levelList.Add(new Level("Assets/MapFiles/3_Gruen/Gruen08-NEW.txt", 64, new Vector2i(4, 3), 1));
 
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau01-NEW.txt", 64, new Vector2i(6, 6), 1));
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau02-NEW.txt", 64, new Vector2i(6, 6), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau01.txt", 64, new Vector2i(5, 4), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau02.txt", 64, new Vector2i(2, 5), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau03-KatiBearbeiten.txt", 64, new Vector2i(4, 1), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau04-KatiBearbeiten.txt", 64, new Vector2i(6,6), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau05.txt", 64, new Vector2i(5, 4), 1));

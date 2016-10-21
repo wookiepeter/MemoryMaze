@@ -1,11 +1,13 @@
 ﻿3
-14
-wwwwwwwwwwwwww
-wgweeeBemmeeiw
-wwwwwwwwwwwwww
+16
+wwwwwwwwwwwwwwww
+wgweeeBemmeweeiw
+wwwwwwwwwwwwwwww
 
 //Startpos: 4,1
 
 _map:
-bluelev(11,1);empty(2,1)
+bluelev(12,1);empty(2,1)
+bluelev(5,1);empty(11,1)
+
 rating(45,15, 2)
