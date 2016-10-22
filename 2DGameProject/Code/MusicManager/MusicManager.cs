@@ -12,6 +12,8 @@ namespace MemoryMaze
     {
 
        static Music music;
+        static Sound sound;
+        
 
 
         public MusicManager()
@@ -31,7 +33,15 @@ namespace MemoryMaze
             music.Stop();
             music.Loop = false;
         }
-
+        public static void PlaySound(AssetManager.SoundName soundName)
+        {
+            sound = new Sound(AssetManager.GetSound(soundName));
+            sound.Play();
+        }
+        public static void StopSound()
+        {
+            sound.Stop();
+        }
 
         
 

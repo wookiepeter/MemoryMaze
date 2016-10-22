@@ -6,7 +6,9 @@ public class AssetManager
 {
     static Dictionary<TextureName, Texture> textures = new Dictionary<TextureName, Texture>();
     static Dictionary<MusicName, Music> musics = new Dictionary<MusicName, Music>();
-
+    static Dictionary<SoundName, SoundBuffer> sounds = new Dictionary<SoundName, SoundBuffer>();
+    
+    //Textures
     public static Texture GetTexture(TextureName textureName)
     {
         if (textures.Count == 0)
@@ -103,7 +105,14 @@ public class AssetManager
         textures.Add(TextureName.BotBronze, new Texture("Assets/Textures/Virus/medal_bronze.png"));
         textures.Add(TextureName.BotSilver, new Texture("Assets/Textures/Virus/medal_silver.png"));
         textures.Add(TextureName.BotGold, new Texture("Assets/Textures/Virus/medal_gold.png"));
+        textures.Add(TextureName.TutorialDeleteBot, new Texture("Assets/Textures/Menu/Tutorial/DeleteTutorial.png"));
         textures.Add(TextureName.TeleportBot, new Texture("Assets/Textures/Set_01/glow.png"));
+        textures.Add(TextureName.TutorialGhostMove, new Texture("Assets/Textures/Menu/Tutorial/Scout2Tutorial.png"));
+        textures.Add(TextureName.TutorialGhostSpawn, new Texture("Assets/Textures/Menu/Tutorial/Scout1Tutorial.png"));
+        textures.Add(TextureName.TutorialMove, new Texture("Assets/Textures/Menu/Tutorial/MoveTutorial.png"));
+        textures.Add(TextureName.TutorialReset, new Texture("Assets/Textures/Menu/Tutorial/ResetTutorial.png"));
+        textures.Add(TextureName.TutorialSpawnBot, new Texture("Assets/Textures/Menu/Tutorial/Scout3Tutorial.png"));
+        textures.Add(TextureName.TutorialSwitch, new Texture("Assets/Textures/Menu/Tutorial/SwitchTutorial.png"));
     }
 
     public enum TextureName
@@ -201,7 +210,16 @@ public class AssetManager
         BotBronze,
         BotSilver,
         BotGold,
+        TutorialMove,
+        TutorialReset,
+        TutorialGhostSpawn,
+        TutorialGhostMove,
+        TutorialSpawnBot,
+        TutorialDeleteBot,
+        TutorialSwitch,
     }
+
+    //Music!
     public enum MusicName
     {
         MainMenu,
@@ -218,6 +236,28 @@ public class AssetManager
     static void LoadMusic()
     {
         musics.Add(MusicName.MainMenu, new Music("Assets/Musics/MyFirstSong V2.wav"));
+    }
+
+    //Sounds
+    public enum SoundName
+    {
+        TestSong,
+        CreateRedBot,
+        CreateBlueBot,
+    }
+    public static SoundBuffer GetSound(SoundName soundName)
+    {
+        if (sounds.Count == 0)
+            LoadSound();
+        return sounds[soundName];
+    }
+    static void LoadSound()
+    {
+        System.Console.WriteLine(sounds);
+        sounds.Add(SoundName.TestSong, new SoundBuffer("Assets/Musics/Sounds/Fire.wav"));
+        sounds.Add(SoundName.CreateBlueBot, new SoundBuffer("Assets/Musics/Sounds/BlueBotCreate.wav"));
+        sounds.Add(SoundName.CreateRedBot, new SoundBuffer("Assets/Musics/Sounds/RedBotCreate.wav"));
+
     }
 }
 
