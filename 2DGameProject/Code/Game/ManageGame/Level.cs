@@ -21,6 +21,8 @@ namespace MemoryMaze
         TransportHandler transporterHandler;
         MapFromTxt mapFromText = new MapFromTxt();
 
+        Tutorial currentTutorial;
+
         int mapStatus = 0;
         int playerScore = 0;
         int[] ratingNumbers = new int[3];
@@ -66,7 +68,7 @@ namespace MemoryMaze
             return new Level(map.Copy(), player.Copy(), itemList.Copy(), trapHandler.Copy(), levelution.Copy(), transporterHandler.Copy(), playerScore, keysToUnlock, ratingNumbers);
         }
 
-        public int update(float deltaTime)
+        public int Update(float deltaTime, ManageStars.Rating rating, int curIndex, List<Tutorial> tutorials)
         {
             mapStatus = 0;
             playerScore = player.scoreCounter;
@@ -76,6 +78,11 @@ namespace MemoryMaze
             trapHandler.Update(map, player, deltaTime);
             levelution.Update(player, map, deltaTime);
             transporterHandler.Update(player, deltaTime);
+            checkTutorialNeed(rating, curIndex, tutorials);
+            if (currentTutorial != null)
+            {
+                currentTutorial.Update(deltaTime);
+            }
             if (KeyboardInputManager.Upward(Keyboard.Key.Y))
                 mapStatus = 1;
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
@@ -86,7 +93,16 @@ namespace MemoryMaze
                 Logger.Instance.Write("\n" + "Rating: " + playerScore + "\n" + "Bronze: " +ratingNumbers[0]+ "\n" + "Silber: " + ratingNumbers[1] + "\n"+  "Gold: " + ratingNumbers[2] +"\n"+ "Sie haben " + CheckLevel() + " erreicht"  , Logger.level.Info);
             }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
+            {
+                foreach(Tutorial tut in tutorials)
+                {
+                    if (tut.index == curIndex)
+                    {
+                        tut.shown = false;
+                    }
+                }
                 mapStatus = 2;
+            }
             return mapStatus;
         }
         private String CheckLevel()
@@ -113,6 +129,10 @@ namespace MemoryMaze
             long tTraps = watch.ElapsedTicks- tItems - tPlayer - tMap;
             transporterHandler.Draw(win, view, relViewDif);
             levelution.DrawOutlines(win, view, relViewDif);
+            if (currentTutorial != null)
+            {
+                currentTutorial.Draw(win, view, relViewDif);
+            }
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
 
@@ -159,5 +179,45 @@ namespace MemoryMaze
         {
             playerScore += player.addScoreFromBots();
         }
+
+        private void checkTutorialNeed(ManageStars.Rating levelRating, int curIndex, List<Tutorial> tutoList)
+        {
+            Tutorial nextTutorial = tutoList.Find(t => t.index == curIndex && !t.shown);
+            if (nextTutorial != null)
+            {
+                if (levelRating == ManageStars.Rating.Fail)
+                {
+                    switch (curIndex)
+                    {
+                        // sort the cases latest to earliest
+                        case 0:
+                            if (KeyboardInputManager.PressedKeys().Count > 0)
+                                nextTutorial.ActivateSecretPowers();
+                            break;
+                        case 1:
+                            if(KeyboardInputManager.PressedKeys().Count > 0)
+                                nextTutorial.ActivateSecretPowers();
+                            break;
+                        case 11:
+                            Console.WriteLine("tutorialindex = " + nextTutorial.tutorialIndex);
+                            if (player.redbot && player.botList.Count > 0 && player.botList[0].mapPosition.Equals(new Vector2i(4, 3)) && nextTutorial.tutorialIndex == 4)
+                            { nextTutorial.ActivateSecretPowers(); break; }
+                            else if (player.redbot && KeyboardInputManager.PressedKeys().Count != 0 && nextTutorial.tutorialIndex == 3)
+                            { nextTutorial.ActivateSecretPowers(); break; }
+                            else if (player.ghostaktiv && player.redItemCounter > 0 && nextTutorial.tutorialIndex == 2)
+                            { nextTutorial.ActivateSecretPowers(); break; }
+                            else if (player.redItemCounter > 0 && nextTutorial.tutorialIndex == 1)
+                            { nextTutorial.ActivateSecretPowers(); break; }
+                            else if (nextTutorial.tutorialIndex == 0 && player.mapPosition.Equals(new Vector2i(7, 3)))
+                            { nextTutorial.ActivateSecretPowers(); break; }
+                            break;
+                    }
+                    if (nextTutorial.shown)
+                    {
+                        currentTutorial = nextTutorial;
+                    }
+                }
+            }
+        }        
     }
 }

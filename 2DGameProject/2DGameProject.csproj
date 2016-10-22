@@ -99,6 +99,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Map.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
+    <Compile Include="Code\Graphik\GraphicHelper.cs" />
     <Compile Include="Code\Graphik\GUI\GUI.cs" />
     <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
     <Compile Include="Code\MusicManager\MusicManager.cs" />
