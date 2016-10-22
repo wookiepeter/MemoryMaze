@@ -17,4 +17,4 @@ wwwwwwwwwwwwwwwwwwww
 //Startpos: 5,7
 _map:
 lever(11,5);empty(6,10)
-rating(81,57, 44)
+rating(100,49,45)

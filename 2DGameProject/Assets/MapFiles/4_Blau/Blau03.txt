@@ -1,13 +1,25 @@
-﻿3
-16
-wwwwwwwwwwwwwwww
-wgweeeBemmeweeiw
-wwwwwwwwwwwwwwww
+﻿16
+11
+wwwwwwwwwww
+wmmmmmmmmmw
+wmmmegemmmw
+wmmmtttmmmw
+wmmmeeemmmw
+wmmmeeemmmw
+wmmmeeemmmw
+wmmmeBemmmw
+wmmmeeemmmw
+wmmmmmmmmmw
+wmmmmmmmmmw
+wmmmmemmmmw
+wmmwwwwwmmw
+wmmwieGwmmw
+wmmwwewwmmw
+wwwwwwwwwww
 
-//Startpos: 4,1
+
+//Startpos: 5,5
 
 _map:
-bluelev(12,1);empty(2,1)
-bluelev(5,1);empty(11,1)
-
-rating(45,15, 2)
+transport(5,11);teleport(5,14)
+rating(180,140, 101)

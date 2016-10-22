@@ -16,7 +16,7 @@ wwwwwwweeeemeewwwwwww
 wwwwwwweeeeBeewwwwwww
 wwwwwwwwwwwwwwwwwwwww
 //Start:10 ,12
-//BLUELEVEL noch einführen hier!
+
 _map:
 lever(8,12);empty(7,9)
 lever(12,12);empty(13,9)

@@ -8,8 +8,8 @@ wweemeeeewwwww
 wRewwweeewwwww
 wwwwewwwwwwwww
 wwweGwwewwwwww
-wwgwwwwwwwwwww
-wweeemmeeewwww
+wgwwwwwwwwwwww
+wwewemmeeewwww
 wwwwwiwwwwwwww
 wwwwwwwwwwwwww
 
@@ -25,5 +25,5 @@ lever(6,2);empty(7,6)
 lever(11,3);empty(4,8)
 lever(7,9);empty(3,9)
 lever(12,2);empty(12,3)
-lever(9,9);empty(2,9)
-rating(200,100,0)
+lever(9,9);empty(1,9)
+rating(100,38,34)
