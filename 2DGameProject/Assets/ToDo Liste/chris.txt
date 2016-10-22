@@ -4,6 +4,12 @@
 - Bot wieder löschen und die BewegungsPunkte zu dem Score rechnen (mit r löschen) (DONE)
 -- Tutorial level per MainMenu und erstellen (DONE)
 
+-- Schritte (rating) für TRot03 , Gruen06 , Gruen 07
+-- Die zwei Level bei Gruen rausnehmen, wo rausnehmen steht, einfach Löschen und aus der Liste in der Game.txt datei
+-- Das Level Blau071-Neu zwischen Lvl 7 und 8 bei Game.txt einfügen :)
+-- Dein neues Level irgendwo zwischen Blau 11 und Blau 13 einfügen
+
 Vanessa möchte auch eine To-Do-Liste :O - da könnte sie jetzt gaaanz viel abhacken, weil sie sooo fleißig war!!!
+
 
 */

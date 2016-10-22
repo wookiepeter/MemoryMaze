@@ -17,4 +17,4 @@ wwwwwwwwww
 //Startpos:1,1
 _map:
 lever(4,1);empty(4,3)
-rating(45,35, 28)
+rating(100,33,29)

@@ -63,4 +63,4 @@ transport(5,11);portal(8,1)
 transport(3,13);portal(8,1)
 transport(11,13);portal(8,1)
 
-rating(200,100, 0)
+rating(100,15,11)
