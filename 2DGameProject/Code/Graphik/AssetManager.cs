@@ -6,7 +6,9 @@ public class AssetManager
 {
     static Dictionary<TextureName, Texture> textures = new Dictionary<TextureName, Texture>();
     static Dictionary<MusicName, Music> musics = new Dictionary<MusicName, Music>();
-
+    static Dictionary<SoundName, SoundBuffer> sounds = new Dictionary<SoundName, SoundBuffer>();
+    
+    //Textures
     public static Texture GetTexture(TextureName textureName)
     {
         if (textures.Count == 0)
@@ -200,6 +202,8 @@ public class AssetManager
         BotSilver,
         BotGold,
     }
+
+    //Music!
     public enum MusicName
     {
         MainMenu,
@@ -216,6 +220,24 @@ public class AssetManager
     static void LoadMusic()
     {
         musics.Add(MusicName.MainMenu, new Music("Assets/Musics/MyFirstSong V2.wav"));
+    }
+
+    //Sounds
+    public enum SoundName
+    {
+        TestSong,
+    }
+    public static SoundBuffer GetSound(SoundName soundName)
+    {
+        if (sounds.Count == 0)
+            LoadSound();
+        return sounds[soundName];
+    }
+    static void LoadSound()
+    {
+        System.Console.WriteLine(sounds);
+        sounds.Add(SoundName.TestSong, new SoundBuffer("Assets/Musics/Sounds/Fire.wav"));
+
     }
 }
 
