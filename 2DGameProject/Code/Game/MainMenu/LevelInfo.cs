@@ -91,61 +91,41 @@ namespace MemoryMaze
                 if (i < (int)rating)
                 {
                     starList[i].Color = new Color(255, 255, 255);
-                    SetAlpha(255, starList[i]);
+                    GraphicHelper.SetAlpha(255, starList[i]);
                 }
                 else
                 {
                     starList[i].Color = new Color(20, 20, 20);
-                    SetAlpha(120, starList[i]);
+                    GraphicHelper.SetAlpha(120, starList[i]);
                 }
             }
+            SetAllAphas(highlighted? 100 : 50);
         }
 
         private void SetAllAphas(float percentage)
         {
             foreach(RectangleShape rec in lines)
-                SetAlpha((byte)(255* percentage / 100), rec);
-            SetAlpha((byte)(255 * percentage / 100), background);
-            SetAlpha((byte)(255 * percentage / 100), levelName);
+                GraphicHelper.SetAlpha((byte)(175* percentage / 100), rec);
+            GraphicHelper.SetAlpha((byte)(255 * percentage / 100), background);
+            GraphicHelper.SetAlpha((byte)(255 * percentage / 100), levelName);
             for (int i = 0; i <= 2; i++)
             {
                 if (i < (int)rating)
                 {
                     starList[i].Color = new Color(255, 255, 255);
-                    SetAlpha(255, starList[i]);
+                    GraphicHelper.SetAlpha(255, starList[i]);
                 }
                 else
                 {
                     starList[i].Color = new Color(20, 20, 20);
-                    SetAlpha(120, starList[i]);
+                    GraphicHelper.SetAlpha(120, starList[i]);
                 }
             }
             foreach(Sprite star in starList)
             {
-                SetAlpha((byte)(star.Color.A * percentage / 100), star);
+                GraphicHelper.SetAlpha((byte)(star.Color.A * percentage / 100), star);
             }
 
-        }
-
-        private void SetAlpha(byte alpha, Sprite sprite)
-        {
-            Color help = sprite.Color;
-            help.A = alpha;
-            sprite.Color = help;
-        }
-
-        private void SetAlpha(byte alpha, RectangleShape rect)
-        {
-            Color help = rect.FillColor;
-            help.A = alpha;
-            rect.FillColor = help;
-        }
-
-        private void SetAlpha(byte alpha, Text text)
-        {
-            Color help = text.Color;
-            help.A = alpha;
-            text.Color = help;
         }
 
         public int GetInfoButtonLevel()

@@ -1,0 +1,30 @@
+﻿16
+20
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwteiwwwwwww
+wwwwwwwwwwwwgwwwwwww
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwtwwwwwwwww
+wwwwwwwwwwtwwwwwwwww
+wwwwewwwweGewwwwwwww
+weemmtwttBeettwttBew
+wwwwwwwwweGewwwwwwww
+wwwwwwwwwwtwwwwwwwww
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwwwwwwwwwww
+wwwwwwwwwwtwwwwwwwww
+wwwwwwwwwwtwwwwwwwww
+wwwwwwwwwReGwwwwwwww
+wwwwwwwwwwwwwwwwwwww
+
+
+//Startpos: 10,7
+
+_map:
+bluelev(9,8);empty(14,7)
+bluelev(9,6);empty(10,11)
+bluelev(11,8);empty(6,7)
+bluelev(11,6);empty(10,3)
+bluelev(18,7);empty(10,10)
+transport(4,6);teleport(11,1)
+rating(200,100, 2)

@@ -11,4 +11,4 @@ wwwwwwww
 //pos: 4,7
 _map:
 lever(6,2);empty(3,1)
-rating(50,31, 23)
+rating(50,28,23)

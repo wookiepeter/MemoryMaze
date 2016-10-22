@@ -101,7 +101,7 @@ namespace MemoryMaze
 
             worldName = new SuperText("1", font, 0.2f);
             worldName.CharacterSize = 145;
-            worldName.Position = new Vector2f(400, 500);
+            worldName.Position = new Vector2f(440, 500);
             worldNameFakePos = new Vector2f(-1000, -1000);
             worldNameRealPos = worldName.Position;
 
@@ -109,7 +109,7 @@ namespace MemoryMaze
             profiles = profiles.loadManageProfiles();
             stars = new ManageStars();
             stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
-            currentLevel = stars.getIndexOfFirstUnsolvedLevel() ;
+            currentLevel = stars.EverythingUnlocked()? stars.GetLastSelectedLevel() : stars.getIndexOfFirstUnsolvedLevel();
 
             mainButtonList = new List<LevelSelectButton>();
             mainButtonTargetList = new List<Vector2f>();
@@ -125,8 +125,9 @@ namespace MemoryMaze
                 new List<Vector2f>() { new Vector2f(85,380), new Vector2f(175,425), new Vector2f(285,385), new Vector2f(425,425), new Vector2f(505,350), new Vector2f(585,245),
                     new Vector2f(685,185), new Vector2f(805,195), new Vector2f(915,145), new Vector2f(1045,145), new Vector2f(1125,210), new Vector2f(1195,310)},
                 new List<Vector2f>() { new Vector2f(355, 405), new Vector2f(465, 325), new Vector2f(565, 345), new Vector2f(655, 305), new Vector2f(745, 365), new Vector2f(835, 395),
-                    new Vector2f(985, 495), new Vector2f(1095, 535), new Vector2f(1145, 425) },
-                new List<Vector2f>() { new Vector2f(200, 200), new Vector2f(300, 200), new Vector2f(400, 200), new Vector2f(500, 200), new Vector2f(600, 200), new Vector2f(700, 200), new Vector2f(800, 200), new Vector2f(900, 200), new Vector2f(1000, 200), new Vector2f(1100, 200), new Vector2f(1200, 200), new Vector2f(1300, 200) } 
+                    new Vector2f(985, 495), },//new Vector2f(1095, 535), new Vector2f(1145, 425) },
+                new List<Vector2f>() { new Vector2f(45,330), new Vector2f(125,405), new Vector2f(225,460), new Vector2f(275,415), new Vector2f(365,455), new Vector2f(435,415),
+                    new Vector2f(535,360), new Vector2f(635,395), new Vector2f(755,345), new Vector2f(835,265), new Vector2f(910,340), new Vector2f(995,283), new Vector2f(1100,330), new Vector2f(1125,235) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4)};
             int curStartIndex = 0;
@@ -143,7 +144,7 @@ namespace MemoryMaze
             rightButton = new Button(new Vector2f(900, 600), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow), 90);
 
             currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
-            worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
+            worldName.DisplayedString = "World " + GetIndexOfCurrentLevelScreen();
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
             SetButtonList(mainButtonList);
             levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
@@ -174,15 +175,18 @@ namespace MemoryMaze
             {
                 l.Update(deltaTime, win, currentScreenPosition);
             }
-            if (levelInfo.GetInfoButtonLevel() != currentLevel)
-                SetCurrentLevelInfo();
+            SetCurrentLevelInfo();
             levelInfo.Update(deltaTime, currentScreenPosition);
             leftButton.Update(deltaTime, win, currentScreenPosition);
             rightButton.Update(deltaTime, win, currentScreenPosition);
             if (stopwatch.ElapsedMilliseconds > 500)
             {
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+                {
+                    stars.lastSelectedLevel = currentLevel;
+                    stars.saveManageStars(profiles.getActiveProfileName());
                     return GameState.MainMenu;
+                }
                 if (sliding)
                 {
                     SlideMap(deltaTime);
@@ -319,7 +323,7 @@ namespace MemoryMaze
                 mainButtonTargetList.Add(new Vector2f(l.position.X, l.position.Y));
                 l.position = (!right)?l.position + new Vector2(-1280, 0) : l.position + new Vector2(1280, 0);
             }
-            worldName.DisplayedString = "World 1." + GetIndexOfCurrentLevelScreen();
+            worldName.DisplayedString = "World " + GetIndexOfCurrentLevelScreen();
             mainMap.Position = slideOffscreenStartPosition;
             mainMap.Texture = levelSelectList[currentScreen].texture;
             helpMap.Position = slideEndPosition;

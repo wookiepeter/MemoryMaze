@@ -99,6 +99,7 @@
     <Compile Include="Code\Game\ManageGame\GameElements\Map.cs" />
     <Compile Include="Code\Game\ManageGame\GameElements\Player.cs" />
     <Compile Include="Code\Game\MainMenu\MainMenuState.cs" />
+    <Compile Include="Code\Graphik\GraphicHelper.cs" />
     <Compile Include="Code\Graphik\GUI\GUI.cs" />
     <Compile Include="Code\Game\MainMenu\LevelSelectButton.cs" />
     <Compile Include="Code\MusicManager\MusicManager.cs" />
@@ -124,6 +125,9 @@
     <None Include="Assets\Fonts\dominojack.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Assets\Fonts\fixedsys.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Assets\Fonts\pixelhole.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -148,9 +152,6 @@
     <Content Include="Assets\MapFiles\3_Gruen\Gruen05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Gruen\Gruen04-NEW.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\MapFiles\3_Gruen\Gruen03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -160,13 +161,10 @@
     <Content Include="Assets\MapFiles\3_Gruen\Gruen07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\3_Gruen\Gruen08-NEW.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\MapFiles\3_Gruen\Gruen99Laby.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau04-KatiBearbeiten.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau01.txt">
@@ -178,7 +176,10 @@
     <Content Include="Assets\MapFiles\4_Blau\Blau06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\MapFiles\4_Blau\Blau03.txt">
+    <Content Include="Assets\MapFiles\4_Blau\Blau04.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\MapFiles\4_Blau\Blau071.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\MapFiles\4_Blau\Blau07.txt">

@@ -8,7 +8,7 @@ using SFML.Graphics;
 
 namespace MemoryMaze
 {
-    class SuperText : Text
+    public class SuperText : Text
     {
         public float minFrequency;
         public float maxFrequency;
