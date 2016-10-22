@@ -226,6 +226,8 @@ public class AssetManager
     public enum SoundName
     {
         TestSong,
+        CreateRedBot,
+        CreateBlueBot,
     }
     public static SoundBuffer GetSound(SoundName soundName)
     {
@@ -237,6 +239,8 @@ public class AssetManager
     {
         System.Console.WriteLine(sounds);
         sounds.Add(SoundName.TestSong, new SoundBuffer("Assets/Musics/Sounds/Fire.wav"));
+        sounds.Add(SoundName.CreateBlueBot, new SoundBuffer("Assets/Musics/Sounds/BlueBotCreate.wav"));
+        sounds.Add(SoundName.CreateRedBot, new SoundBuffer("Assets/Musics/Sounds/RedBotCreate.wav"));
 
     }
 }
