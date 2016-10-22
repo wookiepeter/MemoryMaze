@@ -13,4 +13,4 @@ wwwwwww
 
 _map:
 bluelev(2,3);empty(4,5)
-rating(200,100, 0)
+rating(200,10, 2)

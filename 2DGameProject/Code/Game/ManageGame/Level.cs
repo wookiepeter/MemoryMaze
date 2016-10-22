@@ -167,7 +167,7 @@ namespace MemoryMaze
             for (int i = 2; i > 0; i--)
             {
                 Console.WriteLine("Rating: " + ratingNumbers[i] + " - " + playerScore);
-                if (ratingNumbers[i] > playerScore)
+                if (ratingNumbers[i] >= playerScore)
                 {
                     return (ManageStars.Rating)i+1;
                 }
