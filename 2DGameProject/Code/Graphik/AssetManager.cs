@@ -103,6 +103,7 @@ public class AssetManager
         textures.Add(TextureName.BotBronze, new Texture("Assets/Textures/Virus/medal_bronze.png"));
         textures.Add(TextureName.BotSilver, new Texture("Assets/Textures/Virus/medal_silver.png"));
         textures.Add(TextureName.BotGold, new Texture("Assets/Textures/Virus/medal_gold.png"));
+        textures.Add(TextureName.TeleportBot, new Texture("Assets/Textures/Set_01/glow.png"));
     }
 
     public enum TextureName
@@ -168,6 +169,7 @@ public class AssetManager
         RedBot,
         GreenBot,
         BlueBot,
+        TeleportBot,
         RedItem,
         BlueItem,
         GreenItem,

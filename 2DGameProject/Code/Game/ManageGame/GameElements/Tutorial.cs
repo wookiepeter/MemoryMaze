@@ -10,7 +10,7 @@ namespace MemoryMaze
 {
     class Tutorial
     {
-        Sprite background;
+        AnimatedSprite animSprite;
         Vector2 position;
         Vector2 textPosition;
         SuperText superText;
@@ -22,18 +22,19 @@ namespace MemoryMaze
         public bool iShouldKillMyself;
         Font font = new Font("Assets/Fonts/fixedsys.ttf");
 
-        public Tutorial(Texture _background, String _text, Vector2 _position, float _duration, int _index, int _tutIndex)
+        public Tutorial(AnimatedSprite _animSprite, String _text, Vector2 _textPosition, Vector2 _position, float _duration, int _index, int _tutIndex)
         {
-            background = new Sprite(_background);
+            animSprite = _animSprite;
             position = _position;
-            textPosition = position + new Vector2(25, 25);
-            background.Position = position;
+            animSprite.Position = position;
+            textPosition = _textPosition;
             duration = _duration;
             currentTime = 0;
             index = _index;
             tutorialIndex = _tutIndex;
             iShouldKillMyself = false;
             superText = new SuperText(_text, font, 0.05f);
+            superText.Position = textPosition;
         }
         
         /// <summary>
@@ -50,11 +51,12 @@ namespace MemoryMaze
         {
             if (currentTime >= 0)
             {
+                animSprite.UpdateFrame(deltaTime);
                 superText.Update(deltaTime);
                 currentTime -= deltaTime;
                 if (currentTime < (duration / 2))
                 {
-                    GraphicHelper.SetAlpha((byte) (255 * currentTime / (duration * 0.5f)), background);
+                    GraphicHelper.SetAlpha((byte) (255 * currentTime / (duration * 0.5f)), animSprite);
                     GraphicHelper.SetAlpha((byte)(255 * currentTime / (duration * 0.5f)), superText);
                 }
             }
@@ -69,8 +71,8 @@ namespace MemoryMaze
         {
             if (currentTime > 0)
             {
-                background.Position = position;
-                win.Draw(background);
+                animSprite.Position = position;
+                win.Draw(animSprite);
                 superText.Position = textPosition;
                 superText.Draw(win, RenderStates.Default);
             }

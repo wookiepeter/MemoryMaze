@@ -8,7 +8,7 @@ using SFML.Window;
 
 namespace MemoryMaze
 {
-    class Teleporter : Transporter
+    public class Teleporter : Transporter
     {
         bool entranceDisabled;
         bool exitDisabled;

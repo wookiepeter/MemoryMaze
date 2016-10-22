@@ -8,7 +8,7 @@ using SFML.Window;
 
 namespace MemoryMaze
 {
-    abstract class Transporter
+    public abstract class Transporter
     {
         protected Vector2i entrance;
         protected Vector2i exit;

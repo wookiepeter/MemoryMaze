@@ -40,7 +40,13 @@ namespace MemoryMaze
         Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
         Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
 
+        Sprite teleSprite;
+        Vector2 teleSpritePos;
+        bool teleporting;
+        bool blueBotPorting;
+        List<Vector2> teleporterWaypoints;
 
+        int sizePerCell;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
@@ -59,9 +65,13 @@ namespace MemoryMaze
             ghostaktiv = false;
             iserstellt = false;
 
+            sizePerCell = map.GetSizePerCell();
+
             this.sprite = new RectangleShape(new Vector2f(1F, 1F));
-            this.sprite.Size = new Vector2f(map.GetSizePerCell(), map.GetSizePerCell());
+            this.sprite.Size = new Vector2f(sizePerCell, sizePerCell);
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
+
+            teleSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.TeleportBot));
 
             this.mapPosition = position;
             UpdateSpritePosition(map);
@@ -83,6 +93,7 @@ namespace MemoryMaze
             greenbot = false;
             ghostaktiv = false;
             iserstellt = false;
+            teleporting = false;
 
             sprite = _sprite;
             mapPosition = position;
@@ -123,7 +134,6 @@ namespace MemoryMaze
             guiRedItemCounter.Position = new Vector2f(redBotStatus.Position.X + (float)redBotStatus.TextureRect.Width * redBotStatus.Scale.X * 0.85f, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height * playerStatus.Scale.Y);
             guiGreenItemCounter.Position = new Vector2f(greenBotStatus.Position.X + (float)greenBotStatus.TextureRect.Width * greenBotStatus.Scale.X * 0.85f, greenBotStatus.Position.Y + (float)greenBotStatus.TextureRect.Height * playerStatus.Scale.Y);
             guiBlueItemCounter.Position = new Vector2f(blueBotStatus.Position.X + (float)blueBotStatus.TextureRect.Width * blueBotStatus.Scale.X * 0.85f, blueBotStatus.Position.Y + (float)blueBotStatus.TextureRect.Height * playerStatus.Scale.Y);
-
         }
 
         public Player Copy()
@@ -133,6 +143,11 @@ namespace MemoryMaze
         
         public void Update(float deltaTime, Map map)
         {
+            if(teleporting)
+            {
+                UpdateBots(deltaTime, map, getListOfBotPositions());
+                    
+            }
             if (isAlive == true)
             {
                 if (controllid != 0)
@@ -202,6 +217,32 @@ namespace MemoryMaze
                 playerdetected.Style = Text.Styles.Bold;
             }
             
+        }
+
+        public bool Teleporting()
+        {
+            
+
+            return false;
+        }
+
+        public void InitializeTeleport(Transporter porter, bool _blueBotPorting, Vector2i target)
+        {
+            teleporterWaypoints = new List<Vector2>();
+            Teleporter teleporter = (Teleporter)porter;
+            teleporting = true;
+            blueBotPorting = _blueBotPorting;
+            Vector2i startPos = (blueBotPorting) ? botList.Find(b => b.id == 2).mapPosition : mapPosition;
+            teleSpritePos = new Vector2(startPos.X * sizePerCell, startPos.Y * sizePerCell);
+            if (blueBotPorting)
+                GraphicHelper.SetAlpha(0, botList.Find(b => b.id == 2).sprite);
+            else
+                GraphicHelper.SetAlpha(0, sprite);
+            if (Math.Abs(target.X - startPos.X) > Math.Abs(target.Y - startPos.Y))
+                teleporterWaypoints.Add(new Vector2(target.X * sizePerCell, startPos.Y * sizePerCell));
+            else
+                teleporterWaypoints.Add(new Vector2(startPos.X * sizePerCell, target.Y * sizePerCell));
+            teleporterWaypoints.Add(new Vector2(target.X * sizePerCell, target.Y * sizePerCell));
         }
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
