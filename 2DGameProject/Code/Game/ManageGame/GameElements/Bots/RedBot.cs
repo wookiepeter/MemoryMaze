@@ -45,7 +45,11 @@ namespace MemoryMaze
                     if (counter != 0)
                     {
                         if (move.X != 0 || move.Y != 0) //TOdo Matthis bearbeiten WTF: what am i supposed to do
+                        {
                             counter--;
+                            MusicManager.PlaySound(AssetManager.SoundName.TestSong);
+                        }
+                            
                         mapPosition = mapPosition + move;
                         //Logger.Instance.Write("mapPosX: " + mapPosition.X + "mapPosY" + mapPosition.Y, Logger.level.Info);
                     }
