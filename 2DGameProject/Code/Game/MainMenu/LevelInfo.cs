@@ -99,12 +99,13 @@ namespace MemoryMaze
                     GraphicHelper.SetAlpha(120, starList[i]);
                 }
             }
+            SetAllAphas(highlighted? 100 : 50);
         }
 
         private void SetAllAphas(float percentage)
         {
             foreach(RectangleShape rec in lines)
-                GraphicHelper.SetAlpha((byte)(255* percentage / 100), rec);
+                GraphicHelper.SetAlpha((byte)(175* percentage / 100), rec);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), background);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), levelName);
             for (int i = 0; i <= 2; i++)
