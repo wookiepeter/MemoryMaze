@@ -159,8 +159,11 @@ namespace MemoryMaze
             result.Origin = new Vector2f(result.Size.X * 0.5f, result.Size.Y * 0.5f);
             result.Position = new Vector2f((start.X + end.X) * 0.5f, (start.Y + end.Y) * 0.5f);
             Vector2 help = end - start;
-            Console.WriteLine(" rotation: " + (Vector2.angleBetween(new Vector2(1, 0), new Vector2(0, 1)) / Math.PI * 180));
-            result.Rotation = (float)(Vector2.angleBetween(help, new Vector2(1, 0)) / Math.PI * 180);
+            float rotation = (Vector2.angleBetween(help, new Vector2(1, 0)) * Helper.RadianToDegree);
+            if (start.Y > end.Y)
+                rotation *= -1;
+
+            result.Rotation = rotation;
             result.FillColor = defaultLineColor;
             return result;
         }
