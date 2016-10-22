@@ -204,11 +204,11 @@ namespace MemoryMaze
                             { nextTutorial.ActivateSecretPowers(); break; }
                             else if (player.redbot && KeyboardInputManager.PressedKeys().Count != 0 && nextTutorial.tutorialIndex == 3)
                             { nextTutorial.ActivateSecretPowers(); break; }
-                            else if (player.ghostaktiv && player.redItemCounter > 0 && nextTutorial.tutorialIndex == 2)
+                            else if (nextTutorial.tutorialIndex == 2 && player.ghostaktiv && player.ghostPlayer.mapPosition.Equals(new Vector2i(7, 3)))
                             { nextTutorial.ActivateSecretPowers(); break; }
-                            else if (player.redItemCounter > 0 && nextTutorial.tutorialIndex == 1)
+                            else if (player.ghostaktiv && nextTutorial.tutorialIndex == 1)
                             { nextTutorial.ActivateSecretPowers(); break; }
-                            else if (nextTutorial.tutorialIndex == 0 && player.mapPosition.Equals(new Vector2i(7, 3)))
+                            else if (player.redItemCounter > 0 && nextTutorial.tutorialIndex == 0)
                             { nextTutorial.ActivateSecretPowers(); break; }
                             break;
                     }
