@@ -24,6 +24,7 @@ namespace MemoryMaze
 
         ManageProfiles manageProfiles;
         ManageStars manageStars;
+        List<Tutorial> tutorialList;
 
         public Game(int id)
         {
@@ -52,11 +53,13 @@ namespace MemoryMaze
             levelNumber.CharacterSize = 20;
             levelNumber.Color = Color.Red;
         }
+
         void Tutorial()
         {
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau13.txt", 64, new Vector2i(8,10), 1));
             nextGameState = GameState.Intro;
         }
+
         void MainCampaign()
         {
             levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb01.txt", 64, new Vector2i(2, 2), 1));
@@ -110,7 +113,6 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau13.txt", 64, new Vector2i(8, 10), 1));
 
 
-
             nextGameState = GameState.InGame;
 
             // manageProfiles has to load all active profiles before it can be accessed
@@ -121,11 +123,24 @@ namespace MemoryMaze
             manageStars = manageStars.loadManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
             curIndex = manageStars.getIndexOfFirstUnsolvedLevel();
             Console.WriteLine(curIndex);
+            SetTutorials();
+        }
+
+        void SetTutorials()
+        {
+            tutorialList = new List<MemoryMaze.Tutorial>();
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Don't know what to do...\n please help.", new Vector2(100, 200), 6, 0, 0));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Argh i fucked up pretty hard\nwho created this stupid level??", new Vector2(100, 200), 6, 1, 0));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "What do i have to press?? Space??\nThat is a key??", new Vector2(100, 200), 6, 11, 0));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Haven't found Space yet...", new Vector2(100, 200), 6, 11, 1));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Still haven't found Space...", new Vector2(100, 200), 6, 11, 2));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Ohh what is that strange grey cicle...\nI am confused.", new Vector2(100, 200), 6, 11, 3));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Ok can you please repeat what i have\n to do after i found Space", new Vector2(100, 200), 6, 11, 4));
         }
 
         public GameState Update(float deltaTime)
         {
-            levelStatus = level.update(deltaTime);
+            levelStatus = level.Update(deltaTime, manageStars.levelRating[curIndex], curIndex, tutorialList);
 
             if (levelStatus == 1)
             {
