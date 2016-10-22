@@ -58,8 +58,16 @@ namespace MemoryMaze
                 redBot.Render(win, view);
             }*/
         }
+        public void SoundCreateRedBot()
+        {
+            MusicManager.PlaySound(AssetManager.SoundName.CreateRedBot);
+        }
+        public void SoundCreateBlueBot()
+        {
+            MusicManager.PlaySound(AssetManager.SoundName.CreateBlueBot);
+        }
 
-       void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
+        void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
             if (KeyboardInputManager.IsPressed(Keyboard.Key.Num2) && (!iserstellt) && (!player.redbot)) //ToDo: Bedingungen zum erstelelen 
             {
@@ -70,6 +78,8 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
+                    SoundCreateRedBot();
+
                 }
 
 
@@ -85,6 +95,7 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
+                    SoundCreateRedBot();
                 }
 
             }
@@ -98,6 +109,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
+                    SoundCreateBlueBot();
                 }
 
             }
@@ -112,6 +124,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
+                    SoundCreateBlueBot();
                 }
 
             }
