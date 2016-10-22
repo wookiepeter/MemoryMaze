@@ -17,6 +17,8 @@ namespace MemoryMaze
 
         public Rating[] levelRating;
 
+        public int lastSelectedLevel;
+
         public enum Rating
         { 
             Fail = 0,
@@ -35,6 +37,7 @@ namespace MemoryMaze
             {
                 levelRating[i] = Rating.Fail;
             }
+            lastSelectedLevel = 0;
         }
 
         public void UpdateScoreOfLevel(int _index, Rating _rating)
@@ -68,6 +71,11 @@ namespace MemoryMaze
             return 0;
         }
 
+        public int GetLastSelectedLevel()
+        {
+            return lastSelectedLevel;
+        }
+
         public bool levelIsUnlocked(int level)
         {
             if (level < 0 || level >= levelRating.Length)
@@ -76,7 +84,16 @@ namespace MemoryMaze
                 return true;
             return levelRating[level - 1] != Rating.Fail;
         }
+
+        public bool EverythingUnlocked()
+        {
+            return levelRating[levelRating.Length - 1] != Rating.Fail;
+        }
         
+        public void SetLastSelectedLevel(int _lastSelectedLevel)
+        {
+            lastSelectedLevel = _lastSelectedLevel;
+        }
         /// <summary>
         /// Save ManageStars object with XmlSerializer
         /// </summary>
@@ -90,9 +107,9 @@ namespace MemoryMaze
             stream.Close();
         }
 
-        public void saveManageStars(String pladerName)
+        public void saveManageStars(String playerName)
         {
-            saveRatings(this, "Assets/" + pladerName);
+            saveRatings(this, "Assets/" + playerName);
         }
         /// <summary>
         /// Load ManageStars class
