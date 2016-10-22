@@ -105,6 +105,13 @@ public class AssetManager
         textures.Add(TextureName.BotBronze, new Texture("Assets/Textures/Virus/medal_bronze.png"));
         textures.Add(TextureName.BotSilver, new Texture("Assets/Textures/Virus/medal_silver.png"));
         textures.Add(TextureName.BotGold, new Texture("Assets/Textures/Virus/medal_gold.png"));
+        textures.Add(TextureName.TutorialDeleteBot, new Texture("Assets/Textures/Menu/Tutorial/DeleteTutorial.png"));
+        textures.Add(TextureName.TutorialGhostMove, new Texture("Assets/Textures/Menu/Tutorial/Scout2Tutorial.png"));
+        textures.Add(TextureName.TutorialGhostSpawn, new Texture("Assets/Textures/Menu/Tutorial/Scout1Tutorial.png"));
+        textures.Add(TextureName.TutorialMove, new Texture("Assets/Textures/Menu/Tutorial/MoveTutorial.png"));
+        textures.Add(TextureName.TutorialReset, new Texture("Assets/Textures/Menu/Tutorial/ResetTutorial.png"));
+        textures.Add(TextureName.TutorialSpawnBot, new Texture("Assets/Textures/Menu/Tutorial/Scout3Tutorial.png"));
+        textures.Add(TextureName.TutorialSwitch, new Texture("Assets/Textures/Menu/Tutorial/SwitchTutorial.png"));
     }
 
     public enum TextureName
@@ -201,6 +208,13 @@ public class AssetManager
         BotBronze,
         BotSilver,
         BotGold,
+        TutorialMove,
+        TutorialReset,
+        TutorialGhostSpawn,
+        TutorialGhostMove,
+        TutorialSpawnBot,
+        TutorialDeleteBot,
+        TutorialSwitch,
     }
 
     //Music!

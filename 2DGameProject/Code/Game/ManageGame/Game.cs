@@ -129,7 +129,7 @@ namespace MemoryMaze
         void SetTutorials()
         {
             tutorialList = new List<MemoryMaze.Tutorial>();
-            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Don't know what to do...\n please help.", new Vector2(100, 200), 6, 0, 0));
+            tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostMove), "Don't know what to do...\n please help.", new Vector2(100, 200), 6, 0, 0));
             tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Argh i fucked up pretty hard\nwho created this stupid level??", new Vector2(100, 200), 6, 1, 0));
             tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "What do i have to press?? Space??\nThat is a key??", new Vector2(100, 200), 6, 11, 0));
             tutorialList.Add(new Tutorial(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo), "Haven't found Space yet...", new Vector2(100, 200), 6, 11, 1));
