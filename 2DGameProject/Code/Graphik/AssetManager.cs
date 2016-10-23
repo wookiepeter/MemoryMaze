@@ -38,7 +38,7 @@ public class AssetManager
         screenShots.Add(7, new Texture("Assets/Textures/Screens/Gelb08neu.png"));
         screenShots.Add(8, new Texture("Assets/Textures/Screens/Gelb09.png"));
         screenShots.Add(9, new Texture("Assets/Textures/Screens/Gelb10.png"));
-        screenShots.Add(10, new Texture("Assets/Textures/Screens/Gruen7.png")); // insertnewscreenshot
+        screenShots.Add(10, new Texture("Assets/Textures/Screens/Gelb11.05.png")); // insertnewscreenshot
         screenShots.Add(11, new Texture("Assets/Textures/Screens/Gelb11.png"));
         screenShots.Add(12, new Texture("Assets/Textures/Screens/Rot1.png"));
         screenShots.Add(13, new Texture("Assets/Textures/Screens/Rot2.png"));

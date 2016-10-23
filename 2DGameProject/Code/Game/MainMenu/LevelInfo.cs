@@ -89,23 +89,32 @@ namespace MemoryMaze
             switch(rating)
             {
                 case ManageStars.Rating.Fail:
+                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
                     break;
                 case ManageStars.Rating.Bronze:
+                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
                     break;
                 case ManageStars.Rating.Silver:
+                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotSilver));
                     break;
                 case ManageStars.Rating.Gold:
+                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotGold));
                     break;
                 case ManageStars.Rating.Skipped:
+                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.SkipMedal));
                     break; 
             }
+            if (rating == ManageStars.Rating.Fail)
+                medal.Color = new Color(20, 20, 20);
+            else
+                medal.Color = new Color(255, 255, 255);
             SetAllAphas(highlighted? 100 : 50);
         }
 
         void SetMedal(Texture text)
         {
             medal.Texture = text;
-            medal.Position = position + new Vector2(320, 190);
+            medal.Position = position + new Vector2(270, 205);
         }
 
         private void SetAllAphas(float percentage)
@@ -115,24 +124,6 @@ namespace MemoryMaze
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), background);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), screenShot);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), levelName);
-            for (int i = 0; i <= 2; i++)
-            {
-                if (i < (int)rating)
-                {
-                    starList[i].Color = new Color(255, 255, 255);
-                    GraphicHelper.SetAlpha(255, starList[i]);
-                }
-                else
-                {
-                    starList[i].Color = new Color(20, 20, 20);
-                    GraphicHelper.SetAlpha(120, starList[i]);
-                }
-            }
-            foreach(Sprite star in starList)
-            {
-                GraphicHelper.SetAlpha((byte)(star.Color.A * percentage / 100), star);
-            }
-
         }
 
         public int GetInfoButtonLevel()
