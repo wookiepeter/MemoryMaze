@@ -49,19 +49,16 @@ namespace MemoryMaze
     
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
-            view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             sprite.Position = sprite.Position + relViewDis;
             if (!iserstellt)
                 win.Draw(sprite);
-         /*   else
-            {
-                redBot.Render(win, view);
-            }*/
         }
+
         public void SoundCreateRedBot()
         {
             MusicManager.PlaySound(AssetManager.SoundName.CreateRedBot);
         }
+
         public void SoundCreateBlueBot()
         {
             MusicManager.PlaySound(AssetManager.SoundName.CreateBlueBot);
