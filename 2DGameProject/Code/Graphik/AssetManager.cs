@@ -128,6 +128,11 @@ public class AssetManager
         textures.Add(TextureName.HUDSkip, new Texture("Assets/Textures/Menu/Hud_Skip.png"));
         textures.Add(TextureName.SkipMedal, new Texture("Assets/Textures/Virus/medal_skip.png"));
 
+        textures.Add(TextureName.IconDelete, new Texture("Assets/Textures/Menu/Icon_Trash.png"));
+        textures.Add(TextureName.IconCredits, new Texture("Assets/Textures/Menu/Icon_Credits.png"));
+        textures.Add(TextureName.IconOptions, new Texture("Assets/Textures/Menu/Icon_Options.png"));
+        textures.Add(TextureName.IconExit, new Texture("Assets/Textures/Menu/Icon_Exit.png"));
+
     }
 
     public enum TextureName
@@ -237,6 +242,7 @@ public class AssetManager
         RedEnergybar,
         BlueEnergybar,
         GrayEnergybar,
+<<<<<<< .mine
         HUDYellowBox,
         HUDRedBox,
         HUDGreenBox,
@@ -246,6 +252,17 @@ public class AssetManager
         HUDKey,
         HUDSkip,
         SkipMedal,
+=======
+        IconDelete,
+        IconCredits,
+        IconExit,
+        IconOptions
+
+
+
+
+
+>>>>>>> .theirs
     }
 
     //Music!

@@ -121,7 +121,7 @@ namespace MemoryMaze
             // this list is used to initialize the levelscreens
             List<List<Vector2f>> posList = new List<List<Vector2f>>() {
                 new List<Vector2f>() { new Vector2f(115, 380), new Vector2f(205, 385), new Vector2f(325, 355), new Vector2f(445, 305), new Vector2f(505, 375),
-                    new Vector2f(675, 345), new Vector2f(785, 275), new Vector2f(865, 245), new Vector2f(965, 205), new Vector2f(1045, 225), new Vector2f( 1115, 515)},
+                    new Vector2f(675, 345), new Vector2f(785, 275), new Vector2f(865, 245), new Vector2f(965, 205), new Vector2f(1045, 225),new Vector2f(1105,345), new Vector2f( 1115, 515)},
 
                 new List<Vector2f>() { new Vector2f(225,395), new Vector2f(435,315), new Vector2f(535,325), new Vector2f(555,395), new Vector2f(715,385), new Vector2f(735,495),
                     new Vector2f(875,435), new Vector2f(935,245), new Vector2f(955,175), new Vector2f(1055,195), new Vector2f(1175,215), new Vector2f(1235,345)},

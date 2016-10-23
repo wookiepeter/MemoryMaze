@@ -202,7 +202,7 @@ namespace MemoryMaze
                             if (KeyboardInputManager.PressedKeys().Count > 0 && player.mapPosition.Equals(new Vector2i(4,3)))
                                 nextTutorial.ActivateSecretPowers();
                             break;
-                        case 11:
+                        case 12:
                             Console.WriteLine("tutorialindex = " + nextTutorial.tutorialIndex);
                             if (player.redbot && player.botList.Count > 0 && player.botList[0].mapPosition.Equals(new Vector2i(4, 3)) && nextTutorial.tutorialIndex == 4)
                             { nextTutorial.ActivateSecretPowers(); break; }
