@@ -72,6 +72,7 @@ namespace MemoryMaze
                 if (!player.getListOfBotPositions().Contains(mani.position))
                     mani.execute(map);
             }
+            //ToDo Chris blueLever Sound
         }
 
         public override void Draw(RenderTexture win, View view, Vector2f relViewDis)

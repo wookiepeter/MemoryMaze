@@ -192,30 +192,36 @@ namespace MemoryMaze
                     SlideMap(deltaTime);
                     return GameState.LoadLevelState;
                 }
+                bool soundactiv = false;
                 if(KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down))
                 {
                     int bottomLength = 1;
                     if(KeyboardInputManager.Downward(Keyboard.Key.Up) && currentScreenPosition.Y != 0)
                     {
+                        soundactiv = true;
                         currentScreenPosition.Y = 0;
                         currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                     }
                     if (KeyboardInputManager.Downward(Keyboard.Key.Down) && currentScreenPosition.Y != 1)
                     {
+                        soundactiv = true;
                         currentScreenPosition.Y = 1;
                         float help = (float) currentScreenPosition.X * (float) bottomLength / (float) (mainButtonList.Count - 1);
                         currentScreenPosition.X = (int) Math.Round(help);
                     }
                 }
-                if((KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right)) & currentScreenPosition.Y == 1)
+
+                if ((KeyboardInputManager.Downward(Keyboard.Key.Left) || KeyboardInputManager.Downward(Keyboard.Key.Right)) & currentScreenPosition.Y == 1)
                 {
                     int bottomLength = 1;
                     if(KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < bottomLength)
                     {
+                        soundactiv = true;
                         currentScreenPosition.X += 1;
                     }
                     if(KeyboardInputManager.Downward(Keyboard.Key.Left) && currentScreenPosition.X > 0)
                     {
+                        soundactiv = true;
                         currentScreenPosition.X -= 1;
                     }
                 }
@@ -225,6 +231,7 @@ namespace MemoryMaze
                     {
                         if(currentLevel > 0)
                         {
+                            soundactiv = true;
                             currentLevel--;
                             currentScreenPosition.X -= 1;
                             if (currentScreenPosition.X < 0)
@@ -238,6 +245,7 @@ namespace MemoryMaze
                     {
                         if (stars.levelIsUnlocked(currentLevel + 1))
                         {
+                            soundactiv = true;
                             currentLevel++;
                             currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
                             if (GetPositionOnCurrentLevelScreen() == 0)
@@ -246,8 +254,25 @@ namespace MemoryMaze
                             }
                         }
                     }
+                    if (soundactiv)
+                        MusicManager.PlaySound(AssetManager.SoundName.MenueClick);
+                    else if (KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down) || KeyboardInputManager.Downward(Keyboard.Key.Right) || KeyboardInputManager.Downward(Keyboard.Key.Left))
+                    {
+                        MusicManager.PlaySound(AssetManager.SoundName.Wall);
+                    }
+
                     return GameState.LoadLevelState;
                 }
+
+                if (soundactiv)
+                    MusicManager.PlaySound(AssetManager.SoundName.MenueClick);
+                else if(KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down) || KeyboardInputManager.Downward(Keyboard.Key.Right) || KeyboardInputManager.Downward(Keyboard.Key.Left))
+                {
+                    MusicManager.PlaySound(AssetManager.SoundName.Wall);
+                }
+                    
+
+
                 if (KeyboardInputManager.Downward(Keyboard.Key.Return) && currentScreenPosition.Y == 0)
                 {
                     return StartLevelIfUnlocked();

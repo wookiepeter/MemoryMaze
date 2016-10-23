@@ -287,13 +287,25 @@
     <Content Include="Assets\MapFiles\1_Gelb\Gelb03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Musics\Sounds\BlueBotCreate.wav">
+    <Content Include="Assets\Musics\Sounds\CreateBot.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Musics\Sounds\Fire.wav">
+    <Content Include="Assets\Musics\Sounds\Menuclick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Musics\Sounds\RedBotCreate.wav">
+    <Content Include="Assets\Musics\Sounds\SchalterNormal.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Musics\Sounds\Schluessel2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Musics\Sounds\teleport.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Musics\Sounds\VirusDetected.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Musics\Sounds\Wand.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Textures\BackgrundSteuerung.png">

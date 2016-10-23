@@ -6,11 +6,11 @@ wwwwwwwwwwewewwwwwwtBtww
 wwwwwwwwwwewwwwwtttteRtw
 wwwwwwwwweeewwwwttmmettw
 wwwwwwwweeteewewtmmtttww
-wwSwwwweetttemewtmttwwww
+wwewwwweetttemewtmttwwww
 wwwewweettttteewwwwwwwww
 wemmeeettttttteewBwwwwww
 wemmeettttgtttteweRweeww
-wemmewettttttteewSwwweww
+wemmewettttttteewewwweww
 wwewwweetttttewwweemmeww
 wwewwwweettteewewmmmmwww
 wwwwwwwweeteewwwwiwwwwww
@@ -25,4 +25,4 @@ lever(4,10);empty(2,7);empty(17,7);empty(19,9);empty(15,11)
 lever(17,11);empty(14,11);empty(5,10)
 transport(17,10);portal(12,2)
 transport(2,6);portal(15,12)
-rating(200,31, 23)
+rating(200,67, 55)

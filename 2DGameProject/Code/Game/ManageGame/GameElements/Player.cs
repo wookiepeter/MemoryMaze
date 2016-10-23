@@ -196,6 +196,10 @@ namespace MemoryMaze
                             mapPosition = mapPosition + move;
                             scoreCounter++;
                         }
+                        else
+                        {
+                            MusicManager.PlaySound(AssetManager.SoundName.Wall);
+                        }
                         UpdateSpritePosition(map);
                         currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
                     }
@@ -278,6 +282,7 @@ namespace MemoryMaze
             else
                 teleporterWaypoints.Add(new Vector2(startPos.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
             teleporterWaypoints.Add(new Vector2(target.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
+            MusicManager.PlaySound(AssetManager.SoundName.Teleport);
         }
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
@@ -569,7 +574,11 @@ namespace MemoryMaze
         public void collectItem(Item item)
         {
             if (item is Key)
+            {
                 keyCounter++;
+                MusicManager.PlaySound(AssetManager.SoundName.Key);
+            }
+                
             if (item is RedItem)
                 redItemCounter++;
             if (item is BlueItem)

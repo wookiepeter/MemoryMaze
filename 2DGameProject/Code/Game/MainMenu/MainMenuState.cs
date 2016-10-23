@@ -200,8 +200,10 @@ namespace MemoryMaze
                 }
                 else if (KeyboardInputManager.Downward(Keyboard.Key.Up) || KeyboardInputManager.Downward(Keyboard.Key.Down) || KeyboardInputManager.Downward(Keyboard.Key.Right) || KeyboardInputManager.Downward(Keyboard.Key.Left))
                 {
+                    bool soundactiv = false;
                     if( KeyboardInputManager.Downward(Keyboard.Key.Up) && currentScreenPosition.Y > 0)
                     {
+                        soundactiv = true;
                         currentScreenPosition.Y -= 1;
                         if (currentScreenPosition.X == 2)
                             currentScreenPosition.X = 1;
@@ -210,22 +212,31 @@ namespace MemoryMaze
                     }
                     if ( KeyboardInputManager.Downward(Keyboard.Key.Down) && currentScreenPosition.Y < 3)
                     {
+                        soundactiv = true;
                         currentScreenPosition.Y += 1;
                         if (currentScreenPosition.Y == 3 && currentScreenPosition.X == 1)
                             currentScreenPosition.X = 2;
                     }
                     if ( KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < 1)
                     {
+                        soundactiv = true;
                         currentScreenPosition.X += 1;
                     }
                     else if (KeyboardInputManager.Downward(Keyboard.Key.Right) && currentScreenPosition.X < 3 && currentScreenPosition.Y == 3)
                     {
+                        soundactiv = true;
                         currentScreenPosition.X = 2;
                     }
                     if ( KeyboardInputManager.Downward(Keyboard.Key.Left) && currentScreenPosition.X > 0)
                     {
+                        soundactiv = true;
                         currentScreenPosition.X -= 1;
                     }
+
+                    if (soundactiv)
+                        MusicManager.PlaySound(AssetManager.SoundName.MenueClick);
+                    else
+                        MusicManager.PlaySound(AssetManager.SoundName.Wall);
                 }
                 else if (KeyboardInputManager.Downward(Keyboard.Key.Return))                       //Wurde die LinkeMaustaste gedrückt?
                 {

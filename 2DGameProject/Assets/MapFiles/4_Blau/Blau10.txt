@@ -22,5 +22,5 @@ transport(9,3);portal(14,7)
 transport(14,4);teleport(11,6)
 bluelev(6,3);empty(2,2)
 bluelev(8,8);empty(4,6)
-rating(200,60,45)
+rating(200,33,20)
 

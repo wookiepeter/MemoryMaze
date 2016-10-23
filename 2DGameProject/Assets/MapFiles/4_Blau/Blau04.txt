@@ -10,4 +10,4 @@ _map:
 bluelev(12,1);empty(2,1)
 bluelev(5,1);empty(11,1)
 
-rating(45,15, 5)
+rating(45,12,7)

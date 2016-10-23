@@ -58,14 +58,11 @@ namespace MemoryMaze
                 redBot.Render(win, view);
             }*/
         }
-        public void SoundCreateRedBot()
+        public void CreateBot()
         {
-            MusicManager.PlaySound(AssetManager.SoundName.CreateRedBot);
+            MusicManager.PlaySound(AssetManager.SoundName.CreateBot);
         }
-        public void SoundCreateBlueBot()
-        {
-            MusicManager.PlaySound(AssetManager.SoundName.CreateBlueBot);
-        }
+
 
         void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
@@ -78,7 +75,7 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
-                    SoundCreateRedBot();
+                    CreateBot();
 
                 }
 
@@ -95,7 +92,7 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
-                    SoundCreateRedBot();
+                    CreateBot();
                 }
 
             }
@@ -109,7 +106,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
-                    SoundCreateBlueBot();
+                    CreateBot();
                 }
 
             }
@@ -124,7 +121,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
-                    SoundCreateBlueBot();
+                    CreateBot();
                 }
 
             }
@@ -137,6 +134,7 @@ namespace MemoryMaze
                     player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
+                    CreateBot();
                 }
 
             }
@@ -150,6 +148,7 @@ namespace MemoryMaze
                     player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
+                    CreateBot();
                 }
 
             }

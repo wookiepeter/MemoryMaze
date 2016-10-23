@@ -2,7 +2,7 @@
 21
 wwwwwwwwwwwwwwwwwwwww
 wwwwwwwwwwewwwwwwwwww
-wwwSwmmmmwgwmmmmwSwww
+wwwewmmmmwgwmmmmwewww
 wwwwwwwwmwewmwwwwwwww
 wwwwwwemmeeemmewwwwww
 wwwwwwwmmBeBmmwwwwwww
@@ -27,4 +27,4 @@ bluelev(3,2);empty(11,8);empty(12,8);empty(13,8);empty(14,8);wall(13,9)
 transport(15,8);teleport(3,8)
 transport(5,8);teleport(17,8)
 transport(1,6);portal(10,1)
-rating(200,55, 47)
+rating(200,55, 41)

@@ -71,7 +71,10 @@ namespace MemoryMaze
             {
                 if (!player.getListOfBotPositions().Contains(mani.position))
                     mani.execute(map);
+                
             }
+            //An und aus Sounds
+            MusicManager.PlaySound(AssetManager.SoundName.LeverNormal);
         }
 
         override public void Draw(RenderTexture win, View view, Vector2f relViewDis)
