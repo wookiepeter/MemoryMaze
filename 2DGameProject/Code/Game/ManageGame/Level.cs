@@ -28,7 +28,13 @@ namespace MemoryMaze
         int[] ratingNumbers = new int[3];
         public int keysToUnlock { get; private set; }
 
-        Text guiScore = new Text("", new Font("Assets/Fonts/calibri.ttf"), 30);
+        SuperText guiScoreNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
+        SuperText guiScore = new SuperText("Steps", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
+        Sprite guiScoreBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
+
+        SuperText guiLevelNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
+        SuperText guiLevel = new SuperText("Level", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
+        Sprite guiLevelBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
@@ -61,6 +67,12 @@ namespace MemoryMaze
             transporterHandler = _transporter;
             this.setScoreCounter(_playerScore);
             ratingNumbers = _ratingNumbers;
+
+            guiScoreNumber.CharacterSize = 50;
+            guiScore.CharacterSize = 18;
+
+            guiLevelNumber.CharacterSize = 50;
+            guiLevel.CharacterSize = 18;
         }
 
         public Level Copy()
@@ -108,6 +120,8 @@ namespace MemoryMaze
                 }
                 mapStatus = 2;
             }
+            guiLevelNumber.DisplayedString = "" + (curIndex + 1);
+
             return mapStatus;
         }
         private String CheckLevel()
@@ -146,14 +160,26 @@ namespace MemoryMaze
             map.DrawGUI(gui, deltaTime);
             player.DrawGUI(gui, deltaTime);
 
-            updateGuiText(gui);
+            // GUI
+            // Score Box
+            guiScoreBox.Position = new Vector2f(gui.view.Size.X - 30 - guiScoreBox.Texture.Size.X, 30);
+            gui.Draw(guiScoreBox);
+            guiScoreNumber.Position = guiScoreBox.Position + new Vector2f(13, 0);
+            guiScoreNumber.DisplayedString = (playerScore <= 999 ? "" + playerScore : "X_X");
+            guiScoreNumber.Update(deltaTime);
+            gui.Draw(guiScoreNumber);
+            guiScore.Position = guiScoreNumber.Position + new Vector2f(0, guiScoreNumber.CharacterSize);
+            guiScore.Update(deltaTime);
             gui.Draw(guiScore);
-        }
-
-        private void updateGuiText(GUI gui)
-        {
-            guiScore.Position = new Vector2f(gui.view.Size.X-50, 25);
-            guiScore.DisplayedString = "" + playerScore;
+            // Level Box
+            guiLevelBox.Position = gui.view.Size - new Vector2f(guiLevelBox.TextureRect.Width + 30, guiLevelBox.TextureRect.Height + 30);
+            gui.Draw(guiLevelBox);
+            guiLevelNumber.Position = guiLevelBox.Position + new Vector2f(13, 0);
+            guiLevelNumber.Update(deltaTime);
+            gui.Draw(guiLevelNumber);
+            guiLevel.Position = guiLevelNumber.Position + new Vector2f(0, guiLevelNumber.CharacterSize);
+            guiLevel.Update(deltaTime);
+            gui.Draw(guiLevel);
         }
 
         public void setScoreCounter(int score)
