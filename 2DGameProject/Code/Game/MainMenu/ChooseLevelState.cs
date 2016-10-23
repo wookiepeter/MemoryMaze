@@ -147,7 +147,6 @@ namespace MemoryMaze
                 {
                     if (Mouse.IsButtonPressed(Mouse.Button.Left))                       //Wurde die LinkeMaustaste gedrückt?
                     {
-                        //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
                         switch (index)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                         {                                                               //bearbeitet das aktuelle TextFeld
                             case 0:

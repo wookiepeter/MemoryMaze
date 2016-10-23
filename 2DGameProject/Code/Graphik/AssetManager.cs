@@ -8,7 +8,8 @@ public class AssetManager
     static Dictionary<MusicName, Music> musics = new Dictionary<MusicName, Music>();
     static Dictionary<SoundName, SoundBuffer> sounds = new Dictionary<SoundName, SoundBuffer>();
     static Dictionary<int, Texture> screenShots = new Dictionary<int, Texture>(); 
-    
+    public static Texture[] backgroundTextures = { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4) };
+
     //Textures
     public static Texture GetTexture(TextureName textureName)
     {

@@ -46,7 +46,6 @@ namespace MemoryMaze
         /// </summary>
         public void ActivateSecretPowers()
         {
-            Console.WriteLine("Activate supersecret Powers");
             currentTime = duration;
             shown = true;
         }

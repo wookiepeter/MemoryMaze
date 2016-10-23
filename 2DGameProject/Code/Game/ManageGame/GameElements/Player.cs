@@ -196,7 +196,6 @@ namespace MemoryMaze
                 {
                     ghostPlayer.Update(deltaTime, map, this);
                     currentFocus = new Vector2(ghostPlayer.mapPosition.X * sizePerCell + sizePerCell * 0.5f, ghostPlayer.mapPosition.Y * sizePerCell + sizePerCell * 0.5f);
-                    Console.WriteLine("after setting: " + currentFocus);
                     UpdateSpritePosition(map);
                 }
                 else
@@ -549,7 +548,6 @@ namespace MemoryMaze
                     if (!it.isAlive)
                     {
                         deleteList.Add(it); //zerstoere Bot
-                        Console.WriteLine("Some Bot is getting destroyed");
                         MusicManager.PlaySound(AssetManager.SoundName.DeleteBot);
                         if (it.id == controllid)
                             controllid = 0;

@@ -29,7 +29,6 @@ namespace MemoryMaze
 
         public Game(int id)
         {
-            Console.WriteLine("Sind in der GameFunktion mit der: " +id);
             if(id == 0)
                 Tutorial();
 
@@ -46,8 +45,6 @@ namespace MemoryMaze
                 MainCampaign();
                 curIndex = ProfileConstants.levelToPlay;
             }
-            Console.WriteLine("Here Now " + curIndex);
-
 
             level = levelList[curIndex].Copy();
         }
@@ -121,7 +118,6 @@ namespace MemoryMaze
             Console.WriteLine("playerName: " + manageProfiles.getActiveProfileName());
             manageStars = manageStars.loadManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
             curIndex = manageStars.getIndexOfFirstUnsolvedLevel();
-            Console.WriteLine(curIndex);
             SetTutorials();
         }
 
@@ -163,7 +159,6 @@ namespace MemoryMaze
 
             if(levelStatus == 3)
             {
-                Console.WriteLine("i get here");
                 if(manageStars.SkipLevel(curIndex))
                 {
                     curIndex++;

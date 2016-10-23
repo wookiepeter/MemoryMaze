@@ -31,7 +31,6 @@ namespace MemoryMaze
         public int keysToUnlock { get; private set; }
 
         int[] lastLevelIndex = { 11, 23, 30, 44 };
-        Texture[] backgroundTextures = { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4) };
 
         SuperText guiScoreNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
         SuperText guiScore = new SuperText("Steps", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
@@ -47,6 +46,7 @@ namespace MemoryMaze
         AnimatedSprite endAnimation;
         Sprite endSprite;
         SuperText endText;
+        Sprite endMedal;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
@@ -104,9 +104,8 @@ namespace MemoryMaze
             }
             else
             {
-                background = new Sprite(backgroundTextures[0]);
+                background = new Sprite(AssetManager.backgroundTextures[0]);
                 background.Position = new Vector2f(0, 0);
-                Console.WriteLine("curindex" + curIndex);
                 getBackground(curIndex);
                 mapStatus = 0;
                 playerScore = player.scoreCounter;
@@ -132,11 +131,14 @@ namespace MemoryMaze
                     endSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo));
                     endSprite.Position = new Vector2f(450, 220);
                     GraphicHelper.SetAlpha(200, endSprite);
+                    SetEndMedal();
+                    endMedal.Position = endSprite.Position + new Vector2f(150, 100);
                     endAnimation = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.SpaceBar), 0.2f, 3);
                     endAnimation.Position = (Vector2)endSprite.Position + new Vector2(125, 200);
                     endText = new SuperText("Congratulations", new Font("Assets/Fonts/fixedsys.ttf"), 0.1f);
                     endText.Position = (Vector2)endSprite.Position + new Vector2(20, 25);
                     endText.CharacterSize = 40;
+                    
                     finished = true;
                     addScoreFromBots();
                     CheckLevel();
@@ -158,6 +160,7 @@ namespace MemoryMaze
             }
             return mapStatus;
         }
+
         private String CheckLevel()
         {
             if (playerScore <= ratingNumbers[2])
@@ -170,8 +173,6 @@ namespace MemoryMaze
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
-
-            
 
             watch.Start();
             win.Draw(background);
@@ -194,6 +195,7 @@ namespace MemoryMaze
             {
                 win.Draw(endSprite);
                 win.Draw(endAnimation);
+                win.Draw(endMedal);
                 endText.Draw(win, RenderStates.Default);
             }
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
@@ -278,7 +280,6 @@ namespace MemoryMaze
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 12:
-                            Console.WriteLine("tutorialindex = " + nextTutorial.tutorialIndex);
                             if (player.redbot && player.botList.Count > 0 && player.botList[0].mapPosition.Equals(new Vector2i(4, 3)) && nextTutorial.tutorialIndex == 4)
                             { nextTutorial.ActivateSecretPowers(); break; }
                             else if (player.redbot && KeyboardInputManager.PressedKeys().Count != 0 && nextTutorial.tutorialIndex == 3)
@@ -303,14 +304,29 @@ namespace MemoryMaze
         {
             for(int i = 0; i < lastLevelIndex.Count(); i++)
             {
-                Console.WriteLine("i" + i);
                 if (currentIndex <= lastLevelIndex[i])
                 {
-                    background.Texture = backgroundTextures[i];
+                    background.Texture = AssetManager.backgroundTextures[i];
                     break;
                 }
             }
             background.Color = new Color(15, 15, 15);
         }        
+
+        void SetEndMedal()
+        {
+            switch(getRating())
+            {
+                case ManageStars.Rating.Bronze:
+                    endMedal = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
+                    break;
+                case ManageStars.Rating.Silver:
+                    endMedal = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotSilver));
+                    break;
+                case ManageStars.Rating.Gold:
+                    endMedal = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotGold));
+                    break;
+            }
+        }
     }
 }

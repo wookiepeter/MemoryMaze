@@ -156,7 +156,6 @@ namespace MemoryMaze
                 }
                 XmlSerializer ser = new XmlSerializer(typeof(ManageProfiles));
                 StreamReader reader = new StreamReader(fileName);
-                Console.WriteLine();
                 ManageProfiles manageProfiles = (ManageProfiles)ser.Deserialize(reader);
 
                 reader.Close();

@@ -54,7 +54,6 @@ namespace MemoryMaze
 
         private void Disengage(Map map)
         {
-            Console.WriteLine("Matthis" +newContent+oldContent);
             cellContent help = newContent;
             newContent = oldContent;
             map.SetContentOfCell(position, newContent);

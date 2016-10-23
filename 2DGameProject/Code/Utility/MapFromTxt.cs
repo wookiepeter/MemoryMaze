@@ -54,6 +54,8 @@ namespace MemoryMaze
                 }
             }
 
+            file.Close();
+
             return cellMap;
         }
 
@@ -132,6 +134,8 @@ namespace MemoryMaze
                     leverList.Add(new BlueLever(leverPosition, map, maniList));
                 }
             }
+
+            file.Close();
             return new LevelutionHandler(leverList, map.sizePerCell);
         } 
 
@@ -194,6 +198,7 @@ namespace MemoryMaze
                 }
             }
 
+            file.Close();
 
             return new TransportHandler(transPorterList);
         }
@@ -236,6 +241,7 @@ namespace MemoryMaze
                 }
             }
             Logger.Instance.Write("No mapRating in file: " + filename, Logger.level.Error);
+            file.Close();
             throw new Exception("NoRatingFoundInMapfile");
         }
 

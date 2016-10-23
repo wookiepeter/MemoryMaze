@@ -278,7 +278,6 @@ namespace MemoryMaze
                 }
                 if (KeyboardInputManager.Downward(Keyboard.Key.Return) && currentScreenPosition.Y == 1)                       //Wurde die LinkeMaustaste gedrückt?
                 {
-                    //Console.WriteLine("Der Index in der SwitchAnweisung: " + index);
                     switch (currentScreenPosition.X)                                                  //Bin mit der Maus über den Index: SwitchCaseWeg
                     {                                                               //bearbeitet das aktuelle TextFeld
                                                                                     //
@@ -445,7 +444,6 @@ namespace MemoryMaze
                     if (stars.getIndexOfFirstUnsolvedLevel() == 0 && currentLevel != 0)
                     {
                         currentLevel = mainButtonList[mainButtonList.Count - 1].buttonLevel;
-                        Console.WriteLine("currentLevel: " + currentLevel);
                     }
                     else
                     {
@@ -455,7 +453,6 @@ namespace MemoryMaze
                         }
                     }
                     currentScreenPosition.X = GetPositionOnCurrentLevelScreen();
-                    Console.WriteLine("currentScreenPos: " + currentScreenPosition.X);
                     currentScreenPosition.Y = 0;
                 }
             }

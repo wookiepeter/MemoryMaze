@@ -74,7 +74,6 @@ namespace MemoryMaze
             multTexture.Draw(overlay, add);
             multTexture.Display();
 
-            //Console.WriteLine(" view.Center " + view.Center + " multTexture.Center" + multTexture.GetView().Center + " win.Center " + win.GetView().Center + " multTexture.Center " + multTexture.GetView().Center);
             // resets view of window
             //win.SetView(_view);
 

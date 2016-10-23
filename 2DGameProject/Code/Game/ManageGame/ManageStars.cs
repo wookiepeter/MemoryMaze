@@ -64,7 +64,6 @@ namespace MemoryMaze
 
         public int getIndexOfFirstUnsolvedLevel()
         {
-            Console.WriteLine("Level.Count: " + levelRating.Length);
             for (int i = 0; i < levelRating.Length; i++)
             {
                 if(levelRating[i] == Rating.Fail)
@@ -119,7 +118,6 @@ namespace MemoryMaze
 
         public bool SkipLevel(int levelIndex)
         {
-            Console.WriteLine(levelSkips);
             if (levelSkips <= 0 || levelRating[levelIndex] != Rating.Fail)
                 return false;
             levelSkips--;
@@ -140,14 +138,14 @@ namespace MemoryMaze
                 StreamReader reader = new StreamReader("Assets/" + playerName);
 
                 ManageStars manageStars = (ManageStars)ser.Deserialize(reader);
-                
+
                 // 
-                if(manageStars.levelRating.Length != numberOfRatings)
+                reader.Close();
+
+                if (manageStars.levelRating.Length != numberOfRatings)
                 {
                     throw new Exception("InvalidNumberOfLevels");
                 }
-
-                reader.Close();
 
                 return manageStars;
             }
