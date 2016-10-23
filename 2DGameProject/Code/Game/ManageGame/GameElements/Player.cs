@@ -34,12 +34,21 @@ namespace MemoryMaze
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
         Sprite EnergybarGhostPlayer = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.YellowEnergybar)));
+        Sprite playerHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDYellowBox)));
+        //
         Sprite redBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedBot)));
         Sprite EnergybarRed = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedEnergybar)));
+        Sprite redBotHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDRedBox)));
+        Sprite redBotReserveBot = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedItem)));
         Sprite blueBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueBot)));
         Sprite EnergybarBlue = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueEnergybar)));
+        Sprite blueBotHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDBlueBox)));
+        Sprite blueBotReserveBot = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueItem)));
         Sprite greenBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenBot)));
         Sprite EnergybarGreen = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenEnergybar)));
+        Sprite greenBotHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDGreenBox)));
+        Sprite greenBotReserveBot = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenItem)));
+
         Font calibri = new Font("Assets/Fonts/calibri.ttf");
         Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
         Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
@@ -114,16 +123,26 @@ namespace MemoryMaze
         void InitializeGUI()
         {
             playerStatus.Position = new Vector2f(25, 25);
-            EnergybarGhostPlayer.Position = new Vector2f(50 + playerStatus.Position.X, 25);
+            EnergybarGhostPlayer.Position = playerStatus.Position + new Vector2f(50, 0);
+            playerHUDBox.Position = playerStatus.Position - new Vector2f(3, 3);
             //playerStatus.Scale = new Vector2f(1, 1);
             redBotStatus.Position = new Vector2f(25, 125);
-            EnergybarRed.Position = new Vector2f(50 + redBotStatus.Position.X, 125);
+            EnergybarRed.Position = redBotStatus.Position + new Vector2f(50, 0);
+            redBotHUDBox.Position = redBotStatus.Position - new Vector2f(3, 3);
+            redBotReserveBot.Scale = new Vector2f(0.5F, 0.5F);
+            redBotReserveBot.Position = redBotStatus.Position + new Vector2f(30, 58);
             //redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
             greenBotStatus.Position = new Vector2f(25, 225);
-            EnergybarGreen.Position = new Vector2f(50 + greenBotStatus.Position.X, 225);
+            EnergybarGreen.Position = greenBotStatus.Position + new Vector2f(50, 0);
+            greenBotHUDBox.Position = greenBotStatus.Position - new Vector2f(3, 3);
+            greenBotReserveBot.Scale = new Vector2f(0.5F, 0.5F);
+            greenBotReserveBot.Position = greenBotStatus.Position + new Vector2f(30, 58);
             //greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
             blueBotStatus.Position = new Vector2f(25, 325);
-            EnergybarBlue.Position = new Vector2f(50 + blueBotStatus.Position.X, 325);
+            EnergybarBlue.Position = blueBotStatus.Position + new Vector2f(50, 0);
+            blueBotHUDBox.Position = blueBotStatus.Position - new Vector2f(3, 3);
+            blueBotReserveBot.Scale = new Vector2f(0.5F, 0.5F);
+            blueBotReserveBot.Position = blueBotStatus.Position + new Vector2f(30, 58);
             //blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
 
 
@@ -332,6 +351,7 @@ namespace MemoryMaze
         {
             if (!isAlive)
                 gui.Draw(playerdetected);
+
             Color low = new Color(255, 255, 255, 127);
             Color high = new Color(255, 255, 255, 255);
 
@@ -341,7 +361,7 @@ namespace MemoryMaze
             greenBotStatus.Color = low;
 
             // highlighting active player
-            switch(controllid)
+            switch (controllid)
             {
                 case 0:
                     playerStatus.Color = high; break;
@@ -354,12 +374,28 @@ namespace MemoryMaze
                 default: break;
             }
 
+            // HUD Boxes
+            playerHUDBox.Color = playerStatus.Color;
+            redBotHUDBox.Color = redBotStatus.Color;
+            greenBotHUDBox.Color = greenBotStatus.Color;
+            blueBotHUDBox.Color = blueBotStatus.Color;
+            gui.Draw(playerHUDBox);
+            gui.Draw(redBotHUDBox);
+            gui.Draw(greenBotHUDBox);
+            gui.Draw(blueBotHUDBox);
+
             updateTexts();
-            for(int i = 0; i <= 3; i++)
+            // EnergyBars (how many steps are left)
+            for (int i = 0; i <= 3; i++)
             {
                 drawEnergybars(i, gui);
             }
 
+            // Reserve Bots
+            DrawReserveBots(gui, redItemCounter, redBotReserveBot);
+            DrawReserveBots(gui, greenItemCounter, greenBotReserveBot);
+            DrawReserveBots(gui, blueItemCounter, blueBotReserveBot);
+            /*
             // printing current steps;
             gui.Draw(guiGhostCounter);
             gui.Draw(guiRedCounter);
@@ -370,12 +406,23 @@ namespace MemoryMaze
             gui.Draw(guiRedItemCounter);
             gui.Draw(guiBlueItemCounter);
             gui.Draw(guiGreenItemCounter);
-
+            */
             gui.Draw(playerStatus);
             gui.Draw(redBotStatus);
             gui.Draw(blueBotStatus);
             gui.Draw(greenBotStatus);
 
+        }
+
+        private static void DrawReserveBots(GUI gui, int itemCounter, Sprite reserveBot)
+        {
+            Vector2 tmpPosition = reserveBot.Position;
+            for (int i = 0; i < itemCounter; i++)
+            {
+                gui.Draw(reserveBot);
+                reserveBot.Position = reserveBot.Position + new Vector2f(reserveBot.Scale.X * reserveBot.TextureRect.Width, 0);
+            }
+            reserveBot.Position = tmpPosition;
         }
 
         private void drawEnergybars(int id, GUI gui)
