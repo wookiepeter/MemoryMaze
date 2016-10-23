@@ -167,8 +167,11 @@ namespace MemoryMaze
             {
                 ManageProfiles result = new ManageProfiles();
                 result.setProfile("-", profiles.one);
+                result.profileOneExists = false;
                 result.setProfile("-", profiles.two);
+                result.profileTwoExists = false;
                 result.setProfile("-", profiles.three);
+                result.profileThreeExists = false;
                 result.saveManageProfiles();
                 return result;
             }
