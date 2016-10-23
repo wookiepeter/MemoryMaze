@@ -480,7 +480,7 @@ namespace MemoryMaze
             return false;
         }
 
-        private int GetIndexOfCurrentLevelScreen()
+        public int GetIndexOfCurrentLevelScreen()
         {
             int helpLevel = 0;
             int curIndex = 0;
