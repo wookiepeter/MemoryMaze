@@ -52,27 +52,28 @@ public class AssetManager
         screenShots.Add(21, new Texture("Assets/Textures/Screens/Rot10.png"));
         screenShots.Add(22, new Texture("Assets/Textures/Screens/Rot11.png"));
         screenShots.Add(23, new Texture("Assets/Textures/Screens/Rot12.png"));
-        screenShots.Add(24, new Texture("Assets/Textures/Screens/Blau1.png"));
-        screenShots.Add(25, new Texture("Assets/Textures/Screens/Blau2.png"));
-        screenShots.Add(26, new Texture("Assets/Textures/Screens/Blau3.png"));
-        screenShots.Add(27, new Texture("Assets/Textures/Screens/Blau4.png"));
-        screenShots.Add(28, new Texture("Assets/Textures/Screens/Blau5.png"));
-        screenShots.Add(29, new Texture("Assets/Textures/Screens/Blau6.png"));
-        screenShots.Add(30, new Texture("Assets/Textures/Screens/Blau7.png"));
-        screenShots.Add(31, new Texture("Assets/Textures/Screens/Blau8.png"));
-        screenShots.Add(32, new Texture("Assets/Textures/Screens/Blau9.png"));
-        screenShots.Add(33, new Texture("Assets/Textures/Screens/Blau10.png"));
-        screenShots.Add(34, new Texture("Assets/Textures/Screens/Blau11.png"));
-        screenShots.Add(35, new Texture("Assets/Textures/Screens/Blau12.png"));
-        screenShots.Add(36, new Texture("Assets/Textures/Screens/Blau13.png"));
-        screenShots.Add(37, new Texture("Assets/Textures/Screens/Blau14.png"));
-        screenShots.Add(38, new Texture("Assets/Textures/Screens/Gruen1.png"));
-        screenShots.Add(39, new Texture("Assets/Textures/Screens/Gruen2.png"));
-        screenShots.Add(40, new Texture("Assets/Textures/Screens/Gruen3.png"));
-        screenShots.Add(41, new Texture("Assets/Textures/Screens/Gruen4.png"));
-        screenShots.Add(42, new Texture("Assets/Textures/Screens/Gruen5.png"));
-        screenShots.Add(43, new Texture("Assets/Textures/Screens/Gruen6.png"));
-        screenShots.Add(44, new Texture("Assets/Textures/Screens/Gruen7.png"));
+        screenShots.Add(24, new Texture("Assets/Textures/Screens/Gruen1.png"));
+        screenShots.Add(25, new Texture("Assets/Textures/Screens/Gruen2.png"));
+        screenShots.Add(26, new Texture("Assets/Textures/Screens/Gruen3.png"));
+        screenShots.Add(27, new Texture("Assets/Textures/Screens/Gruen4.png"));
+        screenShots.Add(28, new Texture("Assets/Textures/Screens/Gruen5.png"));
+        screenShots.Add(29, new Texture("Assets/Textures/Screens/Gruen6.png"));
+        screenShots.Add(30, new Texture("Assets/Textures/Screens/Gruen7.png"));
+        screenShots.Add(31, new Texture("Assets/Textures/Screens/Blau1.png"));
+        screenShots.Add(32, new Texture("Assets/Textures/Screens/Blau2.png"));
+        screenShots.Add(33, new Texture("Assets/Textures/Screens/Blau3.png"));
+        screenShots.Add(34, new Texture("Assets/Textures/Screens/Blau4.png"));
+        screenShots.Add(35, new Texture("Assets/Textures/Screens/Blau5.png"));
+        screenShots.Add(36, new Texture("Assets/Textures/Screens/Blau6.png"));
+        screenShots.Add(37, new Texture("Assets/Textures/Screens/Blau7.png"));
+        screenShots.Add(38, new Texture("Assets/Textures/Screens/Blau8.png"));
+        screenShots.Add(39, new Texture("Assets/Textures/Screens/Blau9.png"));
+        screenShots.Add(40, new Texture("Assets/Textures/Screens/Blau10.png"));
+        screenShots.Add(41, new Texture("Assets/Textures/Screens/Blau11.png"));
+        screenShots.Add(42, new Texture("Assets/Textures/Screens/Blau12.png"));
+        screenShots.Add(43, new Texture("Assets/Textures/Screens/Blau13.png"));
+        screenShots.Add(44, new Texture("Assets/Textures/Screens/Blau14.png"));
+
     }
 
     static void LoadTextures()
