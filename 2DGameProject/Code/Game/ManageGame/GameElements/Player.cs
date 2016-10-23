@@ -197,6 +197,10 @@ namespace MemoryMaze
                             mapPosition = mapPosition + move;
                             scoreCounter++;
                         }
+                        else
+                        {
+                            MusicManager.PlaySound(AssetManager.SoundName.Wall);
+                        }
                         UpdateSpritePosition(map);
                         currentFocus = sprite.Position + new Vector2f(sprite.Size.X / 2f, sprite.Size.Y / 2f);
                     }
@@ -225,8 +229,8 @@ namespace MemoryMaze
                 UpdateSpritePosition(map);
             }
             else
-            {
-                
+            {//SPieler ist tod
+                MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
                 playerdetected.Position = new Vector2f(300, 200);
                 playerdetected.Scale = new Vector2f(4, 4);
                 playerdetected.Color = Color.Red;
@@ -278,6 +282,7 @@ namespace MemoryMaze
             else
                 teleporterWaypoints.Add(new Vector2(startPos.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
             teleporterWaypoints.Add(new Vector2(target.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
+            MusicManager.PlaySound(AssetManager.SoundName.Teleport);
         }
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
@@ -498,6 +503,7 @@ namespace MemoryMaze
                     {
                         deleteList.Add(it); //zerstoere Bot
                         Console.WriteLine("Some Bot is getting destroyed");
+                        MusicManager.PlaySound(AssetManager.SoundName.DeleteBot);
                         if (it.id == controllid)
                             controllid = 0;
                     }
@@ -568,7 +574,11 @@ namespace MemoryMaze
         public void collectItem(Item item)
         {
             if (item is Key)
+            {
                 keyCounter++;
+                MusicManager.PlaySound(AssetManager.SoundName.Key);
+            }
+                
             if (item is RedItem)
                 redItemCounter++;
             if (item is BlueItem)

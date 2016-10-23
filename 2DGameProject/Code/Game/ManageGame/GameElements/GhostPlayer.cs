@@ -49,20 +49,20 @@ namespace MemoryMaze
     
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
+            view.Center = Vector2.lerp(view.Center, sprite.Position, 0.01F);
             sprite.Position = sprite.Position + relViewDis;
             if (!iserstellt)
                 win.Draw(sprite);
+         /*   else
+            {
+                redBot.Render(win, view);
+            }*/
+        }
+        public void CreateBot()
+        {
+            MusicManager.PlaySound(AssetManager.SoundName.CreateBot);
         }
 
-        public void SoundCreateRedBot()
-        {
-            MusicManager.PlaySound(AssetManager.SoundName.CreateRedBot);
-        }
-
-        public void SoundCreateBlueBot()
-        {
-            MusicManager.PlaySound(AssetManager.SoundName.CreateBlueBot);
-        }
 
         void  CreateBot(Map map, Player player) //List<Bot> botsList, bool b_redbot, bool b_bluebot, bool b_greenbot)
         {
@@ -75,7 +75,7 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
-                    SoundCreateRedBot();
+                    CreateBot();
 
                 }
 
@@ -92,7 +92,7 @@ namespace MemoryMaze
                     player.controllid = 1;
                     counter = 0;
                     player.redItemCounter--;
-                    SoundCreateRedBot();
+                    CreateBot();
                 }
 
             }
@@ -106,7 +106,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
-                    SoundCreateBlueBot();
+                    CreateBot();
                 }
 
             }
@@ -121,7 +121,7 @@ namespace MemoryMaze
                     player.controllid = 2;
                     counter = 0;
                     player.blueItemCounter--;
-                    SoundCreateBlueBot();
+                    CreateBot();
                 }
 
             }
@@ -134,6 +134,7 @@ namespace MemoryMaze
                     player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
+                    CreateBot();
                 }
 
             }
@@ -147,6 +148,7 @@ namespace MemoryMaze
                     player.controllid = 3;
                     counter = 0;
                     player.greenItemCounter--;
+                    CreateBot();
                 }
 
             }

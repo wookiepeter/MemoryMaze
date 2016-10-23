@@ -93,6 +93,7 @@ namespace MemoryMaze
                 }
                 else if (exitInList && !exitDisabled)
                 {
+
                     if (player.mapPosition.Equals(exit))
                     {
                         player.InitializeTeleport(this, false, entrance);
