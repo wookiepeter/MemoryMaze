@@ -24,6 +24,7 @@ namespace MemoryMaze
         {
             
             music = AssetManager.GetMusic(musicName);
+            music.Volume = 30;
             music.Play();
             music.Loop = true;;
 
@@ -45,26 +46,32 @@ namespace MemoryMaze
             if (AssetManager.SoundName.Key == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 60;
             }
             if (AssetManager.SoundName.LeverNormal == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 60;
             }
             if (AssetManager.SoundName.BlueLever == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 60;
             }
             if (AssetManager.SoundName.MenueClick == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 60;
             }
             if (AssetManager.SoundName.Teleport == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 100;
             }
             if (AssetManager.SoundName.VirusDetected == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 30;
             }
             if (AssetManager.SoundName.DeleteBot == soundName)
             {
@@ -73,6 +80,7 @@ namespace MemoryMaze
             if (AssetManager.SoundName.Wall == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 30;
             }
             sound.Play();
         }
