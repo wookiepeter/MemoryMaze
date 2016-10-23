@@ -283,7 +283,7 @@ namespace MemoryMaze
                             }
                             else
                             {
-                                currentInput = "[Name]";
+                                currentInput = "[Enter Name]";
                                 settingNewProfile = true;
                                 newProfileName = true;
                                 return GameState.MainMenu;
@@ -300,7 +300,7 @@ namespace MemoryMaze
                             }
                             else
                             {
-                                currentInput = "[Name]";
+                                currentInput = "[Enter Name]";
                                 settingNewProfile = true;
                                 newProfileName = true;
                                 return GameState.MainMenu;
@@ -317,7 +317,7 @@ namespace MemoryMaze
                             }
                             else
                             {
-                                currentInput = "[Name]";
+                                currentInput = "[Enter Name]";
                                 settingNewProfile = true;
                                 newProfileName = true;
                                 return GameState.MainMenu;

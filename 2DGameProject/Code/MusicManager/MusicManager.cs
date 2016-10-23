@@ -37,7 +37,6 @@ namespace MemoryMaze
         public static void PlaySound(AssetManager.SoundName soundName)
         {
             
-            
 
             if(AssetManager.SoundName.CreateBot == soundName)
             {
@@ -67,7 +66,7 @@ namespace MemoryMaze
             if (AssetManager.SoundName.Teleport == soundName)
             {
                 sound = new Sound(AssetManager.GetSound(soundName));
-                sound.Volume = 50;
+                sound.Volume = 35;
             }
             if (AssetManager.SoundName.VirusDetected == soundName)
             {
@@ -84,11 +83,16 @@ namespace MemoryMaze
                 sound = new Sound(AssetManager.GetSound(soundName));
                 sound.Volume = 3;
             }
+            if (AssetManager.SoundName.ItemPick == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+                sound.Volume = 20;
+            }
             sound.Play();
         }
         public static void StopSound()
         {
-            if(sound.Status != 0)
+            if (sound.Status != 0)
                 sound.Stop();
         }
 

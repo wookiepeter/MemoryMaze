@@ -51,11 +51,12 @@ namespace MemoryMaze
             
             // debug Text
             Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));
+            win.SetMouseCursorVisible(false);
 
             while (running && win.IsOpen())
             {
                 KeyboardInputManager.Update();
-
+                
                 // update GameTime
                 GameTime.Update();
                 float deltaTime = (float)GameTime.EllapsedTime.TotalSeconds;

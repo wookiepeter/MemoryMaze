@@ -36,6 +36,8 @@ namespace MemoryMaze
         SuperText guiLevel = new SuperText("Level", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
         Sprite guiLevelBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
 
+        Stopwatch hackWatch;
+
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
         {
@@ -136,6 +138,7 @@ namespace MemoryMaze
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
+
             watch.Start();
             map.Draw(win, view, relViewDif);
             levelution.Draw(win, view, relViewDif);
@@ -215,13 +218,18 @@ namespace MemoryMaze
             Tutorial nextTutorial = tutoList.Find(t => t.index == curIndex && !t.shown);
             if (nextTutorial != null)
             {
+                if (hackWatch == null)
+                {
+                    hackWatch = new Stopwatch();
+                    hackWatch.Start();
+                }
                 if (levelRating == ManageStars.Rating.Fail)
                 {
                     switch (curIndex)
                     {
                         // sort the cases latest to earliest
                         case 0:
-                            if (KeyboardInputManager.PressedKeys().Count > 0)
+                            if (hackWatch.ElapsedMilliseconds > 3000)
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 1:
