@@ -41,4 +41,10 @@ class Helper
         else
             return f;
     }
+
+    [System.Diagnostics.Conditional("DEBUG")]
+    public static void print(object obj)
+    {
+        Console.WriteLine(obj);
+    }
 }

@@ -80,7 +80,6 @@ namespace MemoryMaze
 
         }
 
-
         public GameState Update(RenderWindow win, float deltaTime)
         {
             foreach (SuperText sup in namel)
