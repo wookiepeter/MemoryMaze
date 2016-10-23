@@ -80,12 +80,10 @@ namespace MemoryMaze
 
         }
 
-
         public GameState Update(RenderWindow win, float deltaTime)
         {
             foreach (SuperText sup in namel)
             {
-                Console.WriteLine(deltaTime);
                 sup.Update(deltaTime);
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
