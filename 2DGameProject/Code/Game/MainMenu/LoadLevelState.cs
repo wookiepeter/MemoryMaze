@@ -369,10 +369,17 @@ namespace MemoryMaze
             worldName.Draw(win, RenderStates.Default);
             leftButton.Draw(win);
             rightButton.Draw(win);
-            levelInfo.Draw(win);
             foreach (LevelSelectButton l in mainButtonList)
             {
                 l.Draw(win);
+            }
+            levelInfo.Draw(win);
+            foreach (LevelSelectButton l in mainButtonList)
+            {
+                if(l.highlighted)
+                    l.Draw(win);
+                if (l.buttonLevel == currentLevel)
+                    l.Draw(win);
             }
             lastScreen.Draw(win, RenderStates.Default);
             nextScreen.Draw(win, RenderStates.Default);

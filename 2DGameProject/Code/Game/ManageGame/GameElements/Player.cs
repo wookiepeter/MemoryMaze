@@ -46,6 +46,7 @@ namespace MemoryMaze
 
         Sprite teleSprite;
         Vector2 teleSpritePos;
+        float teleSpriteSpeed;
         bool teleporting;
         bool blueBotPorting;
         List<Vector2> teleporterWaypoints;
@@ -76,6 +77,8 @@ namespace MemoryMaze
             this.sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.Player);
 
             teleSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.TeleportBot));
+            teleSprite.Origin = new Vector2f(teleSprite.Texture.Size.X * 0.5f, teleSprite.Texture.Size.Y * 0.5f);
+            teleSpriteSpeed = 1500f;
 
             this.mapPosition = position;
             UpdateSpritePosition(map);
@@ -84,7 +87,7 @@ namespace MemoryMaze
         }
 
         // Constructor for the Copy function
-        Player(Vector2i position, RectangleShape _sprite)
+        Player(Vector2i position, RectangleShape _sprite, Sprite _teleSprite, float _teleSpriteSpeed,int _sizePerCell)
         {
             playerdetected = new Text("Virus detected!", calibri);
             id = 0;
@@ -101,6 +104,9 @@ namespace MemoryMaze
 
             sprite = _sprite;
             mapPosition = position;
+            teleSprite = _teleSprite;
+            teleSpriteSpeed = _teleSpriteSpeed;
+            sizePerCell = _sizePerCell;
 
             InitializeGUI();
         }
@@ -146,7 +152,7 @@ namespace MemoryMaze
 
         public Player Copy()
         {
-            return new Player(mapPosition, sprite);
+            return new Player(mapPosition, sprite, teleSprite, teleSpriteSpeed, sizePerCell);
         }
         
         public void Update(float deltaTime, Map map)
@@ -154,9 +160,11 @@ namespace MemoryMaze
             if(teleporting)
             {
                 UpdateBots(deltaTime, map, getListOfBotPositions());
-                    
+                UpdateSpritePosition(map);
+                Teleporting(deltaTime);
+                currentFocus = teleSpritePos;
             }
-            if (isAlive == true)
+            else if (isAlive == true)
             {
                 if (controllid != 0)
                     SwitchToGhostPlayer();
@@ -227,38 +235,63 @@ namespace MemoryMaze
             
         }
 
-        public bool Teleporting()
+        public bool Teleporting(float deltaTime)
         {
-            
-
-            return false;
+            if(teleporterWaypoints.Count > 0)
+            {
+                Vector2 moveVec = teleporterWaypoints[0] - teleSpritePos;
+                if(moveVec.length != 0)
+                    moveVec = moveVec.normalize() * teleSpriteSpeed * deltaTime;
+                if (moveVec.length < (teleporterWaypoints[0] - teleSpritePos).length)
+                    teleSpritePos += moveVec;
+                else
+                {
+                    teleSpritePos = teleporterWaypoints[0];
+                    teleporterWaypoints.RemoveAt(0);
+                }
+                return true;
+            }
+            else
+            {
+                if (blueBotPorting)
+                    GraphicHelper.SetAlpha(255, botList.Find(b => b.id == 2).sprite);
+                else
+                    GraphicHelper.SetAlpha(255, sprite);
+                teleporting = false;
+                return false;
+            }
         }
 
         public void InitializeTeleport(Transporter porter, bool _blueBotPorting, Vector2i target)
         {
             teleporterWaypoints = new List<Vector2>();
-            Teleporter teleporter = (Teleporter)porter;
             teleporting = true;
             blueBotPorting = _blueBotPorting;
             Vector2i startPos = (blueBotPorting) ? botList.Find(b => b.id == 2).mapPosition : mapPosition;
-            teleSpritePos = new Vector2(startPos.X * sizePerCell, startPos.Y * sizePerCell);
+            teleSpritePos = new Vector2(startPos.X * sizePerCell + 0.5f * sizePerCell, startPos.Y * sizePerCell + sizePerCell * 0.5f);
             if (blueBotPorting)
                 GraphicHelper.SetAlpha(0, botList.Find(b => b.id == 2).sprite);
             else
                 GraphicHelper.SetAlpha(0, sprite);
             if (Math.Abs(target.X - startPos.X) > Math.Abs(target.Y - startPos.Y))
-                teleporterWaypoints.Add(new Vector2(target.X * sizePerCell, startPos.Y * sizePerCell));
+                teleporterWaypoints.Add(new Vector2(target.X * sizePerCell + sizePerCell * 0.5f, startPos.Y * sizePerCell + sizePerCell * 0.5f));
             else
-                teleporterWaypoints.Add(new Vector2(startPos.X * sizePerCell, target.Y * sizePerCell));
-            teleporterWaypoints.Add(new Vector2(target.X * sizePerCell, target.Y * sizePerCell));
+                teleporterWaypoints.Add(new Vector2(startPos.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
+            teleporterWaypoints.Add(new Vector2(target.X * sizePerCell + sizePerCell * 0.5f, target.Y * sizePerCell + sizePerCell * 0.5f));
         }
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
         {
 
             view.Center = Vector2.lerp(view.Center, currentFocus, deltaTime*3);
-            sprite.Position = sprite.Position + relViewDis;
+            
+            if (teleporting)
+            {
+                teleSprite.Position = teleSpritePos + (Vector2)relViewDis;
+                win.Draw(teleSprite);
+            }
 
+            sprite.Position += relViewDis;
             if (isAlive)
                 win.Draw(sprite);
             if (iserstellt)
@@ -269,6 +302,7 @@ namespace MemoryMaze
                 if(it != null)
                     it.Render(win, view, relViewDis);
             }
+
 
         }
 

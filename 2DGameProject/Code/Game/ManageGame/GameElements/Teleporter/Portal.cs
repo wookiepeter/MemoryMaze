@@ -61,10 +61,13 @@ namespace MemoryMaze
             {
                 if (player.mapPosition.Equals(entrance))
                 {
+                    player.InitializeTeleport(this, false, exit);
+                    Console.WriteLine("i did get initialized");
                     player.mapPosition = exit;
                 }
                 else
                 {
+                    player.InitializeTeleport(this, true, exit);
                     player.setBlueBotPosition(exit);
                 }
             }
