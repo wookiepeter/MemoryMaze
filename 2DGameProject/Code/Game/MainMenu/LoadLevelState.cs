@@ -149,7 +149,7 @@ namespace MemoryMaze
             SetButtonList(mainButtonList);
             levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
             SetCurrentLevelInfo();
-            mousePos = new Text("", new Font("Assets/Fonts/calibri.ttf"),20);
+            mousePos = new Text("", new Font("Assets/Fonts/fixedsys.ttf"), 20);
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect

@@ -43,7 +43,6 @@ namespace MemoryMaze
 
         AnimatedSprite testSpriteForCord;
         
-
         Vector2i currentScreenPosition;
 
         public MainMenuState()
@@ -70,16 +69,16 @@ namespace MemoryMaze
             stopwatch1.Start();
             funactivJoh = false;
             funacitvBenni = false;
-            font = new Font("Assets/Fonts/calibri.ttf");
+            font = new Font("Assets/Fonts/fixedsys.ttf");
             sexyFont = new Font("Assets/Fonts/pixelhole.ttf");
             MainTitleColor = new Color(0, 2, 42);
             ProfileNameColor = new Color(125, 253, 108);
             MenuTextColor = new Color(114, 217, 100);
 
             buttonList = new List<Button>();
-            buttonList.Add(new Button(new Vector2f(550, 330), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(550, 460), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(550, 590), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(560, 285), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(560, 405), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(560, 525), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
             buttonList.Add(new Button(new Vector2f(1060, 330), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
             buttonList.Add(new Button(new Vector2f(1060, 460), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
             buttonList.Add(new Button(new Vector2f(1060, 590), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));

@@ -19,6 +19,8 @@ namespace MemoryMaze
             {
                 transporterList.Add(trans.Copy());
             }
+            FlagDublicateExits();
+            FlagDuplicateEntrances();
         }
 
         TransportHandler(TransportHandler _transporthandler)
@@ -28,6 +30,8 @@ namespace MemoryMaze
             {
                 transporterList.Add(trans.Copy());
             }
+            FlagDublicateExits();
+            FlagDuplicateEntrances();
         }
 
         public TransportHandler Copy()
@@ -41,6 +45,58 @@ namespace MemoryMaze
             {
                 trans.Update(player, deltaTime);
             }
+        }
+
+        private void FlagDuplicateEntrances()
+        {
+            List<Vector2i> uniqueEntrances = new List<Vector2i>();
+            List<Vector2i> uniqueExits = new List<Vector2i>();
+            foreach(Transporter trans in transporterList)
+            {
+                if(trans is Teleporter)
+                {
+                    if(!uniqueEntrances.Contains(trans.entrance))
+                    {
+                        uniqueEntrances.Add(trans.entrance);
+                    }
+                    else
+                    {
+                        trans.drawEntrance = false;
+                    }
+                    if (!uniqueEntrances.Contains(trans.exit))
+                    {
+                        uniqueEntrances.Add(trans.exit);
+                    }
+                    else
+                    {
+                        trans.drawExit = false;
+                    }
+                }
+                else
+                {
+                    if(!uniqueEntrances.Contains(trans.entrance))
+                    {
+                        uniqueEntrances.Add(trans.entrance);
+                    }
+                    else
+                    {
+                        trans.drawEntrance = false;
+                    }
+                    if(!uniqueExits.Contains(trans.exit))
+                    {
+                        uniqueExits.Add(trans.exit);
+                    }
+                    else
+                    {
+                        trans.drawExit = false;
+                    }
+                }
+            }
+        }
+
+        private void FlagDublicateExits()
+        {
+
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
