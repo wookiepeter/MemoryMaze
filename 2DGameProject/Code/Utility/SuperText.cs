@@ -126,7 +126,7 @@ namespace MemoryMaze
             UpdateLength();
             foreach (Change c in changeList)
             {
-                if (c.isActive)
+                if (c.isActive && str[c.position] != '\n')
                 {
                     DisplayedString = DisplayedString.Remove(c.position, 1);
                     DisplayedString = DisplayedString.Insert(c.position, c.newChar.ToString());
