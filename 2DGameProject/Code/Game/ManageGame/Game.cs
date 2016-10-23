@@ -130,8 +130,8 @@ namespace MemoryMaze
         void SetTutorials()
         {
             tutorialList = new List<MemoryMaze.Tutorial>();
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(235, 218), new Vector2(100, 200), 6, 0, 0));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(196, 195), new Vector2(100, 200), 6, 1, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(335, 218), new Vector2(200, 200), 6, 0, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(296, 195), new Vector2(200, 200), 6, 1, 0));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostSpawn), 0.2F, 4), "Scout", new Vector2(1035, 195), new Vector2(900, 200), 10, 12, 0));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostMove), 0.2F, 8), "Move\nScout", new Vector2(1035, 209), new Vector2(900, 200), 10, 12, 1));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSpawnBot), 0.2F, 3), "Spawn\nBot", new Vector2(1035, 209), new Vector2(900, 200), 10, 12, 2));
