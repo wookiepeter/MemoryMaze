@@ -120,14 +120,17 @@ namespace MemoryMaze
 
             // this list is used to initialize the levelscreens
             List<List<Vector2f>> posList = new List<List<Vector2f>>() {
-                new List<Vector2f>() { new Vector2f(115, 345), new Vector2f(205, 385), new Vector2f(325, 345), new Vector2f(445, 305), new Vector2f(545, 355),
-                    new Vector2f(635, 335), new Vector2f(735, 365), new Vector2f(855, 385), new Vector2f(965, 345), new Vector2f(1045, 385), new Vector2f( 1125, 325)},
-                new List<Vector2f>() { new Vector2f(85,380), new Vector2f(175,425), new Vector2f(285,385), new Vector2f(425,425), new Vector2f(505,350), new Vector2f(585,245),
-                    new Vector2f(685,185), new Vector2f(805,195), new Vector2f(915,145), new Vector2f(1045,145), new Vector2f(1125,210), new Vector2f(1195,310)},
-                new List<Vector2f>() { new Vector2f(355, 405), new Vector2f(465, 325), new Vector2f(565, 345), new Vector2f(655, 305), new Vector2f(745, 365), new Vector2f(835, 395),
-                    new Vector2f(985, 495), },//new Vector2f(1095, 535), new Vector2f(1145, 425) },
-                new List<Vector2f>() { new Vector2f(45,330), new Vector2f(125,405), new Vector2f(225,460), new Vector2f(275,415), new Vector2f(365,455), new Vector2f(435,415),
-                    new Vector2f(535,360), new Vector2f(635,395), new Vector2f(755,345), new Vector2f(835,265), new Vector2f(910,340), new Vector2f(995,283), new Vector2f(1100,330), new Vector2f(1125,235) } 
+                new List<Vector2f>() { new Vector2f(115, 380), new Vector2f(205, 385), new Vector2f(325, 355), new Vector2f(445, 305), new Vector2f(505, 375),
+                    new Vector2f(675, 345), new Vector2f(785, 275), new Vector2f(865, 245), new Vector2f(965, 205), new Vector2f(1045, 225),new Vector2f(1105,345), new Vector2f( 1115, 515)},
+
+                new List<Vector2f>() { new Vector2f(225,395), new Vector2f(435,315), new Vector2f(535,325), new Vector2f(555,395), new Vector2f(715,385), new Vector2f(735,495),
+                    new Vector2f(875,435), new Vector2f(935,245), new Vector2f(955,175), new Vector2f(1055,195), new Vector2f(1175,215), new Vector2f(1235,345)},
+
+                new List<Vector2f>() { new Vector2f(355, 455), new Vector2f(515, 425), new Vector2f(695, 295), new Vector2f(825, 285), new Vector2f(935, 245), new Vector2f(1035, 445),
+                    new Vector2f(1155, 405), },//new Vector2f(1095, 535), new Vector2f(1145, 425) },
+
+                new List<Vector2f>() { new Vector2f(75,425), new Vector2f(155,545), new Vector2f(245,455), new Vector2f(345,355), new Vector2f(485,265), new Vector2f(615,245),
+                    new Vector2f(685,255), new Vector2f(715,305), new Vector2f(775,375), new Vector2f(835,415), new Vector2f(995,425), new Vector2f(1075,465), new Vector2f(1155,475), new Vector2f(1215,405) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4)};
             int curStartIndex = 0;
