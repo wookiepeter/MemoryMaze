@@ -129,13 +129,13 @@ namespace MemoryMaze
         void SetTutorials()
         {
             tutorialList = new List<MemoryMaze.Tutorial>();
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(100, 200), new Vector2(100, 200), 6, 0, 0));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(100, 200), new Vector2(100, 200), 6, 1, 0));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostSpawn), 0.2F, 2), "Scout", new Vector2(100, 200), new Vector2(100, 200), 6, 11, 0));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostMove), 0.2F, 8), "Move\nScout", new Vector2(100, 200), new Vector2(100, 200), 6, 11, 1));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSpawnBot), 0.2F, 3), "Spawn\nBot", new Vector2(100, 200), new Vector2(100, 200), 6, 11, 2));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSwitch), 0.2F, 4), "Switch", new Vector2(100, 200), new Vector2(100, 200), 6, 11, 3));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialDeleteBot), 0.2F, 2), "Delete", new Vector2(100, 200), new Vector2(100, 200), 6, 11, 4));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(235, 218), new Vector2(100, 200), 6, 0, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(196, 195), new Vector2(100, 200), 6, 1, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostSpawn), 0.2F, 4), "Scout", new Vector2(235, 195), new Vector2(100, 200), 10, 11, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostMove), 0.2F, 8), "Move\nScout", new Vector2(235, 209), new Vector2(100, 200), 10, 11, 1));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSpawnBot), 0.2F, 3), "Spawn\nBot", new Vector2(235, 209), new Vector2(100, 200), 10, 11, 2));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSwitch), 0.2F, 4), "Switch", new Vector2(210, 195), new Vector2(100, 200), 6, 11, 3));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialDeleteBot), 0.2F, 2), "Delete", new Vector2(165, 195), new Vector2(100, 200), 6, 11, 4));
             
         }
 

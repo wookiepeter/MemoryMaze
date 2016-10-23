@@ -14,6 +14,7 @@ namespace MemoryMaze
         Vector2 position;
         Vector2 textPosition;
         SuperText superText;
+        byte maxOpacity;
         float duration;
         float currentTime;
         public int index;
@@ -35,6 +36,9 @@ namespace MemoryMaze
             iShouldKillMyself = false;
             superText = new SuperText(_text, font, 0.05f);
             superText.Position = textPosition;
+            superText.CharacterSize = 48;
+
+            maxOpacity = 200;
         }
         
         /// <summary>
@@ -51,18 +55,22 @@ namespace MemoryMaze
         {
             if (currentTime >= 0)
             {
+                if(currentTime > (duration * 0.9F))
+                {
+                    GraphicHelper.SetAlpha((byte)(maxOpacity * (1F - (currentTime / duration)) / 0.1F), animSprite);
+                    GraphicHelper.SetAlpha((byte)((maxOpacity + 20) * (1F - (currentTime / duration)) / 0.1F), superText);
+                }
                 animSprite.UpdateFrame(deltaTime);
                 superText.Update(deltaTime);
                 currentTime -= deltaTime;
                 if (currentTime < (duration / 2))
                 {
-                    GraphicHelper.SetAlpha((byte) (255 * currentTime / (duration * 0.5f)), animSprite);
-                    GraphicHelper.SetAlpha((byte)(255 * currentTime / (duration * 0.5f)), superText);
+                    GraphicHelper.SetAlpha((byte) (maxOpacity * currentTime / (duration * 0.5f)), animSprite);
+                    GraphicHelper.SetAlpha((byte)((maxOpacity + 20) * currentTime / (duration * 0.5f)), superText);
                 }
             }
             else
             {
-                Console.WriteLine("Too soon");
                 iShouldKillMyself = true;
             }
         }
