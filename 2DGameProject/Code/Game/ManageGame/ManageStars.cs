@@ -91,6 +91,7 @@ namespace MemoryMaze
 
         public bool EverythingUnlocked()
         {
+            Console.WriteLine(levelRating[0]);
             return levelRating[levelRating.Length - 1] != Rating.Fail;
         }
         
@@ -197,5 +198,31 @@ namespace MemoryMaze
                 }
             }
         }
+
+        public String GetPercentage()
+        {
+            if(EverythingUnlocked())
+            {
+                return "100%";
+            }
+            else
+            {
+                return "" + ComputePercentage() + "%";
+            }
+        }
+
+        int ComputePercentage()
+        {
+            int maxScore = levelRating.Length * 3;
+
+            int curScore = 0;
+            for( int i = 0; i < levelRating.Length; i++)
+            {
+                curScore += (levelRating[i] == Rating.Skipped) ? 0 : (int)levelRating[i];
+            }
+
+            return (int)((float) curScore / (float) maxScore * 100);
+        }
+
     }
 }

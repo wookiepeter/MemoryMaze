@@ -118,6 +118,11 @@ public class AssetManager
         textures.Add(TextureName.BlueEnergybar, new Texture("Assets/Textures/Virus/EnergybarBlue.png"));
         textures.Add(TextureName.GreenEnergybar, new Texture("Assets/Textures/Virus/EnergybarGreen.png"));
         textures.Add(TextureName.RedEnergybar, new Texture("Assets/Textures/Virus/EnergybarRed.png"));
+        textures.Add(TextureName.IconDelete, new Texture("Assets/Textures/Menu/Icon_Trash.png"));
+        textures.Add(TextureName.IconCredits, new Texture("Assets/Textures/Menu/Icon_Credits.png"));
+        textures.Add(TextureName.IconOptions, new Texture("Assets/Textures/Menu/Icon_Options.png"));
+        textures.Add(TextureName.IconExit, new Texture("Assets/Textures/Menu/Icon_Exit.png"));
+
     }
 
     public enum TextureName
@@ -227,6 +232,10 @@ public class AssetManager
         RedEnergybar,
         BlueEnergybar,
         GrayEnergybar,
+        IconDelete,
+        IconCredits,
+        IconExit,
+        IconOptions
     }
 
     //Music!
