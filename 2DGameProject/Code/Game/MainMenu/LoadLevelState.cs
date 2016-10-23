@@ -109,6 +109,7 @@ namespace MemoryMaze
             profiles = profiles.loadManageProfiles();
             stars = new ManageStars();
             stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
+            stars.saveManageStars(profiles.getActiveProfileName());
             currentLevel = stars.EverythingUnlocked()? stars.GetLastSelectedLevel() : stars.getIndexOfFirstUnsolvedLevel();
 
             mainButtonList = new List<LevelSelectButton>();
@@ -248,6 +249,7 @@ namespace MemoryMaze
                     }
                     return GameState.LoadLevelState;
                 }
+
                 if (KeyboardInputManager.Downward(Keyboard.Key.Return) && currentScreenPosition.Y == 0)
                 {
                     return StartLevelIfUnlocked();

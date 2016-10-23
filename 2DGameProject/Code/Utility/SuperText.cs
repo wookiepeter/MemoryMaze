@@ -101,9 +101,12 @@ namespace MemoryMaze
                         changeList.RemoveAll(b => true);
                     else
                         changeList.RemoveRange(changeListLength-1, changeList.Count - changeListLength);
-                    foreach (Change c in changeList)
-                        c.RandomizeChange(DisplayedString.Length, minDuration, maxDuration, minFrequency, maxFrequency);
                 }
+            }
+            if (changeList.Find(c => c.position >= DisplayedString.Length) != null)
+            {
+                foreach (Change c in changeList)
+                    c.RandomizeChange(DisplayedString.Length, minDuration, maxDuration, minFrequency, maxFrequency);
             }
         }
 

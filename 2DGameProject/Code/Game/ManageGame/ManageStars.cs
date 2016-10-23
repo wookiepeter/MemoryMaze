@@ -19,8 +19,11 @@ namespace MemoryMaze
 
         public int lastSelectedLevel;
 
+        public int levelSkips;
+
         public enum Rating
         { 
+            Skipped = -1,
             Fail = 0,
             Bronze = 1,
             Silver = 2,
@@ -38,6 +41,7 @@ namespace MemoryMaze
                 levelRating[i] = Rating.Fail;
             }
             lastSelectedLevel = 0;
+            levelSkips = 3;
         }
 
         public void UpdateScoreOfLevel(int _index, Rating _rating)
@@ -111,6 +115,17 @@ namespace MemoryMaze
         {
             saveRatings(this, "Assets/" + playerName);
         }
+
+        public bool SkipLevel(int levelIndex)
+        {
+            Console.WriteLine(levelSkips);
+            if (levelSkips <= 0 || levelRating[levelIndex] != Rating.Fail)
+                return false;
+            levelSkips--;
+            levelRating[levelIndex] = Rating.Skipped;
+            return true;
+        }
+
         /// <summary>
         /// Load ManageStars class
         /// </summary>
