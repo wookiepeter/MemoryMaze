@@ -12,7 +12,8 @@ namespace MemoryMaze
     class LevelInfo
     {
         Sprite background;
-        List<Sprite> starList;
+        Sprite screenShot;
+        Sprite medal;
         List<RectangleShape> lines;
         List<Vector2> cornerPositions;
         SuperText levelName;
@@ -32,13 +33,10 @@ namespace MemoryMaze
             background.Origin = new Vector2f(background.Texture.Size.X * 0.5f, background.Texture.Size.X * 0.5f);
             background.Position = (Vector2f)position + background.Origin;
 
-            starList = new List<Sprite>();
-            starList.Add(new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotBronze)));
-            starList[0].Position = new Vector2f(50, 150);
-            starList.Add(new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotSilver)));
-            starList[1].Position = new Vector2f(130, 150);
-            starList.Add(new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotGold)));
-            starList[2].Position = new Vector2f(210, 150);
+            screenShot = new Sprite(AssetManager.GetScreenShot(_button.buttonLevel));
+            screenShot.Position = position + new Vector2(20, 20);
+
+            medal = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
 
             defaultLineColor = new Color(255, 255, 255);
             float cornerDist = 10;
@@ -66,9 +64,9 @@ namespace MemoryMaze
             foreach (RectangleShape rec in lines)
                 win.Draw(rec);
             win.Draw(background);
+            win.Draw(screenShot);
             levelName.Draw(win, RenderStates.Default);
-            foreach (Sprite s in starList)
-                win.Draw(s);
+            win.Draw(medal);
         }
 
         public void SetNewLevel(LevelSelectButton _button, ManageStars.Rating _rating)
@@ -78,27 +76,36 @@ namespace MemoryMaze
             
             levelName = new SuperText("Level " + (button.buttonLevel + 1), font, 0.2f);
             levelName.CharacterSize = 50;
-            levelName.Position = position + new Vector2(15, -10);
+            levelName.Position = position + new Vector2(23, 205);
+
+            screenShot.Texture = AssetManager.GetScreenShot(button.buttonLevel);
+
             lines = new List<RectangleShape>();
             foreach (Vector2 v in cornerPositions)
             {
                 lines.Add(GenerateLine(v, button.position, 2));
             }
 
-            for (int i = 0; i <= 2; i++)
+            switch(rating)
             {
-                if (i < (int)rating)
-                {
-                    starList[i].Color = new Color(255, 255, 255);
-                    GraphicHelper.SetAlpha(255, starList[i]);
-                }
-                else
-                {
-                    starList[i].Color = new Color(20, 20, 20);
-                    GraphicHelper.SetAlpha(120, starList[i]);
-                }
+                case ManageStars.Rating.Fail:
+                    break;
+                case ManageStars.Rating.Bronze:
+                    break;
+                case ManageStars.Rating.Silver:
+                    break;
+                case ManageStars.Rating.Gold:
+                    break;
+                case ManageStars.Rating.Skipped:
+                    break; 
             }
             SetAllAphas(highlighted? 100 : 50);
+        }
+
+        void SetMedal(Texture text)
+        {
+            medal.Texture = text;
+            medal.Position = position + new Vector2(320, 190);
         }
 
         private void SetAllAphas(float percentage)
@@ -106,6 +113,7 @@ namespace MemoryMaze
             foreach(RectangleShape rec in lines)
                 GraphicHelper.SetAlpha((byte)(175* percentage / 100), rec);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), background);
+            GraphicHelper.SetAlpha((byte)(255 * percentage / 100), screenShot);
             GraphicHelper.SetAlpha((byte)(255 * percentage / 100), levelName);
             for (int i = 0; i <= 2; i++)
             {
