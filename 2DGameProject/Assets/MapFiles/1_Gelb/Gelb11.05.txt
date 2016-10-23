@@ -1,0 +1,18 @@
+﻿8
+10
+wwwwwwww
+wwwweeew
+wwwgmeew
+wwwwmeew
+wwwwewww
+weeeewww
+wwwwewww
+wwwwwwiw
+wwwwwwww
+wwwwwwww
+
+//pos: 6,1
+_map:
+lever(5,4);empty(6,2);empty(7,2);empty(8,2;empty(8,3);empty(8,4);empty(8,5);empty(7,5);empty(7,6)
+lever(5,1);empty(4,6);empty(5,6);empty(5,5)
+rating(100,76,71)

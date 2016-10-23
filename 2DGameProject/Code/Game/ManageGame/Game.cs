@@ -56,7 +56,7 @@ namespace MemoryMaze
 
         void Tutorial()
         {
-            levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau13.txt", 64, new Vector2i(8,10), 1));
+            levelList.Add(new Level("Assets/MapFiles/1_Gelb/Gelb11.05.txt", 64, new Vector2i(6,1), 1));
             nextGameState = GameState.Intro;
         }
 
