@@ -88,7 +88,8 @@ namespace MemoryMaze
         }
         public static void StopSound()
         {
-            sound.Stop();
+            if(sound.Status != 0)
+                sound.Stop();
         }
 
         
