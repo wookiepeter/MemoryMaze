@@ -49,7 +49,7 @@ namespace MemoryMaze
         Sprite greenBotHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDGreenBox)));
         Sprite greenBotReserveBot = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenItem)));
 
-        Font calibri = new Font("Assets/Fonts/calibri.ttf");
+        Font calibri = new Font("Assets/Fonts/fixedsys.ttf");
         Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
         Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
 
