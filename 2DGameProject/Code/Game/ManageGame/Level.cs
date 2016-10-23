@@ -46,6 +46,7 @@ namespace MemoryMaze
 
         AnimatedSprite endAnimation;
         Sprite endSprite;
+        SuperText endText;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
@@ -96,9 +97,10 @@ namespace MemoryMaze
         {
             if (finished)
             {
+                endAnimation.UpdateFrame(deltaTime);
+                endText.Update(deltaTime);
                 if(KeyboardInputManager.Downward(Keyboard.Key.Space))
                     mapStatus = 1;
-
             }
             else
             {
@@ -128,8 +130,13 @@ namespace MemoryMaze
                 if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 {
                     endSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo));
-                    endSprite.Position = new Vector2f(500, 300);
-                    //endAnimation = new AnimatedSprite(AssetManager.GetTexture())
+                    endSprite.Position = new Vector2f(450, 220);
+                    GraphicHelper.SetAlpha(200, endSprite);
+                    endAnimation = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.SpaceBar), 0.2f, 3);
+                    endAnimation.Position = (Vector2)endSprite.Position + new Vector2(125, 200);
+                    endText = new SuperText("Congratulations", new Font("Assets/Fonts/fixedsys.ttf"), 0.1f);
+                    endText.Position = (Vector2)endSprite.Position + new Vector2(20, 25);
+                    endText.CharacterSize = 40;
                     finished = true;
                     addScoreFromBots();
                     CheckLevel();
@@ -164,6 +171,8 @@ namespace MemoryMaze
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
 
+            
+
             watch.Start();
             win.Draw(background);
             map.Draw(win, view, relViewDif);
@@ -180,6 +189,12 @@ namespace MemoryMaze
             if (currentTutorial != null)
             {
                 currentTutorial.Draw(win, view, relViewDif);
+            }
+            if(finished == true)
+            {
+                win.Draw(endSprite);
+                win.Draw(endAnimation);
+                endText.Draw(win, RenderStates.Default);
             }
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }
