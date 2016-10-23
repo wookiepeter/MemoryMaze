@@ -24,7 +24,7 @@ namespace MemoryMaze
         {
             
             music = AssetManager.GetMusic(musicName);
-            music.Volume = 5;
+            music.Volume = 18;
             music.Play();
             music.Loop = true;;
 
