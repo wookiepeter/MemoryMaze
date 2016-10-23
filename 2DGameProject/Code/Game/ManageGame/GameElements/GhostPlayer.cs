@@ -86,6 +86,7 @@ namespace MemoryMaze
 
                 if (player.redItemCounter > 0)
                 {
+                    player.scoreCounter -= player.botList.Find(b => b.id == 1).counter;
                     player.botList.Remove(player.botList.Find(b => b.id == 1));
                     redBot = new RedBot(mapPosition, map);
                     player.botList.Add(redBot);
@@ -114,6 +115,7 @@ namespace MemoryMaze
             {
                 if (player.blueItemCounter > 0)
                 {
+                    player.scoreCounter -= player.botList.Find(b => b.id == 2).counter;
                     player.botList.Remove(player.botList.Find(b => b.id == 2));
 
                     blueBot = new BlueBot(mapPosition, map);
@@ -142,6 +144,7 @@ namespace MemoryMaze
             {
                 if(player.greenItemCounter > 0)
                 {
+                    player.scoreCounter -= player.botList.Find(b => b.id == 3).counter;
                     player.botList.Remove(player.botList.Find(b => b.id == 3));
                     greenBot = new GreenBot(mapPosition, map);
                     player.botList.Add(greenBot);
