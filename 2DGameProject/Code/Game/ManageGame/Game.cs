@@ -162,6 +162,28 @@ namespace MemoryMaze
                 }
             }
 
+            if(levelStatus == 3)
+            {
+                Console.WriteLine("i get here");
+                if(manageStars.SkipLevel(curIndex))
+                {
+                    curIndex++;
+                    SaveGame();
+                    if (curIndex >= levelList.Count)
+                    {
+                        nextGameState = GameState.MainMenu;
+                    }
+                    else
+                    {
+                        level = levelList[curIndex].Copy();
+                    }
+                }
+                else
+                {
+                    nextGameState = GameState.InGame;
+                }
+            }
+
             if(levelStatus == 2)
             {
                 level = levelList[curIndex].Copy();

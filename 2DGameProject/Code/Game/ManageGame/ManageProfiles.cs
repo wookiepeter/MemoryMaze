@@ -24,8 +24,11 @@ namespace MemoryMaze
     public class ManageProfiles
     {
         public String profileOne;
+        public bool profileOneExists;
         public String profileTwo;
+        public bool profileTwoExists;
         public String profileThree;
+        public bool profileThreeExists;
 
         public ManageProfiles()
         {
@@ -51,28 +54,63 @@ namespace MemoryMaze
             switch(profile)
             {
                 case profiles.one: profileOne = newName;
+                    profileOneExists = true;
                     break;
                 case profiles.two: profileTwo = newName;
+                    profileTwoExists = true;
                     break;
                 case profiles.three: profileThree = newName;
+                    profileThreeExists = true;
                     break;
             }
             saveManageProfiles();
+        }
+
+        public void deleteProfile(profiles profile)
+        {
+            if (File.Exists("Assets/" + getProfileName(profile)))
+            {
+                File.Delete("Assets/" + getProfileName(profile));
+            }
+            switch (profile)
+            {
+                case profiles.one:
+                    profileOne = "";
+                    profileOneExists = false;
+                    break;
+                case profiles.two:
+                    profileTwo = "";
+                    profileTwoExists = false;
+                    break;
+                case profiles.three:
+                    profileThree = "";
+                    profileThreeExists = false;
+                    break;
+            }
         }
         
         public String getProfileName(profiles profile)
         {
             switch (profile)
             {
-                case profiles.one: return profileOne;
-                case profiles.two: return profileTwo;
-                default: return profileThree;
+                case profiles.one: if (profileOneExists) return profileOne;
+                    else
+                        return "New...";
+                case profiles.two: if (profileTwoExists) return profileTwo;
+                    else
+                        return "New...";
+                default: if (profileThreeExists) return profileThree;
+                    else
+                        return "New...";
             }
         }
 
         public String getActiveProfileName()
         {
-            return getProfileName(ProfileConstants.activeProfile);
+            if (ProfileExists(ProfileConstants.activeProfile))
+                return getProfileName(ProfileConstants.activeProfile);
+            else
+                return "";
         }
 
         /// <summary>
@@ -86,6 +124,17 @@ namespace MemoryMaze
 
             ser.Serialize(stream, manageProfiles);
             stream.Close();
+        }
+
+        public bool ProfileExists(profiles profile)
+        {
+            switch (profile)
+            {
+                case profiles.one: return profileOneExists;
+                case profiles.two: return profileTwoExists;
+                case profiles.three: return profileThreeExists;
+            }
+            return false;
         }
 
         public void saveManageProfiles()
