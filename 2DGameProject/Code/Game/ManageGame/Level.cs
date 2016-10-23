@@ -83,6 +83,10 @@ namespace MemoryMaze
             {
                 currentTutorial.Update(deltaTime);
             }
+            if(KeyboardInputManager.Upward(Keyboard.Key.T))
+            {
+                return 3;
+            }
             if (KeyboardInputManager.Upward(Keyboard.Key.Y))
                 mapStatus = 1;
             if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)

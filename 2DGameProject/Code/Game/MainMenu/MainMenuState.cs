@@ -29,6 +29,7 @@ namespace MemoryMaze
         Color MenuTextColor;
 
         bool settingNewProfile = false;
+        bool newProfileName = false;
         String currentInput;
 
         SuperText profileOneText, profileTwoText, profileThreeText;
@@ -100,7 +101,8 @@ namespace MemoryMaze
 
             //Initializiere alle Texte
             gameName = new SuperText("", sexyFont, 0.1f);
-            gameName.Position = new Vector2f(55, -45);            gameName.CharacterSize = 240;
+            gameName.Position = new Vector2f(55, -45);
+            gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
 
             mainmenu = new Text("SpielMenü", font);
@@ -129,13 +131,13 @@ namespace MemoryMaze
 
             profileOneText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.one), font, 0.15f);
             profileOneText.Position = new Vector2f(250, 300);
-            profileOneText.CharacterSize = 70;
+            profileOneText.CharacterSize = 58;
             profileTwoText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.two), font, 0.15f);
             profileTwoText.Position = new Vector2f(250, 400);
-            profileTwoText.CharacterSize = 70;
+            profileTwoText.CharacterSize = 58;
             profileThreeText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.three), font, 0.15f);
             profileThreeText.Position = new Vector2f(250, 500);
-            profileThreeText.CharacterSize = 70;
+            profileThreeText.CharacterSize = 58;
             superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText};
 
             currentScreenPosition = new Vector2i(0, 0);
@@ -167,9 +169,16 @@ namespace MemoryMaze
                 if (settingNewProfile)
                 {
                     List<char> charList = KeyboardInputManager.getCharInput();
+                    if (newProfileName && KeyboardInputManager.getCharInput().Count > 0)
+                    {
+                        currentInput = "";
+                        newProfileName = false;
+                    }
                     foreach (char c in charList)
-                        currentInput += c;
-                    UpdateSelectedProfileText(currentInput);
+                    {
+                        if (currentInput.Length <= 16)
+                            currentInput += c;
+                    }
                     if (KeyboardInputManager.Downward(Keyboard.Key.Back))
                     {
                         if (currentInput != "")
@@ -177,6 +186,7 @@ namespace MemoryMaze
                             currentInput = currentInput.Remove(currentInput.Length - 1);
                         }
                     }
+                    UpdateSelectedProfileText(currentInput, deltaTime);
                     if ((KeyboardInputManager.IsPressed(Keyboard.Key.Escape) || Mouse.IsButtonPressed(Mouse.Button.Left)) && settingNewProfile)
                     {
                         settingNewProfile = false;
@@ -184,13 +194,14 @@ namespace MemoryMaze
                         UpdateActiveProfileText();
                         return GameState.MainMenu;
                     }
-                    if (KeyboardInputManager.IsPressed(Keyboard.Key.Return))
+                    if (KeyboardInputManager.Downward(Keyboard.Key.Return))
                     {
                         if (currentInput != "")
                         {
                             profiles.setProfile(currentInput, ProfileConstants.activeProfile);
                             settingNewProfile = false;
                             UpdateActiveProfileText();
+                            return GameState.LoadLevelState;
                         }
                         else
                         {
@@ -246,27 +257,51 @@ namespace MemoryMaze
                                                                                     //start
                         case 0:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.one;
-                            return GameState.LoadLevelState;
+                            if (profiles.ProfileExists(MemoryMaze.profiles.one))
+                            {
+                                return GameState.LoadLevelState;
+                            }
+                            else
+                            {
+                                currentInput = "[Name]";
+                                settingNewProfile = true;
+                                newProfileName = true;
+                                return GameState.MainMenu;
+                            }
                         case 3:
-                            ProfileConstants.activeProfile = MemoryMaze.profiles.one;
-                            settingNewProfile = true;
-                            currentInput = "";
+                            profiles.deleteProfile(MemoryMaze.profiles.one);
                             break;
                         case 1:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.two;
-                            return GameState.LoadLevelState;
+                            if (profiles.ProfileExists(MemoryMaze.profiles.two))
+                            {
+                                return GameState.LoadLevelState;
+                            }
+                            else
+                            {
+                                currentInput = "[Name]";
+                                settingNewProfile = true;
+                                newProfileName = true;
+                                return GameState.MainMenu;
+                            }
                         case 4:
-                            ProfileConstants.activeProfile = MemoryMaze.profiles.two;
-                            settingNewProfile = true;
-                            currentInput = "";
+                            profiles.deleteProfile(MemoryMaze.profiles.two);
                             break;
                         case 2:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.three;
-                            return GameState.LoadLevelState;
+                            if (profiles.ProfileExists(MemoryMaze.profiles.three))
+                            {
+                                return GameState.LoadLevelState;
+                            }
+                            else
+                            {
+                                currentInput = "[Name]";
+                                settingNewProfile = true;
+                                newProfileName = true;
+                                return GameState.MainMenu;
+                            }
                         case 5:
-                            ProfileConstants.activeProfile = MemoryMaze.profiles.three;
-                            settingNewProfile = true;
-                            currentInput = "";
+                            profiles.deleteProfile(MemoryMaze.profiles.three);
                             break;
                         case 6: return GameState.Intro;
                         case 7: return GameState.Credits;
@@ -278,6 +313,8 @@ namespace MemoryMaze
                     }
                 }
             }
+            if (!settingNewProfile)
+                UpdateAllProfilesTexts();
             UpdateMainTitle(deltaTime);
 
             foreach (SuperText s in superTextList)
@@ -322,6 +359,13 @@ namespace MemoryMaze
                 }
             }
             gameName.DisplayedString = currentTitleString + currentlyAppendedLetters;
+        }
+
+        void UpdateAllProfilesTexts()
+        {
+            profileOneText.DisplayedString = profiles.getProfileName(MemoryMaze.profiles.one);
+            profileTwoText.DisplayedString = profiles.getProfileName(MemoryMaze.profiles.two);
+            profileThreeText.DisplayedString = profiles.getProfileName(MemoryMaze.profiles.three);
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)
@@ -397,18 +441,21 @@ namespace MemoryMaze
             }
         }
 
-        private void UpdateSelectedProfileText(String currentInput)
+        private void UpdateSelectedProfileText(String currentInput, float deltaTime)
         {
             switch (ProfileConstants.activeProfile)
             {
                 case MemoryMaze.profiles.one:
                     profileOneText.DisplayedString = currentInput;
+                    profileOneText.Update(deltaTime);
                     break;
                 case MemoryMaze.profiles.two:
                     profileTwoText.DisplayedString = currentInput;
+                    profileTwoText.Update(deltaTime);
                     break;
                 case MemoryMaze.profiles.three:
                     profileThreeText.DisplayedString = currentInput;
+                    profileThreeText.Update(deltaTime);
                     break;
             }
         }
