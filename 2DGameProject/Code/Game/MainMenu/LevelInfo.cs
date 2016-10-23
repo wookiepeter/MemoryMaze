@@ -87,7 +87,6 @@ namespace MemoryMaze
 
             for (int i = 0; i <= 2; i++)
             {
-                Console.WriteLine("rating: " + rating + " i " + i);
                 if (i < (int)rating)
                 {
                     starList[i].Color = new Color(255, 255, 255);
