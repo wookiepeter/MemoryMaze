@@ -33,6 +33,7 @@ namespace MemoryMaze
         String currentInput;
 
         SuperText profileOneText, profileTwoText, profileThreeText;
+        SuperText profileOnePercentage, profileTwoPercentage, ProfileThreePercentage;
         List<SuperText> superTextList;
         List<Text> textlist;
         
@@ -45,6 +46,8 @@ namespace MemoryMaze
         AnimatedSprite testSpriteForCord;
         
         Vector2i currentScreenPosition;
+
+        ManageStars stars = new ManageStars();
 
         public MainMenuState()
         {
@@ -77,15 +80,15 @@ namespace MemoryMaze
             MenuTextColor = new Color(114, 217, 100);
 
             buttonList = new List<Button>();
-            buttonList.Add(new Button(new Vector2f(560, 285), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(560, 405), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(560, 525), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(1060, 330), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(1060, 460), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(1060, 590), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(600, 700), new Vector2i(0, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
-            buttonList.Add(new Button(new Vector2f(800, 700), new Vector2i(1, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
-            buttonList.Add(new Button(new Vector2f(1000, 700), new Vector2i(2, 3), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions), AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptionsGlow)));
+            buttonList.Add(new Button(new Vector2f(500, 275), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(500, 395), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(500, 515), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(925, 275), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(925, 395), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(925, 515), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(685, 645), new Vector2i(0, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconOptions)));
+            buttonList.Add(new Button(new Vector2f(805, 645), new Vector2i(1, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconCredits)));
+            buttonList.Add(new Button(new Vector2f(925, 645), new Vector2i(2, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconExit)));
 
             gameTitle = "RAMification!";
             currentTitleString = "";
@@ -101,7 +104,7 @@ namespace MemoryMaze
 
             //Initializiere alle Texte
             gameName = new SuperText("", sexyFont, 0.1f);
-            gameName.Position = new Vector2f(55, -45);
+            gameName.Position = new Vector2f(55, -65);
             gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
 
@@ -130,21 +133,38 @@ namespace MemoryMaze
             loadGame.CharacterSize = 40;
 
             profileOneText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.one), font, 0.15f);
-            profileOneText.Position = new Vector2f(250, 300);
+            profileOneText.Position = new Vector2f(165, 250);
             profileOneText.CharacterSize = 58;
+
+            profileOnePercentage = new SuperText("", font, 0.15f);
+            profileOnePercentage.Position = new Vector2f(700, 250);
+            profileOnePercentage.CharacterSize = 58;
+
             profileTwoText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.two), font, 0.15f);
-            profileTwoText.Position = new Vector2f(250, 400);
+            profileTwoText.Position = new Vector2f(165, 370);
             profileTwoText.CharacterSize = 58;
+
+            profileTwoPercentage = new SuperText("", font, 0.15f);
+            profileTwoPercentage.Position = new Vector2f(700, 370);
+            profileTwoPercentage.CharacterSize = 58;
+
             profileThreeText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.three), font, 0.15f);
-            profileThreeText.Position = new Vector2f(250, 500);
+            profileThreeText.Position = new Vector2f(165, 490);
             profileThreeText.CharacterSize = 58;
-            superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText};
+
+            ProfileThreePercentage = new SuperText("", font, 0.15f);
+            ProfileThreePercentage.Position = new Vector2f(700, 490);
+            ProfileThreePercentage.CharacterSize = 58;
+
+            superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText, profileOnePercentage, profileTwoPercentage, ProfileThreePercentage};
 
             currentScreenPosition = new Vector2i(0, 0);
 
             //Alle Texte in ein Array Speichern -> Liste übertragen!
             Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit};
             textlist = array.ToList();
+
+            UpdateProfilePercentage();
         }
 
         public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
@@ -156,12 +176,12 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-
             gameName.Update(deltaTime);
             foreach(Button b in buttonList)
             {
                 b.Update(deltaTime, win, currentScreenPosition);
             }
+            UpdateButtonAlphas();
             if (stopwatch1.ElapsedMilliseconds > 200)
             {
                 int index = -1;
@@ -270,6 +290,7 @@ namespace MemoryMaze
                             }
                         case 3:
                             profiles.deleteProfile(MemoryMaze.profiles.one);
+                            UpdateProfilePercentage();
                             break;
                         case 1:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.two;
@@ -286,6 +307,7 @@ namespace MemoryMaze
                             }
                         case 4:
                             profiles.deleteProfile(MemoryMaze.profiles.two);
+                            UpdateProfilePercentage();
                             break;
                         case 2:
                             ProfileConstants.activeProfile = MemoryMaze.profiles.three;
@@ -302,6 +324,7 @@ namespace MemoryMaze
                             }
                         case 5:
                             profiles.deleteProfile(MemoryMaze.profiles.three);
+                            UpdateProfilePercentage();
                             break;
                         case 6: return GameState.Intro;
                         case 7: return GameState.Credits;
@@ -333,6 +356,19 @@ namespace MemoryMaze
             }
             return index;
         }
+
+        void UpdateButtonAlphas()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (profiles.ProfileExists(((MemoryMaze.profiles)(i + 1))))
+                    buttonList[i + 3].currentAlpha = 255;
+                else
+                    buttonList[i + 3].currentAlpha = 127;
+            }
+        }
+
+        
 
         void UpdateMainTitle(float deltaTime)
         {
@@ -439,6 +475,7 @@ namespace MemoryMaze
                     profileThreeText.DisplayedString = profiles.getActiveProfileName();
                     break;
             }
+            UpdateProfilePercentage();
         }
 
         private void UpdateSelectedProfileText(String currentInput, float deltaTime)
@@ -457,6 +494,32 @@ namespace MemoryMaze
                     profileThreeText.DisplayedString = currentInput;
                     profileThreeText.Update(deltaTime);
                     break;
+            }
+        }
+
+        private void UpdateProfilePercentage()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                String percentageString = "";
+                if (profiles.ProfileExists((MemoryMaze.profiles) i))
+                {
+                    stars = stars.unsafelyLoadManageStars(profiles.getProfileName((MemoryMaze.profiles) i));
+                    percentageString = stars.GetPercentage();
+                }
+                percentageString = percentageString.PadLeft(4, ' ');
+                switch ((MemoryMaze.profiles) i)
+                {
+                    case MemoryMaze.profiles.one:
+                        profileOnePercentage.DisplayedString = percentageString;
+                        break;
+                    case MemoryMaze.profiles.two:
+                        profileTwoPercentage.DisplayedString = percentageString;
+                        break;
+                    case MemoryMaze.profiles.three:
+                        ProfileThreePercentage.DisplayedString = percentageString;
+                        break;
+                }
             }
         }
     }
