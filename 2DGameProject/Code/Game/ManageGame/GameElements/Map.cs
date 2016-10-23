@@ -17,6 +17,7 @@ namespace MemoryMaze
         public int sizePerCell { get; private set; }
         Cell[,] cellMap;
         RectangleShape mapSprite;
+        bool hasKey = false;
 
         MapFromTxt mapFromText = new MapFromTxt();
 
@@ -97,8 +98,20 @@ namespace MemoryMaze
             return newCellArray;
         }
 
-        public int Update(float deltaTime)
+        public int Update(float deltaTime, int keyCounter)
         {
+            if(!hasKey && keyCounter > 0)
+            {
+                hasKey = true;
+                for(int i = 0; i < mapSizeY; i++)
+                {
+                    for(int j = 0; j < mapSizeX; j++)
+                    {
+                        if (cellMap[j, i].IsGoal())
+                            cellMap[j, i].isGoalAndHasKey = true;
+                    }
+                }
+            }
 
             return 0;
         }

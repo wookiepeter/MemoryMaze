@@ -74,7 +74,7 @@ namespace MemoryMaze
         {
             mapStatus = 0;
             playerScore = player.scoreCounter;
-            map.Update(deltaTime);
+            map.Update(deltaTime, player.keyCounter);
             player.Update(deltaTime, map);
             itemList.Update(map, player, deltaTime);
             trapHandler.Update(map, player, deltaTime);
