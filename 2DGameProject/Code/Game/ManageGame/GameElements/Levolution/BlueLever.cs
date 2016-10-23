@@ -51,6 +51,7 @@ namespace MemoryMaze
                 {
                     Execute(map, player);
                     active = !active;
+                    MusicManager.PlaySound(AssetManager.SoundName.BlueLever);
                 }
             }
             else
@@ -73,6 +74,7 @@ namespace MemoryMaze
                     mani.execute(map);
             }
             //ToDo Chris blueLever Sound
+            
         }
 
         public override void Draw(RenderTexture win, View view, Vector2f relViewDis)

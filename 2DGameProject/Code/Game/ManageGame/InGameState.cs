@@ -36,6 +36,7 @@ namespace MemoryMaze
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
                 game.SaveGame();
+                MusicManager.StopSound();
                 return GameState.LoadLevelState;
             }
             return nextGameState;

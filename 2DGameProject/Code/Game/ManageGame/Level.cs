@@ -94,6 +94,7 @@ namespace MemoryMaze
             }
             if (KeyboardInputManager.Upward(Keyboard.Key.Back))
             {
+                MusicManager.StopSound();
                 foreach(Tutorial tut in tutorials)
                 {
                     if (tut.index == curIndex)

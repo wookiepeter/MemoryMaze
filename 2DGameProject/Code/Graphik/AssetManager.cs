@@ -257,7 +257,9 @@ public class AssetManager
         Wall,
         MenueClick,
         LeverNormal,
+        BlueLever,
         VirusDetected,
+        DeleteBot,
         Key
     }
     public static SoundBuffer GetSound(SoundName soundName)
@@ -274,7 +276,9 @@ public class AssetManager
         sounds.Add(SoundName.Wall, new SoundBuffer("Assets/Musics/Sounds/Wand.wav"));
         sounds.Add(SoundName.MenueClick, new SoundBuffer("Assets/Musics/Sounds/Menuclick.wav"));
         sounds.Add(SoundName.LeverNormal, new SoundBuffer("Assets/Musics/Sounds/SchalterNormal.wav"));
+        sounds.Add(SoundName.BlueLever, new SoundBuffer("Assets/Musics/Sounds/SchalterBlue.wav"));
         sounds.Add(SoundName.VirusDetected, new SoundBuffer("Assets/Musics/Sounds/VirusDetected.wav"));
+        sounds.Add(SoundName.DeleteBot, new SoundBuffer("Assets/Musics/Sounds/DeleteBot.wav"));
         sounds.Add(SoundName.Key, new SoundBuffer("Assets/Musics/Sounds/Schluessel2.wav"));
 
 

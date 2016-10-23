@@ -229,8 +229,8 @@ namespace MemoryMaze
                 UpdateSpritePosition(map);
             }
             else
-            {
-                
+            {//SPieler ist tod
+                MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
                 playerdetected.Position = new Vector2f(300, 200);
                 playerdetected.Scale = new Vector2f(4, 4);
                 playerdetected.Color = Color.Red;
@@ -503,6 +503,7 @@ namespace MemoryMaze
                     {
                         deleteList.Add(it); //zerstoere Bot
                         Console.WriteLine("Some Bot is getting destroyed");
+                        MusicManager.PlaySound(AssetManager.SoundName.DeleteBot);
                         if (it.id == controllid)
                             controllid = 0;
                     }

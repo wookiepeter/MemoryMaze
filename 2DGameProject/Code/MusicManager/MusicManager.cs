@@ -35,7 +35,45 @@ namespace MemoryMaze
         }
         public static void PlaySound(AssetManager.SoundName soundName)
         {
-            sound = new Sound(AssetManager.GetSound(soundName));
+            
+            
+
+            if(AssetManager.SoundName.CreateBot == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.Key == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.LeverNormal == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.BlueLever == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.MenueClick == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.Teleport == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.VirusDetected == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.DeleteBot == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
+            if (AssetManager.SoundName.Wall == soundName)
+            {
+                sound = new Sound(AssetManager.GetSound(soundName));
+            }
             sound.Play();
         }
         public static void StopSound()
