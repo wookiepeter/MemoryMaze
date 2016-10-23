@@ -194,7 +194,7 @@ namespace MemoryMaze
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 1:
-                            if(KeyboardInputManager.PressedKeys().Count > 0)
+                            if (KeyboardInputManager.PressedKeys().Count > 0 && player.mapPosition.Equals(new Vector2i(4,3)))
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 11:
