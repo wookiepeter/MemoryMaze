@@ -16,7 +16,9 @@ namespace MemoryMaze
         public Teleporter(Vector2i _entrance, Vector2i _exit, Map map)
         {
             entrance = _entrance;
+            drawEntrance = true;
             exit = _exit;
+            drawExit = true;
 
             entranceSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), AnimationSecondsPerFrame, 8);
             exitSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.Teleporter), AnimationSecondsPerFrame, 8);
@@ -40,7 +42,9 @@ namespace MemoryMaze
         private Teleporter(Teleporter _transporter)
         {
             entrance = _transporter.entrance;
+            drawEntrance = _transporter.drawEntrance;
             exit = _transporter.exit;
+            drawExit = _transporter.drawExit;
 
             entranceSprite = _transporter.entranceSprite;
             exitSprite = _transporter.exitSprite;
@@ -123,15 +127,21 @@ namespace MemoryMaze
 
         public override void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
-            entranceSprite.Position = entranceExactPosition + relViewDis;
-            win.Draw(entranceSprite);
-            entranceParticleSprite.Position = entranceExactPosition + relViewDis;
-            win.Draw(entranceParticleSprite);
+            if (drawEntrance)
+            {
+                entranceSprite.Position = entranceExactPosition + relViewDis;
+                win.Draw(entranceSprite);
+                entranceParticleSprite.Position = entranceExactPosition + relViewDis;
+                win.Draw(entranceParticleSprite);
+            }
 
-            exitSprite.Position = exitExactPosition + relViewDis;
-            win.Draw(exitSprite);
-            exitParticleSprite.Position = exitExactPosition + relViewDis;
-            win.Draw(exitParticleSprite);
+            if (drawExit)
+            {
+                exitSprite.Position = exitExactPosition + relViewDis;
+                win.Draw(exitSprite);
+                exitParticleSprite.Position = exitExactPosition + relViewDis;
+                win.Draw(exitParticleSprite);
+            }
         }
     }
 }

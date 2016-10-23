@@ -10,8 +10,10 @@ namespace MemoryMaze
 {
     public abstract class Transporter
     {
-        protected Vector2i entrance;
-        protected Vector2i exit;
+        public Vector2i entrance;
+        public bool drawEntrance;
+        public Vector2i exit;
+        public bool drawExit;
 
         protected AnimatedSprite entranceSprite;
         protected AnimatedSprite exitSprite;
