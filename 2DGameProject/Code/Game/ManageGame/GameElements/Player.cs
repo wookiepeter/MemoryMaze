@@ -627,11 +627,24 @@ namespace MemoryMaze
             }
                 
             if (item is RedItem)
+            {
                 redItemCounter++;
+                MusicManager.PlaySound(AssetManager.SoundName.ItemPick);
+            }
+
             if (item is BlueItem)
+            {
                 blueItemCounter++;
+                MusicManager.PlaySound(AssetManager.SoundName.ItemPick);
+
+            }
+
             if (item is GreenItem)
+            {
                 greenItemCounter++;
+                MusicManager.PlaySound(AssetManager.SoundName.ItemPick);
+            }
+
             if (item is ScoreItem)
                 scoreCounter= scoreCounter -5;
                  

@@ -13,6 +13,6 @@ wwwwwwww
 
 //pos: 6,1
 _map:
-lever(1,5);empty(2,6);empty(2,7);empty(2,8);empty(3,8);empty(4,8);empty(5,8);empty(5,7);empty(5,6);wall(5,5)
+lever(1,5);empty(2,6);empty(2,7);empty(2,8);empty(3,8);empty(4,8);empty(5,8);empty(5,7);empty(5,6);wall(5,5);wall(3,5)
 lever(4,5);empty(6,4);empty(6,5);empty(5,5)
-rating(100,36,27)
+rating(50,31,26)
