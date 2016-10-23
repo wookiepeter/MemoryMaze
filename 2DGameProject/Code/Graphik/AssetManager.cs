@@ -38,7 +38,7 @@ public class AssetManager
         screenShots.Add(7, new Texture("Assets/Textures/Screens/Gelb08neu.png"));
         screenShots.Add(8, new Texture("Assets/Textures/Screens/Gelb09.png"));
         screenShots.Add(9, new Texture("Assets/Textures/Screens/Gelb10.png"));
-        screenShots.Add(10, new Texture("Assets/Textures/Screens/Gelb11.05.png")); // insertnewscreenshot
+        screenShots.Add(10, new Texture("Assets/Textures/Screens/Gelb11.05.png"));
         screenShots.Add(11, new Texture("Assets/Textures/Screens/Gelb11.png"));
         screenShots.Add(12, new Texture("Assets/Textures/Screens/Rot1.png"));
         screenShots.Add(13, new Texture("Assets/Textures/Screens/Rot2.png"));
@@ -189,6 +189,7 @@ public class AssetManager
         textures.Add(TextureName.IconCredits, new Texture("Assets/Textures/Menu/Icon_Credits.png"));
         textures.Add(TextureName.IconOptions, new Texture("Assets/Textures/Menu/Icon_Options.png"));
         textures.Add(TextureName.IconExit, new Texture("Assets/Textures/Menu/Icon_Exit.png"));
+        textures.Add(TextureName.KeyGoal, new Texture("Assets/Textures/set_01/floor/goal2.png"));
     }
 
     public enum TextureName
@@ -222,6 +223,7 @@ public class AssetManager
         Ground3top,
         Ground4,
         Goal,
+        KeyGoal,
         /// vvvvvvvvvvv will be deleted soon(ish) vvvvvvvvvvv
         GoalLonely,
         Goal1bottom,

@@ -29,6 +29,7 @@ namespace MemoryMaze
     class Cell
     {
         cellContent content;
+        public bool isGoalAndHasKey = false;
 
         public Cell(cellContent _content)
         {
@@ -83,7 +84,7 @@ namespace MemoryMaze
                 case cellContent.Item: return AssetManager.GetTexture(AssetManager.TextureName.Item);
                 case cellContent.Wall: return AssetManager.GetTexture(AssetManager.TextureName.Wall);
                 case cellContent.Movable: return AssetManager.GetTexture(AssetManager.TextureName.Movable);
-                case cellContent.Goal: return getGoalTextureFromIndex(groundIndex);
+                case cellContent.Goal: return getGoalTextureFromIndex(isGoalAndHasKey);
                 default: return AssetManager.GetTexture(AssetManager.TextureName.WhitePixel);
             }
         }
@@ -93,10 +94,10 @@ namespace MemoryMaze
             return AssetManager.GetTexture(AssetManager.TextureName.GroundLonely + groundIndex);
         }
 
-        private Texture getGoalTextureFromIndex(int groundIndex)
+        private Texture getGoalTextureFromIndex(bool isGoalAndGotKey)
         {
             //Cord was here! Muhahaha
-            return AssetManager.GetTexture(AssetManager.TextureName.Goal);
+            return (!isGoalAndGotKey)? AssetManager.GetTexture(AssetManager.TextureName.KeyGoal) : AssetManager.GetTexture(AssetManager.TextureName.Goal);
 
             // This was commented out by Cord! Matthis, do your job and make the Floor-Tile Great again
             //return AssetManager.GetTexture(AssetManager.TextureName.GoalLonely + groundIndex);
