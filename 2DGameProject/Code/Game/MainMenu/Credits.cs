@@ -21,6 +21,7 @@ namespace MemoryMaze
         Text Musiker, Programmierer,Grafiker, Kreativ;
         Font fontforall, fontgamename;
         List<Text> namel;
+        Sprite background;
         public Credits()
         {
             Console.WriteLine("CREDITS");
@@ -33,6 +34,8 @@ namespace MemoryMaze
             //tbackground = new Texture(ibackground);
             //sbackground = new Sprite(tbackground);
             blackback = new Sprite(new Texture(new Image(1280, 720, new Color(0, 0, 0, 200))));
+            background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MapBackground7));
+
             //
             //fontgamename = new Font("calibri.ttf");
             //gamename = new Text("Sch-Weiss", fontgamename);
@@ -41,25 +44,25 @@ namespace MemoryMaze
             //gamename.Color = new Color(255, 255, 255, 64);
             namel = new List<Text>();
 
-            fontforall = new Font("Assets/Fonts/calibri.ttf");
+            fontforall = new Font("Assets/Fonts/fixedsys.ttf");
             Programmierer = new Text("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall);
-            Programmierer.Position = new Vector2f(450, 500);
+            Programmierer.Position = new Vector2f(350, 500);
             Programmierer.Color = Color.White;
             Programmierer.Scale = new Vector2f(2, 2);
 
 
-            Grafiker = new Text("Grafiker \n Frieder Prinz \n\n", fontforall);
-            Grafiker.Position = new Vector2f(450, 750);
+            Grafiker = new Text("Grafiker\n Frieder Prinz\n Jan-Cord Gerken \n\n\n", fontforall);
+            Grafiker.Position = new Vector2f(350, 750);
             Grafiker.Color = Color.White;
             Grafiker.Scale = new Vector2f(2, 2);
 
-            Musiker = new Text("Musik\n Benjamin Blüh...ähm Parske \n\n", fontforall);
-            Musiker.Position = new Vector2f(450, 950);
+            Musiker = new Text("Musik\n Titelsong: Jan-Cord Gerken \n\n", fontforall);
+            Musiker.Position = new Vector2f(350, 1000);
             Musiker.Color = Color.White;
             Musiker.Scale = new Vector2f(2, 2);
 
-            Kreativ = new Text("Level Design\n Christian\n Christians Freundin \n\n", fontforall);
-            Kreativ.Position = new Vector2f(450, 1150);
+            Kreativ = new Text("Level Design\n Christian Sandkämper \n Vanessa Wöhner \n\n", fontforall);
+            Kreativ.Position = new Vector2f(350, 1200);
             Kreativ.Color = Color.White;
             Kreativ.Scale = new Vector2f(2, 2);
 
@@ -87,6 +90,7 @@ namespace MemoryMaze
             //win.Clear();
             //win.Draw(sbackground);
             win.Draw(blackback);
+            win.Draw(background);
             //win.Draw(gamename);
             foreach (Text names in namel)
             {

@@ -20,11 +20,12 @@ namespace MemoryMaze
         public int scoreItemCounter;
         GameState nextGameState;
 
-        Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
-
         ManageProfiles manageProfiles;
         ManageStars manageStars;
         List<Tutorial> tutorialList;
+
+        Sprite HUDSkipBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSkip));
+        Sprite HUDSkip = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.SkipMedal));
 
         public Game(int id)
         {
@@ -49,9 +50,6 @@ namespace MemoryMaze
 
 
             level = levelList[curIndex].Copy();
-
-            levelNumber.CharacterSize = 20;
-            levelNumber.Color = Color.Red;
         }
 
         void Tutorial()
@@ -130,8 +128,8 @@ namespace MemoryMaze
         void SetTutorials()
         {
             tutorialList = new List<MemoryMaze.Tutorial>();
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(235, 218), new Vector2(100, 200), 6, 0, 0));
-            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(196, 195), new Vector2(100, 200), 6, 1, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialMove),0.2F, 8), "Move", new Vector2(335, 218), new Vector2(200, 200), 6, 0, 0));
+            tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialReset), 0.2F, 2), "Reset", new Vector2(296, 195), new Vector2(200, 200), 6, 1, 0));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostSpawn), 0.2F, 4), "Scout", new Vector2(1035, 195), new Vector2(900, 200), 10, 12, 0));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialGhostMove), 0.2F, 8), "Move\nScout", new Vector2(1035, 209), new Vector2(900, 200), 10, 12, 1));
             tutorialList.Add(new Tutorial(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSpawnBot), 0.2F, 3), "Spawn\nBot", new Vector2(1035, 209), new Vector2(900, 200), 10, 12, 2));
@@ -201,10 +199,16 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-            levelNumber.DisplayedString = "Level " + curIndex + " of " + (levelList.Count-1);
-            levelNumber.Position = new Vector2f(gui.view.Size.X-100, gui.view.Size.Y-50);
-            gui.Draw(levelNumber);
             level.DrawGUI(gui, deltaTime);
+
+            HUDSkipBox.Position = new Vector2f(30, gui.view.Size.Y - HUDSkipBox.TextureRect.Height - 30);
+            gui.Draw(HUDSkipBox);
+            HUDSkip.Position = HUDSkipBox.Position + new Vector2f(50, 5);
+            for(int i = 0; i < manageStars.levelSkips; i++)
+            {
+                gui.Draw(HUDSkip);
+                HUDSkip.Position += new Vector2f(HUDSkip.TextureRect.Width * 0.8f, 0 );
+            }
         }
 
         public void SaveGame()

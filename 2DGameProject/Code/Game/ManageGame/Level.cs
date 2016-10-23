@@ -240,7 +240,7 @@ namespace MemoryMaze
                     {
                         // sort the cases latest to earliest
                         case 0:
-                            if (hackWatch.ElapsedMilliseconds > 3000)
+                            if (hackWatch.ElapsedMilliseconds > 1000)
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 1:
