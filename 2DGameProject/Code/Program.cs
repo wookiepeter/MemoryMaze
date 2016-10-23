@@ -75,8 +75,8 @@ namespace MemoryMaze
                 state.DrawGUI(gui, deltaTime);
 
                 // some DebugText
-                debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
-                gui.Draw(debugText);
+                //debugText.DisplayedString = "fps: " + (1.0F / deltaTime);
+                //gui.Draw(debugText);
 
                 // do the actual drawing
                 win.SetView(view);
