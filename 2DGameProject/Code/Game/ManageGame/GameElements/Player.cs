@@ -33,9 +33,13 @@ namespace MemoryMaze
 
         // GUI Stuff
         Sprite playerStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.Player)));
+        Sprite EnergybarGhostPlayer = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.YellowEnergybar)));
         Sprite redBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedBot)));
+        Sprite EnergybarRed = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.RedEnergybar)));
         Sprite blueBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueBot)));
+        Sprite EnergybarBlue = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.BlueEnergybar)));
         Sprite greenBotStatus = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenBot)));
+        Sprite EnergybarGreen = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenEnergybar)));
         Font calibri = new Font("Assets/Fonts/calibri.ttf");
         Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
         Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
@@ -104,12 +108,16 @@ namespace MemoryMaze
         void InitializeGUI()
         {
             playerStatus.Position = new Vector2f(25, 25);
+            EnergybarGhostPlayer.Position = new Vector2f(50 + playerStatus.Position.X, 25);
             //playerStatus.Scale = new Vector2f(1, 1);
-            redBotStatus.Position = new Vector2f(125, 25);
+            redBotStatus.Position = new Vector2f(25, 125);
+            EnergybarRed.Position = new Vector2f(50 + redBotStatus.Position.X, 125);
             //redBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
-            greenBotStatus.Position = new Vector2f(225, 25);
+            greenBotStatus.Position = new Vector2f(25, 225);
+            EnergybarGreen.Position = new Vector2f(50 + greenBotStatus.Position.X, 225);
             //greenBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
-            blueBotStatus.Position = new Vector2f(335, 25);
+            blueBotStatus.Position = new Vector2f(25, 325);
+            EnergybarBlue.Position = new Vector2f(50 + blueBotStatus.Position.X, 325);
             //blueBotStatus.Scale = new Vector2f(25f / 64f, 25f / 64f);
 
 
@@ -309,6 +317,10 @@ namespace MemoryMaze
             }
 
             updateTexts();
+            for(int i = 0; i <= 3; i++)
+            {
+                drawEnergybars(i, gui);
+            }
 
             // printing current steps;
             gui.Draw(guiGhostCounter);
@@ -327,6 +339,51 @@ namespace MemoryMaze
             gui.Draw(greenBotStatus);
 
         }
+
+        private void drawEnergybars(int id, GUI gui)
+        {
+            Sprite barSprite;
+            int numBars;
+            switch (id)
+            {
+                case 0:
+                    barSprite = EnergybarGhostPlayer;
+                    barSprite.Color = playerStatus.Color;
+                    numBars = ghostaktiv ? ghostPlayer.counter : 0;
+                    break;
+                case 1:
+                    barSprite = EnergybarRed;
+                    barSprite.Color = redBotStatus.Color;
+                    numBars = redbot ? botList.Find(b => b.id == 1).counter : 0;
+                    break;
+                case 2:
+                    barSprite = EnergybarBlue;
+                    barSprite.Color = blueBotStatus.Color;
+                    numBars = bluebot ? botList.Find(b => b.id == 2).counter : 0;
+                    break;
+                case 3:
+                    barSprite = EnergybarGreen;
+                    barSprite.Color = greenBotStatus.Color;
+                    numBars = greenbot ? botList.Find(b => b.id == 3).counter : 0;
+                    break;
+                default:
+                    throw new Exception("this should not have happened");
+            }
+            Vector2 tmpPosition = barSprite.Position;
+            for(int i = 0; i < numBars; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    barSprite.Scale = new Vector2f(1, 1.1F);
+                    gui.Draw(barSprite);
+                    barSprite.Scale = new Vector2f(1, 1);
+                }
+                gui.Draw(barSprite);
+                barSprite.Position += new Vector2f(7,0);
+            }
+            barSprite.Position = tmpPosition;
+        }
+
 
         private void updateTexts()
         {
