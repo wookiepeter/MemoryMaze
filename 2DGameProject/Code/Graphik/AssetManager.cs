@@ -242,7 +242,6 @@ public class AssetManager
         RedEnergybar,
         BlueEnergybar,
         GrayEnergybar,
-<<<<<<< .mine
         HUDYellowBox,
         HUDRedBox,
         HUDGreenBox,
@@ -252,17 +251,10 @@ public class AssetManager
         HUDKey,
         HUDSkip,
         SkipMedal,
-=======
         IconDelete,
         IconCredits,
         IconExit,
         IconOptions
-
-
-
-
-
->>>>>>> .theirs
     }
 
     //Music!
