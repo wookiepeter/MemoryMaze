@@ -113,6 +113,11 @@ public class AssetManager
         textures.Add(TextureName.TutorialReset, new Texture("Assets/Textures/Menu/Tutorial/ResetTutorial.png"));
         textures.Add(TextureName.TutorialSpawnBot, new Texture("Assets/Textures/Menu/Tutorial/Scout3Tutorial.png"));
         textures.Add(TextureName.TutorialSwitch, new Texture("Assets/Textures/Menu/Tutorial/SwitchTutorial.png"));
+        textures.Add(TextureName.YellowEnergybar, new Texture("Assets/Textures/Virus/EnergybarYellow.png"));
+        textures.Add(TextureName.GrayEnergybar, new Texture("Assets/Textures/Virus/EnergybarGray.png"));
+        textures.Add(TextureName.BlueEnergybar, new Texture("Assets/Textures/Virus/EnergybarBlue.png"));
+        textures.Add(TextureName.GreenEnergybar, new Texture("Assets/Textures/Virus/EnergybarGreen.png"));
+        textures.Add(TextureName.RedEnergybar, new Texture("Assets/Textures/Virus/EnergybarRed.png"));
     }
 
     public enum TextureName
@@ -217,6 +222,11 @@ public class AssetManager
         TutorialSpawnBot,
         TutorialDeleteBot,
         TutorialSwitch,
+        YellowEnergybar,
+        GreenEnergybar,
+        RedEnergybar,
+        BlueEnergybar,
+        GrayEnergybar,
     }
 
     //Music!
