@@ -18,9 +18,9 @@ namespace MemoryMaze
         //Sprite sbackground;
         Sprite blackback;
         //RectangleShape blackbox;
-        Text Musiker, Programmierer,Grafiker, Kreativ;
+        SuperText Musiker, Programmierer,Grafiker, Kreativ;
         Font fontforall, fontgamename;
-        List<Text> namel;
+        List<SuperText> namel;
         Sprite background;
         public Credits()
         {
@@ -42,32 +42,37 @@ namespace MemoryMaze
             //gamename.Position = new Vector2f(220, -5);
             //gamename.CharacterSize = 240;
             //gamename.Color = new Color(255, 255, 255, 64);
-            namel = new List<Text>();
+            namel = new List<SuperText>();
 
             fontforall = new Font("Assets/Fonts/fixedsys.ttf");
-            Programmierer = new Text("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall);
+            Programmierer = new SuperText("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall, 0.1f);
             Programmierer.Position = new Vector2f(350, 500);
             Programmierer.Color = Color.White;
             Programmierer.Scale = new Vector2f(2, 2);
 
 
-            Grafiker = new Text("Grafiker\n Frieder Prinz\n Jan-Cord Gerken \n\n\n", fontforall);
+            Grafiker = new SuperText("Grafiker\n Frieder Prinz\n Jan-Cord Gerken \n\n\n", fontforall, 0.1f);
             Grafiker.Position = new Vector2f(350, 750);
             Grafiker.Color = Color.White;
             Grafiker.Scale = new Vector2f(2, 2);
 
-            Musiker = new Text("Musik\n Titelsong: Jan-Cord Gerken \n\n", fontforall);
+            Musiker = new SuperText("Musik\n Titelsong: Jan-Cord Gerken \n\n", fontforall, 0.1f);
             Musiker.Position = new Vector2f(350, 1000);
             Musiker.Color = Color.White;
             Musiker.Scale = new Vector2f(2, 2);
 
-            Kreativ = new Text("Level Design\n Christian Sandkämper \n Vanessa Wöhner \n\n", fontforall);
+            Kreativ = new SuperText("Level Design\n Christian Sandkämper \n Vanessa Wöhner \n\n", fontforall, 0.1f);
             Kreativ.Position = new Vector2f(350, 1200);
             Kreativ.Color = Color.White;
             Kreativ.Scale = new Vector2f(2, 2);
 
-            Text[] namelist = { Musiker, Programmierer, Grafiker, Kreativ };
+            SuperText[] namelist = { Musiker, Programmierer, Grafiker, Kreativ };
             namel = namelist.ToList();
+            foreach (SuperText sup in namel)
+            {
+                sup.minFrequency = 2;
+                sup.maxFrequency = 6;   
+            }
         }
 
         public void LoadContent()
@@ -78,7 +83,11 @@ namespace MemoryMaze
 
         public GameState Update(RenderWindow win, float deltaTime)
         {
-
+            foreach (SuperText sup in namel)
+            {
+                Console.WriteLine(deltaTime);
+                sup.Update(deltaTime);
+            }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
                 return GameState.MainMenu;
             else
@@ -92,9 +101,9 @@ namespace MemoryMaze
             win.Draw(blackback);
             win.Draw(background);
             //win.Draw(gamename);
-            foreach (Text names in namel)
+            foreach (SuperText names in namel)
             {
-                win.Draw(names);
+                names.Draw(win, RenderStates.Default);
                 names.Position = new Vector2f(names.Position.X, names.Position.Y - deltaTime*70);
            
             }
