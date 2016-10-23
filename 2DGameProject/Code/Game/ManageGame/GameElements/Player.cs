@@ -176,7 +176,8 @@ namespace MemoryMaze
                 if (iserstellt)
                 {
                     ghostPlayer.Update(deltaTime, map, this);
-                    currentFocus = ghostPlayer.sprite.Position + new Vector2f(ghostPlayer.sprite.spriteSize.X / 2f, ghostPlayer.sprite.spriteSize.Y / 2f);
+                    currentFocus = new Vector2(ghostPlayer.mapPosition.X * sizePerCell + sizePerCell * 0.5f, ghostPlayer.mapPosition.Y * sizePerCell + sizePerCell * 0.5f);
+                    Console.WriteLine("after setting: " + currentFocus);
                     UpdateSpritePosition(map);
                 }
                 else
@@ -222,8 +223,7 @@ namespace MemoryMaze
                     ghostaktiv = false;
                     iserstellt = false;
                 }
-
-                
+        
                 //Target controll manager
                 SwitchTarget();
                 UpdateSpritePosition(map);
@@ -287,7 +287,6 @@ namespace MemoryMaze
  
         public void Draw(RenderTexture win, View view, Vector2f relViewDis, float deltaTime)
         {
-
             view.Center = Vector2.lerp(view.Center, currentFocus, deltaTime*3);
             
             if (teleporting)

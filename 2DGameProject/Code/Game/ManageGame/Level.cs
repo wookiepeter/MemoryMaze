@@ -166,7 +166,6 @@ namespace MemoryMaze
         {
             for (int i = 2; i > 0; i--)
             {
-                Console.WriteLine("Rating: " + ratingNumbers[i] + " - " + playerScore);
                 if (ratingNumbers[i] >= playerScore)
                 {
                     return (ManageStars.Rating)i+1;
@@ -195,7 +194,7 @@ namespace MemoryMaze
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 1:
-                            if(KeyboardInputManager.PressedKeys().Count > 0)
+                            if (KeyboardInputManager.PressedKeys().Count > 0 && player.mapPosition.Equals(new Vector2i(4,3)))
                                 nextTutorial.ActivateSecretPowers();
                             break;
                         case 11:
