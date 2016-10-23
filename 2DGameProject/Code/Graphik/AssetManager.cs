@@ -118,6 +118,16 @@ public class AssetManager
         textures.Add(TextureName.BlueEnergybar, new Texture("Assets/Textures/Virus/EnergybarBlue.png"));
         textures.Add(TextureName.GreenEnergybar, new Texture("Assets/Textures/Virus/EnergybarGreen.png"));
         textures.Add(TextureName.RedEnergybar, new Texture("Assets/Textures/Virus/EnergybarRed.png"));
+        textures.Add(TextureName.HUDYellowBox, new Texture("Assets/Textures/Menu/Hud_Yellow.png"));
+        textures.Add(TextureName.HUDRedBox, new Texture("Assets/Textures/Menu/Hud_Red.png"));
+        textures.Add(TextureName.HUDGreenBox, new Texture("Assets/Textures/Menu/Hud_Green.png"));
+        textures.Add(TextureName.HUDBlueBox, new Texture("Assets/Textures/Menu/Hud_Blue.png"));
+        textures.Add(TextureName.HUDKey, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
+        textures.Add(TextureName.HUDLevel, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
+        textures.Add(TextureName.HUDSteps, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
+        textures.Add(TextureName.HUDSkip, new Texture("Assets/Textures/Menu/Hud_Skip.png"));
+        textures.Add(TextureName.SkipMedal, new Texture("Assets/Textures/Virus/medal_skip.png"));
+
     }
 
     public enum TextureName
@@ -227,6 +237,15 @@ public class AssetManager
         RedEnergybar,
         BlueEnergybar,
         GrayEnergybar,
+        HUDYellowBox,
+        HUDRedBox,
+        HUDGreenBox,
+        HUDBlueBox,
+        HUDSteps,
+        HUDLevel,
+        HUDKey,
+        HUDSkip,
+        SkipMedal,
     }
 
     //Music!
