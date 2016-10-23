@@ -126,6 +126,9 @@ namespace MemoryMaze
                 case GameState.ChooseLevelState:
                     state = new ChooseLevelState();
                     break;
+                case GameState.Tutorial:
+                    state = new TutorialState();
+                    break;
                 case GameState.Reset:
                     currentGameState = prevGameState;
                     prevGameState = GameState.Reset;
