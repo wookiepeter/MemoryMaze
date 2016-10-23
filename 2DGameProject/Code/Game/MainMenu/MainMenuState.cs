@@ -326,7 +326,7 @@ namespace MemoryMaze
                             profiles.deleteProfile(MemoryMaze.profiles.three);
                             UpdateProfilePercentage();
                             break;
-                        case 6: return GameState.MainMenu;
+                        case 6: return GameState.Tutorial;
                         case 7: return GameState.Credits;
                         case 8: return GameState.None;
                         case 9:

@@ -57,8 +57,7 @@ namespace MemoryMaze
             {
                 return GameState.MainMenu;
             }
-            return GameState.MainMenu;
-            //return GameState.Tutorial;
+            return GameState.Tutorial;
         }
 
         public void Draw(RenderWindow win, View view, float deltaTime)

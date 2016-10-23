@@ -42,6 +42,11 @@ namespace MemoryMaze
         Sprite guiLevelBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
 
         Stopwatch hackWatch;
+        bool finished = false;
+
+        AnimatedSprite endAnimation;
+        Sprite endSprite;
+        SuperText endText;
 
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
@@ -90,50 +95,67 @@ namespace MemoryMaze
 
         public int Update(float deltaTime, ManageStars.Rating rating, int curIndex, List<Tutorial> tutorials)
         {
-            background = new Sprite(backgroundTextures[0]);
-            background.Position = new Vector2f(0, 0);
-            Console.WriteLine("curindex" + curIndex);
-            getBackground(curIndex);
-            mapStatus = 0;
-            playerScore = player.scoreCounter;
-            map.Update(deltaTime, player.keyCounter);
-            player.Update(deltaTime, map);
-            itemList.Update(map, player, deltaTime);
-            trapHandler.Update(map, player, deltaTime);
-            levelution.Update(player, map, deltaTime);
-            transporterHandler.Update(player, deltaTime);
-            checkTutorialNeed(rating, curIndex, tutorials);
-            if (currentTutorial != null)
+            if (finished)
             {
-                currentTutorial.Update(deltaTime);
+                endAnimation.UpdateFrame(deltaTime);
+                endText.Update(deltaTime);
+                if(KeyboardInputManager.Downward(Keyboard.Key.Space))
+                    mapStatus = 1;
             }
-            if(KeyboardInputManager.Upward(Keyboard.Key.T))
+            else
             {
-                return 3;
-            }
-            if (KeyboardInputManager.Upward(Keyboard.Key.Y))
-                mapStatus = 1;
-            if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
-            {
-                addScoreFromBots();
-                mapStatus = 1;
-                CheckLevel();
-                Logger.Instance.Write("\n" + "Rating: " + playerScore + "\n" + "Bronze: " +ratingNumbers[0]+ "\n" + "Silber: " + ratingNumbers[1] + "\n"+  "Gold: " + ratingNumbers[2] +"\n"+ "Sie haben " + CheckLevel() + " erreicht"  , Logger.level.Info);
-            }
-            if (KeyboardInputManager.Upward(Keyboard.Key.Back))
-            {
-                MusicManager.StopSound();
-                foreach(Tutorial tut in tutorials)
+                background = new Sprite(backgroundTextures[0]);
+                background.Position = new Vector2f(0, 0);
+                Console.WriteLine("curindex" + curIndex);
+                getBackground(curIndex);
+                mapStatus = 0;
+                playerScore = player.scoreCounter;
+                map.Update(deltaTime, player.keyCounter);
+                player.Update(deltaTime, map);
+                itemList.Update(map, player, deltaTime);
+                trapHandler.Update(map, player, deltaTime);
+                levelution.Update(player, map, deltaTime);
+                transporterHandler.Update(player, deltaTime);
+                checkTutorialNeed(rating, curIndex, tutorials);
+                if (currentTutorial != null)
                 {
-                    if (tut.index == curIndex)
-                    {
-                        tut.shown = false;
-                    }
+                    currentTutorial.Update(deltaTime);
                 }
-                mapStatus = 2;
+                if (KeyboardInputManager.Upward(Keyboard.Key.T))
+                {
+                    return 3;
+                }
+                if (KeyboardInputManager.Upward(Keyboard.Key.Y))
+                    mapStatus = 1;
+                if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
+                {
+                    endSprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelInfo));
+                    endSprite.Position = new Vector2f(450, 220);
+                    GraphicHelper.SetAlpha(200, endSprite);
+                    endAnimation = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.SpaceBar), 0.2f, 3);
+                    endAnimation.Position = (Vector2)endSprite.Position + new Vector2(125, 200);
+                    endText = new SuperText("Congratulations", new Font("Assets/Fonts/fixedsys.ttf"), 0.1f);
+                    endText.Position = (Vector2)endSprite.Position + new Vector2(20, 25);
+                    endText.CharacterSize = 40;
+                    finished = true;
+                    addScoreFromBots();
+                    CheckLevel();
+                    Logger.Instance.Write("\n" + "Rating: " + playerScore + "\n" + "Bronze: " + ratingNumbers[0] + "\n" + "Silber: " + ratingNumbers[1] + "\n" + "Gold: " + ratingNumbers[2] + "\n" + "Sie haben " + CheckLevel() + " erreicht", Logger.level.Info);
+                }
+                if (KeyboardInputManager.Upward(Keyboard.Key.Back))
+                {
+                    MusicManager.StopSound();
+                    foreach (Tutorial tut in tutorials)
+                    {
+                        if (tut.index == curIndex)
+                        {
+                            tut.shown = false;
+                        }
+                    }
+                    mapStatus = 2;
+                }
+                guiLevelNumber.DisplayedString = "" + (curIndex + 1);
             }
-            guiLevelNumber.DisplayedString = "" + (curIndex + 1);
-
             return mapStatus;
         }
         private String CheckLevel()
@@ -148,6 +170,8 @@ namespace MemoryMaze
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDif, float deltaTime)        {
             Stopwatch watch = new Stopwatch();
+
+            
 
             watch.Start();
             win.Draw(background);
@@ -165,6 +189,12 @@ namespace MemoryMaze
             if (currentTutorial != null)
             {
                 currentTutorial.Draw(win, view, relViewDif);
+            }
+            if(finished == true)
+            {
+                win.Draw(endSprite);
+                win.Draw(endAnimation);
+                endText.Draw(win, RenderStates.Default);
             }
             //Logger.Instance.Write("tMap: " + tMap + " tPlayer: " + tPlayer + " tItem: " + tItems + " tTraps: " + tTraps + " all: " + watch.ElapsedTicks, 0);
         }

@@ -186,12 +186,13 @@ public class AssetManager
         textures.Add(TextureName.HUDSteps, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
         textures.Add(TextureName.HUDSkip, new Texture("Assets/Textures/Menu/Hud_Skip.png"));
         textures.Add(TextureName.SkipMedal, new Texture("Assets/Textures/Virus/medal_skip.png"));
-
+        //textures.Add(TextureName.SpaceBar, new Texture("Assets/Textures/Menu/Tutoria/SpaceBar.png"));
         textures.Add(TextureName.IconDelete, new Texture("Assets/Textures/Menu/Icon_Trash.png"));
         textures.Add(TextureName.IconCredits, new Texture("Assets/Textures/Menu/Icon_Credits.png"));
         textures.Add(TextureName.IconOptions, new Texture("Assets/Textures/Menu/Icon_Options.png"));
         textures.Add(TextureName.IconExit, new Texture("Assets/Textures/Menu/Icon_Exit.png"));
         textures.Add(TextureName.KeyGoal, new Texture("Assets/Textures/set_01/floor/goal2.png"));
+        textures.Add(TextureName.SpaceBar, new Texture("Assets/Textures/Menu/Tutorial/SpaceBar.png"));
     }
 
     public enum TextureName
@@ -315,7 +316,8 @@ public class AssetManager
         IconDelete,
         IconCredits,
         IconExit,
-        IconOptions
+        IconOptions,
+        SpaceBar
     }
 
     //Music!
