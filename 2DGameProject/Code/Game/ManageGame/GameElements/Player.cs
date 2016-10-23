@@ -49,7 +49,7 @@ namespace MemoryMaze
         Sprite greenBotHUDBox = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.HUDGreenBox)));
         Sprite greenBotReserveBot = new Sprite(new Texture(AssetManager.GetTexture(AssetManager.TextureName.GreenItem)));
 
-        Font calibri = new Font("Assets/Fonts/calibri.ttf");
+        Font fixedSysFont = new Font("Assets/Fonts/fixedsys.ttf");
         Text guiGhostCounter, guiRedCounter, guiBlueCounter, guiGreenCounter;
         Text guiPlayerItemCounter, guiRedItemCounter, guiBlueItemCounter, guiGreenItemCounter;
 
@@ -65,7 +65,7 @@ namespace MemoryMaze
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
-            playerdetected = new Text("Virus entdeckt!", calibri);
+            playerdetected = new Text("Virus entdeckt!", fixedSysFont);
 
             id = 0;
             isAlive = true;
@@ -98,7 +98,7 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite, Sprite _teleSprite, float _teleSpriteSpeed,int _sizePerCell)
         {
-            playerdetected = new Text("Virus detected!", calibri);
+            playerdetected = new Text("Virus detected!", fixedSysFont);
             id = 0;
             controllid = 0;
             deleteList = new List<Bot>();
@@ -147,16 +147,16 @@ namespace MemoryMaze
 
 
             // initialize text for stepcounter
-            guiGhostCounter = new Text("0", calibri, 20);
-            guiRedCounter = new Text("0", calibri, 20);
-            guiGreenCounter = new Text("0", calibri, 20);
-            guiBlueCounter = new Text("0", calibri, 20);
+            guiGhostCounter = new Text("0", fixedSysFont, 20);
+            guiRedCounter = new Text("0", fixedSysFont, 20);
+            guiGreenCounter = new Text("0", fixedSysFont, 20);
+            guiBlueCounter = new Text("0", fixedSysFont, 20);
 
             // initialize text for itemcounter
-            guiPlayerItemCounter = new Text("" + keyCounter, calibri, 20);
-            guiRedItemCounter = new Text("" + redItemCounter , calibri, 20);
-            guiGreenItemCounter = new Text("" + greenItemCounter, calibri, 20);
-            guiBlueItemCounter = new Text("" + blueItemCounter, calibri, 20);
+            guiPlayerItemCounter = new Text("" + keyCounter, fixedSysFont, 20);
+            guiRedItemCounter = new Text("" + redItemCounter , fixedSysFont, 20);
+            guiGreenItemCounter = new Text("" + greenItemCounter, fixedSysFont, 20);
+            guiBlueItemCounter = new Text("" + blueItemCounter, fixedSysFont, 20);
 
             guiGhostCounter.Position = new Vector2f(playerStatus.Position.X, playerStatus.Position.Y + (float)playerStatus.TextureRect.Height*playerStatus.Scale.Y);
             guiRedCounter.Position = new Vector2f(redBotStatus.Position.X, redBotStatus.Position.Y + (float)redBotStatus.TextureRect.Height*redBotStatus.Scale.Y);

@@ -20,8 +20,6 @@ namespace MemoryMaze
         public int scoreItemCounter;
         GameState nextGameState;
 
-        Text levelNumber = new Text("someText", new Font("Assets/Fonts/calibri.ttf"));
-
         ManageProfiles manageProfiles;
         ManageStars manageStars;
         List<Tutorial> tutorialList;
@@ -52,9 +50,6 @@ namespace MemoryMaze
 
 
             level = levelList[curIndex].Copy();
-
-            levelNumber.CharacterSize = 20;
-            levelNumber.Color = Color.Red;
         }
 
         void Tutorial()
@@ -204,9 +199,6 @@ namespace MemoryMaze
 
         public void DrawGUI(GUI gui, float deltaTime)
         {
-            levelNumber.DisplayedString = "Level " + curIndex + " of " + (levelList.Count-1);
-            levelNumber.Position = new Vector2f(gui.view.Size.X-100, gui.view.Size.Y-50);
-            gui.Draw(levelNumber);
             level.DrawGUI(gui, deltaTime);
 
             HUDSkipBox.Position = new Vector2f(30, gui.view.Size.Y - HUDSkipBox.TextureRect.Height - 30);
