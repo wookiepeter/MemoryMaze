@@ -16,7 +16,7 @@ namespace MemoryMaze
         Vector2i screenPosition;
         Sprite sprite;
         IntRect spriteRect;
-        bool highlighted;
+        public bool highlighted;
         public int buttonLevel;
 
         public LevelSelectButton(Vector2f _position, int _buttonLevel, Vector2i _screenPosition)

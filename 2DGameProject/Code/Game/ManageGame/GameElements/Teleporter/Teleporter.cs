@@ -76,11 +76,13 @@ namespace MemoryMaze
                 {
                     if (player.mapPosition.Equals(entrance))
                     {
+                        player.InitializeTeleport(this, false, exit);
                         player.mapPosition = exit;
                         exitDisabled = true;
                     }
                     else
                     {
+                        player.InitializeTeleport(this, true, exit);
                         player.setBlueBotPosition(exit);
                         exitDisabled = true;
                     }
@@ -89,11 +91,13 @@ namespace MemoryMaze
                 {
                     if (player.mapPosition.Equals(exit))
                     {
+                        player.InitializeTeleport(this, false, entrance);
                         player.mapPosition = entrance;
                         entranceDisabled = true;
                     }
                     else
                     {
+                        player.InitializeTeleport(this, true, entrance);
                         player.setBlueBotPosition(entrance);
                         entranceDisabled = true;
                     }
