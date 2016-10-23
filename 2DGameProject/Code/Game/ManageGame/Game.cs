@@ -26,6 +26,9 @@ namespace MemoryMaze
         ManageStars manageStars;
         List<Tutorial> tutorialList;
 
+        Sprite HUDSkipBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSkip));
+        Sprite HUDSkip = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.SkipMedal));
+
         public Game(int id)
         {
             Console.WriteLine("Sind in der GameFunktion mit der: " +id);
@@ -205,6 +208,15 @@ namespace MemoryMaze
             levelNumber.Position = new Vector2f(gui.view.Size.X-100, gui.view.Size.Y-50);
             gui.Draw(levelNumber);
             level.DrawGUI(gui, deltaTime);
+
+            HUDSkipBox.Position = new Vector2f(30, gui.view.Size.Y - HUDSkipBox.TextureRect.Height - 30);
+            gui.Draw(HUDSkipBox);
+            HUDSkip.Position = HUDSkipBox.Position + new Vector2f(50, 5);
+            for(int i = 0; i < manageStars.levelSkips; i++)
+            {
+                gui.Draw(HUDSkip);
+                HUDSkip.Position += new Vector2f(HUDSkip.TextureRect.Width * 0.8f, 0 );
+            }
         }
 
         public void SaveGame()
