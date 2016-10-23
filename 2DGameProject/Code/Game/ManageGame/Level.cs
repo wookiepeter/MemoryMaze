@@ -21,12 +21,17 @@ namespace MemoryMaze
         TransportHandler transporterHandler;
         MapFromTxt mapFromText = new MapFromTxt();
 
+        Sprite background = new Sprite();
+
         Tutorial currentTutorial;
 
         int mapStatus = 0;
         int playerScore = 0;
         int[] ratingNumbers = new int[3];
         public int keysToUnlock { get; private set; }
+
+        int[] lastLevelIndex = { 11, 23, 30, 44 };
+        Texture[] backgroundTextures = { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4) };
 
         SuperText guiScoreNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
         SuperText guiScore = new SuperText("Steps", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
@@ -54,6 +59,7 @@ namespace MemoryMaze
             map.RemoveAllTraps();
             levelution = mapFromText.getLevelutionHandler(mapfile, map);
             transporterHandler = mapFromText.getTransFromMap(mapfile, map);
+
         }
 
         // Constructor for the Copy function
@@ -84,6 +90,10 @@ namespace MemoryMaze
 
         public int Update(float deltaTime, ManageStars.Rating rating, int curIndex, List<Tutorial> tutorials)
         {
+            background = new Sprite(backgroundTextures[0]);
+            background.Position = new Vector2f(0, 0);
+            Console.WriteLine("curindex" + curIndex);
+            getBackground(curIndex);
             mapStatus = 0;
             playerScore = player.scoreCounter;
             map.Update(deltaTime, player.keyCounter);
@@ -140,6 +150,7 @@ namespace MemoryMaze
             Stopwatch watch = new Stopwatch();
 
             watch.Start();
+            win.Draw(background);
             map.Draw(win, view, relViewDif);
             levelution.Draw(win, view, relViewDif);
             long tMap = watch.ElapsedTicks;
@@ -256,6 +267,20 @@ namespace MemoryMaze
                     }
                 }
             }
+        }
+        
+        void getBackground(int currentIndex)
+        {
+            for(int i = 0; i < lastLevelIndex.Count(); i++)
+            {
+                Console.WriteLine("i" + i);
+                if (currentIndex <= lastLevelIndex[i])
+                {
+                    background.Texture = backgroundTextures[i];
+                    break;
+                }
+            }
+            background.Color = new Color(15, 15, 15);
         }        
     }
 }
