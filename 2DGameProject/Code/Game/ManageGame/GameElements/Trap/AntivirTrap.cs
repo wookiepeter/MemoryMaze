@@ -15,6 +15,7 @@ namespace MemoryMaze
     class AntivirTrap
     {
         AnimatedSprite sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.MagnifyingGlassAnimated), 0.2F, 8);
+        AnimatedSprite effectSprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.LoadingCircleAnimated), 0.12F, 4);
         public Vector2i position;
         public Boolean isAlive;                                 //Ist meine Falle scharf?
 
@@ -43,13 +44,16 @@ namespace MemoryMaze
         public void Update(Map map, float deltaTime)
         {
             sprite.UpdateFrame(deltaTime);
+            effectSprite.UpdateFrame(deltaTime);
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
         {
             if (isAlive)                                 //Nur zeichnen wenn sie aktiv ist
             {
+                effectSprite.Position = exactPosition + relViewDis;
                 sprite.Position = exactPosition + relViewDis;
+                win.Draw(effectSprite);
                 win.Draw(sprite);
             }
         }

@@ -250,7 +250,7 @@ namespace MemoryMaze
             {//SPieler ist tod
                 MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
                 playerdetected.Position = new Vector2f(300, 200);
-                playerdetected.Scale = new Vector2f(4, 4);
+                playerdetected.Scale = new Vector2f(3, 3);
                 playerdetected.Color = Color.Red;
                 playerdetected.Style = Text.Styles.Bold;
             }
