@@ -194,6 +194,7 @@ public class AssetManager
         textures.Add(TextureName.IconExit, new Texture("Assets/Textures/Menu/Icon_Exit.png"));
         textures.Add(TextureName.KeyGoal, new Texture("Assets/Textures/set_01/floor/goal2.png"));
         textures.Add(TextureName.SpaceBar, new Texture("Assets/Textures/Menu/Tutorial/SpaceBar.png"));
+        textures.Add(TextureName.MagnifyingGlassAnimated, new Texture("Assets/Textures/Item/magnifyingGlass.png"));
     }
 
     public enum TextureName
@@ -252,6 +253,7 @@ public class AssetManager
         Star,
         Item,
         KeyAnimated,
+        MagnifyingGlassAnimated,
         ParticlesAnimated,
         ParticlesOutgoingAnimated,
         Movable,

@@ -14,7 +14,7 @@ namespace MemoryMaze
 {
     class AntivirTrap
     {
-        Sprite sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.TrapTile));
+        AnimatedSprite sprite = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.MagnifyingGlassAnimated), 0.2F, 8);
         public Vector2i position;
         public Boolean isAlive;                                 //Ist meine Falle scharf?
 
@@ -42,7 +42,7 @@ namespace MemoryMaze
         }
         public void Update(Map map, float deltaTime)
         {
-
+            sprite.UpdateFrame(deltaTime);
         }
 
         public void Draw(RenderTexture win, View view, Vector2f relViewDis)
