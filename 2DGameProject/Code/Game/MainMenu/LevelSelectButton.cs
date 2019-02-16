@@ -90,12 +90,6 @@ namespace MemoryMaze
                     break;
             }
 
-            if (highlighted)
-                sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonGlow);
-            else
-                sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
-
-
             sprite.Origin = new Vector2f(sprite.Texture.Size.X * 0.5f, sprite.Texture.Size.Y * 0.5f);
             sprite.TextureRect = new IntRect(0, 0, (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
         }

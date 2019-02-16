@@ -30,18 +30,9 @@ namespace MemoryMaze
         public void Initialize()
         {
             // ToDo: evtl BackGround usw bearbeiten
-            //ibackground = new Image("pictures/grasstitlescreen.png");
-            //tbackground = new Texture(ibackground);
-            //sbackground = new Sprite(tbackground);
             blackback = new Sprite(new Texture(new Image(1280, 720, new Color(0, 0, 0, 200))));
             background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MapBackground7));
 
-            //
-            //fontgamename = new Font("calibri.ttf");
-            //gamename = new Text("Sch-Weiss", fontgamename);
-            //gamename.Position = new Vector2f(220, -5);
-            //gamename.CharacterSize = 240;
-            //gamename.Color = new Color(255, 255, 255, 64);
             namel = new List<SuperText>();
 
             fontforall = FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf");

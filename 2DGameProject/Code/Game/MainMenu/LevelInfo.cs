@@ -13,7 +13,6 @@ namespace MemoryMaze
     {
         Sprite background;
         Sprite screenShot;
-        Sprite medal;
         List<RectangleShape> lines;
         List<Vector2> cornerPositions;
         SuperText levelName;
@@ -35,8 +34,6 @@ namespace MemoryMaze
 
             screenShot = new Sprite(AssetManager.GetScreenShot(_button.buttonLevel));
             screenShot.Position = position + new Vector2(20, 20);
-
-            medal = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
 
             defaultLineColor = new Color(255, 255, 255);
             float cornerDist = 10;
@@ -66,7 +63,6 @@ namespace MemoryMaze
             win.Draw(background);
             win.Draw(screenShot);
             levelName.Draw(win, RenderStates.Default);
-            win.Draw(medal);
         }
 
         public void SetNewLevel(LevelSelectButton _button, ManageStars.Rating _rating)
@@ -86,35 +82,7 @@ namespace MemoryMaze
                 lines.Add(GenerateLine(v, button.position, 2));
             }
 
-            switch(rating)
-            {
-                case ManageStars.Rating.Fail:
-                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
-                    break;
-                case ManageStars.Rating.Bronze:
-                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotBronze));
-                    break;
-                case ManageStars.Rating.Silver:
-                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotSilver));
-                    break;
-                case ManageStars.Rating.Gold:
-                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.BotGold));
-                    break;
-                case ManageStars.Rating.Skipped:
-                    SetMedal(AssetManager.GetTexture(AssetManager.TextureName.SkipMedal));
-                    break; 
-            }
-            if (rating == ManageStars.Rating.Fail)
-                medal.Color = new Color(20, 20, 20);
-            else
-                medal.Color = new Color(255, 255, 255);
             SetAllAphas(highlighted? 100 : 50);
-        }
-
-        void SetMedal(Texture text)
-        {
-            medal.Texture = text;
-            medal.Position = position + new Vector2(270, 205);
         }
 
         private void SetAllAphas(float percentage)

@@ -147,7 +147,7 @@ namespace MemoryMaze
             currentScreenPosition = new Vector2i(GetPositionOnCurrentLevelScreen(), 0);
             worldName.DisplayedString = "World " + GetIndexOfCurrentLevelScreen();
             mainMap.Texture = levelSelectList[GetIndexOfCurrentLevelScreen()].texture;
-            SetButtonList(mainButtonList);
+            SetButtonList(mainButtonList, stars);
             levelInfo = new LevelInfo(mainButtonList[GetPositionOnCurrentLevelScreen()], new Vector2f(25, 25),  stars.GetScoreOfLevel(currentLevel));
             SetCurrentLevelInfo();
         }
@@ -312,7 +312,7 @@ namespace MemoryMaze
         {
             sliding = true;
             slideEndPosition = mainMap.Position;
-            SetButtonList(mainButtonList);
+            SetButtonList(mainButtonList, stars);
             helpButtonTargetList.RemoveAll(b => true);
             mainButtonTargetList.RemoveAll(b => true);
             int currentScreen = GetIndexOfCurrentLevelScreen();
@@ -513,7 +513,7 @@ namespace MemoryMaze
             return curPos;
         }
 
-        private void SetButtonList(List<LevelSelectButton> buttonList)
+        private void SetButtonList(List<LevelSelectButton> buttonList, ManageStars stars)
         {
             buttonList.RemoveAll(b => true);
             int curLevel = 0;
@@ -522,7 +522,7 @@ namespace MemoryMaze
                 curLevel += levelSelectList[i].posList.Count;
             foreach (Vector2f v in levelSelectList[mapIndex].posList)
             {
-                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(curLevel - levelSelectList[mapIndex].startIndex, 0)));
+                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(curLevel - levelSelectList[mapIndex].startIndex, 0), stars.GetScoreOfLevel(curLevel)));
                 curLevel++;
             }
         }
@@ -540,7 +540,7 @@ namespace MemoryMaze
                 curLevel += levelSelectList[i].posList.Count;
             foreach (Vector2f v in levelSelectList[mapIndex].posList)
             {
-                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(currentLevel - levelSelectList[mapIndex].startIndex, 0)));
+                buttonList.Add(new LevelSelectButton(v, curLevel, new Vector2i(currentLevel - levelSelectList[mapIndex].startIndex, 0), stars.GetScoreOfLevel(curLevel)));
                 curLevel++;
             }
         }
