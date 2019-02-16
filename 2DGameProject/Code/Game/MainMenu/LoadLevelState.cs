@@ -63,14 +63,13 @@ namespace MemoryMaze
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
-            Console.WriteLine("LOADLEVELSTATE");
             Initialisation();
             //background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
         }
 
         void Initialisation()
         {
-            font = new Font("Assets/Fonts/pixelhole.ttf"); 
+            font = FontLoader.Instance.LoadFont("Assets/Fonts/pixelhole.ttf"); 
 
             screenButtons = new RectangleShape();
             screenButtons.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonOptions);

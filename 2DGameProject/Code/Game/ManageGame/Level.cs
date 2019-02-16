@@ -32,15 +32,13 @@ namespace MemoryMaze
 
         int[] lastLevelIndex = { 11, 23, 30, 44 };
 
-        // TODO: crashes sometimes when selecting first level again!
-        // at 94% progress start world on last screen -> manuver to first screen with world buttons -> start very first level 
-        SuperText guiScoreNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
-        SuperText guiScore = new SuperText("Steps", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
-        Sprite guiScoreBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
+        SuperText guiScoreNumber;
+        SuperText guiScore;
+        Sprite guiScoreBox;
 
-        SuperText guiLevelNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
-        SuperText guiLevel = new SuperText("Level", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
-        Sprite guiLevelBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
+        SuperText guiLevelNumber;
+        SuperText guiLevel;
+        Sprite guiLevelBox;
 
         Stopwatch hackWatch;
         bool finished = false;
@@ -50,9 +48,42 @@ namespace MemoryMaze
         SuperText endText;
         Sprite endMedal;
 
+        // crashes sometimes when loading different levels relatively fast 
+        /// <summary>
+        /// the loading calls in this function seem to crash in some case -> be sure to handle any exceptions thrown at you!
+        /// </summary>
+        private void InitializeStrings()
+        {
+            guiScoreNumber = new SuperText("", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F);
+            guiScore = new SuperText("Steps", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.5F);
+            guiScoreBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
+
+            guiLevelNumber = new SuperText("", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F);
+            guiLevel = new SuperText("Level", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.5F);
+            guiLevelBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));
+        }
+
+        private void SafelyInitializeStrings()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                try
+                {
+                    InitializeStrings();
+                } catch (SFML.LoadingFailedException e)
+                {
+                    Console.WriteLine("Failed to load Texts for the " + i + " time.");
+                    continue;
+                }
+                break;
+            }
+        }
+
         // all variables initialized here need to be initialized in the copyconstructor too
         public Level(String mapfile, int sizePerCell, Vector2i position, int _keysToUnlock)
         {
+            SafelyInitializeStrings();
+
             map = new Map(mapfile, sizePerCell);
             player = new Player(position, map);
             itemList = new ItemList(map);
@@ -73,6 +104,8 @@ namespace MemoryMaze
         public Level(Map _map, Player _player, ItemList _itemList,TrapHandler _trapHandler, 
             LevelutionHandler _levelution, TransportHandler _transporter, int _playerScore, int _keysToUnlock, int[] _ratingNumbers)
         {
+            SafelyInitializeStrings();
+
             map = _map;
             player = _player;
             itemList = _itemList;
@@ -137,7 +170,7 @@ namespace MemoryMaze
                     endMedal.Position = endSprite.Position + new Vector2f(150, 100);
                     endAnimation = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.SpaceBar), 0.2f, 3);
                     endAnimation.Position = (Vector2)endSprite.Position + new Vector2(125, 200);
-                    endText = new SuperText("Congratulations", new Font("Assets/Fonts/fixedsys.ttf"), 0.1f);
+                    endText = new SuperText("Congratulations", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1f);
                     endText.Position = (Vector2)endSprite.Position + new Vector2(20, 25);
                     endText.CharacterSize = 40;
                     

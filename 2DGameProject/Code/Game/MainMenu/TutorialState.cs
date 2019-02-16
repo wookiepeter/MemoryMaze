@@ -28,13 +28,13 @@ namespace MemoryMaze
             Sprites.Add(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialSwitch), 0.2F, 4));
             Sprites.Add(new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.TutorialDeleteBot), 0.2F, 2));
 
-            Texts.Add(new SuperText("Move", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Reset", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Scout", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Move\nScout", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Spawn\nBot", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Switch", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
-            Texts.Add(new SuperText("Delete", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Move", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Reset", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Scout", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Move\nScout", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Spawn\nBot", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Switch", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
+            Texts.Add(new SuperText("Delete", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1F));
 
             Sprites[0].Position = new Vector2f(100, 70);
             for (int i = 1; i < Sprites.Count; i++)

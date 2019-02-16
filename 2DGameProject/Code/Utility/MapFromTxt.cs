@@ -248,10 +248,8 @@ namespace MemoryMaze
         // str 
         private MapManipulation createManipulation(String str, Map map)
         {
-            Console.WriteLine(str);
             foreach (String name in cellContentDic.Keys)
             {
-                Console.WriteLine(name);
                 if (str.Contains(name))
                 {
                     Vector2i pos = creatVector2i(str.Replace(name, ""));
@@ -263,11 +261,9 @@ namespace MemoryMaze
 
         private Vector2i creatVector2i(String str)
         {
-            Console.WriteLine(str);
             str = str.Replace("(", "");
             str = str.Replace(")", "");
             String[] innerBuffer = str.Split(',');
-            Console.WriteLine(innerBuffer[0] + " " + innerBuffer[1]);
             return new Vector2i(int.Parse(innerBuffer[0]), int.Parse(innerBuffer[1]));
         }
 

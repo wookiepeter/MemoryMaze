@@ -44,7 +44,7 @@ namespace MemoryMaze
             //gamename.Color = new Color(255, 255, 255, 64);
             namel = new List<SuperText>();
 
-            fontforall = new Font("Assets/Fonts/fixedsys.ttf");
+            fontforall = FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf");
             Programmierer = new SuperText("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall, 0.1f);
             Programmierer.Position = new Vector2f(350, 500);
             Programmierer.Color = Color.White;

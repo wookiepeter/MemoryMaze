@@ -21,7 +21,7 @@ namespace MemoryMaze
         public int tutorialIndex;
         public bool shown;
         public bool iShouldKillMyself;
-        Font font = new Font("Assets/Fonts/fixedsys.ttf");
+        Font font = FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf");
 
         public Tutorial(AnimatedSprite _animSprite, String _text, Vector2 _textPosition, Vector2 _position, float _duration, int _index, int _tutIndex)
         {

@@ -73,8 +73,8 @@ namespace MemoryMaze
             stopwatch1.Start();
             funactivJoh = false;
             funacitvBenni = false;
-            font = new Font("Assets/Fonts/fixedsys.ttf");
-            sexyFont = new Font("Assets/Fonts/pixelhole.ttf");
+            font = FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf");
+            sexyFont = FontLoader.Instance.LoadFont("Assets/Fonts/pixelhole.ttf");
             MainTitleColor = new Color(0, 2, 42);
             ProfileNameColor = new Color(125, 253, 108);
             MenuTextColor = new Color(114, 217, 100);

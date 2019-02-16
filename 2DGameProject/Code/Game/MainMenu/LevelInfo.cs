@@ -22,7 +22,7 @@ namespace MemoryMaze
 
         ManageStars.Rating rating;
         LevelSelectButton button;
-        Font font = new Font("Assets/Fonts/pixelhole.ttf");
+        Font font = FontLoader.Instance.LoadFont("Assets/Fonts/pixelhole.ttf");
         Color defaultLineColor;
         bool highlighted;
 
