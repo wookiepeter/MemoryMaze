@@ -35,6 +35,6 @@ wwwwwwwwwwwwwwwwwwwwwwwwwwwww
 //Startpos: 3,3
 //x1,x2,x3,x4
 _map:
-rating(200,119,115)
+rating(200,130,119)
 
 

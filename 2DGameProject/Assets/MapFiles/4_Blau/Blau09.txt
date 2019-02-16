@@ -20,5 +20,5 @@ lever(8,3);empty(7,10)
 lever(6,9);empty(9,7)
 lever(4,9);empty(10,5);wall(6,5)
 lever(4,7);empty(12,4)
-rating(150,47, 36)
+rating(150,51, 41)
 

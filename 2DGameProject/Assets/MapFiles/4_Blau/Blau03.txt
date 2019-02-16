@@ -22,4 +22,4 @@ wwwwwwwwwww
 
 _map:
 transport(5,11);teleport(5,14)
-rating(11,1,-4)
+rating(11,6,0)

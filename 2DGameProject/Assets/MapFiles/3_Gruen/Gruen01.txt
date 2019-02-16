@@ -10,4 +10,4 @@ wwwwwwwwww
 
 //Startpos: 8,3
 _map:
-rating(100,11,7)
+rating(100,18,11)
