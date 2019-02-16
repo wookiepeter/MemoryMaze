@@ -27,7 +27,6 @@ namespace MemoryMaze
         {
             stopwatch = new Stopwatch();
             stopwatch.Start();
-            Console.WriteLine("CHOOSELEVELSTATE");
             Initialization();
             //background = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.MainMenuBackground));
         }

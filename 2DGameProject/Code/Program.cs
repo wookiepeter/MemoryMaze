@@ -45,9 +45,10 @@ namespace MemoryMaze
             GameTime = new GameTime();
             GameTime.Start();
             logger = Logger.Instance;
-            logger.SetLevel(2);
+            // TODO: set level to 0 and writemodes to false 
+            logger.SetLevel(0);
             // writeToFile should be optional
-            logger.SetWriteMode(true, true);
+            logger.SetWriteMode(false, false);
             
             // debug Text
             Text debugText = new Text("debug Text", new Font("Assets/Fonts/calibri.ttf"));

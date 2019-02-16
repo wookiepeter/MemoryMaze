@@ -32,6 +32,8 @@ namespace MemoryMaze
 
         int[] lastLevelIndex = { 11, 23, 30, 44 };
 
+        // TODO: crashes sometimes when selecting first level again!
+        // at 94% progress start world on last screen -> manuver to first screen with world buttons -> start very first level 
         SuperText guiScoreNumber = new SuperText("", new Font("Assets/Fonts/fixedsys.ttf"), 0.1F);
         SuperText guiScore = new SuperText("Steps", new Font("Assets/Fonts/fixedsys.ttf"), 0.5F);
         Sprite guiScoreBox = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.HUDSteps));

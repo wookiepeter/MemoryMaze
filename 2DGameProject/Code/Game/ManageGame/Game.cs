@@ -16,6 +16,7 @@ namespace MemoryMaze
         List<Level> levelList = new List<Level>();
         int curIndex = 0;
 
+        // levelStatus = 
         int levelStatus;
         public int scoreItemCounter;
         GameState nextGameState;
@@ -34,14 +35,12 @@ namespace MemoryMaze
 
             if (id == 1)
             {
-                Console.WriteLine("Game was continued");
                 MainCampaign();
             }
 
             // this does require the set level(levelToPlay) to be valid(both an existing level and an already unlocked one)
             if (id == 2)
             {
-                Console.WriteLine("levelToPlay: " + ProfileConstants.levelToPlay);
                 MainCampaign();
                 curIndex = ProfileConstants.levelToPlay;
             }
@@ -115,7 +114,6 @@ namespace MemoryMaze
             manageProfiles = new ManageProfiles();
             manageProfiles = manageProfiles.loadManageProfiles();
             manageStars = new ManageStars();
-            Console.WriteLine("playerName: " + manageProfiles.getActiveProfileName());
             manageStars = manageStars.loadManageStars(manageProfiles.getActiveProfileName(), levelList.Count);
             curIndex = manageStars.getIndexOfFirstUnsolvedLevel();
             SetTutorials();
@@ -138,6 +136,7 @@ namespace MemoryMaze
         {
             levelStatus = level.Update(deltaTime, manageStars.levelRating[curIndex], curIndex, tutorialList);
 
+            // finished level
             if (levelStatus == 1)
             {
                 int curScore = level.getScoreCounter();
@@ -157,6 +156,7 @@ namespace MemoryMaze
                 }
             }
 
+            // used skip level
             if(levelStatus == 3)
             {
                 if(manageStars.SkipLevel(curIndex))
@@ -178,6 +178,7 @@ namespace MemoryMaze
                 }
             }
 
+            // restart level?
             if(levelStatus == 2)
             {
                 level = levelList[curIndex].Copy();

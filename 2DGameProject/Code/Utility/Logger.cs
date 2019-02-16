@@ -14,6 +14,7 @@ namespace MemoryMaze
 
         private static Boolean writeToFile;
         private static Boolean writeToConsole;
+        private static Boolean disabled;
 
         static System.IO.StreamWriter file;
 
@@ -63,11 +64,12 @@ namespace MemoryMaze
         {
             writeToConsole = _writeToConsole;
             writeToFile = _writeToConsole;
+            disabled = (writeToFile == false && writeToConsole == false);
         }
 
         public void Write(String msg, int _lvl)
         {
-            if (_lvl >= (int)level.Error && _lvl <= (int)lvl)
+            if (disabled == false && _lvl >= (int)level.Error && _lvl <= (int)lvl)
             {
                 messageString = levelMessage[_lvl] + "[" + curGameTime.TotalSeconds.ToString().PadLeft(15, ' ') + "] " + msg;
                 if(writeToConsole)
