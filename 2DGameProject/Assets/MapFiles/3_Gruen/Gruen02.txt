@@ -11,4 +11,4 @@ wwwwwwwwww
 
 _map:
 lever(2,3);empty(2,4)
-rating(100,17,13)
+rating(100,26,16)

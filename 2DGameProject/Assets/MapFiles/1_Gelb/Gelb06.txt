@@ -12,4 +12,4 @@ wwwwwwwww
 _map:
 lever(1,2);empty(7,4)
 lever(1,4);empty(7,2)
-rating(50,31,26)
+rating(50,31,29)
