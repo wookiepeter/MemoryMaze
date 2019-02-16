@@ -21,6 +21,7 @@ namespace MemoryMaze
         public int controllid { get; set; }                                     //Welchen Bot möchte ich steuern?
 
         Text playerdetected;
+		Text restartGame;
         int id;
         public bool ghostaktiv, iserstellt;                                  //Ghostaktiv (momentan existiert ein Ghost) |  iserstellt(Ghost wurde erstellt)
         public GhostPlayer ghostPlayer;
@@ -65,9 +66,10 @@ namespace MemoryMaze
         // all variables initialized here need to be initialized in the copyconstructor too
         public Player(Vector2i position, Map map)
         {
-            playerdetected = new Text("Virus entdeckt!", fixedSysFont);
-
-            id = 0;
+			_musicPlayed = false;
+			playerdetected = new Text("Virus detected! \n Press Back to continue the game", fixedSysFont);
+			restartGame = new Text("Press back button to restart", fixedSysFont);
+			id = 0;
             isAlive = true;
             controllid = 0;
             deleteList = new List<Bot>();
@@ -99,7 +101,9 @@ namespace MemoryMaze
         Player(Vector2i position, RectangleShape _sprite, Sprite _teleSprite, float _teleSpriteSpeed,int _sizePerCell)
         {
             playerdetected = new Text("Virus detected!", fixedSysFont);
-            id = 0;
+			restartGame = new Text("Press back button to restart", fixedSysFont);
+
+			id = 0;
             controllid = 0;
             deleteList = new List<Bot>();
             botList = new List<Bot>();
@@ -173,8 +177,8 @@ namespace MemoryMaze
         {
             return new Player(mapPosition, sprite, teleSprite, teleSpriteSpeed, sizePerCell);
         }
-        
-        public void Update(float deltaTime, Map map)
+		private Boolean _musicPlayed = false;
+		public void Update(float deltaTime, Map map)
         {
             if(teleporting)
             {
@@ -248,16 +252,24 @@ namespace MemoryMaze
             }
             else
             {//SPieler ist tod
-                MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
-                playerdetected.Position = new Vector2f(300, 200);
-                playerdetected.Scale = new Vector2f(3, 3);
-                playerdetected.Color = Color.Red;
-                playerdetected.Style = Text.Styles.Bold;
+				if (!_musicPlayed)
+				{
+					MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
+					_musicPlayed = true;
+				}
+				playerdetected.Position = new Vector2f(300, 200);
+				playerdetected.Scale = new Vector2f(3, 3);
+				playerdetected.Color = Color.Red;
+				playerdetected.Style = Text.Styles.Bold;
+				restartGame.Position = new Vector2f(450, 350);
+				restartGame.Scale = new Vector2f(1, 1);
+				restartGame.Color = Color.Red;
+				restartGame.Style = Text.Styles.Bold;
             }
             
         }
-
-        public bool Teleporting(float deltaTime)
+	
+		public bool Teleporting(float deltaTime)
         {
             if(teleporterWaypoints.Count > 0)
             {
@@ -349,7 +361,11 @@ namespace MemoryMaze
         public void DrawGUI(GUI gui, float deltaTime)
         {
             if (!isAlive)
-                gui.Draw(playerdetected);
+			{
+				gui.Draw(playerdetected);
+				gui.Draw(restartGame);
+			}
+           
 
             Color low = new Color(255, 255, 255, 127);
             Color high = new Color(255, 255, 255, 255);
