@@ -88,6 +88,11 @@ namespace MemoryMaze
                 sound = new Sound(AssetManager.GetSound(soundName));
                 sound.Volume = 20;
             }
+			if(AssetManager.SoundName.Winning == soundName)
+			{
+				sound = new Sound(AssetManager.GetSound(soundName));
+				sound.Volume = 10;
+			}
             sound.Play();
         }
         public static void StopSound()

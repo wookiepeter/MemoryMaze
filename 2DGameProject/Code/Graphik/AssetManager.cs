@@ -364,7 +364,8 @@ public class AssetManager
         VirusDetected,
         DeleteBot,
         ItemPick,
-        Key
+        Key,
+		Winning
     }
     public static SoundBuffer GetSound(SoundName soundName)
     {
@@ -385,10 +386,7 @@ public class AssetManager
         sounds.Add(SoundName.ItemPick, new SoundBuffer("Assets/Musics/Sounds/ItemPick.wav"));
         sounds.Add(SoundName.DeleteBot, new SoundBuffer("Assets/Musics/Sounds/DeleteBot.wav"));
         sounds.Add(SoundName.Key, new SoundBuffer("Assets/Musics/Sounds/Schluessel2.wav"));
-
-
-
-
+		sounds.Add(SoundName.Winning, new SoundBuffer("Assets/Musics/Sounds/WinningSound.wav"));
     }
 }
 

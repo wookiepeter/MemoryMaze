@@ -171,6 +171,7 @@ namespace MemoryMaze
                     endAnimation = new AnimatedSprite(AssetManager.GetTexture(AssetManager.TextureName.SpaceBar), 0.2f, 3);
                     endAnimation.Position = (Vector2)endSprite.Position + new Vector2(125, 200);
                     endText = new SuperText("Congratulations", FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf"), 0.1f);
+					MusicManager.PlaySound(AssetManager.SoundName.Winning);
                     endText.Position = (Vector2)endSprite.Position + new Vector2(20, 25);
                     endText.CharacterSize = 40;
                     
