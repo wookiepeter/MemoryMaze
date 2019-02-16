@@ -163,8 +163,11 @@ public class AssetManager
         textures.Add(TextureName.ProfileDeleteButton, new Texture("Assets/Textures/Menu/Button_ProfileDeletion.png"));
         textures.Add(TextureName.ProfileDeleteButtonGlow, new Texture("Assets/Textures/Menu/Button_ProfileDeletion_glow.png"));
         textures.Add(TextureName.BotBronze, new Texture("Assets/Textures/Virus/medal_bronze.png"));
+        textures.Add(TextureName.BotBronzeDone, new Texture("Assets/Textures/Virus/medal_bronzeDone.png"));
         textures.Add(TextureName.BotSilver, new Texture("Assets/Textures/Virus/medal_silver.png"));
+        textures.Add(TextureName.BotSilverDone, new Texture("Assets/Textures/Virus/medal_silverDone.png"));
         textures.Add(TextureName.BotGold, new Texture("Assets/Textures/Virus/medal_gold.png"));
+        textures.Add(TextureName.BotGoldDone, new Texture("Assets/Textures/Virus/medal_goldDone.png"));
         textures.Add(TextureName.TutorialDeleteBot, new Texture("Assets/Textures/Menu/Tutorial/DeleteTutorial.png"));
         textures.Add(TextureName.TeleportBot, new Texture("Assets/Textures/Set_01/glow.png"));
         textures.Add(TextureName.TutorialGhostMove, new Texture("Assets/Textures/Menu/Tutorial/Scout2Tutorial.png"));
@@ -186,7 +189,7 @@ public class AssetManager
         textures.Add(TextureName.HUDLevel, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
         textures.Add(TextureName.HUDSteps, new Texture("Assets/Textures/Menu/Hud_Steps.png"));
         textures.Add(TextureName.HUDSkip, new Texture("Assets/Textures/Menu/Hud_Skip.png"));
-        textures.Add(TextureName.SkipMedal, new Texture("Assets/Textures/Virus/medal_skip.png"));
+        textures.Add(TextureName.SkipMedal, new Texture("Assets/Textures/Virus/medal_skipDone.png"));
         //textures.Add(TextureName.SpaceBar, new Texture("Assets/Textures/Menu/Tutoria/SpaceBar.png"));
         textures.Add(TextureName.IconDelete, new Texture("Assets/Textures/Menu/Icon_Trash.png"));
         textures.Add(TextureName.IconCredits, new Texture("Assets/Textures/Menu/Icon_Credits.png"));
@@ -294,8 +297,11 @@ public class AssetManager
         ProfileDeleteButton,
         ProfileDeleteButtonGlow,
         BotBronze,
+        BotBronzeDone,
         BotSilver,
+        BotSilverDone,
         BotGold,
+        BotGoldDone,
         TutorialMove,
         TutorialReset,
         TutorialGhostSpawn,
@@ -317,6 +323,7 @@ public class AssetManager
         HUDKey,
         HUDSkip,
         SkipMedal,
+        SkipMedalDone,
         IconDelete,
         IconCredits,
         IconExit,

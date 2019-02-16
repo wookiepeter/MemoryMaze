@@ -18,8 +18,9 @@ namespace MemoryMaze
         IntRect spriteRect;
         public bool highlighted;
         public int buttonLevel;
+        public ManageStars.Rating rating;
 
-        public LevelSelectButton(Vector2f _position, int _buttonLevel, Vector2i _screenPosition)
+        public LevelSelectButton(Vector2f _position, int _buttonLevel, Vector2i _screenPosition, ManageStars.Rating _rating)
         {
             position = _position;
             sprite = new Sprite(AssetManager.GetTexture(AssetManager.TextureName.LevelButtonGlow));
@@ -31,6 +32,7 @@ namespace MemoryMaze
             highlighted = false;
             buttonLevel = _buttonLevel;
             screenPosition = _screenPosition;
+            rating = _rating;
         }
 
         public void Update(float deltaTime, RenderWindow win, Vector2i currentPosition)
@@ -54,16 +56,47 @@ namespace MemoryMaze
 
         private void SetNewTexture()
         {
+            switch (rating)
+            {
+                case ManageStars.Rating.Fail:
+                    if (highlighted)
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonGlow);
+                    else
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
+                    break;
+                case ManageStars.Rating.Bronze:
+                    if (highlighted)
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotBronzeDone);
+                    else
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotBronze);
+                    break;
+                case ManageStars.Rating.Silver:
+                    if (highlighted)
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotSilverDone);
+                    else
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotSilver);
+                    break;
+                case ManageStars.Rating.Gold:
+                    if (highlighted)
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotGoldDone);
+                    else
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.BotGold);
+                    break;
+                case ManageStars.Rating.Skipped:
+                    if (highlighted)
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.SkipMedalDone);
+                    else
+                        sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.SkipMedal);
+                    break;
+            }
+
             if (highlighted)
-            {
                 sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButtonGlow);
-                sprite.Origin = new Vector2f(sprite.Texture.Size.X * 0.5f, sprite.Texture.Size.Y*0.5f);
-            }
             else
-            {
                 sprite.Texture = AssetManager.GetTexture(AssetManager.TextureName.LevelButton);
-                sprite.Origin = new Vector2f(sprite.Texture.Size.X * 0.5f, sprite.Texture.Size.Y * 0.5f);
-            }
+
+
+            sprite.Origin = new Vector2f(sprite.Texture.Size.X * 0.5f, sprite.Texture.Size.Y * 0.5f);
             sprite.TextureRect = new IntRect(0, 0, (int)sprite.Texture.Size.X, (int)sprite.Texture.Size.Y);
         }
 
