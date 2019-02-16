@@ -18,7 +18,7 @@ namespace MemoryMaze
         //Sprite sbackground;
         Sprite blackback;
         //RectangleShape blackbox;
-        SuperText Musiker, Programmierer,Grafiker, Kreativ;
+        SuperText Musiker, Programmierer,Grafiker, Kreativ, AssetsText;
         Font fontforall, fontgamename;
         List<SuperText> namel;
         Sprite background;
@@ -57,7 +57,13 @@ namespace MemoryMaze
             Kreativ.Color = Color.White;
             Kreativ.Scale = new Vector2f(2, 2);
 
-            SuperText[] namelist = { Musiker, Programmierer, Grafiker, Kreativ };
+			AssetsText = new SuperText("Assets \n https://creativecommons.org/licenses/by/3.0/ \n\n", fontforall, 0.1f);
+			AssetsText.Position = new Vector2f(350, 1400);
+			AssetsText.Color = Color.White;
+			AssetsText.Scale = new Vector2f(2, 2);
+
+
+			SuperText[] namelist = { Musiker, Programmierer, Grafiker, Kreativ };
             namel = namelist.ToList();
             foreach (SuperText sup in namel)
             {
