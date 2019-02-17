@@ -159,7 +159,7 @@ namespace MemoryMaze
                 {
                     return 3;
                 }
-                if (KeyboardInputManager.Upward(Keyboard.Key.Y))
+                if (KeyboardInputManager.IsPressed(Keyboard.Key.LShift) && KeyboardInputManager.IsPressed(Keyboard.Key.LControl) && KeyboardInputManager.Upward(Keyboard.Key.Y))
                     mapStatus = 1;
                 if (map.CellIsGoal(player.mapPosition) && player.keyCounter >= keysToUnlock)
                 {

@@ -48,6 +48,10 @@ namespace MemoryMaze
         {
             if (levelRating[_index] < _rating)
             {
+                if (levelRating[_index] == Rating.Skipped)
+                {
+                    levelSkips++;
+                }
                 levelRating[_index] = _rating;
             }
         }
