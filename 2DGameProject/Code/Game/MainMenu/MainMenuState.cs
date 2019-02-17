@@ -15,7 +15,6 @@ namespace MemoryMaze
         Font font, sexyFont;
         Stopwatch stopwatch;
         Stopwatch stopwatch1; //nach 0,5 sek kann man im Menu was anklicken
-        Text exit, start, credits, loadGame, mainmenu, tutorial;
         SuperText gameName;
         String gameTitle, currentTitleString, currentlyAppendedLetters;
         float currentDeltaSum, anotherDeltaSum; 
@@ -35,7 +34,6 @@ namespace MemoryMaze
         SuperText profileOneText, profileTwoText, profileThreeText;
         SuperText profileOnePercentage, profileTwoPercentage, ProfileThreePercentage;
         List<SuperText> superTextList;
-        List<Text> textlist;
         
         RectangleShape debugRect = new RectangleShape();
         RectangleShape debugButtonsRect = new RectangleShape();
@@ -80,15 +78,15 @@ namespace MemoryMaze
             MenuTextColor = new Color(114, 217, 100);
 
             buttonList = new List<Button>();
-            buttonList.Add(new Button(new Vector2f(500, 275), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(500, 395), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(500, 515), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
-            buttonList.Add(new Button(new Vector2f(925, 275), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
-            buttonList.Add(new Button(new Vector2f(925, 395), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
-            buttonList.Add(new Button(new Vector2f(925, 515), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
-            buttonList.Add(new Button(new Vector2f(685, 645), new Vector2i(0, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconOptions)));
-            buttonList.Add(new Button(new Vector2f(805, 645), new Vector2i(1, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconCredits)));
-            buttonList.Add(new Button(new Vector2f(925, 645), new Vector2i(2, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconExit)));
+            buttonList.Add(new Button(new Vector2f(575, 275), new Vector2i(0, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(575, 395), new Vector2i(0, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(575, 515), new Vector2i(0, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileButtonGlow)));
+            buttonList.Add(new Button(new Vector2f(1000, 275), new Vector2i(1, 0), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(1000, 395), new Vector2i(1, 1), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(1000, 515), new Vector2i(1, 2), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconDelete)));
+            buttonList.Add(new Button(new Vector2f(750, 645), new Vector2i(0, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconOptions)));
+            buttonList.Add(new Button(new Vector2f(880, 645), new Vector2i(1, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconCredits)));
+            buttonList.Add(new Button(new Vector2f(1000, 645), new Vector2i(2, 3), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButton), AssetManager.GetTexture(AssetManager.TextureName.ProfileDeleteButtonGlow), AssetManager.GetTexture(AssetManager.TextureName.IconExit)));
 
             gameTitle = "RAMification!";
             currentTitleString = "";
@@ -108,70 +106,35 @@ namespace MemoryMaze
             gameName.CharacterSize = 240;
             gameName.Color = MainTitleColor;
 
-            mainmenu = new Text("SpielMenü", font);
-            mainmenu.Position = new Vector2f(425, 225);
-            mainmenu.CharacterSize = 70;
-
-            credits = new Text("Credits", font);
-            credits.Position = new Vector2f(250, 500);
-            credits.CharacterSize = 40;
-
-            tutorial = new Text("Tutorial starten", font);
-            tutorial.Position = new Vector2f(250, 400);
-            tutorial.CharacterSize = 40;
-
-            start = new Text("Spiel starten", font);
-            start.Position = new Vector2f(250, 350);
-            start.CharacterSize = 40;
-
-            exit = new Text("Spiel beenden", font);
-            exit.Position = new Vector2f(250, 550);
-            exit.CharacterSize = 40;
-
-            loadGame = new Text("Spiel laden", font);
-            loadGame.Position = new Vector2f(250, 450);
-            loadGame.CharacterSize = 40;
-
             profileOneText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.one), font, 0.15f);
-            profileOneText.Position = new Vector2f(165, 250);
+            profileOneText.Position = new Vector2f(240, 250);
             profileOneText.CharacterSize = 58;
 
             profileOnePercentage = new SuperText("", font, 0.15f);
-            profileOnePercentage.Position = new Vector2f(700, 250);
+            profileOnePercentage.Position = new Vector2f(775, 250);
             profileOnePercentage.CharacterSize = 58;
 
             profileTwoText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.two), font, 0.15f);
-            profileTwoText.Position = new Vector2f(165, 370);
+            profileTwoText.Position = new Vector2f(240, 370);
             profileTwoText.CharacterSize = 58;
 
             profileTwoPercentage = new SuperText("", font, 0.15f);
-            profileTwoPercentage.Position = new Vector2f(700, 370);
+            profileTwoPercentage.Position = new Vector2f(775, 370);
             profileTwoPercentage.CharacterSize = 58;
 
             profileThreeText = new SuperText(profiles.getProfileName(MemoryMaze.profiles.three), font, 0.15f);
-            profileThreeText.Position = new Vector2f(165, 490);
+            profileThreeText.Position = new Vector2f(240, 490);
             profileThreeText.CharacterSize = 58;
 
             ProfileThreePercentage = new SuperText("", font, 0.15f);
-            ProfileThreePercentage.Position = new Vector2f(700, 490);
+            ProfileThreePercentage.Position = new Vector2f(775, 490);
             ProfileThreePercentage.CharacterSize = 58;
 
             superTextList = new List<SuperText>{ profileOneText, profileTwoText, profileThreeText, profileOnePercentage, profileTwoPercentage, ProfileThreePercentage};
 
             currentScreenPosition = new Vector2i(0, 0);
 
-            //Alle Texte in ein Array Speichern -> Liste übertragen!
-            Text[] array = { mainmenu, start,tutorial,  loadGame, credits, exit};
-            textlist = array.ToList();
-
             UpdateProfilePercentage();
-        }
-
-        public bool IsMouseInRectangle(IntRect rect, RenderWindow win)                          //Ist die Maus über ein IntRect
-        {
-            Vector2i mouse = win.InternalGetMousePosition();                                    // @chris -> das nehmen um die interne mausposition zu kriegen
-            return (rect.Left < mouse.X && rect.Left + rect.Width > mouse.X
-                        && rect.Top < mouse.Y && rect.Top + rect.Height > mouse.Y);
         }
 
         public GameState Update(RenderWindow win, float deltaTime)
@@ -216,7 +179,7 @@ namespace MemoryMaze
                     }
                     if (KeyboardInputManager.Downward(Keyboard.Key.Return))
                     {
-                        if (currentInput != "")
+                        if (currentInput != "" && currentInput != "[Enter Name]" && profiles.GetProfileNames().Contains(currentInput) == false)
                         {
                             profiles.setProfile(currentInput, ProfileConstants.activeProfile);
                             settingNewProfile = false;
@@ -328,7 +291,9 @@ namespace MemoryMaze
                             break;
                         case 6: return GameState.Tutorial;
                         case 7: return GameState.Credits;
-                        case 8: return GameState.None;
+                        case 8:
+                            profiles.saveManageProfiles();
+                            return GameState.None;
                         case 9:
                             funactivJoh = true; stopwatch.Restart();
                             break;

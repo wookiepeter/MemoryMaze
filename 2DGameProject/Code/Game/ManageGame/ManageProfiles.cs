@@ -19,6 +19,7 @@ namespace MemoryMaze
         public static profiles activeProfile;
         // TODO: move this somewhere else or find a better workaround
         public static int levelToPlay;
+        public static int curLevel;
     }
 
     public class ManageProfiles
@@ -103,6 +104,40 @@ namespace MemoryMaze
                     else
                         return "New...";
             }
+        }
+
+        private string getExistingProfileName(profiles profile)
+        {
+            switch (profile)
+            {
+                case profiles.one:
+                    if (profileOneExists) return profileOne;
+                    else
+                        return null;
+                case profiles.two:
+                    if (profileTwoExists) return profileTwo;
+                    else
+                        return null;
+                default:
+                    if (profileThreeExists) return profileThree;
+                    else
+                        return null;
+            }
+        }
+
+
+        public List<string> GetProfileNames()
+        {
+            List<string> result = new List<string>();
+
+
+            foreach (profiles e in Enum.GetValues(typeof(profiles)))
+            {
+                if (getExistingProfileName(e) != null)
+                    result.Add(getExistingProfileName(e));
+            }
+
+            return result;
         }
 
         public String getActiveProfileName()

@@ -74,6 +74,7 @@ public class AssetManager
         screenShots.Add(42, new Texture("Assets/Textures/Screens/Blau12.png"));
         screenShots.Add(43, new Texture("Assets/Textures/Screens/Blau13.png"));
         screenShots.Add(44, new Texture("Assets/Textures/Screens/Blau14.png"));
+        screenShots.Add(45, new Texture("Assets/Textures/Screens/thankyouforplaying.png"));
 
     }
 

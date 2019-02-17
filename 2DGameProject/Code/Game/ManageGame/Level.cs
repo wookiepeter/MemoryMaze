@@ -30,7 +30,7 @@ namespace MemoryMaze
         int[] ratingNumbers = new int[3];
         public int keysToUnlock { get; private set; }
 
-        int[] lastLevelIndex = { 11, 23, 30, 44 };
+        int[] lastLevelIndex = { 11, 23, 30, 45 };
 
         SuperText guiScoreNumber;
         SuperText guiScore;

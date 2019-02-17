@@ -67,8 +67,8 @@ namespace MemoryMaze
         public Player(Vector2i position, Map map)
         {
 			_musicPlayed = false;
-			playerdetected = new Text("Virus detected! \n Press Back to continue the game", fixedSysFont);
-			restartGame = new Text("Press back button to restart", fixedSysFont);
+			playerdetected = new Text("Virus detected! \n Press Back to continue the game", fixedSysFont, 100);
+			restartGame = new Text("Press back button to restart", fixedSysFont, 45);
 			id = 0;
             isAlive = true;
             controllid = 0;
@@ -100,8 +100,8 @@ namespace MemoryMaze
         // Constructor for the Copy function
         Player(Vector2i position, RectangleShape _sprite, Sprite _teleSprite, float _teleSpriteSpeed,int _sizePerCell)
         {
-            playerdetected = new Text("Virus detected!", fixedSysFont);
-			restartGame = new Text("Press back button to restart", fixedSysFont);
+            playerdetected = new Text("Virus detected!", fixedSysFont, 100);
+			restartGame = new Text("Press back button to restart", fixedSysFont, 45);
 
 			id = 0;
             controllid = 0;
@@ -251,18 +251,18 @@ namespace MemoryMaze
                 UpdateSpritePosition(map);
             }
             else
-            {//SPieler ist tod
+            {
+                //SPieler ist tod
+
 				if (!_musicPlayed)
 				{
 					MusicManager.PlaySound(AssetManager.SoundName.VirusDetected);
 					_musicPlayed = true;
 				}
-				playerdetected.Position = new Vector2f(300, 200);
-				playerdetected.Scale = new Vector2f(3, 3);
+				playerdetected.Position = new Vector2f(235, 200);
 				playerdetected.Color = Color.Red;
 				playerdetected.Style = Text.Styles.Bold;
-				restartGame.Position = new Vector2f(450, 350);
-				restartGame.Scale = new Vector2f(1, 1);
+				restartGame.Position = new Vector2f(285, 350);
 				restartGame.Color = Color.Red;
 				restartGame.Style = Text.Styles.Bold;
             }

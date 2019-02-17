@@ -37,6 +37,7 @@ namespace MemoryMaze
             {
                 game.SaveGame();
                 MusicManager.StopSound();
+                ProfileConstants.curLevel = game.curIndex;
                 return GameState.LoadLevelState;
             }
             return nextGameState;

@@ -14,7 +14,7 @@ namespace MemoryMaze
         //simply contains and manages all levels of the game
         Level level;
         List<Level> levelList = new List<Level>();
-        int curIndex = 0;
+        public int curIndex = 0;
 
         // levelStatus = 
         int levelStatus;
@@ -106,6 +106,7 @@ namespace MemoryMaze
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau11.txt", 64, new Vector2i(10, 3), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau12.txt", 64, new Vector2i(10, 12), 1));
             levelList.Add(new Level("Assets/MapFiles/4_Blau/Blau13.txt", 64, new Vector2i(8, 10), 1));
+            levelList.Add(new Level("Assets/MapFiles/4_Blau/thankyouforplaying.txt", 64, new Vector2i(2, 4), 1));
 
 
             nextGameState = GameState.InGame;
@@ -148,7 +149,7 @@ namespace MemoryMaze
                 if (curIndex >= levelList.Count)
                 {
                     SaveGame();
-                    nextGameState = GameState.MainMenu;
+                    nextGameState = GameState.Credits;
                 }
                 else
                 {

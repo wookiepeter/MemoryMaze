@@ -102,6 +102,7 @@ namespace MemoryMaze
 
                 case GameState.MainMenu:
                     state = new MainMenuState();
+                    ProfileConstants.curLevel = -1;
                     break;
 
                 case GameState.InGame:

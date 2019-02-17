@@ -103,11 +103,20 @@ namespace MemoryMaze
             worldNameFakePos = new Vector2f(-1000, -1000);
             worldNameRealPos = worldName.Position;
 
+            // ProfileConstants.activeProfile;
             profiles = new ManageProfiles();
             profiles = profiles.loadManageProfiles();
             stars = new ManageStars();
             stars = stars.unsafelyLoadManageStars(profiles.getActiveProfileName());
-            currentLevel = stars.EverythingUnlocked()? stars.GetLastSelectedLevel() : stars.getIndexOfFirstUnsolvedLevel();
+
+            // currentlevel is positive -> player played a level in during this session -> should at at that level
+            if(ProfileConstants.curLevel >= 0)
+            {
+                currentLevel = ProfileConstants.curLevel;
+            } else
+            {
+                currentLevel = stars.EverythingUnlocked() ? stars.GetLastSelectedLevel() : stars.getIndexOfFirstUnsolvedLevel();
+            }
 
             mainButtonList = new List<LevelSelectButton>();
             mainButtonTargetList = new List<Vector2f>();
@@ -128,7 +137,7 @@ namespace MemoryMaze
                     new Vector2f(1155, 405), },//new Vector2f(1095, 535), new Vector2f(1145, 425) },
 
                 new List<Vector2f>() { new Vector2f(75,425), new Vector2f(155,545), new Vector2f(245,455), new Vector2f(345,355), new Vector2f(485,265), new Vector2f(615,245),
-                    new Vector2f(685,255), new Vector2f(715,305), new Vector2f(775,375), new Vector2f(835,415), new Vector2f(995,425), new Vector2f(1075,465), new Vector2f(1155,475), new Vector2f(1215,405) } 
+                    new Vector2f(685,255), new Vector2f(715,305), new Vector2f(775,375), new Vector2f(835,415), new Vector2f(995,425), new Vector2f(1075,465), new Vector2f(1155,475), new Vector2f(1215,405), new Vector2f(1240, 320) } 
             };
             List<Texture> backgroundList = new List<Texture>() { AssetManager.GetTexture(AssetManager.TextureName.MapBackground1), AssetManager.GetTexture(AssetManager.TextureName.MapBackground2), AssetManager.GetTexture(AssetManager.TextureName.MapBackground3), AssetManager.GetTexture(AssetManager.TextureName.MapBackground4)};
             int curStartIndex = 0;
