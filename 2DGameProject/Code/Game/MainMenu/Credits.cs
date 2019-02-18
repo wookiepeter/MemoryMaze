@@ -36,29 +36,29 @@ namespace MemoryMaze
             namel = new List<SuperText>();
 
             fontforall = FontLoader.Instance.LoadFont("Assets/Fonts/fixedsys.ttf");
-            Programmierer = new SuperText("Programmierer \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall, 0.1f);
-            Programmierer.Position = new Vector2f(350, 500);
+            Programmierer = new SuperText("Programming \n Christian Sandkämper\n Matthis Hagen \n\n", fontforall, 0.1f);
+            Programmierer.Position = new Vector2f(250, 500);
             Programmierer.Color = Color.White;
             Programmierer.Scale = new Vector2f(2, 2);
 
 
-            Grafiker = new SuperText("Grafiker\n Frieder Prinz\n Jan-Cord Gerken \n\n\n", fontforall, 0.1f);
-            Grafiker.Position = new Vector2f(350, 750);
+            Grafiker = new SuperText("Graphic Design\n Frieder Prinz\n Jan-Cord Gerken \n\n\n", fontforall, 0.1f);
+            Grafiker.Position = new Vector2f(250, 750);
             Grafiker.Color = Color.White;
             Grafiker.Scale = new Vector2f(2, 2);
 
-            Musiker = new SuperText("Musik\n Titelsong: Jan-Cord Gerken \n\n", fontforall, 0.1f);
-            Musiker.Position = new Vector2f(350, 1000);
+            Musiker = new SuperText("Music\n Title Theme: Jan-Cord Gerken \n\n", fontforall, 0.1f);
+            Musiker.Position = new Vector2f(250, 1000);
             Musiker.Color = Color.White;
             Musiker.Scale = new Vector2f(2, 2);
 
             Kreativ = new SuperText("Level Design\n Christian Sandkämper \n Vanessa Wöhner \n\n", fontforall, 0.1f);
-            Kreativ.Position = new Vector2f(350, 1200);
+            Kreativ.Position = new Vector2f(250, 1200);
             Kreativ.Color = Color.White;
             Kreativ.Scale = new Vector2f(2, 2);
 
 			AssetsText = new SuperText("Assets \n https://creativecommons.org/licenses/by/3.0/ \n\n", fontforall, 0.1f);
-			AssetsText.Position = new Vector2f(350, 1400);
+			AssetsText.Position = new Vector2f(250, 1400);
 			AssetsText.Color = Color.White;
 			AssetsText.Scale = new Vector2f(2, 2);
 
